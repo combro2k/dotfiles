@@ -1,5 +1,9 @@
 # Global settings
 
+if status --is-interactive
+	if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
+end
+
 test -z "$MOSH" 
 	and set -g fish_term24bit 1
 test -z "$SSH_AUTH_SOCK"
