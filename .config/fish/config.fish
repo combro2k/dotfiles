@@ -33,12 +33,12 @@ fundle plugin 'tuvistavie/oh-my-fish-core'
 fundle plugin 'tuvistavie/fish-completion-helpers'
 fundle plugin 'oh-my-fish/plugin-vcs'
 fundle plugin 'oh-my-fish/plugin-bang-bang'
-fundle plugin 'oh-my-fish/theme-taktoa'
 fundle plugin 'oh-my-fish/plugin-license'
 fundle plugin 'oh-my-fish/plugin-sudope'
 fundle plugin 'fisherman/fzf'
 fundle plugin 'fisherman/docker-completion'
 fundle plugin 'edc/bass'
+fundle plugin 'oh-my-fish/theme-bira'
 
 fundle init
 
