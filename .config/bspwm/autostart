@@ -16,6 +16,7 @@ sleep 1
 /usr/bin/nm-applet &
 /usr/bin/clipit &
 /usr/bin/conky -c ~/.config/conky/conky.conf &
+/usr/bin/conky -c ~/.config/conky/conky-shortcuts.conf &
 /usr/bin/xautolock -time 10 -locker blurlock &
 
 $HOME/.config/polybar/launch.sh
