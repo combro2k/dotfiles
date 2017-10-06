@@ -15,7 +15,7 @@ sleep 1
 /usr/bin/kalu &
 /usr/bin/nm-applet &
 /usr/bin/clipit &
-/usr/bin/start_conky_maia &
+/usr/bin/conky -c ~/.config/conky/conky.conf &
 /usr/bin/xautolock -time 10 -locker blurlock &
 
 $HOME/.config/polybar/launch.sh

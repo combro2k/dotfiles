@@ -1,6 +1,6 @@
 #!/bin/sh
 
-bspc monitor -d 1st 2nd 3th 4th 5th 6th 7th 8th 9th
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
 bspc rule -a "*" split_dir="east"
 
@@ -30,7 +30,8 @@ bspc rule -a URxvt:weechat desktop=^2 follow=on
 bspc rule -a Gimp desktop=^4 follow=on
 bspc rule -a URxvt:vpn desktop=^5 follow=on state=floating
 bspc rule -a URxvt:upass state=floating
-bspc rule -a Conky  sticky=on manage=off lower=on
+bspc rule -a Conky sticky=on manage=off lower=on
+bspc rule -a feh floating=on manage=off
 
 # special rule for pinentry thingy
 bspc rule -a '*:pinentry' follow=on state=floating

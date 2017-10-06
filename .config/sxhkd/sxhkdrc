@@ -7,8 +7,14 @@ super + Return
 	urxvt
 
 # program launcher
-super + @space
+super + b
 	rofi -demnu -combi-modi drun,window -show combi -modi combi	
+
+super + shift + b
+	terminal -e 'bmenu'
+
+super + z
+	morc_menu
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -31,8 +37,8 @@ super + alt + Escape
 	bspc quit
 
 # close and kill
-super + {_,shift + }w
-	bspc node -{c,k}
+super + shift  + q
+	bspc node -k
 
 # alternate between the tiled and monocle layout
 super + m
@@ -75,7 +81,7 @@ super + {_,shift + }c
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
-super + bracket{left,right}
+super + ctrl + {Left,Right}
 	bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
@@ -88,9 +94,13 @@ super + {o,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
+super + {1-9,0}
+	bspc desktop -f '^{1-9,10}'
+
 # focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+super + ctrl + {1-9,0}
+	bspc node -d '^{1-9,10}'; \
+	bspc desktop -f '^{1-9,10}'
 
 #
 # preselect
@@ -101,8 +111,8 @@ super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
 # preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
+#super + ctrl + {1-9}
+#	bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
 super + ctrl + space
