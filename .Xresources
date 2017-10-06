@@ -1,0 +1,75 @@
+
+!        __  __
+!        \ \/ /_ __ ___  ___  ___  _   _ _ __ ___ ___  ___
+!         \  /| '__/ _ \/ __|/ _ \| | | | '__/ __/ _ \/ __|
+!         /  \| | |  __/\__ \ (_) | |_| | | | (_|  __/\__ \
+!        /_/\_\_|  \___||___/\___/ \__,_|_|  \___\___||___/
+
+
+*TkTheme: clearlooks
+Xcursor.theme: DMZ-White
+URxvt.scrollBar: false
+URxvt.intensityStyles: false
+
+! special
+*.foreground:   #a7a7a7
+*.background:   #1e1e1e
+*.cursorColor:  #a7a7a7
+
+! black
+*.color0:       #1e1e1e
+*.color8:       #5f5a60
+
+! red
+*.color1:       #cf6a4c
+*.color9:       #cf6a4c
+
+! green
+*.color2:       #8f9d6a
+*.color10:      #8f9d6a
+
+! yellow
+*.color3:       #f9ee98
+*.color11:      #f9ee98
+
+! blue
+*.color4:       #7587a6
+*.color12:      #7587a6
+
+! magenta
+*.color5:       #9b859d
+*.color13:      #9b859d
+
+! cyan
+*.color6:       #afc4db
+*.color14:      #afc4db
+
+! white
+*.color7:       #a7a7a7
+*.color15:      #ffffff
+
+Xcursor.theme: Breeze
+Xcursor.size:  0
+
+XTerm*background: #7e817e
+XTerm*foreground: #fdf6e3
+XTerm*reverseVideo: on
+XTerm*faceName: Terminus:size=11:antialias=true
+xTerm*selectToClipboard: true
+
+!! URxvt.font: 9x15
+URxvt.depth: 32
+!! URxvt.background: [80]#000000
+URxvt*scrollBar:                      false
+URxvt*mouseWheelScrollPage:           false
+URxvt*cursorBlink:                    true
+URxvt*background:                     black
+URxvt*foreground:                     grey
+Urxvt*saveLines:                      5000
+URxvt.font: xft:DroidSansMono Nerd Font Mono:style=Book:size=10
+
+URxvt*termName:                       rxvt-unicode
+URxvt.letterSpace:			-2
+URxvt.perl-ext:				
+URxvt.perl-ext-common:			
+URxvt.imLocale:         		en_US.UTF-8

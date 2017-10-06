@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+SXHKD_SHELL='/usr/bin/sh' sxhkd &
+
+# Start VMware Wrapper
+/usr/bin/vmware-user-suid-wrapper
+
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+/usr/bin/nitrogen --restore
+
+sleep 1 
+
+/usr/bin/compton -b
+#/usr/bin/pamac-tray &
+/usr/bin/kalu &
+/usr/bin/nm-applet &
+/usr/bin/clipit &
+/usr/bin/start_conky_maia &
+/usr/bin/xautolock -time 10 -locker blurlock &
+
+$HOME/.config/polybar/launch.sh
