@@ -8,7 +8,8 @@ test -z "$SSH_AUTH_SOCK"
 set -g -x SXHKD_SHELL '/usr/bin/sh'
 
 # set paths
-set -U fish_user_paths ~/go/bin $fish_user_paths
+test -d ~/go/bin/
+	and set -U fish_user_paths ~/go/bin $fish_user_paths
 
 # Fish git prompt
 set fish_prompt_pwd_dir_length 9999
