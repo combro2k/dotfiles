@@ -9,7 +9,7 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
+background = #50588cb6
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -21,23 +21,23 @@ alert = #bd2c40
 [bar/default]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 24
+height = 26
 ;offset-x = 1%
-;offset-y = 1%
-radius = 6.0
+offset-y = 5
+radius = 12.0
 fixed-center = false
 ;bottom = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 2
+line-size = 3
 line-color = #f00
 
 border-size = 4
 border-color = #00000000
 
-padding-left = 0
+padding-left = 2
 padding-right = 2
 
 module-margin-left = 2
@@ -49,17 +49,17 @@ font-2 = "Wuncon Siji:pixelsize=10;1"
 
 modules-left = bspwm i3
 modules-center = xwindow
-modules-right = xkeyboard memory cpu eth date
+modules-right = date
 
 tray-position = right
 tray-padding = 4
 tray-transparent = true
-;tray-background = #0063ff
+tray-background = #9999999
 
 wm-restack = bspwm
 ;wm-restack = i3
 
-;override-redirect = true
+override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
