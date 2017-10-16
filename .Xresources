@@ -69,9 +69,17 @@ URxvt*foreground:                     fgcolor
 Urxvt*saveLines:                      1000
 
 !! https://aur.archlinux.org/packages/nerd-fonts-complete/
-!! URxvt.font: xft:DroidSansMono Nerd Font Mono:style=Book:size=10:antialias=true
-!! URxvt.font: xft:DejaVuSansMono Nerd Font Mono:size=12:style=Book:antialias=true
-URxvt.font: xft:TerminessTTF Nerd Font Mono:Medium:size=12:antialias=false
+!! URxvt.font: xft:DroidSansMono Nerd Font Mono:style=Book:size=10:antialias=true:hinting=true
+!! URxvt.font: xft:DejaVuSansMono Nerd Font Mono:size=10:style=Book:antialias=true
+!! URxvt.font: xft:TerminessTTF Nerd Font Mono:Book:size=12:antialias=true:hinting=true
+URxvt.font: xft:SauceCodePro Nerd Font:style=Light:size=12:antialias=false
+
+!-- Xft settings -- !
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
 
 URxvt*skipBuiltinGlyphs: true
 
