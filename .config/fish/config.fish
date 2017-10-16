@@ -22,6 +22,8 @@ test -f /usr/bin/exa
 
 # Fish git prompt
 set fish_prompt_pwd_dir_length 9999
+# set -g theme_nerd_fonts yes
+# set -g theme_color_scheme terminal2-light-black
 
 # list plugin dependencies
 fundle plugin 'fisherman/await'
@@ -44,6 +46,7 @@ fundle plugin 'fisherman/fzf'
 fundle plugin 'fisherman/docker-completion'
 fundle plugin 'edc/bass'
 fundle plugin 'oh-my-fish/theme-bira'
+# fundle plugin 'oh-my-fish/theme-bobthefish'
 
 fundle init
 

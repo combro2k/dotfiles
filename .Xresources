@@ -70,7 +70,9 @@ Urxvt*saveLines:                      1000
 
 !! https://aur.archlinux.org/packages/nerd-fonts-complete/
 !! URxvt.font: xft:DroidSansMono Nerd Font Mono:style=Book:size=10:antialias=true
+!! URxvt.font: xft:DejaVuSansMono Nerd Font Mono:size=12:style=Book:antialias=true
 URxvt.font: xft:TerminessTTF Nerd Font Mono:Medium:size=12:antialias=false
+
 URxvt*skipBuiltinGlyphs: true
 
 URxvt*termName: rxvt-unicode
