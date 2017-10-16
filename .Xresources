@@ -69,7 +69,7 @@ URxvt*foreground:                     fgcolor
 Urxvt*saveLines:                      1000
 
 !! https://aur.archlinux.org/packages/nerd-fonts-complete/
-URxvt.font: xft:DroidSansMono Nerd Font Mono:style=Book:size=10
+URxvt.font: xft:DroidSansMono Nerd Font Mono:style=Book:size=10:antialias=false
 URxvt*skipBuiltinGlyphs: true
 
 URxvt*termName: rxvt-unicode
