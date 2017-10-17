@@ -2,7 +2,7 @@
 
 SXHKD_SHELL='/usr/bin/sh' sxhkd &
 
-# Start VMware Wrapper
+# Start VMware Wrapper now in /etc/lightdm/lightdm.conf
 # /usr/bin/vmware-user-suid-wrapper
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
