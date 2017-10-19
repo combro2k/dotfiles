@@ -35,6 +35,7 @@ bspc rule -a feh floating=on manage=off
 
 # special rule for pinentry thingy
 bspc rule -a '*:pinentry' follow=on state=floating
+bspc rule -a '*:pinentry-gtk-2' follow=on state=floating
 
 xdotool search --onlyvisible --name tilda windowfocus
 

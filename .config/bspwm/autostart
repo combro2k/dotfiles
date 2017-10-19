@@ -5,18 +5,17 @@ SXHKD_SHELL='/usr/bin/sh' sxhkd &
 # Start VMware Wrapper now in /etc/lightdm/lightdm.conf
 # /usr/bin/vmware-user-suid-wrapper
 
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-/usr/bin/nitrogen --restore
+test -f /usr/lib/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome-authentication-agent-1 &
+test -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+test -f /usr/bin/nitrogen && /usr/bin/nitrogen --restore
 
-sleep 1 
+sleep 1
 
-/usr/bin/compton -b
-#/usr/bin/pamac-tray &
+test -f /usr/bin/compton  && /usr/bin/compton -b
 test -f /usr/bin/kalu && /usr/bin/kalu &
 test -f /usr/bin/nm-aplet && /usr/bin/nm-applet &
-/usr/bin/clipit &
-/usr/bin/conky -c ~/.config/conky/conky.conf &
-/usr/bin/conky -c ~/.config/conky/conky-shortcuts.conf &
-/usr/bin/xautolock -time 10 -locker blurlock &
-
-$HOME/.config/polybar/launch.sh
+test -f /usr/bin/clipit && /usr/bin/clipit &
+test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky.conf &
+test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky-shortcuts.conf &
+test -f /usr/bin/xautolock && /usr/bin/xautolock -time 10 -locker blurlock &
+test -f $HOME/.config/polybar/launch.sh && $HOME/.config/polybar/launch.sh
