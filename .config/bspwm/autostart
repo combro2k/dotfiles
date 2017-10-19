@@ -12,8 +12,8 @@ sleep 1
 
 /usr/bin/compton -b
 #/usr/bin/pamac-tray &
-/usr/bin/kalu &
-/usr/bin/nm-applet &
+test -f /usr/bin/kalu && /usr/bin/kalu &
+test -f /usr/bin/nm-aplet && /usr/bin/nm-applet &
 /usr/bin/clipit &
 /usr/bin/conky -c ~/.config/conky/conky.conf &
 /usr/bin/conky -c ~/.config/conky/conky-shortcuts.conf &

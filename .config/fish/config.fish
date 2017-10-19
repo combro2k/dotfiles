@@ -53,7 +53,7 @@ fundle init
 # Start Neofetch if installed
 #
 
-if status --is-interactive; and test -z $SUDO_USER; and type "/usr/bin/neofetch" > /dev/null
+if status --is-interactive; and test -z $SUDO_USER; and test -f /usr/bin/neofetch
 	/usr/bin/neofetch
 end
 
