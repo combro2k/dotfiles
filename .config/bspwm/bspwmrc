@@ -2,7 +2,7 @@
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9
 
-bspc rule -a "*" split_dir="east"
+bspc config initial_polarity second_child
 
 bspc config border_width         	1
 bspc config window_gap          	3
@@ -22,6 +22,15 @@ bspc config top_padding 		40
 bspc config left_padding 		5
 bspc config right_padding 		5
 
+# allow moving around with floated window
+bspc config pointer_modifier mod1
+bspc config click_to_focus true
+bspc config pointer_action1 focus
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_corner
+bspc config pointer_action3 none
+
+# specific app rules
 bspc rule -a Steam desktop=^3 follow=on split_dir=right
 bspc rule -a URxvt:updates state=floating
 bspc rule -a URxvt:pulsemixer state=floating
