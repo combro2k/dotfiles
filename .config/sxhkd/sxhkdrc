@@ -4,6 +4,11 @@
 
 # terminal emulator
 super + Return
+	bspc node -p east; \
+	urxvt
+
+super + shift  + Return
+	bspc node -p south; \
 	urxvt
 
 # program launcher
