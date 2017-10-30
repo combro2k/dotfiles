@@ -24,4 +24,4 @@ command! TigStatus call s:tig_status()
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-colorscheme desert
+colorscheme delek
