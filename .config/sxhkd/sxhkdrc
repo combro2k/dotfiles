@@ -5,16 +5,14 @@
 # terminal emulator
 super + Return
 	urxvt
+# terminal emulator
+super + shift + Return
+	bspc node -p south; \
+	urxvt
 
 # program launcher
-super + b
-	rofi -demnu -combi-modi drun,window -show combi -modi combi	
-
-super + shift + b
-	terminal -e 'bmenu'
-
-super + z
-	morc_menu
+super + d
+	rofi -demnu -show drun -modi drun
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -57,8 +55,8 @@ super + g
 #
 
 # set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+super + {t,shift + s,f}
+	bspc node -t {tiled,floating,fullscreen}
 
 # set the node flags
 super + ctrl + {x,y,z}
@@ -94,8 +92,8 @@ super + {o,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-super + {1-9,0}
-	bspc desktop -f '^{1-9,10}'
+super + {1-9}
+	bspc desktop -f '^{1-9}'
 
 # per key config move and focus
 super + shift + 1
@@ -125,9 +123,6 @@ super + shift + 8
 super + shift + 9
 	bspc node -d 9; \
 	bspc desktop -f 9
-super + shift + 0
-	bspc node -d 10; \
-	bspc desktop -f 10
 
 #
 # preselect
