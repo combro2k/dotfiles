@@ -1,0 +1,200 @@
+# …………… Beginning of menu ……………
+
+submenu = Window
+
+	icon = NULL
+
+	item = Floating
+	cmd = bspc node -t floating
+	icon = NULL
+
+	item = Tiled
+	cmd = bspc node -t tiled
+	icon = NULL
+
+	item = Monocle
+	cmd = bspc desktop -l next
+	icon = NULL
+
+	item = Fullscreen
+	cmd = bspc node -t fullscreen
+	icon = NULL
+
+	item = Pseudo-tiling
+	cmd = bspc node -t pseudo_tiled
+	icon = NULL
+
+	item = Lock
+	cmd = bspc node -t locked
+	icon = NULL
+
+	item = Sticky
+	cmd = bspc node -t sticky
+	icon = NULL
+
+	item = Private
+	cmd = bspc node -t private
+	icon = NULL
+
+submenu = Move to...
+
+	icon = NULL
+
+	item = Desktop n°...
+	cmd = ./bspwm-zenity move-to-desktop
+	icon = NULL
+
+	item = Next empty desktop
+	cmd = bspc node -d next.local
+	icon = NULL
+
+	item = Last focused desktop
+	cmd = bspc node -d last.local
+	icon = NULL
+
+	separator
+
+	item = Swap with biggest node
+	cmd = bspc node -w biggest.local
+	icon = NULL
+
+	item = Move to another monitor
+	cmd = 
+	icon = NULL
+
+
+submenu = Desktop
+
+	icon = NULL
+
+	submenu = Flip
+
+		icon = NULL
+
+		item = Vertical flip
+		cmd = bspc node -F horizontal
+		icon = NULL
+
+		item = Horizontal flip
+		cmd = bspc node -F vertical
+		icon = NULL
+
+	submenu = Rotate
+
+		icon = NULL
+
+		item = +90°
+		cmd = bspc desktop -R 90
+		icon = NULL
+
+		item = -90°
+		cmd = bspc desktop -R -90
+		icon = NULL
+
+		item = +180°
+		cmd = bspc desktop -R 180
+		icon = NULL
+
+	separator
+
+	item = Balance nodes
+	cmd = bspc desktop -B
+	icon = NULL
+
+	item = Equalize nodes
+	cmd = bspc desktop -E
+	icon = NULL
+
+	separator
+
+	item = Rename current desktop
+	cmd = ./bspwm-zenity desktop-rename
+	icon = NULL
+
+	separator
+
+	item = Add a desktop
+	cmd = ./bspwm-zenity desktop-add
+	icon = NULL
+
+	item = Remove a desktop
+	cmd = ./bspwm-zenity desktop-remove
+	icon = NULL
+
+	separator
+
+	item = Swap with desktop
+	cmd = ./bspwm-zenity desktop-swap
+	icon = NULL
+
+	item = Move to another monitor
+	cmd = 
+	icon = NULL
+
+
+submenu = Manual
+
+	icon = NULL
+
+	submenu = Manual split
+
+		icon = NULL
+
+		item = Up
+		cmd = bspc node -p north
+		icon = NULL
+
+		item = Right
+		cmd = bspc node -p east
+		icon = NULL
+
+		item = Left
+		cmd = bspc node -p west
+		icon = NULL
+
+		item = Down
+		cmd = bspc node -p south
+		icon = NULL
+
+	submenu = Split ratio
+
+		icon = NULL
+
+		item = 25%
+		cmd = bspc node -r 0.25
+		icon = NULL
+
+		item = 50%
+		cmd = bspc node -r 0.5
+		icon = NULL
+
+		item = 75%
+		cmd = bspc node -r 0.75
+		icon = NULL
+
+	separator
+
+	item = Move to last manual split
+	cmd = bspc node -w last.manual
+	icon = NULL
+
+	item = Cancel all splits
+	cmd = bspc desktop -c
+	icon = NULL
+
+
+separator
+
+item = Next urgent node
+cmd = bspc node -f next.urgent
+icon = NULL
+
+separator
+
+item = Close node
+cmd = bspc node -c
+icon = NULL
+
+item = Close the node class
+cmd = xdo close -cd
+icon = NULL

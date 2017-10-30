@@ -4,11 +4,6 @@
 
 # terminal emulator
 super + Return
-	bspc node -p east; \
-	urxvt
-
-super + shift  + Return
-	bspc node -p south; \
 	urxvt
 
 # program launcher
@@ -99,9 +94,40 @@ super + {o,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+super + {1-9,0}
+	bspc desktop -f '^{1-9,10}'
+
+# per key config move and focus
+super + shift + 1
+	bspc node -d 1; \
+	bspc desktop -f 1
+super + shift + 2
+	bspc node -d 2; \
+	bspc desktop -f 2
+super + shift + 3
+	bspc node -d 3; \
+	bspc desktop -f 3
+super + shift + 4
+	bspc node -d 4; \
+	bspc desktop -f 4
+super + shift + 5
+	bspc node -d 5; \
+	bspc desktop -f 5
+super + shift + 6
+	bspc node -d 6; \
+	bspc desktop -f 6
+super + shift + 7
+	bspc node -d 7; \
+	bspc desktop -f 7
+super + shift + 8
+	bspc node -d 8; \
+	bspc desktop -f 8
+super + shift + 9
+	bspc node -d 9; \
+	bspc desktop -f 9
+super + shift + 0
+	bspc node -d 10; \
+	bspc desktop -f 10
 
 #
 # preselect
@@ -139,3 +165,7 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+# mouse interaction
+button3
+	cd ~/.config/mygtkmenu ; \
+	./mygtkmenui -- ~/.config/mygtkmenu/BspwmMenu
