@@ -22,4 +22,10 @@
 	cd polybar/build
 	cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
 	make
-	sudo make install	
+	sudo make install
+
+## Nerd Font
+
+	git clone https://github.com/ryanoasis/nerd-fonts.git
+	cd nerd-font
+	./install.sh	
