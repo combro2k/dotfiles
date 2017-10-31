@@ -20,7 +20,10 @@ super + Escape
 	notify-send "sxhkd config reloaded"
 
 # shutdown
-control + super + q
+control + alt + BackSpace
+	bspc quit
+
+ctrl + super + q
 	zenity --question --text="Shutdown?" && shutdown -h now
 
 # reboot
