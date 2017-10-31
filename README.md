@@ -14,3 +14,12 @@
 
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+## Polybar
+
+	git clone --recursive https://github.com/jaagr/polybar
+	mkdir polybar/build
+	cd polybar/build
+	cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
+	make
+	sudo make install	
