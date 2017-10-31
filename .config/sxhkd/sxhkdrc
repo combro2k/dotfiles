@@ -167,3 +167,6 @@ super + {Left,Down,Up,Right}
 button3
 	cd ~/.config/mygtkmenu ; \
 	./mygtkmenui -- ~/.config/mygtkmenu/BspwmMenu
+
+super + button1
+	 bspc node -s pointed

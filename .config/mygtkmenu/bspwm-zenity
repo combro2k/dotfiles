@@ -24,4 +24,9 @@ case $1 in
 		name="$(bspc query -D --names | zenity --list --column Workspaces --text="Swap with:" --hide-header)"
 		bspc desktop -s "$name"
 	;;
+	move-next-empty-desktop)
+		name="$(bspc query -m -d next.!occupied -D --names)"
+		bspc node -d "$name"
+		bspc desktop -f "$name"
+	;;
 esac

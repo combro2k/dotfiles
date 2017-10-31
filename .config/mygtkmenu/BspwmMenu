@@ -45,7 +45,7 @@ submenu = Move to...
 	icon = NULL
 
 	item = Next empty desktop
-	cmd = bspc node -d next.local
+	cmd = ./bspwm-zenity move-next-empty-desktop
 	icon = NULL
 
 	item = Last focused desktop
