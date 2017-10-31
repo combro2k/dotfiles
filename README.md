@@ -2,7 +2,7 @@
 
 ## VMWARE config
 
-/etc/lightdm.conf
+/etc/lightdm.conf or /etc/xdg/lightdm/lightdm.conf.d/vmware.conf
 
 	[Seat:*]
 	...
