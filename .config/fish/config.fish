@@ -25,6 +25,9 @@ set fish_prompt_pwd_dir_length 9999
 # set -g theme_nerd_fonts yes
 # set -g theme_color_scheme terminal2-light-black
 
+# Use FZF new keybindings
+set -U FZF_LEGACY_KEYBINDINGS 0
+
 # list plugin dependencies
 fundle plugin 'fisherman/await'
 fundle plugin 'fisherman/choices'
