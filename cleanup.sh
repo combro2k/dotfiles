@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-BASE=$(dirname $(dirname $(readlink -f ${0})))
+BASE=$(dirname $(readlink -f ${0}))
 
 cd ${BASE}
 
