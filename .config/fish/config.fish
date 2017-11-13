@@ -70,7 +70,13 @@ if status --is-interactive; and test -f /usr/bin/lpass
 			return 1
 		end
 
-		lpass ls | fzf | string replace -r -a '.+\[id: (\d+)\]' '$1' | xargs lpass show
+		lpass show (lpass ls | fzf | string replace -r -a '.+\[id: (\d+)\]' '$1')
+	end
+end
+
+if status --is-interactive; and test -f ~/.ssh/config
+	function fssh -d "Fuzzy-find ssh host and ssh into it"
+		ssh (ag '^host [^*]' ~/.ssh/config | cut -d ' ' -f 2 | fzf) 
 	end
 end
 
