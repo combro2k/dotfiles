@@ -41,6 +41,7 @@ bspc rule -a URxvt:vpn desktop=^5 follow=on state=floating
 bspc rule -a URxvt:upass state=floating
 bspc rule -a Conky sticky=on manage=off lower=on
 bspc rule -a feh floating=on manage=off
+bspc rule -a Firefox floating=on state=floating manage=on
 
 # special rule for pinentry thingy
 bspc rule -a '*:pinentry' follow=on state=floating

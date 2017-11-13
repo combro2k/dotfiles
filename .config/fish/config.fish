@@ -60,4 +60,18 @@ if status --is-interactive; and test -z $SUDO_USER; and test -f /usr/bin/neofetc
 	/usr/bin/neofetch
 end
 
+if status --is-interactive; and test -f /usr/bin/lpass
+	function fpass -d "Fuzzy-find a Lastpass entry and copy the password"
+		if not lpass status -q
+			lpass login $LP_EMAIL
+		end
+
+		if not lpass status -q
+			return 1
+		end
+
+		lpass ls | fzf | string replace -r -a '.+\[id: (\d+)\]' '$1' | xargs lpass show
+	end
+end
+
 # vim:ft=fish
