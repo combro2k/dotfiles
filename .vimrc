@@ -1,8 +1,13 @@
+set shell=/bin/sh
+set expandtab
+
+set tabstop=2
+set laststatus=2
+set shiftwidth=2
+
 filetype plugin indent on
 filetype plugin on
-syntax on
-
-set laststatus=2
+syntax enable
 
 call plug#begin('~/.vim/plugged')
 
