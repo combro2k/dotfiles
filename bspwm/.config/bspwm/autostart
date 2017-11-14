@@ -1,9 +1,5 @@
 #!/usr/bin/env sh
 
-export PANEL_HEIGHT=16
-export PANEL_FONT="DejaVu Sans Mono:size=9"
-export PANEL_FIFO="/tmp/panel-$USER-fifo"
-
 SXHKD_SHELL='/usr/bin/sh' sxhkd &
 
 # Start VMware Wrapper now in /etc/lightdm/lightdm.conf
@@ -23,3 +19,4 @@ test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky.conf &
 test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky-shortcuts.conf &
 test -f /usr/bin/xautolock && /usr/bin/xautolock -time 10 -locker blurlock &
 test -f $HOME/.config/polybar/launch.sh && $HOME/.config/polybar/launch.sh
+#test -f $HOME/.config/dzen2/panel && $HOME/.config/dzen2/panel
