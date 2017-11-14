@@ -1,7 +1,7 @@
-.config/fish/fundle
-.config/fish/fishd.*
-.config/fish/functions
-.gnupg/private-keys-v1.d/
-.gnupg/private-keys-v1.d/*
-.gnupg/S.gpg-agent
-.gnupg/sshcontrol
+fish/.config/fish/fundle
+fish/.config/fish/fishd.*
+fish/.config/fish/functions
+gnupg/.gnupg/private-keys-v1.d/
+gnupg/.gnupg/private-keys-v1.d/*
+gnupg/.gnupg/S.gpg-agent
+gnupg/.gnupg/sshcontrol

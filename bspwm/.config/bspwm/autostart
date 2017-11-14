@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+export PANEL_HEIGHT=16
+export PANEL_FONT="DejaVu Sans Mono:size=9"
+export PANEL_FIFO="/tmp/panel-$USER-fifo"
+
+SXHKD_SHELL='/usr/bin/sh' sxhkd &
+
+# Start VMware Wrapper now in /etc/lightdm/lightdm.conf
+# /usr/bin/vmware-user-suid-wrapper
+
+test -f /usr/lib/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome-authentication-agent-1 &
+test -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+test -f /usr/bin/nitrogen && /usr/bin/nitrogen --restore
+
+sleep 1
+
+test -f /usr/bin/compton  && /usr/bin/compton -b
+test -f /usr/bin/kalu && /usr/bin/kalu &
+test -f /usr/bin/nm-aplet && /usr/bin/nm-applet &
+test -f /usr/bin/clipit && /usr/bin/clipit &
+test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky.conf &
+test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky-shortcuts.conf &
+test -f /usr/bin/xautolock && /usr/bin/xautolock -time 10 -locker blurlock &
+test -f $HOME/.config/polybar/launch.sh && $HOME/.config/polybar/launch.sh
