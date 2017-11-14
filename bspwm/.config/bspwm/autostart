@@ -18,5 +18,7 @@ test -f /usr/bin/clipit && /usr/bin/clipit &
 test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky.conf &
 test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky-shortcuts.conf &
 test -f /usr/bin/xautolock && /usr/bin/xautolock -time 10 -locker blurlock &
+
+# Panel
 test -f $HOME/.config/polybar/launch.sh && $HOME/.config/polybar/launch.sh
-#test -f $HOME/.config/dzen2/panel && $HOME/.config/dzen2/panel
+#test -f $HOME/.config/dzen2/panel_dzen2 && $HOME/.config/dzen2/panel_dzen2 &
