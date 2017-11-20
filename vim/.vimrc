@@ -16,6 +16,7 @@ Plug 'pearofducks/ansible-vim'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'mikewest/vim-markdown'
+Plug 'dag/vim-fish'
 
 call plug#end()
 
@@ -28,5 +29,9 @@ map <C-G> :TigStatus<CR><CR>
 command! TigStatus call s:tig_status()
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+if &shell =~# 'fish$'
+  set shell=sh
+endif
 
 colorscheme delek
