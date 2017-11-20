@@ -90,8 +90,12 @@ URxvt.letterSpace: 0
 URxvt.perl-ext-common: default,resize-font
 URxvt.imLocale:	en_US.UTF-8
 
-URxvt.resize-font.smaller: C-Down
-URxvt.resize-font.bigger: C-Up
+URxvt.keysym.C-equal:     font-size:increase
+URxvt.keysym.C-minus:   font-size:decrease
+URxvt.keysym.C-S-equal:   font-size:incglobal
+URxvt.keysym.C-S-minus: font-size:decglobal
+URxvt.keysym.C-0:  font-size:reset
+URxvt.keysym.C-slash:  font-size:show
 
 !! https://wilmer.gaa.st/blog/archives/36-rxvt-unicode-and-ISO-14755-mode.html
 URxvt.iso14755: false
