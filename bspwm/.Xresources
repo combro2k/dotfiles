@@ -72,7 +72,7 @@ URxvt*mouseWheelScrollPage:           false
 URxvt*cursorBlink:                    true
 URxvt*background:                     bgcolor
 URxvt*foreground:                     fgcolor
-Urxvt*saveLines:                      1024
+Urxvt*saveLines:                      100000
 
 ! URxvt.font: xft:DroidSansMono Nerd Font Mono:style=Book:size=10:antialias=true:hinting=true
 ! URxvt.font: xft:DejaVuSansMono Nerd Font Mono:size=10:style=Book:antialias=true
@@ -101,3 +101,21 @@ URxvt.iso14755_52:        false
 URxvt.meta8:              true
 URxvt.depth:              32
 
+URxvt*scrollTtyOutput:    false
+URxvt*scrollWithBuffer:   true
+URxvt*scrollTtyKeypress:  true
+
+urxvt*urlLauncher:        firefox
+
+!-- other adjustments -- !
+rofi.color-enabled:       true
+rofi.color-window:        #e5e5e5, #000000, #000000
+
+rofi.opacity:             100
+rofi.width:               90
+rofi.lines:               25
+rofi.font:                Iosevka Medium 10
+rofi.location:            0
+rofi.padding:             5
+
+!(call-process-shell-command "xrdb -load ~/.Xresources")

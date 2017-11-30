@@ -1,5 +1,9 @@
 # dotfiles
 
+## Stow
+
+  Configs can be symlinked via GNU stow
+
 ## VMWARE config
 
 /etc/lightdm.conf or /etc/xdg/lightdm/lightdm.conf.d/vmware.conf
