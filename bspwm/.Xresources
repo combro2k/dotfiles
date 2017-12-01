@@ -110,12 +110,17 @@ urxvt*urlLauncher:        firefox
 !-- other adjustments -- !
 rofi.color-enabled:       true
 rofi.color-window:        #e5e5e5, #000000, #000000
-
+rofi.terminal:            urxvt-256color
+rofi.ssh-client:          ssh
+rofi.ssh-command:         {terminal} -e {ssh-client} {host}
 rofi.opacity:             100
 rofi.width:               90
 rofi.lines:               25
-rofi.font:                Iosevka Medium 10
+rofi.font:                SauceCodePro Nerd Font Medium 10
 rofi.location:            0
 rofi.padding:             5
+rofi.levenshtein-sort:    true
+rofi.fuzzy:               true
+rofi.kb-cancel:           Escape,Control+c
 
 !(call-process-shell-command "xrdb -load ~/.Xresources")

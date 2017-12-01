@@ -1,5 +1,6 @@
 # Global settings
 set -g -x SXHKD_SHELL '/usr/bin/sh'
+set -g -x TERMINAL '/usr/bin/urxvt'
 
 if status --is-interactive
   if not functions -q fundle
@@ -86,6 +87,14 @@ if status --is-interactive
       eval exa $argv
     else
       /usr/bin/ls --color=auto $argv
+    end
+  end
+
+  function emacs --description 'Star emacs'
+    if type -qf emacs-nox
+      eval /usr/bin/emacs-nox $argv
+    else
+      /usr/bin/emacs $argv
     end
   end
 
