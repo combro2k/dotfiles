@@ -12,6 +12,8 @@ test -f /usr/lib/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome-au
 test -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 test -f /usr/bin/nitrogen && /usr/bin/nitrogen --restore
 
+test -f /usr/bin/feh && /usr/bin/feh --bg-center ~/.config/bspwm/background.jpg
+
 sleep 1
 
 test -f /usr/bin/compton  && /usr/bin/compton -b

@@ -8,13 +8,11 @@
 ;=====================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #50588cb6
-background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #ffb52a
+background = #777a7a7a
+background-alt = #b7b7b7
+foreground = #fffcfc
+foreground-alt = #88bcbcbc
+primary = #77f00000
 secondary = #e60053
 alert = #bd2c40
 
@@ -31,7 +29,7 @@ fixed-center = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
+line-size = 4
 line-color = #f00
 
 border-size = 4
@@ -53,7 +51,7 @@ modules-right = date
 
 tray-position = right
 tray-padding = 4
-tray-transparent = true
+tray-transparent = false
 tray-background = #9999999
 
 wm-restack = bspwm
@@ -230,7 +228,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = ens34
+interface = eth0
 interval = 3.0
 
 format-connected-underline = #55aa55
