@@ -28,6 +28,14 @@
 	make
 	sudo make install
 
+## Dunst
+
+I use dunst for notifications, in order to work with it you need to install dunst:
+
+  sudo pacman -S dunst
+  
+  sudo zypper install dunst
+
 ## Nerd Font
 
 	git clone https://github.com/ryanoasis/nerd-fonts.git
