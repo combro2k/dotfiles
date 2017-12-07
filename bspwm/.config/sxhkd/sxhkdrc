@@ -17,6 +17,9 @@ super + d
 super + s
 	rofi -demnu -show ssh -modi ssh
 
+super + r
+	urxvt -e asciinema rec
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd; \
@@ -27,11 +30,12 @@ control + alt + BackSpace
 	bspc quit
 
 ctrl + super + q
-	zenity --question --text="Shutdown?" && shutdown -h now
+	zenity --question --text="Shutdown?" && systemctl poweroff
 
 # reboot
 control + super + r
-	zenity --question --text="Reboot?" && shutdown -r now
+	zenity --question --text="Reboot?" && systemctl reboot
+
 #
 # bspwm hotkeys
 #
@@ -105,27 +109,35 @@ super + {1-9}
 super + shift + 1
 	bspc node -d 1; \
 	bspc desktop -f 1
+
 super + shift + 2
 	bspc node -d 2; \
 	bspc desktop -f 2
+
 super + shift + 3
 	bspc node -d 3; \
 	bspc desktop -f 3
+
 super + shift + 4
 	bspc node -d 4; \
 	bspc desktop -f 4
+
 super + shift + 5
 	bspc node -d 5; \
 	bspc desktop -f 5
+
 super + shift + 6
 	bspc node -d 6; \
 	bspc desktop -f 6
+
 super + shift + 7
 	bspc node -d 7; \
 	bspc desktop -f 7
+
 super + shift + 8
 	bspc node -d 8; \
 	bspc desktop -f 8
+
 super + shift + 9
 	bspc node -d 9; \
 	bspc desktop -f 9
