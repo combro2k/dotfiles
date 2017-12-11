@@ -1,7 +1,15 @@
+# Ignore fish local specifics
 fish/.config/fish/fundle
 fish/.config/fish/fishd.*
 fish/.config/fish/functions
+
+# Ignore gnupg local specifics
 gnupg/.gnupg/private-keys-v1.d/
 gnupg/.gnupg/private-keys-v1.d/*
+gnupg/.gnupg/openpgp-revocs.d/
+gnupg/.gnupg/openpgp-revocs.d/*
 gnupg/.gnupg/S.gpg-agent
 gnupg/.gnupg/sshcontrol
+gnupg/.gnupg/pubring.kbx
+gnupg/.gnupg/pubring.kbx~
+gnupg/.gnupg/trustdb.gpg
