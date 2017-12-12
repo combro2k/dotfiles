@@ -11,47 +11,63 @@
 *TkTheme: clearlooks
 Xcursor.theme: DMZ-White
 
-!! Theme: tomorrow.dark
+! Base16 Twilight
+! Scheme: David Hart (https://github.com/hartbit)
 
-! special
-*.foreground:   #a7a7a7
-*.background:   #1e1e1e
-*.cursorColor:  #a7a7a7
+#define base00 #1e1e1e
+#define base01 #323537
+#define base02 #464b50
+#define base03 #5f5a60
+#define base04 #838184
+#define base05 #a7a7a7
+#define base06 #c3c3c3
+#define base07 #ffffff
+#define base08 #cf6a4c
+#define base09 #cda869
+#define base0A #f9ee98
+#define base0B #8f9d6a
+#define base0C #afc4db
+#define base0D #7587a6
+#define base0E #9b859d
+#define base0F #9b703f
 
-! black
-*.color0:       #1e1e1e
-*.color8:       #5f5a60
+*foreground:   base05
+#ifdef background_opacity
+*background:   [background_opacity]base00
+#else
+*background:   base00
+#endif
+*cursorColor:  base05
 
-! red
-*.color1:       #cf6a4c
-*.color9:       #cf6a4c
+*color0:       base00
+*color1:       base08
+*color2:       base0B
+*color3:       base0A
+*color4:       base0D
+*color5:       base0E
+*color6:       base0C
+*color7:       base05
 
-! green
-*.color2:       #8f9d6a
-*.color10:      #8f9d6a
+*color8:       base03
+*color9:       base08
+*color10:      base0B
+*color11:      base0A
+*color12:      base0D
+*color13:      base0E
+*color14:      base0C
+*color15:      base07
 
-! yellow
-*.color3:       #f9ee98
-*.color11:      #f9ee98
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*color16:      base09
+*color17:      base0F
+*color18:      base01
+*color19:      base02
+*color20:      base04
+*color21:      base06
 
-! blue
-*.color4:       #7587a6
-*.color12:      #7587a6
-
-! magenta
-*.color5:       #9b859d
-*.color13:      #9b859d
-
-! cyan
-*.color6:       #afc4db
-*.color14:      #afc4db
-
-! white
-*.color7:       #a7a7a7
-*.color15:      #ffffff
-
-XTerm*background: bgcolor
-XTerm*foreground: fgcolor
+XTerm*background: base00
+XTerm*foreground: base05
 
 XTerm*reverseVideo: off
 ! XTerm*faceName: Terminus:size=11:antialias=true
@@ -109,7 +125,6 @@ urxvt*urlLauncher:        firefox
 
 !-- other adjustments -- !
 rofi.color-enabled:       true
-rofi.color-window:        #e5e5e5, #000000, #000000
 rofi.terminal:            urxvt-256color
 rofi.ssh-client:          ssh
 rofi.ssh-command:         {terminal} -e {ssh-client} {host}
@@ -122,5 +137,33 @@ rofi.padding:             5
 rofi.levenshtein-sort:    true
 rofi.fuzzy:               true
 rofi.kb-cancel:           Escape,Control+c
+
+! base00: #1e1e1e
+! base01: #323537
+! base02: #464b50
+! base03: #5f5a60
+! base04: #838184
+! base05: #a7a7a7
+! base06: #c3c3c3
+! base07: #ffffff
+! base08: #cf6a4c
+! base09: #cda869
+! base0A: #f9ee98
+! base0B: #8f9d6a
+! base0C: #afc4db
+! base0D: #7587a6
+! base0E: #9b859d
+! base0F: #9b703f
+
+! Property Name     BG       Border   Separator
+rofi.color-window:  #323537, #323537, #1e1e1e
+
+! Property Name     BG       FG       BG-alt   Head-BG  Head-FG
+rofi.color-normal:  #323537, #a7a7a7, #323537, #323537, #ffffff
+rofi.color-active:  #323537, #7587a6, #323537, #323537, #7587a6
+rofi.color-urgent:  #323537, #cf6a4c, #323537, #323537, #cf6a4c
+
+! Set the desired separator style
+rofi.separator-style: solid
 
 !(call-process-shell-command "xrdb -load ~/.Xresources")

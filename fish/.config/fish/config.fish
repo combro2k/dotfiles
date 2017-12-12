@@ -39,7 +39,7 @@ if status --is-interactive
   # theme
   fundle plugin 'oh-my-fish/theme-bira'
   # fundle plugin 'oh-my-fish/theme-bobthefish'
-
+  
   fundle init
 
   if test -z $SUDO_USER; and test -f /usr/bin/neofetch

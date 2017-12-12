@@ -18,6 +18,7 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'mikewest/vim-markdown'
 Plug 'dag/vim-fish'
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
@@ -35,4 +36,4 @@ if &shell =~# 'fish$'
   set shell=sh
 endif
 
-colorscheme industry
+colorscheme base16-twilight
