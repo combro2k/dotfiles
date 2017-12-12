@@ -1,66 +1,65 @@
 [global]
-    font = SauceCodePro Nerd Font Medium 11
+    alignment = left
     allow_markup = yes
-    indicate_hidden = yes
-
-    #   %a  appname
-    #   %s  summary
-    #   %b  body
-    #   %i  iconname (including its path)
-    #   %I  iconname (without its path)
-    #   %p  progress value if set ([  0%] to [100%]) or nothing
-    format = "<span style='font-size: 16px'>%a</span>\n\n<big>%s</big>\n<small>%b</small>"
-
-    sort = yes
-    # "left", "center" and "right"
-    alignment = center
     bounce_freq = 0
-    show_age_threshold = 60
-    word_wrap = yes
-    ignore_newline = no
-
-    geometry = "300x40-11-11"
-    transparency = 20
-    idle_threshold = 120
-    monitor = 0
-    follow = mouse
-    sticky_history = yes
-    line_height = 0
-    separator_height = 5
-    padding = 10
-    horizontal_padding = 5
-    separator_color = frame
-    startup_notification = false
     browser = /usr/bin/firefox -new-tab
-
-		icon_position = left
-		dmenu = /usr/bin/dmenu -p dunst:
-		icon_folders = /usr/share/icons/Adwaita/scalable/status/
+    dmenu = /usr/bin/dmenu -p dunst:
+    follow = none
+    font = SauceCodePro Nerd Font Medium 12
+    format = "<b>%s</b>\n%b"
+    # geometry [{width}]x{height}][+/-{x}+/-{y}]
+    geometry = "333x60-10-10"
+    history_length = 20
+    horizontal_padding = 8
+    idle_threshold = 120
+    ignore_newline = no
+    indicate_hidden = yes
+    line_height = 0
+    monitor = 0
+    padding = 8
+    separator_color = frame
+    separator_height = 1
+    show_age_threshold = 60
+    show_indicators = yes
+    shrink = yes
+    sort = yes
+    startup_notification = false
+    sticky_history = yes
+    transparency = 0
+    word_wrap = yes
 
 [frame]
-    width = 0
-    color = "#4C9ED9"
+    width = 1
+    color = "#6092BE"
 
 [shortcuts]
-    # 'ctrl', 'mod1' (the alt-key), 'mod2', 'mod3'
-    close = mod1+n
-    close_all = mod1+ctrl+n
-    history = mod1+shift+n
-
-    # context menu
+    #close = mod4+x
+    #close_all = mod4+ctrl+x
+    history = mod4+grave
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#2D5B7D"
-    foreground = "#CCCCCC"
+    background = "#6092BE"
+    foreground = "#FFFFFF"
     timeout = 10
 
 [urgency_normal]
-    background = "#2D5B7D"
+    background = "#6092BE"
     foreground = "#FFFFFF"
     timeout = 10
 
 [urgency_critical]
-    background = "#DD0000"
-    foreground = "#FFFFFF"
+    background = "#801515"
+    foreground = "#D46A6A"
     timeout = 0
+
+[irc]
+    appname = "weechat"
+    format  = "%s: %b"
+    urgency = low
+    background = "#83c83d"
+    foreground = "#000000"
+
+[i3blocks]
+    summary = "*"
+    script = ~/.bin/notify
