@@ -1,5 +1,6 @@
 set shell=/bin/sh
 set expandtab
+set wildmenu
 
 set tabstop=2
 set laststatus=2
@@ -34,4 +35,4 @@ if &shell =~# 'fish$'
   set shell=sh
 endif
 
-colorscheme delek
+colorscheme industry
