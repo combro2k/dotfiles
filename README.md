@@ -6,7 +6,7 @@
 
 ## Hints
 
-### VMWARE config
+#### VMWARE config
 
 /etc/lightdm.conf or /etc/xdg/lightdm/lightdm.conf.d/vmware.conf
 
@@ -15,13 +15,9 @@
 	display-setup-script=/usr/bin/vmware-user-suid-wrapper
 	....
 
+### Dependencies
 
-### VIM plugins
-
-	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-### Polybar
+#### Polybar
 
 	git clone --recursive https://github.com/jaagr/polybar
 	mkdir polybar/build
@@ -30,7 +26,7 @@
 	make
 	sudo make install
 
-### Dunst
+#### Dunst
 
 I use dunst for notifications, in order to work with it you need to install dunst:
 
@@ -38,12 +34,12 @@ I use dunst for notifications, in order to work with it you need to install duns
   
   sudo zypper install dunst
 
-### Nerd Font
+#### Nerd Font
 
 	git clone https://github.com/ryanoasis/nerd-fonts.git
 	cd nerd-font
 	./install.sh
 
-### FZF
+#### FZF
 
 	__fzf_install
