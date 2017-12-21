@@ -5,9 +5,10 @@
 - clean: ['~']
 
 - link:
-    ~/.spacemacs: config/emacs/spacemacs
     ~/.emacs.d: config/spacemacs
+    ~/.spacemacs: config/emacs/spacemacs
     ~/.tmux.conf: config/tmux/tmux.conf
+    ~/.urxvt: config/urxvt
     ~/.vimrc: config/vim/vimrc
     ~/.Xresources: config/Xresources
 
