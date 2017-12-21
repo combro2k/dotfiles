@@ -1,0 +1,19 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.dotfiles: ''
+    ~/.spacemacs: config/emacs/spacemacs
+    ~/.tmux.conf: config/tmux/tmux.conf
+    ~/.vimrc: config/vim/vimrc
+    ~/.config/fish: config/fish
+    ~/.config/bspwm: config/bspwm
+    ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
+    ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
+    ~/.config/neofetch/config.conf: config/neofetch/config.conf
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
