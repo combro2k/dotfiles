@@ -71,7 +71,7 @@ XTerm*foreground: base05
 
 XTerm*reverseVideo: off
 ! XTerm*faceName: Terminus:size=11:antialias=true
-XTerm*faceName: SauceCodePro Nerd Font:style=Light:size=11:antialias=true
+XTerm*faceName: SauceCodePro Nerd Font Mono:style=Light:size=11:antialias=true
 xTerm*selectToClipboard: true
 
 

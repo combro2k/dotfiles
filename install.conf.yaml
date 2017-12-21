@@ -13,6 +13,7 @@
     ~/.vimrc: config/vim/vimrc
     ~/.vim/autoload/plug.vim: config/vim-plug/plug.vim
     ~/.Xresources: config/Xresources
+    ~/.local/share/fonts/NerdFonts/SourceCodePro: config/nerd-fonts/patched-fonts/SourceCodePro
 
     ~/.config/bspwm: config/bspwm
     ~/.config/fish/config.fish: config/fish/config.fish
