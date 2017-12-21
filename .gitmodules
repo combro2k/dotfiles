@@ -2,3 +2,10 @@
 	path = emacs/.emacs.d
   url = https://github.com/syl20bnr/spacemacs
   branch = master
+[submodule "config/spacemacs"]
+	path = config/spacemacs
+	url = https://github.com/syl20bnr/spacemacs
+	branch = master
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
