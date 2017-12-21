@@ -9,3 +9,7 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
+[submodule "config/vim-plug"]
+	path = config/vim-plug
+	url = https://github.com/junegunn/vim-plug.git
+	branch = master

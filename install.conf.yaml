@@ -11,6 +11,7 @@
     ~/.tmux.conf: config/tmux/tmux.conf
     ~/.urxvt: config/urxvt
     ~/.vimrc: config/vim/vimrc
+    ~/.vim/autoload/plug.vim: config/vim-plug/plug.vim
     ~/.Xresources: config/Xresources
 
     ~/.config/bspwm: config/bspwm
