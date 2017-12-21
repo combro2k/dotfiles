@@ -9,11 +9,20 @@
     ~/.spacemacs: config/emacs/spacemacs
     ~/.tmux.conf: config/tmux/tmux.conf
     ~/.vimrc: config/vim/vimrc
-    ~/.config/fish: config/fish
+    ~/.Xresources: config/Xresources
+
     ~/.config/bspwm: config/bspwm
+    ~/.config/fish/config.fish: config/fish/config.fish
+    ~/.config/fish/conf.d: config/fish/conf.d
+    ~/.config/neofetch/config.conf: config/neofetch/config.conf
+    ~/.config/sxhkd: config/sxhkd
+    ~/.config/conky: config/conky
+    ~/.config/mygtkmenu: config/mygtkmenu
+    ~/.config/polybar: config/polybar
+    ~/.config/dunst: config/dunst
+
     ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
     ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
-    ~/.config/neofetch/config.conf: config/neofetch/config.conf
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
