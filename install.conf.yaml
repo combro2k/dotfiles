@@ -1,5 +1,6 @@
 - defaults:
     link:
+      create: true
       relink: true
 
 - clean: ['~']
@@ -20,7 +21,7 @@
     ~/.config/conky: config/conky
     ~/.config/mygtkmenu: config/mygtkmenu
     ~/.config/polybar: config/polybar
-    ~/.config/dunst: config/dunst
+    ~/.config/dunst/dunstrc: config/dunst/dunstrc
 
     ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
     ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
