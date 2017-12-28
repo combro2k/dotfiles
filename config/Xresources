@@ -71,7 +71,7 @@ XTerm*foreground: base05
 
 XTerm*reverseVideo: off
 ! XTerm*faceName: Terminus:size=11:antialias=true
-XTerm*faceName: SauceCodePro Nerd Font Mono:style=Light:size=11:antialias=true
+XTerm*faceName: Literation Mono Nerd Font:style=Light:size=11:antialias=true
 xTerm*selectToClipboard: true
 
 
@@ -93,7 +93,8 @@ Urxvt*saveLines:                      100000
 ! URxvt.font: xft:DroidSansMono Nerd Font Mono:style=Book:size=10:antialias=true:hinting=true
 ! URxvt.font: xft:DejaVuSansMono Nerd Font Mono:size=10:style=Book:antialias=true
 ! URxvt.font: xft:TerminessTTF Nerd Font Mono:Book:size=12:antialias=true:hinting=true
-URxvt.font: xft:SauceCodePro Nerd Font:style=Light:size=12:antialias=true
+URxvt.font: xft:Literation Mono Nerd Font:style=Light:size=11:antialias=true
+
 
 URxvt*skipBuiltinGlyphs:  true
 URxvt*termName:           rxvt-unicode
@@ -121,7 +122,9 @@ URxvt*scrollTtyOutput:    false
 URxvt*scrollWithBuffer:   true
 URxvt*scrollTtyKeypress:  true
 
-urxvt*urlLauncher:        firefox
+URxvt*urlLauncher:        firefox
+
+URxvt.color12:            rgb:5c/5c/ff
 
 !-- other adjustments -- !
 rofi.color-enabled:       true
@@ -131,7 +134,7 @@ rofi.ssh-command:         {terminal} -e {ssh-client} {host}
 rofi.opacity:             100
 rofi.width:               90
 rofi.lines:               25
-rofi.font:                SauceCodePro Nerd Font Medium 10
+rofi.font:                Literation Mono Nerd Font Medium 10
 rofi.location:            0
 rofi.padding:             5
 rofi.levenshtein-sort:    true

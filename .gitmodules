@@ -13,7 +13,3 @@
 	path = config/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
 	branch = master
-[submodule "config/nerd-fonts"]
-	path = config/nerd-fonts
-	url = https://github.com/ryanoasis/nerd-fonts.git
-	branch = master
