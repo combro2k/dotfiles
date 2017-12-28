@@ -32,24 +32,15 @@
     ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
     ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
 
-    # Install some rust thingies
-- rust:
-    - options:
-        - no-modify-path
-        - toolchains:
-            - stable:
-                - targets:
-                    - x86_64-unknown-linux-gnu
-
 # Shell section
-#- shell:
-#      - 
-#        command: fc-cache -fv
-#        stdin: true
-#        stdout: true
-#        description: Update font cache
-#      -
-#        command: bash -i -c 'test -x /usr/bin/xrdb && /usr/bin/xrdb merge ~/.Xresources || echo "No X11"'
-#        stdin: true
-#        stdout: true
-#        description: Reloading Xresources
+- shell:
+      - 
+        command: fc-cache -fv ~/.local/share/fonts
+        stdin: true
+        stdout: true
+        description: Update font cache
+      -
+        command: bash -i -c 'test -x /usr/bin/xrdb && /usr/bin/xrdb merge ~/.Xresources || echo "No X11"'
+        stdin: true
+        stdout: true
+        description: Reloading Xresources
