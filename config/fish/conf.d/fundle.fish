@@ -33,8 +33,8 @@ if status --is-interactive
   fundle plugin 'edc/bass'
 
   # theme
-  #fundle plugin 'oh-my-fish/theme-bira'
-  fundle plugin 'oh-my-fish/theme-bobthefish'
+  fundle plugin 'oh-my-fish/theme-bira'
+  #fundle plugin 'oh-my-fish/theme-bobthefish'
 
   fundle init
 end
