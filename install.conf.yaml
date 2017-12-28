@@ -36,7 +36,7 @@
     stdout: true
     description: Update font cache
   -
-    command: bash -i -c 'test -x /usr/bin/xrdb && /usr/bin/xrdb merge ~/.Xresources'
+    command: bash -i -c 'test -x /usr/bin/xrdb && /usr/bin/xrdb merge ~/.Xresources || echo "No X11"'
     stdin: true
     stdout: true
     description: Reloading Xresources
