@@ -6,10 +6,13 @@
 	path = config/spacemacs
 	url = https://github.com/syl20bnr/spacemacs
 	branch = master
-[submodule "dotbot"]
-	path = dotbot
-	url = https://github.com/anishathalye/dotbot
 [submodule "config/vim-plug"]
 	path = config/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
 	branch = master
+[submodule ".dotbot"]
+	path = .dotbot
+	url = https://github.com/anishathalye/dotbot
+[submodule ".plugins/dotbot-rust"]
+	path = .plugins/dotbot-rust
+	url = https://github.com/alexcormier/dotbot-rust
