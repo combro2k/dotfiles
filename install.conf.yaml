@@ -30,6 +30,13 @@
     ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
-  - [fc-cache -fv, Update font cache]
-  - [xrdb -merge ~/.Xresources, Reloading ~/.Xresources]
+  - 
+    command: fc-cache -fv
+    stdin: true
+    stdout: true
+    description: Update font cache
+  -
+    command: bash -i -c 'test -x /usr/bin/xrdb && /usr/bin/xrdb merge ~/.Xresources'
+    stdin: true
+    stdout: true
+    description: Reloading Xresources
