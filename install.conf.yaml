@@ -34,7 +34,8 @@
     ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
     ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
 
-    ~/.ssh/config.d: config/ssh/config.d
+    # unused things
+    # ~/.ssh/config.d: config/ssh/config.d
 
 # Shell section
 - shell:
