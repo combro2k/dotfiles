@@ -34,6 +34,8 @@
     ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
     ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
 
+    ~/.themes/base16-twilight.gtkrc: config/gtk2/base16-twilight.gtkrc
+
     # unused things
     # ~/.ssh/config.d: config/ssh/config.d
 
