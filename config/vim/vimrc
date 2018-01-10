@@ -5,9 +5,11 @@ set wildmenu
 set tabstop=2
 set laststatus=2
 set shiftwidth=2
+set term=screen-256color
 
 filetype plugin indent on
 filetype plugin on
+
 syntax enable
 
 call plug#begin('~/.vim/plugged')
@@ -18,7 +20,7 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'mikewest/vim-markdown'
 Plug 'dag/vim-fish'
-" Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
@@ -38,4 +40,6 @@ endif
 
 colorscheme zellner
 " less readable on twilight coloured theme .. :-(
-" colorscheme base16-twilight
+colorscheme base16-twilight
+
+

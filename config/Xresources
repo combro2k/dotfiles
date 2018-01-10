@@ -99,7 +99,7 @@ URxvt.font: xft:Cousine Nerd Font Mono:style=Regular:size=12:antialias=true
 URxvt*skipBuiltinGlyphs:  true
 URxvt*termName:           rxvt-unicode
 URxvt.letterSpace:        0
-URxvt.perl-ext-common:    default,resize-font
+URxvt.perl-ext-common:    default,resize-font,tabbed
 URxvt.imLocale:	          en_US.UTF-8
 
 URxvt.keysym.C-equal:     font-size:increase

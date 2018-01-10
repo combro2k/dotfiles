@@ -16,3 +16,6 @@
 [submodule ".plugins/dotbot-rust"]
 	path = .plugins/dotbot-rust
 	url = https://github.com/alexcormier/dotbot-rust
+[submodule ".plugins/dotbot-pip"]
+	path = .plugins/dotbot-pip
+	url = https://github.com/sobolevn/dotbot-pip.git

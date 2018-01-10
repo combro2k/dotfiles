@@ -32,6 +32,7 @@ if status --is-interactive
   fundle plugin 'fisherman/fzf'
   fundle plugin 'fisherman/docker-completion'
   fundle plugin 'edc/bass'
+  #fundle plugin 'oh-my-fish/plugin-autojump'
 
   # theme
   fundle plugin 'oh-my-fish/theme-bira'

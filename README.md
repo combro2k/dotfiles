@@ -43,3 +43,7 @@ I use dunst for notifications, in order to work with it you need to install duns
 #### FZF
 
 	__fzf_install
+
+#### Pipsi
+  
+  pip install --user pipsi
