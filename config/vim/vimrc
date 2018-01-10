@@ -5,7 +5,7 @@ set wildmenu
 set tabstop=2
 set laststatus=2
 set shiftwidth=2
-set term=screen-256color
+" set term=screen-256color
 
 filetype plugin indent on
 filetype plugin on
