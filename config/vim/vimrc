@@ -38,8 +38,6 @@ if &shell =~# 'fish$'
   set shell=sh
 endif
 
-colorscheme zellner
+" colorscheme zellner
 " less readable on twilight coloured theme .. :-(
 colorscheme base16-twilight
-
-
