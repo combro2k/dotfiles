@@ -10,6 +10,7 @@
   # The config files!  
 - link:
     ~/.emacs.d: config/spacemacs
+    ~/.gtkrc: config/gtk2/base16-twilight.gtkrc
     ~/.spacemacs: config/emacs/spacemacs
     ~/.tmux.conf: config/tmux/tmux.conf
     ~/.urxvt: config/urxvt
@@ -33,8 +34,6 @@
 
     ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
     ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
-
-    ~/.themes/base16-twilight.gtkrc: config/gtk2/base16-twilight.gtkrc
 
     # unused things
     # ~/.ssh/config.d: config/ssh/config.d

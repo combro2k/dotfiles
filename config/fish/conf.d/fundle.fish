@@ -4,9 +4,9 @@ if status --is-interactive
   end
 
   # Fish git prompt
-  set fish_prompt_pwd_dir_length 9999
-  # set -g theme_nerd_fonts yes
-  # set -g theme_color_scheme terminal2-light-black
+  set fish_prompt_pwd_dir_length 0
+  set -g theme_nerd_fonts yes
+  set -g theme_color_scheme base16-dark
 
   # Use FZF new keybindings
   set -U FZF_LEGACY_KEYBINDINGS 0
@@ -35,8 +35,9 @@ if status --is-interactive
   #fundle plugin 'oh-my-fish/plugin-autojump'
 
   # theme
-  fundle plugin 'oh-my-fish/theme-bira'
+  #fundle plugin 'oh-my-fish/theme-bira'
   #fundle plugin 'oh-my-fish/theme-bobthefish'
+  fundle plugin 'oh-my-fish/theme-cbjohnson'
 
   fundle init
 end
