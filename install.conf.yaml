@@ -12,6 +12,7 @@
     ~/.emacs.d: config/spacemacs
     ~/.gtkrc: config/gtk2/base16-twilight.gtkrc
     ~/.spacemacs: config/emacs/spacemacs
+    ~/.screenrc: config/screen/screenrc
     ~/.tmux.conf: config/tmux/tmux.conf
     ~/.urxvt: config/urxvt
     ~/.vimrc: config/vim/vimrc
