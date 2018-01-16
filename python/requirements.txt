@@ -1,4 +1,2 @@
 virtualenvwrapper
-mercurial
-readline
 pipsi

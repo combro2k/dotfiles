@@ -4,6 +4,10 @@
 
   Configs can be symlinked via [dotbot](https://git.io/dotbot), use ./install to use that 
 
+  In order to automaticly install python libs install the python development package:
+
+  python3-devel or python3-dev (depending on OS)
+
 ## Hints
 
 #### VMWARE config
