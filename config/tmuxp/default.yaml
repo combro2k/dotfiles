@@ -1,4 +1,4 @@
-session_name: 2-pane-vertical
+session_name: default
 windows:
   - start_directory: ~/
     panes:
