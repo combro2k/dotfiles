@@ -1,0 +1,5 @@
+session_name: 2-pane-vertical
+windows:
+  - start_directory: ~/
+    panes:
+    - pane

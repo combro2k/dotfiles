@@ -1,0 +1,11 @@
+session_name: 3-panes
+
+environment:
+  EDITOR: emacs
+
+windows:
+- window_name: 3-panes
+  start_directory: ~/
+  layout: main-vertical
+  panes:
+  -
