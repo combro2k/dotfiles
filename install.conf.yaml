@@ -14,6 +14,7 @@
     ~/.spacemacs: config/emacs/spacemacs
     ~/.screenrc: config/screen/screenrc
     ~/.tmux.conf: config/tmux/tmux.conf
+    ~/.tmux/plugins/tpm: config/tmux/plugins/tpm
     ~/.tmuxp: config/tmuxp
     ~/.urxvt: config/urxvt
     ~/.vimrc: config/vim/vimrc
@@ -25,14 +26,12 @@
     ~/.config/bspwm: config/bspwm
     ~/.config/fish/config.fish: config/fish/config.fish
     ~/.config/fish/conf.d: config/fish/conf.d
-
     ~/.config/fish/functions/emacs.fish: config/fish/functions/emacs.fish
     ~/.config/fish/functions/fssh.fish: config/fish/functions/fssh.fish
     ~/.config/fish/functions/hc.fish: config/fish/functions/hc.fish
     ~/.config/fish/functions/lpass.fish: config/fish/functions/lpass.fish
     ~/.config/fish/functions/ls.fish: config/fish/functions/ls.fish
     ~/.config/fish/functions/rustup.fish: config/fish/functions/rustup.fish
-
     ~/.config/gtk-2.0/gtkfilechooser.ini: config/gtk2/gtkfilechooser.ini
     ~/.config/gtk-3.0/settings.ini: config/gtk3/settings.ini
     ~/.config/neofetch/config.conf: config/neofetch/config.conf
