@@ -11,7 +11,7 @@ super + shift + Return
 	urxvt
 
 # program launcher
-super + d
+super + space
 	rofi -demnu -show drun -modi drun
 
 super + s
