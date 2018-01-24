@@ -30,6 +30,10 @@ bspc config pointer_action1 move
 bspc config pointer_action2 resize_corner
 bspc config pointer_action3 none
 
+# monitor detection
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+
 # specific app rules
 bspc rule -a Steam desktop=^3 follow=on split_dir=right
 bspc rule -a URxvt:updates state=floating
