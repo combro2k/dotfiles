@@ -19,11 +19,14 @@
     ~/.urxvt: config/urxvt
     ~/.vimrc: config/vim/vimrc
     ~/.vim/autoload/plug.vim: config/vim-plug/plug.vim
-    ~/.Xresources: config/Xresources
+    ~/.Xresources: config/X11/Xresources
+    ~/.Xresources.d: config/X11/Xresources.d
     ~/.local/share/fonts/dotfiles: config/fonts
+    ~/.local/share/rofi/themes: config/rofi/themes
 
-    ~/.config/fontconfig/fonts.conf: config/fontconfig.conf
     ~/.config/bspwm: config/bspwm
+    ~/.config/conky: config/conky
+    ~/.config/dunst/dunstrc: config/dunst/dunstrc
     ~/.config/fish/config.fish: config/fish/config.fish
     ~/.config/fish/conf.d: config/fish/conf.d
     ~/.config/fish/functions/emacs.fish: config/fish/functions/emacs.fish
@@ -32,16 +35,16 @@
     ~/.config/fish/functions/lpass.fish: config/fish/functions/lpass.fish
     ~/.config/fish/functions/ls.fish: config/fish/functions/ls.fish
     ~/.config/fish/functions/rustup.fish: config/fish/functions/rustup.fish
+    ~/.config/fontconfig/fonts.conf: config/fontconfig.conf
     ~/.config/gtk-2.0/gtkfilechooser.ini: config/gtk2/gtkfilechooser.ini
     ~/.config/gtk-3.0/settings.ini: config/gtk3/settings.ini
-    ~/.config/neofetch/config.conf: config/neofetch/config.conf
-    ~/.config/sxhkd: config/sxhkd
-    ~/.config/conky: config/conky
-    ~/.config/mygtkmenu: config/mygtkmenu
-    ~/.config/polybar: config/polybar
-    ~/.config/dunst/dunstrc: config/dunst/dunstrc
     ~/.config/lemonbar: config/lemonbar
-
+    ~/.config/mygtkmenu: config/mygtkmenu
+    ~/.config/neofetch/config.conf: config/neofetch/config.conf
+    ~/.config/polybar: config/polybar
+    # ~/.config/rofi: config/rofi
+    ~/.config/sxhkd: config/sxhkd
+    
     ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
     ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
 

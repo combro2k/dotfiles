@@ -1,0 +1,49 @@
+!-- URxvt Specifics -- !
+
+URxvt*mouseWheelScrollPage: false
+URxvt*cursorBlink: true
+Urxvt*saveLines: 100000
+URxvt*loginShell: false
+
+! URxvt.font: xft:DroidSansMono Nerd Font Mono:style=Book:size=10:antialias=true:hinting=true
+! URxvt.font: xft:DejaVuSansMono Nerd Font Mono:size=10:style=Book:antialias=true
+! URxvt.font: xft:TerminessTTF Nerd Font Mono:Book:size=12:antialias=true:hinting=true
+! URxvt.font: xft:SauceCodePro Nerd Font Mono:style=Light:size=11:antialias=true
+URxvt.font: xft:Cousine Nerd Font Mono:style=Regular:size=12:antialias=true
+
+URxvt*skipBuiltinGlyphs: true
+
+! URxvt*termName: rxvt-unicode
+URxvt*termName: xterm-256color
+
+URxvt.letterSpace: 0
+URxvt.perl-ext-common: default,resize-font,tabbed
+URxvt.imLocale: en_US.UTF-8
+
+URxvt.keysym.C-equal: font-size:increase
+URxvt.keysym.C-minus: font-size:decrease
+URxvt.keysym.C-S-equal: font-size:incglobal
+URxvt.keysym.C-S-minus: font-size:decglobal
+URxvt.keysym.C-0: font-size:reset
+URxvt.keysym.C-slash: font-size:show
+URxvt.keysym.Home: \033[1~
+URxvt.keysym.End: \033[4~
+URxvt.keysym.KP_Home: \033[1~
+URxvt.keysym.KP_End: \033[4~
+
+URxvt.scrollBar: false
+URxvt.intensityStyles: false
+URxvt.urgentOnBell: false
+URxvt.visualBell: false
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.meta8: true
+URxvt.depth: 32
+
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+
+URxvt*urlLauncher: firefox
+
+URxvt.color12: rgb:5c/5c/ff

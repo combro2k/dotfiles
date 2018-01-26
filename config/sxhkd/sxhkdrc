@@ -12,10 +12,10 @@ super + shift + Return
 
 # program launcher
 super + space
-	rofi -demnu -show drun -modi drun
+	rofi -theme base16-twilight -demnu -show drun -modi drun
 
 super + s
-	rofi -demnu -show ssh -modi ssh
+	rofi -theme base16-twilight -demnu -show ssh -modi ssh
 
 super + r
 	urxvt -e asciinema rec

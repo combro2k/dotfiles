@@ -1,0 +1,30 @@
+
+! __ __
+! \ \/ /_ __ ___ ___ ___ _ _ _ __ ___ ___ ___
+! \ /| '__/ _ \/ __|/ _ \| | | | '__/ __/ _ \/ __|
+! / \| | | __/\__ \ (_) | |_| | | | (_| __/\__ \
+! /_/\_\_| \___||___/\___/ \__,_|_| \___\___||___/
+
+#include ".Xresources.d/base16-twilight-256"
+#include ".Xresources.d/URxvt"
+#include ".Xresources.d/rofi"
+
+*TkTheme: clearlooks
+Xcursor.theme: DMZ-White
+
+! XTerm*background: base00
+! XTerm*foreground: base05
+
+! XTerm*reverseVideo: off
+! XTerm*faceName: Terminus:size=11:antialias=true
+XTerm*faceName: Cousine Nerd Font Mono:style=Regular:size=12:antialias=true
+xTerm*selectToClipboard: true
+
+!-- Xft settings -- !
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintfull
+
+!(call-process-shell-command "xrdb -load ~/.Xresources")

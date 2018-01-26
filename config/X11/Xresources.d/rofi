@@ -1,0 +1,13 @@
+rofi.color-enabled: true
+rofi.terminal: urxvt-256color
+rofi.ssh-client: ssh
+rofi.ssh-command: {terminal} -e {ssh-client} {host}
+rofi.opacity: 100
+rofi.width: 90
+rofi.lines: 25
+rofi.font: Monoid Nerd Font Mono 10
+rofi.location: 0
+rofi.padding: 5
+rofi.levenshtein-sort: true
+rofi.fuzzy: true
+rofi.kb-cancel: Escape,Control+c
