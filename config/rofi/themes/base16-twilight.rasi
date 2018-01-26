@@ -2,6 +2,7 @@
  * Base16 Twilight ROFI Color theme
  * User: David Hart (https://github.com/hartbit)
  * Copyright: Andrea Scarpino
+ * Customized: Martijn van Maurik
  */
 * {
     selected-normal-foreground:  @lightbg;
@@ -37,7 +38,8 @@
 #window {
     background-color: @background;
     border:           1;
-    padding:          5;
+    padding:          15px;
+    border-radius:    15px;
 }
 #mainbox {
     border:  0;
@@ -119,9 +121,9 @@
     text-color:       @selected-normal-foreground;
 }
 #inputbar {
-    spacing:    0;
-    text-color: @normal-foreground;
-    padding:    1px ;
+    spacing:        5;
+    text-color:     @normal-foreground;
+    padding:        1px ;
 }
 #case-indicator {
     spacing:    0;
