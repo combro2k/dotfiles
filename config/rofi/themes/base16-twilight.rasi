@@ -32,6 +32,7 @@
     alternate-active-foreground: @blue;
     active-background:           @background;
     selected-active-background:  @blue;
+    font:                        "Cousine Nerd Font Mono 12";
 }
 #window {
     background-color: @background;
