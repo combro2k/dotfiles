@@ -9,7 +9,7 @@ case $1 in
 	;;
 	desktop-remove)
 		name="$(bspc query -D --names | zenity --list --column Workspaces --text="Select the workspace you want to remove" --hide-header)"
-		bspc monitor -r "$name"
+		bspc desktop "$name" -r
 	;;
 	move-to-desktop)
 		name="$(bspc query -D --names | zenity --list --column Workspaces --text="Move to workspace:" --hide-header)"
