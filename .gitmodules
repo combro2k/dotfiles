@@ -1,7 +1,7 @@
 [submodule "config/spacemacs"]
 	path = config/spacemacs
 	url = https://github.com/syl20bnr/spacemacs
-	branch = master
+	branch = develop
 [submodule "config/vim-plug"]
 	path = config/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
