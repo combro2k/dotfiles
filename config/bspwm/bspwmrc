@@ -51,6 +51,9 @@ bspc rule -a Firefox floating=on state=floating manage=on
 bspc rule -a '*:pinentry' follow=on state=floating
 bspc rule -a '*:pinentry-gtk-2' follow=on state=floating
 
+# tile emacs-gtk
+bspc rule -a Emacs state=tiled
+
 xdotool search --onlyvisible --name tilda windowfocus
 
 . $HOME/.config/bspwm/autostart
