@@ -23,8 +23,22 @@
 
 #### Polybar
 	# OpenSUSE
-	sudo zypper install cmake make gcc gcc-c++ cairo-devel xcb-proto-devel xcb-util-wm-devel xcb-util-devel xcb-util-image-devel
-
+	sudo zypper install \
+	    cmake \
+	    make \
+	    gcc \
+	    gcc-c++ \
+	    cairo-devel \
+	    xcb-proto-devel \
+	    xcb-util-wm-devel \
+	    xcb-util-devel \
+	    xcb-util-image-devel \
+	    xcb-util-cursor-devel \
+	    xcb-util-renderutil-devel \
+	    xcb-util-keysyms-devel \
+	    xcb-util-xrm-devel \
+	    libcurl-devel \
+	    libiw-devel
 	git clone --recursive https://github.com/jaagr/polybar
 	mkdir polybar/build
 	cd polybar/build
