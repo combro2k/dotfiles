@@ -7,7 +7,8 @@ test -f /usr/bin/sxhkd && /usr/bin/sxhkd &
 test -f /usr/lib/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome-authentication-agent-1 &
 test -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 test -f /usr/bin/nitrogen && /usr/bin/nitrogen --restore
-test -f /usr/bin/feh && /usr/bin/feh --bg-center ~/.config/bspwm/background.jpg
+test -f /usr/bin/feh && /usr/binfeh --bg-scale --randomize ~/.config/bspwm/backgrounds/ -Z
+  #/usr/bin/feh --bg-center ~/.config/bspwm/background.jpg
 
 sleep 1
 
