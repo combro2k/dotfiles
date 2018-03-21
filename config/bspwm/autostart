@@ -13,7 +13,7 @@ sleep 1
 
 test -f /usr/bin/compton && /usr/bin/compton &
 test -f /usr/bin/kalu && /usr/bin/kalu &
-test -f /usr/bin/nm-aplet && /usr/bin/nm-applet &
+test -f /usr/bin/nm-applet && /usr/bin/nm-applet &
 test -f /usr/bin/clipit && /usr/bin/clipit &
 test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky.conf &
 test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky-shortcuts.conf &
