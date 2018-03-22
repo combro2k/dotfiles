@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# post-checkout hook - looks for changes to Gemfile[.lock] or package.json, and if
+# found, reinstalls the given packages every time you `git merge` or `git pull`
+
+# To install, copy to your project's .git/hooks folder, and `chmod +x post-merge`
+echo test
