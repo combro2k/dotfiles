@@ -62,7 +62,10 @@
 
 - cargo:
     - exa:
+#      - force
       - quiet
+      - no-default-features
+      - git: https://github.com/ogham/exa.git
 
 
 - shell:
