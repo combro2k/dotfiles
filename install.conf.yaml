@@ -52,6 +52,17 @@
     # ~/.ssh/config.d: config/ssh/config.d
 
 # Shell section
+
+- pip:
+    file: python/requirements.txt
+    binary: /usr/bin/pip
+
+- pipsi:
+    file: python/requirements-pipsi.txt
+
+- cargo:
+  #  - exa 
+
 - shell:
       - 
         command: fc-cache -fv ~/.local/share/fonts
@@ -63,10 +74,8 @@
         stdin: true
         stdout: true
         description: Reloading Xresources
-
-- pip:
-    file: python/requirements.txt
-    binary: /usr/bin/pip
-
-- pipsi:
-    file: python/requirements-pipsi.txt
+      -
+        command: chmod 700 ~/.gnupg
+        stdin: true
+        stdout: true
+        description: Set correct permissions on .gnupg
