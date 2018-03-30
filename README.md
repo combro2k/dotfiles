@@ -22,7 +22,10 @@
 ### Dependencies
 
 #### Polybar
-	# OpenSUSE
+  # Use zypper repository
+  [polybar](https://software.opensuse.org/ymp/home:sysek/openSUSE_Tumbleweed/polybar.ymp?base=openSUSE%3AFactory&query=polybar)
+ 
+	# Compile on OpenSUSE
 	sudo zypper install \
 	    cmake \
 	    make \
@@ -45,6 +48,10 @@
 	cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
 	make
 	sudo make install
+
+#### NeoFetch
+  # Use zypper repository
+  [neofetch](https://software.opensuse.org/ymp/utilities/openSUSE_Factory/neofetch.ymp?base=openSUSE%3AFactory&query=neofetch)
 
 #### Dunst
 
