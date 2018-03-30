@@ -19,6 +19,7 @@ test -f /usr/bin/clipit && /usr/bin/clipit &
 test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky.conf &
 test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky-shortcuts.conf &
 test -f /usr/bin/xautolock && /usr/bin/xautolock -time 10 -locker blurlock &
+test -f /usr/bin/tickr && /usr/bin/tickr &
 
 # Panel
 test -f $HOME/.config/polybar/launch.sh && $HOME/.config/polybar/launch.sh

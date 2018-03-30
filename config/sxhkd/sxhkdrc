@@ -182,7 +182,7 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # mouse interaction
-button3
+super + button3
 	cd ~/.config/mygtkmenu ; \
 	./mygtkmenui -- ~/.config/mygtkmenu/BspwmMenu
 

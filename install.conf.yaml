@@ -25,7 +25,6 @@
     ~/.Xresources.d: config/X11/Xresources.d
     ~/.local/share/fonts/dotfiles: config/fonts
     ~/.local/share/rofi/themes: config/rofi/themes
-
     ~/.config/bspwm: config/bspwm
     ~/.config/conky: config/conky
     ~/.config/dunst/dunstrc: config/dunst/dunstrc
@@ -44,16 +43,11 @@
     ~/.config/mygtkmenu: config/mygtkmenu
     ~/.config/neofetch/config.conf: config/neofetch/config.conf
     ~/.config/polybar: config/polybar
-    # ~/.config/rofi: config/rofi
     ~/.config/sxhkd: config/sxhkd
-    
+    ~/.tickr/tickr-conf: config/tickr/tickr-conf
+    ~/.tickr/tickr-url-list: config/tickr/tickr-url-list
     ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
     ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
-
-    # unused things
-    # ~/.ssh/config.d: config/ssh/config.d
-
-# Shell section
 
 - pip:
     file: python/requirements.txt
