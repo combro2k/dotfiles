@@ -5,3 +5,4 @@ cookiecutter
 glances[docker,gpu,ip]
 tmuxp
 powerline
+krill
