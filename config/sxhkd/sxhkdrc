@@ -20,6 +20,9 @@ super + s
 super + r
 	urxvt -e asciinema rec
 
+super + u
+	feh --bg-scale --randomize ~/.config/bspwm/backgrounds/ -Z
+
 alt + {_, shift + } Tab
 	rofi -theme base16-twilight -demnu -show {windowcd,window} -modi {window,windowcd}
 
