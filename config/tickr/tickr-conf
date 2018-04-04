@@ -7,8 +7,8 @@
 -setgradientbg=n
 -bgcolor2="#00000000"
 -disablescreenlimits=y
--win_x=0
--win_y=31
+-win_x=7
+-win_y=32
 -win_w=1680
 -win_h=0
 -windec=n
@@ -17,7 +17,7 @@
 -iconintaskbar=y
 -winsticky=y
 -overrideredirect=y
--shadow=n
+-shadow=y
 -shadowoffset_x=4
 -shadowoffset_y=9
 -shadowfx=2
@@ -27,7 +27,7 @@
 -tabchar=~
 -rssrefresh=15
 -revsc=n
--feedtitle=y
+-feedtitle=n
 -feedtitledelimiter=" : "
 -itemtitle=y
 -itemtitledelimiter=" | "
@@ -36,8 +36,8 @@
 -nitemsperfeed=3
 -rmtags=y
 -uppercasetext=n
--homefeed="http://rss.slashdot.org/Slashdot/slashdot"
--openlinkcmd="x-www-browser"
+-homefeed="https://www.reddit.com/r/ReverseEngineering+engineering+sysadmin+linux.rss"
+-openlinkcmd="/usr/bin/firefox"
 -openlinkargs=""
 -clock=n
 -clocksec=n
