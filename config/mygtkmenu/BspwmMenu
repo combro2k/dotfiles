@@ -49,13 +49,13 @@ submenu = Move to...
 	icon = NULL
 
 	item = Last focused desktop
-	cmd = bspc node -d last.local
+	cmd = bspc node -d last --follow
 	icon = NULL
 
 	separator
 
 	item = Swap with biggest node
-	cmd = bspc node -w biggest.local
+	cmd = bspc node -s biggest --follow
 	icon = NULL
 
 	item = Move to another monitor

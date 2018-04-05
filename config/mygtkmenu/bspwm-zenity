@@ -13,8 +13,7 @@ case $1 in
 	;;
 	move-to-desktop)
 		name="$(bspc query -D --names | zenity --list --column Workspaces --text="Move to workspace:" --hide-header)"
-		bspc node -d "$name"
-		bspc desktop -f "$name"
+		bspc node -d "$name" --follow
 	;;
 	desktop-rename)
 		name="$(zenity --entry --text='Rename the current workspace to:')"
@@ -22,11 +21,10 @@ case $1 in
 	;;
 	desktop-swap)
 		name="$(bspc query -D --names | zenity --list --column Workspaces --text="Swap with:" --hide-header)"
-		bspc desktop -s "$name"
+		bspc desktop -s "$name" --follow
 	;;
 	move-next-empty-desktop)
 		name="$(bspc query -m -d next.!occupied -D --names)"
-		bspc node -d "$name"
-		bspc desktop -f "$name"
+		bspc node -d "$name" --follow
 	;;
 esac

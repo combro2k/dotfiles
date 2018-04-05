@@ -19,10 +19,11 @@ alert = #bd2c40
 [bar/default]
 monitor = ${env:MONITOR:Virtual1}
 width = 100%
-height = 24
+height = 22
 ;offset-x = 5
-offset-y = 5
-radius = 11.00
+offset-y = 0
+;radius = 11.00
+radius = 0
 fixed-center = false
 ;bottom = true
 
@@ -32,11 +33,11 @@ foreground = ${colors.foreground}
 line-size = 4
 line-color = #f00
 
-border-size = 2
+border-size = 0
 border-color = #00000000
 
-padding-left = 3
-padding-right = 3
+padding-left = 1
+padding-right = 1
 
 module-margin-left = 1
 module-margin-right = 1
@@ -50,7 +51,7 @@ modules-center = xwindow
 modules-right = date
 
 tray-position = right
-tray-padding = 4
+tray-padding = 15
 tray-transparent = false
 tray-background = ${colors.background}
 ;#9999999
