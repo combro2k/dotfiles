@@ -44,6 +44,7 @@
     ~/.config/neofetch/config.conf: config/neofetch/config.conf
     ~/.config/polybar: config/polybar
     ~/.config/sxhkd: config/sxhkd
+    ~/.newsboat/config: config/newsboat/config
     ~/.newsboat/urls: config/newsboat/urls
     ~/.tickr/tickr-conf: config/tickr/tickr-conf
     ~/.tickr/tickr-url-list: config/tickr/tickr-url-list
