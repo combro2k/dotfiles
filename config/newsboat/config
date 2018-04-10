@@ -6,4 +6,4 @@ user-agent "NewsBoat"
 show-keymap-hint yes
 
 urls-source "opml"
-opml-url "https://git.io/vx5Jn"
+opml-url "https://combro2k.github.io/opml/news.opml"
