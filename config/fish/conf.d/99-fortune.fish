@@ -1,5 +1,7 @@
-if status --is-login
+if status --is-interactive
   if test -z $SUDO_USER; and test -f /usr/bin/fortune
-    /usr/bin/fortune -s
+    function fish_greeting
+      /usr/bin/fortune -s
+    end
   end
 end
