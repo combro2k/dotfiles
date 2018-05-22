@@ -9,7 +9,7 @@ if status --is-interactive
   set -g theme_color_scheme base16-dark
 
   # Use FZF new keybindings
-  set -U FZF_LEGACY_KEYBINDINGS 0
+  set -x FZF_LEGACY_KEYBINDINGS 0
 
   # list plugin dependencies
   fundle plugin 'fisherman/await'
