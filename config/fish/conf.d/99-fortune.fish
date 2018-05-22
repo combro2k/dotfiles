@@ -3,5 +3,9 @@ if status --is-interactive
     function fish_greeting
       /usr/bin/fortune -s
     end
+  else if test -z $SUDO_USER; and test -f /usr/games/fortune
+    function fish_greeting
+      /usr/games/fortune -s
+    end
   end
 end
