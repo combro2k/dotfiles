@@ -1,5 +1,9 @@
 if status --is-interactive
-  if test -z $SUDO_USER; and test -f /usr/bin/neofetch
-    /usr/bin/neofetch
+  if test -f /usr/bin/neofetch; and not set -q SUDO_USER
+    if not set -q TMUX
+      /usr/bin/neofetch
+    else if [ "$TMUX_PANE" = '%1' ]
+      /usr/bin/neofetch
+    end
   end
 end
