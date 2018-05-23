@@ -54,6 +54,12 @@ bspc rule -a '*:pinentry-gtk-2' follow=on state=floating
 # tile emacs-gtk
 bspc rule -a Emacs state=tiled
 
+# Guake rule
+bspc rule -a '*:guake' follow=on state=floating
+
+# Tilda rule
+bspc rule -a '*:tilda' follow=on state=floating manage=on sticky=on
+
 xdotool search --onlyvisible --name tilda windowfocus
 
 . $HOME/.config/bspwm/autostart

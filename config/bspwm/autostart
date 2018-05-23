@@ -8,7 +8,7 @@ test -f /usr/lib/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome-au
 test -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 test -f /usr/bin/nitrogen && /usr/bin/nitrogen --restore
 test -f /usr/bin/feh && /usr/bin/feh --bg-scale --randomize ~/.config/bspwm/backgrounds/ -Z
-  #/usr/bin/feh --bg-center ~/.config/bspwm/background.jpg
+#/usr/bin/feh --bg-center ~/.config/bspwm/background.jpg
 
 sleep 1
 
@@ -20,6 +20,8 @@ test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky.conf &
 test -f /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky-shortcuts.conf &
 test -f /usr/bin/xautolock && /usr/bin/xautolock -time 10 -locker blurlock &
 test -f /usr/bin/tickr && /usr/bin/tickr &
+test -f /usr/bin/guake && /usr/bin/guake &
+test -f /usr/bin/tilda && /usr/bin/tilda -h &
 
 # Panel
 test -f $HOME/.config/polybar/launch.sh && $HOME/.config/polybar/launch.sh
