@@ -27,3 +27,7 @@ test -f /usr/bin/tilda && /usr/bin/tilda -h &
 test -f $HOME/.config/polybar/launch.sh && $HOME/.config/polybar/launch.sh
 #test -f $HOME/.config/dzen2/panel_dzen2 && $HOME/.config/dzen2/panel_dzen2 &
 #test -f $HOME/.config/lemonbar/panel && $HOME/.config/lemonbar/panel &
+
+if [ -f $HOME/.bspwm_autostart ]; then
+  . $HOME/.bspwm_autostart
+fi
