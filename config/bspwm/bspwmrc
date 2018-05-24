@@ -2,7 +2,7 @@
 
 export BSPWM_HOME=$(readlink -f $(dirname $0)/) 
 
-bspc monitor -d 1 2 3 4 5 6 7 'eMacs' 'Firefox'
+bspc monitor -d 1 2 3 4 5 6 7 'Emacs' 'Firefox'
 
 bspc config initial_polarity second_child
 
