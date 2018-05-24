@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+match=false
+
+wid=$1
+class=$2
+instance=$3
+
+if [ "$class" != "" ]; then 
+  case "$class" in
+  esac
+fi
+
+if [ "$instance" != "" ]; then
+  case "$instance" in
+#    YaST2) echo "manage=off" && match=true;;
+#    tilda) echo "follow=on state=floating sticky=on focus=on" && match=true;;
+  esac
+fi
+
+if [ $match != true ]; then
+  notify-send "No match for $wid : $class : $instance"
+else
+  notify-send "Match for $wid : $class : $instance"
+fi

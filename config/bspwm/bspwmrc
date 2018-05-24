@@ -1,6 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-bspc monitor -d 1 2 3 4 5 6 7 8 9
+export BSPWM_HOME=$(readlink -f $(dirname $0)/) 
+
+bspc monitor -d 1 2 3 4 5 6 7 'eMacs' 'Firefox'
 
 bspc config initial_polarity second_child
 
@@ -35,31 +37,22 @@ bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
 
 # specific app rules
-bspc rule -a Steam desktop=^3 follow=on split_dir=right
-bspc rule -a URxvt:updates state=floating
-bspc rule -a URxvt:pulsemixer state=floating
-bspc rule -a URxvt:mutt desktop=^2 follow=on
-bspc rule -a URxvt:weechat desktop=^2 follow=on
-bspc rule -a Gimp desktop=^4 follow=on
-bspc rule -a URxvt:vpn desktop=^5 follow=on state=floating
-bspc rule -a URxvt:upass state=floating
-bspc rule -a Conky sticky=on manage=off lower=on
-bspc rule -a feh floating=on manage=off
-bspc rule -a Firefox floating=on state=floating manage=on
+#bspc rule -a feh floating=on manage=off
 
-# special rule for pinentry thingy
-bspc rule -a '*:pinentry' follow=on state=floating
-bspc rule -a '*:pinentry-gtk-2' follow=on state=floating
+# Firefox rules
+bspc rule -a 'Firefox:*' state=floating follow=on
+bspc rule -a 'Firefox:Navigator' desktop=^9 state=tiled follow=on
 
 # tile emacs-gtk
-bspc rule -a Emacs state=tiled
+bspc rule -a 'Emacs:emacs' state=tiled follow=on desktop=^8
+bspc rule -a 'Emacs:emacs-gtk' state=tiled follow=on desktop=^8
 
 # Guake rule
-bspc rule -a '*:guake' follow=on state=floating
+#bspc rule -a '*:guake' follow=on state=floating
 
 # Tilda rule
-bspc rule -a '*:tilda' follow=on state=floating manage=on sticky=on
+bspc rule -a 'Tilda:tilda' follow=on state=floating manage=on sticky=on
 
-xdotool search --onlyvisible --name tilda windowfocus
+bspc config external_rules_command "$BSPWM_HOME/external_rules"
 
-. $HOME/.config/bspwm/autostart
+. $BSPWM_HOME/autostart
