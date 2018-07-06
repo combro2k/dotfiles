@@ -3,7 +3,7 @@ if status --is-interactive
     if not set -q TMUX
       /usr/bin/neofetch
     else if [ "$TMUX_PANE" = '%1' ]
-      /usr/bin/neofetch
+      /usr/bin/neofetch --off
     end
   end
 end
