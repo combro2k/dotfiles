@@ -26,6 +26,7 @@ super + u
 alt + {_, shift + } Tab
 	rofi -theme base16-twilight -demnu -show {windowcd,window} -modi {window,windowcd}
 
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd; \
@@ -33,7 +34,7 @@ super + Escape
 
 # shutdown
 control + alt + BackSpace
-	bspc quit
+	bspc quit 1
 
 ctrl + super + q
 	zenity --question --text="Shutdown?" && systemctl poweroff
@@ -48,7 +49,10 @@ control + super + r
 
 # quit bspwm normally
 super + 0
-	zenity --question --text="Exit bspwm?" && bspc quit
+	zenity --question --text="Exit bspwm?" && bspc quit 1
+
+super + shift + 0
+	bspc wm -d > $HOME/.bspwm.state && bspc quit
 
 # close and kill
 super + shift  + q

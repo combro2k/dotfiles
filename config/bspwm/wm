@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+while true ; do
+  bspwm || break
+  echo "Reloaded" > /dev/stderr
+done

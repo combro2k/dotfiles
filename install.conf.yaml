@@ -23,6 +23,7 @@
     ~/.vim/autoload/plug.vim: config/vim-plug/plug.vim
     ~/.Xresources: config/X11/Xresources
     ~/.Xresources.d: config/X11/Xresources.d
+    ~/.xinitrc: config/X11/xinitrc
     ~/.local/share/fonts/dotfiles: config/fonts
     ~/.local/share/rofi/themes: config/rofi/themes
     ~/.config/bspwm: config/bspwm
