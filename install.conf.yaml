@@ -24,6 +24,7 @@
     ~/.Xresources: config/X11/Xresources
     ~/.Xresources.d: config/X11/Xresources.d
     ~/.xinitrc: config/X11/xinitrc
+    ~/.local/share/applications/firefox.desktop: config/X11/firefox.desktop
     ~/.local/share/fonts/dotfiles: config/fonts
     ~/.local/share/rofi/themes: config/rofi/themes
     ~/.config/bspwm: config/bspwm
@@ -50,6 +51,8 @@
     ~/.newsboat/config: config/newsboat/config
     ~/.tickr/tickr-conf: config/tickr/tickr-conf
     ~/.tickr/tickr-url-list: config/tickr/tickr-url-list
+    ~/.terminfo/r/rxvt-unicode: config/terminfo/rxvt-unicode
+    ~/.terminfo/r/rxvt-unicode-256color: config/terminfo/rxvt-unicode-256color
     ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
     ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
 

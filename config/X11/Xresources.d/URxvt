@@ -13,8 +13,8 @@ URxvt.font: xft:Cousine Nerd Font Mono:style=Regular:size=11:antialias=true
 
 URxvt*skipBuiltinGlyphs: true
 
-! URxvt*termName: rxvt-unicode
-URxvt*termName: xterm-256color
+URxvt*termName: rxvt-unicode-256color
+! URxvt*termName: xterm-256color
 
 URxvt.letterSpace: 0
 URxvt.perl-ext-common: default,resize-font,tabbed,matcher

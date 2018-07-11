@@ -4,11 +4,12 @@
 
 # terminal emulator
 super + Return
-	urxvt
+	urxvt-256color
+
 # terminal emulator
 super + shift + Return
 	bspc node -p south; \
-	urxvt
+	urxvt-256color
 
 # program launcher
 super + space
@@ -18,7 +19,7 @@ super + s
 	rofi -theme base16-twilight -demnu -show ssh -modi ssh
 
 super + r
-	urxvt -e asciinema rec
+	urxvt-256color -e asciinema rec
 
 super + u
 	feh --bg-scale --randomize ~/.config/bspwm/backgrounds/ -Z
