@@ -1,1 +1,1 @@
-test ! -z "$TMUX"; and alias takeover="tmux detach -a"
+set -q $TMUX; and alias takeover="tmux detach -a"

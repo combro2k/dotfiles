@@ -34,11 +34,12 @@
     ~/.config/fish/conf.d: config/fish/conf.d
     ~/.config/fish/functions/emacs.fish: config/fish/functions/emacs.fish
     ~/.config/fish/functions/fssh.fish: config/fish/functions/fssh.fish
-    ~/.config/fish/functions/hc.fish: config/fish/functions/hc.fish
+    ~/.config/fish/functions/fish_greeting.fish: config/fish/functions/fish_greeting.fish
     ~/.config/fish/functions/fpass.fish: config/fish/functions/fpass.fish
+    ~/.config/fish/functions/hc.fish: config/fish/functions/hc.fish
     ~/.config/fish/functions/ls.fish: config/fish/functions/ls.fish
     ~/.config/fish/functions/rustup.fish: config/fish/functions/rustup.fish
-    ~/.config/fish/functions/fish_greeting.fish: config/fish/functions/fish_greeting.fish
+    ~/.config/fish/functions/tmux_wrapper.fish: config/fish/functions/tmux_wrapper.fish
     ~/.config/fontconfig/fonts.conf: config/fontconfig.conf
     ~/.config/gtk-2.0/gtkfilechooser.ini: config/gtk2/gtkfilechooser.ini
     ~/.config/gtk-3.0/settings.ini: config/gtk3/settings.ini

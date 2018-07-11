@@ -1,5 +1,6 @@
 function fish_greeting
   set -q SUDO_USER; and return
+  set -q TMUX_STATE; and return
 
   if set -q TMUX; and test "$TMUX_PANE" != '%1'
     return

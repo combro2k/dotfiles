@@ -1,10 +1,8 @@
 # Use tmux when it's installed and is an SSH connection                                                                                                               
 if type -qf tmux
   if status --is-login
-    if test -z "$TMUX"; and test "$SSH_CONNECTION" != ""; and test -z "$NOTMUX"; and test ! -f $HOME/.notmux
-      tmuxp load -y default
-
-      exec true
+    if not set -q TMUX; and set -q SSH_CONNECTION; and not set -q NOTMUX; and test ! -f $HOME/.notmux
+      tmux_wrapper; and exec true
     end
   end
 end
