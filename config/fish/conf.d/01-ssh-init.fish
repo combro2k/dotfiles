@@ -2,7 +2,7 @@
 if type -qf tmux
   if status --is-login
     if not set -q TMUX; and set -q SSH_CONNECTION; and not set -q NOTMUX; and test ! -f $HOME/.notmux
-      tmux_wrapper; and exec true
+      tmux_wrapper
     end
   end
 end

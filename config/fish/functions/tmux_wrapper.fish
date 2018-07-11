@@ -8,8 +8,8 @@ function tmux_wrapper --description "Load TMUX wrapper"
 
     set -g TMUX_STATE detached
 
-    return 1
+    return 0
   end
 
-  return 0
+  exec true
 end 
