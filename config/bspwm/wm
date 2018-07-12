@@ -2,5 +2,5 @@
 
 while true ; do
   bspwm || break
-  echo "Reloaded" > /dev/stderr
+  echo "Reloaded" >> /dev/stderr
 done
