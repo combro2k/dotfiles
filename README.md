@@ -23,32 +23,34 @@
 
 #### Polybar (choice)
 
-  # Use zypper repository
-  [polybar](https://software.opensuse.org/ymp/home:sysek/openSUSE_Tumbleweed/polybar.ymp?base=openSUSE%3AFactory&query=polybar)
- 
+	# Depracated in favor of lemonbar
+
+	# Use zypper repository
+	[polybar](https://software.opensuse.org/ymp/home:sysek/openSUSE_Tumbleweed/polybar.ymp?base=openSUSE%3AFactory&query=polybar)
+
 	# Compile on OpenSUSE
 	sudo zypper install \
-    cmake \
-    make \
-    gcc \
-    gcc-c++ \
-    cairo-devel \
-    xcb-proto-devel \
-    xcb-util-wm-devel \
-    xcb-util-devel \
-    xcb-util-image-devel \
-    xcb-util-cursor-devel \
-    xcb-util-renderutil-devel \
-    xcb-util-keysyms-devel \
-    xcb-util-xrm-devel \
-    libcurl-devel \
-    libiw-devel
-	git clone --recursive https://github.com/jaagr/polybar
-	mkdir polybar/build
-	cd polybar/build
-	cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
-	make
-	sudo make install
+		cmake \
+		make \
+		gcc \
+		gcc-c++ \
+		cairo-devel \
+		xcb-proto-devel \
+		xcb-util-wm-devel \
+		xcb-util-devel \
+		xcb-util-image-devel \
+		xcb-util-cursor-devel \
+		xcb-util-renderutil-devel \
+		xcb-util-keysyms-devel \
+		xcb-util-xrm-devel \
+		libcurl-devel \
+		libiw-devel
+		git clone --recursive https://github.com/jaagr/polybar
+		mkdir polybar/build
+		cd polybar/build
+		cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
+		make
+		sudo make install
 
 #### Lemonbar (suggested)
 
