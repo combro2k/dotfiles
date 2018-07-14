@@ -502,7 +502,7 @@ sp_title() {
 
 	FORMAT="${1}:%{A1:title_cmd:} %s%{A1}\n"
 
-	xtitle -s -t -70 -f "$FORMAT"
+	xtitle -s -f "$FORMAT"
 }
 
 # keyboard layout indicator module
