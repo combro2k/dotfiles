@@ -22,32 +22,50 @@
 ### Dependencies
 
 #### Polybar
+
+OLD!
+
   # Use zypper repository
   [polybar](https://software.opensuse.org/ymp/home:sysek/openSUSE_Tumbleweed/polybar.ymp?base=openSUSE%3AFactory&query=polybar)
  
 	# Compile on OpenSUSE
 	sudo zypper install \
-	    cmake \
-	    make \
-	    gcc \
-	    gcc-c++ \
-	    cairo-devel \
-	    xcb-proto-devel \
-	    xcb-util-wm-devel \
-	    xcb-util-devel \
-	    xcb-util-image-devel \
-	    xcb-util-cursor-devel \
-	    xcb-util-renderutil-devel \
-	    xcb-util-keysyms-devel \
-	    xcb-util-xrm-devel \
-	    libcurl-devel \
-	    libiw-devel
+    cmake \
+    make \
+    gcc \
+    gcc-c++ \
+    cairo-devel \
+    xcb-proto-devel \
+    xcb-util-wm-devel \
+    xcb-util-devel \
+    xcb-util-image-devel \
+    xcb-util-cursor-devel \
+    xcb-util-renderutil-devel \
+    xcb-util-keysyms-devel \
+    xcb-util-xrm-devel \
+    libcurl-devel \
+    libiw-devel
 	git clone --recursive https://github.com/jaagr/polybar
 	mkdir polybar/build
 	cd polybar/build
 	cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
 	make
 	sudo make install
+
+#### Lemonbar
+
+  # Download patched xft lemonbar
+  [Krypt-n (lemon)bar](https://github.com/krypt-n/bar)
+  
+  # Compile on OpenSUSE
+  sudo zypper install \
+    make \
+    libXft-devel
+  git clone https://github.com/krypt-n/bar
+  cd bar
+  make PREFIX=/usr
+  sudo make PREFIX=/usr install
+
 
 #### NeoFetch
   # Use zypper repository
@@ -74,3 +92,11 @@ I use dunst for notifications, in order to work with it you need to install duns
 #### Pipsi
   
   pip install --user pipsi
+
+#### Other useful stuff
+
+  package-update-indicator
+  clipit
+  nm-applet
+  xautolock
+  tickr

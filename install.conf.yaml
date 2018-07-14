@@ -15,6 +15,7 @@
     ~/.gtkrc: config/gtk2/base16-twilight.gtkrc
     ~/.spacemacs: config/emacs/spacemacs
     ~/.screenrc: config/screen/screenrc
+    ~/.simplepanelrc: config/simplepanelrc
     ~/.tmux.conf: config/tmux/tmux.conf
     ~/.tmux/plugins/tpm: config/tmux/plugins/tpm
     ~/.tmuxp: config/tmuxp

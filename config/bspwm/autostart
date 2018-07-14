@@ -8,32 +8,32 @@ test -x /usr/lib/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome-au
 test -x /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 test -x /usr/bin/nitrogen && /usr/bin/nitrogen --restore
 test -x /usr/bin/feh && /usr/bin/feh --bg-scale --randomize ~/.config/bspwm/backgrounds/ -Z
-#/usr/bin/feh --bg-center ~/.config/bspwm/background.jpg
 
 sleep 1
 
 test -x /usr/bin/compton && /usr/bin/compton &
 test -x /usr/bin/kalu && /usr/bin/kalu &
 test -x /usr/bin/nm-applet && /usr/bin/nm-applet &
+test -x /usr/bin/package-update-indicator && /usr/bin/package-update-indicator &
 test -x /usr/bin/clipit && /usr/bin/clipit &
 test -x /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky.conf &
 test -x /usr/bin/conky && /usr/bin/conky -c ~/.config/conky/conky-shortcuts.conf &
 test -x /usr/bin/xautolock && /usr/bin/xautolock -time 10 -locker 'xlock -mode blank' &
 
 if [ -x /usr/bin/tickr ]; then
-  # more padding now
+  # more padding now because tickr need some space
   bspc config top_padding 40
   /usr/bin/tickr &
 fi
 
-#test -f /usr/bin/tickr && /usr/bin/tickr &
-test -x /usr/bin/guake && /usr/bin/guake &
 test -x /usr/bin/tilda && /usr/bin/tilda -h &
 
 # Panel
-test -x $HOME/.config/polybar/launch.sh && $HOME/.config/polybar/launch.sh
-#test -f $HOME/.config/dzen2/panel_dzen2 && $HOME/.config/dzen2/panel_dzen2 &
-#test -f $HOME/.config/lemonbar/panel && $HOME/.config/lemonbar/panel &
+if [ -x /usr/bin/lemonbar ]; then
+  test -x $HOME/.config/lemonbar/simplepanel && $HOME/.config/lemonbar/simplepanel &
+elif [ -x /usr/bin/polybar ]; then
+  test -x $HOME/.config/polybar/launch.sh && $HOME/.config/polybar/launch.sh &
+fi
 
 if [ -f $HOME/.bspwm_autostart ]; then
   . $HOME/.bspwm_autostart
