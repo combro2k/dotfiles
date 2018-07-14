@@ -23,7 +23,7 @@
 
 #### Polybar
 
-OLD!
+  OLD!
 
   # Use zypper repository
   [polybar](https://software.opensuse.org/ymp/home:sysek/openSUSE_Tumbleweed/polybar.ymp?base=openSUSE%3AFactory&query=polybar)
