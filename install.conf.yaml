@@ -33,6 +33,7 @@
     ~/.config/dunst/dunstrc: config/dunst/dunstrc
     ~/.config/fish/config.fish: config/fish/config.fish
     ~/.config/fish/conf.d: config/fish/conf.d
+    ~/.config/fish/functions/__fish_command_not_found_handler.fish: config/fish/functions/__fish_command_not_found_handler.fish
     ~/.config/fish/functions/emacs.fish: config/fish/functions/emacs.fish
     ~/.config/fish/functions/fssh.fish: config/fish/functions/fssh.fish
     ~/.config/fish/functions/fish_greeting.fish: config/fish/functions/fish_greeting.fish

@@ -111,7 +111,7 @@ SEPARATOR_L="$SEPARATOR"
 sp_modules="
 	sp_main_menu
 	sp_separator_l
-  sp_bspwm
+	sp_check_wm
 	sp_title
 	sp_right
 	sp_button_close
