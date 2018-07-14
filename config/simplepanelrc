@@ -111,7 +111,7 @@ SEPARATOR_L="$SEPARATOR"
 sp_modules="
 	sp_main_menu
 	sp_separator_l
-	sp_check_wm
+  sp_bspwm
 	sp_title
 	sp_right
 	sp_button_close
@@ -184,10 +184,11 @@ button() {	# generic button module; 5 parameters: module_index mouse_button_numb
 }
 
 main_menu_cmd() {
-	rofi	-show "drun" \
+	rofi -show "drun" \
 		-modi "drun" \
 		-no-sidebar-mode \
-		-theme-str "#window { location: northwest; width: 40ch; }" \
+    -theme "base16-twilight" \
+		-theme-str "#window { location: northwest; width: 40ch; margin: 20; }" \
 		-theme-str "#listview { lines: 20; dynamic: true; fixed-height: false; }"
 	# rofimenu
 }
