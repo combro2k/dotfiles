@@ -21,9 +21,7 @@
 
 ### Dependencies
 
-#### Polybar
-
-  OLD!
+#### Polybar (choice)
 
   # Use zypper repository
   [polybar](https://software.opensuse.org/ymp/home:sysek/openSUSE_Tumbleweed/polybar.ymp?base=openSUSE%3AFactory&query=polybar)
@@ -52,20 +50,19 @@
 	make
 	sudo make install
 
-#### Lemonbar
+#### Lemonbar (suggested)
 
-  # Download patched xft lemonbar
-  [Krypt-n (lemon)bar](https://github.com/krypt-n/bar)
-  
-  # Compile on OpenSUSE
-  sudo zypper install \
-    make \
-    libXft-devel
-  git clone https://github.com/krypt-n/bar
-  cd bar
-  make PREFIX=/usr
-  sudo make PREFIX=/usr install
+	# Download patched xft lemonbar
+	[Krypt-n (lemon)bar](https://github.com/krypt-n/bar)
 
+	# Compile on OpenSUSE
+	sudo zypper install \
+		make \
+		libXft-devel
+		git clone https://github.com/krypt-n/bar
+		cd bar
+		make PREFIX=/usr
+		sudo make PREFIX=/usr install
 
 #### NeoFetch
   # Use zypper repository
