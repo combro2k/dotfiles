@@ -67,16 +67,17 @@
 		sudo make PREFIX=/usr install
 
 #### NeoFetch
-  # Use zypper repository
-  [neofetch](https://software.opensuse.org/ymp/utilities/openSUSE_Factory/neofetch.ymp?base=openSUSE%3AFactory&query=neofetch)
+
+		# Use zypper repository
+		[neofetch](https://software.opensuse.org/ymp/utilities/openSUSE_Factory/neofetch.ymp?base=openSUSE%3AFactory&query=neofetch)
 
 #### Dunst
 
-I use dunst for notifications, in order to work with it you need to install dunst:
+		I use dunst for notifications, in order to work with it you need to install dunst:
 
-  sudo pacman -S dunst
-  
-  sudo zypper install dunst
+		sudo pacman -S dunst
+
+		sudo zypper install dunst
 
 #### Nerd Font
 
@@ -89,13 +90,13 @@ I use dunst for notifications, in order to work with it you need to install duns
 	__fzf_install
 
 #### Pipsi
-  
-  pip install --user pipsi
+
+	pip install --user pipsi
 
 #### Other useful stuff
 
-  package-update-indicator
-  clipit
-  nm-applet
-  xautolock
-  tickr
+	package-update-indicator
+	clipit
+	nm-applet
+	xautolock
+	tickr
