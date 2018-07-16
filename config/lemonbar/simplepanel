@@ -1098,6 +1098,7 @@ done \
 		sleep "$DELAY"
 	done ; } \
 | lemonbar \
+  -n "simplepanel" \
 	-a 50 \
 	-g "${SP_WIDTH}x${SP_HEIGHT}${SP_POSITION}" \
 	-f "$SP_FONT_1" -o "$SP_OFFSET_1" \

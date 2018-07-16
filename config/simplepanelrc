@@ -72,6 +72,8 @@ i='' i_fa_play=$i
 i='' i_fa_pause=$i
 i='' i_fa_stop=$i
 i='' i_fa_forward=$i
+i='' i_fa_pencil_square_o=$i
+i_fa_edit=$i_fa_pencil_square_o
 
 # Set colors and lemonbar format codes. See more at https://github.com/LemonBoy/bar
 # Adapta dark
@@ -79,7 +81,7 @@ i='' i_fa_forward=$i
 SP_BG_COLOR='#E8222D32'	# default background color
 
 BC='%{B-}'		# use default background color
-BC1='%{B#FF00BCD4}'	# use alternative background color / highlight
+BC1='%{B#BBBCBC88}'	# use alternative background color / highlight
 
 SP_FG_COLOR='#FFEFEFEF'	# default foreground color
 
@@ -87,6 +89,7 @@ FC='%{F-}'		# use default foreground color	- text
 FC1='%{F#A03A464B}'	# use foreground color 1	- separator
 FC2='%{F#FFCFD8DC}'	# use foreground color 2	- icons
 FC3='%{F#FFA04020}'	# use foreground color 3	- urgent
+FC4='%{F#E9BABABA}' # use foreground color 4  - inactive
 
 ICO="${FC2}%{T2}"	# use icon color and font
 TXT='%{F-}%{T1}'	# use text color and font
@@ -117,6 +120,8 @@ sp_modules="
 	sp_button_close
 	sp_separator
 	sp_status
+  sp_separator
+  sp_username
 	sp_separator
 	sp_button_exit
 "
@@ -382,6 +387,8 @@ sp_bspwm() {
 			for entry in $line ; do
 				desktop="${entry#?}"
 				case "$entry" in
+          f*) #list entry
+            bspwm_line="${bspwm_line}%{A1:bspc_focus ${desktop}:}${SP}${FC4}${desktop}${FC}${SP}%{A1}" ;;
 					O*|F*|U*)	# highlight focused desktop (occupied, free or urgent)
 						bspwm_line="${bspwm_line}%{A1:bspc_last:}${BC1}${SP}${desktop}${SP}${BC}%{A1}" ;;
 					o*|u*)		# show unfocused desktops (occupied or urgent)
@@ -502,7 +509,7 @@ sp_title() {
 
 	FORMAT="${1}:%{A1:title_cmd:} %s%{A1}\n"
 
-	xtitle -s -f "$FORMAT"
+	xtitle -i -s -f "$FORMAT"
 }
 
 # keyboard layout indicator module
@@ -924,7 +931,7 @@ calendar_notify() {
 
 sp_status_clock() {
 	# ICON_TIME="${SP}${i_fa_clock_o}${SP}"
-	ICON_TIME=""
+	ICON_TIME="${SP}${i_fa_clock_o}${SP}"
 	# ICON_DATE="${SP}${i_fa_calendar_o}${SP}"
 	ICON_DATE=""
 
@@ -946,4 +953,12 @@ sp_status_clock() {
 				$TXT$(date '+%R')
 			%{A3}
 		%{A1}"
+}
+
+sp_username() {
+  username=$(whoami)
+	hostname=$(hostname)
+
+  print_module "$1" \
+    "${SP}${username}@${hostname}${SP}"
 }
