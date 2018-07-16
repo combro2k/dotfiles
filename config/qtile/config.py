@@ -81,7 +81,9 @@ keys = [
     Key([mod], "w", lazy.window.kill()),
 
     Key([mod, "control"], "r", lazy.restart()),
-    Key([mod, "control"], "q", lazy.shutdown()),
+    Key([mod], "0", lazy.shutdown()),
+    Key([mod, "control"], "q", lazy.spawn("zenity --question --text=\"Shutdown?\" && systemctl poweroff")),
+    Key([mod, "control"], "r", lazy.spawn("zenity --question --text=\"Reboot?\" && systemctl reboot")),
     Key([mod], "r", lazy.spawncmd()),
 ]
 
