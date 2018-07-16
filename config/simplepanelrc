@@ -9,7 +9,7 @@
 # Set size and position
 
 SP_WIDTH=""
-SP_HEIGHT=24
+SP_HEIGHT=22
 SP_POSITION=""
 SP_BOTTOM=""		# panel at the top of the screen
 # SP_BOTTOM="-b"	# panel at the bottom of the screen

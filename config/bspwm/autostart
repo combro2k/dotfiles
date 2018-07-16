@@ -2,6 +2,7 @@
 
 export SXHKD_SHELL='/usr/bin/sh' 
 export TERMINAL='/usr/bin/urxvt'
+#export PATH="$PATH:~/.config/lemonbar/"
 
 test -x /usr/bin/sxhkd && /usr/bin/sxhkd &
 test -x /usr/lib/polkit-gnome-authentication-agent-1 && /usr/lib/polkit-gnome-authentication-agent-1 &

@@ -53,7 +53,7 @@ super + 0
 	zenity --question --text="Exit bspwm?" && bspc quit 1
 
 super + shift + 0
-	bspc wm -d > $HOME/.bspwm.state && bspc quit
+	bspc wm -d > $XDG_RUNTIME_DIR/.bspwm.state && bspc quit
 
 # close and kill
 super + shift  + q

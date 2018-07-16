@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 export BSPWM_HOME=$(readlink -f $(dirname $0)/)
-export BSPWM_STATE=$HOME/.bspwm.state
+export BSPWM_STATE=$XDG_RUNTIME_DIR/.bspwm.state
 export BSPWM_RELOAD='false'
 
 if [ -e $BSPWM_STATE ]; then
@@ -68,7 +68,7 @@ bspc rule -a 'Tilda:tilda' follow=on state=floating manage=on sticky=on
 
 bspc config external_rules_command "$BSPWM_HOME/external_rules"
 
-if [[ "$BSWPM_RELOAD" != "true" ]]; then
+if [[ "$BSPWM_RELOAD" != "true" ]]; then
   source $BSPWM_HOME/autostart
 else
   echo "Trigger VARIABLE $BSPWM_RELOAD" >> /dev/stderr
