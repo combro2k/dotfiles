@@ -41,8 +41,16 @@ class Commands(object):
     autolock = '/usr/bin/xautolock -time 10 -locker \'xlock -mode blank\''
     tilda = '/usr/bin/tilda -h'
     nm_applet = '/usr/bin/nm-applet'
+    package_update_indicator = '/usr/bin/package-update-indicator'
+    conky_right = '/usr/bin/conky -c ~/.config/conky/conky.conf'
 
-    autostart = [compton, autolock, tilda, nm_applet]
+    autostart = [
+            compton, 
+            autolock, 
+            tilda, 
+            nm_applet, 
+            package_update_indicator,
+    ]
 
 mod = "mod4"
 
@@ -101,7 +109,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
                 widget.GroupBox(),
                 widget.Prompt(),
@@ -109,7 +117,7 @@ screens = [
                 widget.Systray(),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
             ],
-            24,
+            22,
         ),
     ),
 ]
@@ -147,7 +155,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'ssh-askpass'},  # ssh-askpass
     {'wmclass': 'Tilda'}, # tilda fun
 ])
-auto_fullscreen = True
+auto_fullscreen = False
 focus_on_window_activation = "smart"
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
