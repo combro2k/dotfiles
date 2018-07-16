@@ -55,16 +55,23 @@
 #### Lemonbar (suggested)
 
 	# Download patched xft lemonbar
-	[Krypt-n (lemon)bar](https://github.com/krypt-n/bar)
+	[Krypt-n lemonbar](https://github.com/krypt-n/bar)
+
+	# Download xtitle dependency
+	[Xtitle](https://cerberus.site4u.nl/profiles/ticket/BNU-71184-425/conversation)
+	git clone https://github.com/baskerville/xtitle.git
+	cd xtitle
+	make PREFIX=/usr
+	sudo make PREFIX=/usr install
 
 	# Compile on OpenSUSE
 	sudo zypper install \
 		make \
 		libXft-devel
-		git clone https://github.com/krypt-n/bar
-		cd bar
-		make PREFIX=/usr
-		sudo make PREFIX=/usr install
+	git clone https://github.com/krypt-n/bar
+	cd bar
+	make PREFIX=/usr
+	sudo make PREFIX=/usr install
 
 #### NeoFetch
 
