@@ -27,7 +27,7 @@
 import os
 import subprocess
 
-from custom.functions import *
+#from custom.functions import *
 
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
@@ -83,7 +83,7 @@ keys = [
     #Key([mod, "control"], "r", lazy.restart()),
     Key([mod], "0", lazy.shutdown()),
     #Key([mod, "control"], "q", lazy.spawn("zenity --question --text=\"Shutdown?\" && systemctl poweroff")),
-    Key([mod, "control"], "r", lazy.function(cmd_reboot('Are you sure?'))),
+    #Key([mod, "control"], "r", lazy.function(cmd_reboot('Are you sure?'))),
     Key([mod], "r", lazy.spawncmd()),
 ]
 
@@ -159,7 +159,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'gpk-update-viewer'}, # package-updater-indicator
     {'wmclass': 'package-update-indicator-prefs'}, # package-update-indicator
 ])
-auto_fullscreen = True
+auto_fullscreen = False
 focus_on_window_activation = "smart"
 
 #@hook.subscribe.client_new
