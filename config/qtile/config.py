@@ -24,12 +24,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os
+import subprocess
+
+from custom.functions import *
+
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
-
-import os
-import subprocess
+from libqtile.log_utils import logger
 
 try:
     from typing import List  # noqa: F401
@@ -37,20 +40,17 @@ except ImportError:
     pass
 
 class Commands(object):
-    compton = '/usr/bin/compton'
-    autolock = '/usr/bin/xautolock -time 10 -locker \'xlock -mode blank\''
-    tilda = '/usr/bin/tilda -h'
-    nm_applet = '/usr/bin/nm-applet'
-    package_update_indicator = '/usr/bin/package-update-indicator'
-    conky_right = '/usr/bin/conky -c ~/.config/conky/conky.conf'
-
-    autostart = [
-            compton, 
-            autolock, 
-            tilda, 
-            nm_applet, 
-            package_update_indicator,
-    ]
+    autostart = { 
+            '/usr/bin/compton': None,
+            '/usr/bin/xautolock': '-time 10 -locker \'xlock -mode blank\'',
+            '/usr/bin/tilda': '-h',
+            '/usr/bin/nm-applet': None,
+            '/usr/bin/package-update-indicator': None,
+            '/usr/lib/polkit-gnome-authentication-agent-1': None,
+            '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1': None,
+            '/usr/bin/feh': '--bg-scale --randomize ~/.config/bspwm/backgrounds/ -',
+            '/usr/bin/clipit': None,
+    }
 
 mod = "mod4"
 
@@ -80,10 +80,10 @@ keys = [
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod], "w", lazy.window.kill()),
 
-    Key([mod, "control"], "r", lazy.restart()),
+    #Key([mod, "control"], "r", lazy.restart()),
     Key([mod], "0", lazy.shutdown()),
-    Key([mod, "control"], "q", lazy.spawn("zenity --question --text=\"Shutdown?\" && systemctl poweroff")),
-    Key([mod, "control"], "r", lazy.spawn("zenity --question --text=\"Reboot?\" && systemctl reboot")),
+    #Key([mod, "control"], "q", lazy.spawn("zenity --question --text=\"Shutdown?\" && systemctl poweroff")),
+    Key([mod, "control"], "r", lazy.function(cmd_reboot('Are you sure?'))),
     Key([mod], "r", lazy.spawncmd()),
 ]
 
@@ -104,8 +104,8 @@ layouts = [
 
 widget_defaults = dict(
     font='Cousine Nerd Font Mono',
-    fontsize=12,
-    padding=3,
+    fontsize=16,
+    padding=2,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -116,10 +116,10 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.Systray(),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+                widget.Systray(),
             ],
-            22,
+            26,
         ),
     ),
 ]
@@ -156,9 +156,18 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'pinentry-gtk-2'}, # Pinentry
     {'wmclass': 'ssh-askpass'},  # ssh-askpass
     {'wmclass': 'Tilda'}, # tilda fun
+    {'wmclass': 'gpk-update-viewer'}, # package-updater-indicator
+    {'wmclass': 'package-update-indicator-prefs'}, # package-update-indicator
 ])
 auto_fullscreen = False
 focus_on_window_activation = "smart"
+
+@hook.subscribe.client_new
+def floating_dialogs(window):
+    dialog = window.window.get_wm_type() == 'dialog'
+    transient = window.window.get_wm_transient_for()
+    if dialog or transient:
+        window.floating = True
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
@@ -172,5 +181,29 @@ wmname = "LG3D"
 
 @hook.subscribe.startup_once
 def autostart():
-    for command in Commands.autostart:
-        subprocess.Popen([command], shell=True) 
+    for command, args in Commands.autostart.items():
+        logger.info('Command to run: %s with arguments: %s' % (command, args))
+        if not os.access(command, os.X_OK):
+            logger.error('Does not exist or is not executable: %s' % command)
+        else:
+            logger.debug('Run: %s %s' % (command, args))
+            if args is None:
+                subprocess.Popen([command], shell=True) 
+            else:
+                subprocess.Popen([command, args], shell=True) 
+
+@hook.subscribe.startup
+def dbus_register():
+    x = os.environ.get('DESKTOP_AUTOSTART_ID', '0')
+    subprocess.call(['dbus-send',
+        '--session',
+        '--print-reply=literal',
+        '--dest=org.gnome.SessionManager',
+        '/org/gnome/SessionManager',
+        'org.gnome.SessionManager.RegisterClient',
+        'string:qtile',
+        'string:' + x])
+
+
+def main(qtile):
+    pass 
