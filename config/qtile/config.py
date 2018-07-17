@@ -25,14 +25,16 @@
 # SOFTWARE.
 
 import os
-import subprocess
+
 
 #from custom.functions import *
-
+from subprocess import Popen, PIPE, STDOUT
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.log_utils import logger
+
+from xcffib.xproto import StackMode
 
 try:
     from typing import List  # noqa: F401
@@ -48,9 +50,12 @@ class Commands(object):
             '/usr/bin/package-update-indicator': None,
             '/usr/lib/polkit-gnome-authentication-agent-1': None,
             '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1': None,
-            '/usr/bin/feh': '--bg-scale --randomize ~/.config/bspwm/backgrounds/ -',
+            '/usr/bin/feh': '--bg-scale --randomize ~/.config/bspwm/backgrounds/ -Z',
             '/usr/bin/clipit': None,
     }
+
+    def __init__():
+        pass
 
 mod = "mod4"
 
@@ -80,10 +85,17 @@ keys = [
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod], "w", lazy.window.kill()),
 
-    #Key([mod, "control"], "r", lazy.restart()),
     Key([mod], "0", lazy.shutdown()),
-    #Key([mod, "control"], "q", lazy.spawn("zenity --question --text=\"Shutdown?\" && systemctl poweroff")),
-    #Key([mod, "control"], "r", lazy.function(cmd_reboot('Are you sure?'))),
+    Key([mod, "control"], "q", lazy.spawn([
+        "sh",
+        "-c",
+        "zenity --question --text='Shutdown?' && systemctl poweroff",
+    ])),
+    Key([mod, "control"], "r", lazy.spawn([
+        "sh",
+        "-c",
+        "zenity --question --text='Reboot?' && systemctl reboot",
+    ])),
     Key([mod], "r", lazy.spawncmd()),
 ]
 
@@ -100,6 +112,7 @@ for i in groups:
 
 layouts = [
     layout.Bsp(),
+    layout.Max(),
 ]
 
 widget_defaults = dict(
@@ -159,15 +172,22 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'gpk-update-viewer'}, # package-updater-indicator
     {'wmclass': 'package-update-indicator-prefs'}, # package-update-indicator
 ])
-auto_fullscreen = False
+auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-#@hook.subscribe.client_new
-#def floating_dialogs(window):
-#    dialog = window.window.get_wm_type() == 'dialog'
-#    transient = window.window.get_wm_transient_for()
-#    if dialog or transient:
-#        window.floating = True
+
+@hook.subscribe.client_new
+def register_zenity_instance(window):
+    if window.match(wmclass='zenity'):
+        window.window.configure(stackmode=StackMode.Above)
+        window.static(0)
+
+@hook.subscribe.client_new
+def floating_dialogs(window):
+    dialog = window.window.get_wm_type() == 'dialog'
+    transient = window.window.get_wm_transient_for()
+    if dialog or transient:
+        window.floating = True
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
@@ -186,11 +206,12 @@ def autostart():
         if not os.access(command, os.X_OK):
             logger.error('Does not exist or is not executable: %s' % command)
         else:
-            logger.debug('Run: %s %s' % (command, args))
-            if args is None:
-                subprocess.Popen([command], shell=True) 
-            else:
-                subprocess.Popen([command, args], shell=True) 
+            if not args is None:
+                command = '%s %s' % (command, args)
+            
+            logger.error('Run with args: %s' % command)
+
+            Popen([command], shell=True, stderr=STDOUT) 
 
 #@hook.subscribe.startup
 #def dbus_register():
