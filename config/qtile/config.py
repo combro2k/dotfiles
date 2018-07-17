@@ -159,15 +159,15 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'gpk-update-viewer'}, # package-updater-indicator
     {'wmclass': 'package-update-indicator-prefs'}, # package-update-indicator
 ])
-auto_fullscreen = False
+auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-@hook.subscribe.client_new
-def floating_dialogs(window):
-    dialog = window.window.get_wm_type() == 'dialog'
-    transient = window.window.get_wm_transient_for()
-    if dialog or transient:
-        window.floating = True
+#@hook.subscribe.client_new
+#def floating_dialogs(window):
+#    dialog = window.window.get_wm_type() == 'dialog'
+#    transient = window.window.get_wm_transient_for()
+#    if dialog or transient:
+#        window.floating = True
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
@@ -192,17 +192,17 @@ def autostart():
             else:
                 subprocess.Popen([command, args], shell=True) 
 
-@hook.subscribe.startup
-def dbus_register():
-    x = os.environ.get('DESKTOP_AUTOSTART_ID', '0')
-    subprocess.call(['dbus-send',
-        '--session',
-        '--print-reply=literal',
-        '--dest=org.gnome.SessionManager',
-        '/org/gnome/SessionManager',
-        'org.gnome.SessionManager.RegisterClient',
-        'string:qtile',
-        'string:' + x])
+#@hook.subscribe.startup
+#def dbus_register():
+#    x = os.environ.get('DESKTOP_AUTOSTART_ID', '0')
+#    subprocess.call(['dbus-send',
+#        '--session',
+#        '--print-reply=literal',
+#        '--dest=org.gnome.SessionManager',
+#        '/org/gnome/SessionManager',
+#        'org.gnome.SessionManager.RegisterClient',
+#        'string:qtile',
+#        'string:' + x])
 
 
 def main(qtile):
