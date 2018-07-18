@@ -21,55 +21,38 @@ except ImportError:
 
 class AutoStart(object):
     def commands(self):
-        yield {
-                'prog': '/usr/bin/compton',
-                }
-        yield {
-                'prog': '/usr/bin/xautolock',
-                'args': ['-time 10', '-locker "xlock -mode blank"'],
-                }
-        yield {
-                'prog': '/usr/bin/tilda',
-                'args': '-h',
-                }
-        yield {
-                'prog': '/usr/bin/nm-applet',
-                }
-        yield {
-                'prog': '/usr/bin/package-update-indicator',
-                }
-        yield {
-                'prog': '/usr/lib/polkit-gnome-authentication-agent-1',
-                }
-        yield {
-                'prog': '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1',
-                }
-        yield {
-                'prog': '/usr/bin/feh', 
-                'args': ['--bg-scale', '--randomize', '~/.config/bspwm/backgrounds/', '-Z'],
-                }
-        yield {
-                'prog': '/usr/bin/clipit',
-                }
+        yield '/usr/bin/compton'
+        yield '/usr/bin/xautolock', '-time 10', '-locker "xlock -mode blank"'
+        yield '/usr/bin/tilda', '-h'
+        yield '/usr/bin/nm-applet'
+        yield '/usr/bin/package-update-indicator'
+        yield '/usr/lib/polkit-gnome-authentication-agent-1'
+        yield '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
+        yield '/usr/bin/feh', '--bg-scale', '--randomize', '~/.config/bspwm/backgrounds/', '-Z'
+        yield '/usr/bin/clipit'
 
     def __init__(self):
         self.run()
 
     def run(self):
+        from pprint import pprint
         logger.error('Starting class AutoStart')
-        for item in self.commands():
-            if not 'prog' in item:
-                logger.error('Empty yield in commands?') 
-            elif not os.access(item['prog'], os.X_OK):
-                logger.error('Does not exist or is not executable: %s' % item['prog'])
-            else:
-                cmd = item['prog']
-                if 'args' in item:
-                    arg = ' '.join(item['args'])
-                    cmd = ' '.join([cmd, arg])
+        for i in self.commands():
+            if i is None:
+                continue
 
-                logger.info('Running: %s' % cmd)
-                Popen([cmd], shell=True, stderr=STDOUT) 
+            c = x = os.path.expanduser(i if type(i) is str else list(i)[0])
+            a = None if type(i) is str else ' '.join(list(i)[1:]) # asume one item then
+
+            if not os.access(x, os.X_OK):
+                logger.error('Does not exist or is not executable: %s' % x)
+                continue
+
+            if not a is None:
+                c = ' '.join((x, a))
+
+            logger.info('Running: %s' % c)
+            Popen([c], shell=True, stderr=STDOUT)
 
 mod = "mod4"
 
