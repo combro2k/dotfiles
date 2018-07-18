@@ -40,19 +40,12 @@ class AutoStart(object):
         for i in self.commands():
             if i is None:
                 continue
-
-            c = x = os.path.expanduser(i if type(i) is str else list(i)[0])
+            x = os.path.expanduser(i if type(i) is str else list(i)[0])
             a = None if type(i) is str else ' '.join(list(i)[1:]) # asume one item then
-
             if not os.access(x, os.X_OK):
                 logger.error('Does not exist or is not executable: %s' % x)
                 continue
-
-            if not a is None:
-                c = ' '.join((x, a))
-
-            logger.info('Running: %s' % c)
-            Popen([c], shell=True, stderr=STDOUT)
+            Popen([x] if type(i) is str else [x, a], shell=True, stderr=STDOUT)
 
 mod = "mod4"
 
