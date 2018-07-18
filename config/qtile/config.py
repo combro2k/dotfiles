@@ -206,20 +206,6 @@ wmname = "LG3D"
 def autostart_once():
     AutoStart()
 
-#@hook.subscribe.startup_once
-#def autostart():
-#    for command, args in Commands.autostart.items():
-#        logger.info('Command to run: %s with arguments: %s' % (command, args))
-#        if not os.access(command, os.X_OK):
-#            logger.error('Does not exist or is not executable: %s' % command)
-#        else:
-#            if not args is None:
-#                command = '%s %s' % (command, args)
-#            
-#            logger.error('Run with args: %s' % command)
-#
-#            Popen([command], shell=True, stderr=STDOUT) 
-
 #@hook.subscribe.startup
 #def dbus_register():
 #    x = os.environ.get('DESKTOP_AUTOSTART_ID', '0')
@@ -231,7 +217,3 @@ def autostart_once():
 #        'org.gnome.SessionManager.RegisterClient',
 #        'string:qtile',
 #        'string:' + x])
-
-
-def main(qtile):
-    pass 
