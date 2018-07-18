@@ -1,32 +1,9 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
 
 import os
 
-import xcffib.xproto
+from logging import getLogger
+
+#import xcffib.xproto
 
 #from custom.functions import *
 from subprocess import Popen, PIPE, STDOUT
@@ -35,28 +12,64 @@ from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.log_utils import logger
 
-from xcffib.xproto import StackMode, ConfigureNotifyEvent, EventMask
+#from xcffib.xproto import StackMode, ConfigureNotifyEvent, EventMask
 
 try:
     from typing import List  # noqa: F401
 except ImportError:
     pass
 
-class Commands(object):
-    autostart = { 
-            '/usr/bin/compton': None,
-            '/usr/bin/xautolock': '-time 10 -locker \'xlock -mode blank\'',
-            '/usr/bin/tilda': '-h',
-            '/usr/bin/nm-applet': None,
-            '/usr/bin/package-update-indicator': None,
-            '/usr/lib/polkit-gnome-authentication-agent-1': None,
-            '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1': None,
-            '/usr/bin/feh': '--bg-scale --randomize ~/.config/bspwm/backgrounds/ -Z',
-            '/usr/bin/clipit': None,
-    }
+class AutoStart(object):
+    def commands(self):
+        yield {
+                'prog': '/usr/bin/compton',
+                }
+        yield {
+                'prog': '/usr/bin/xautolock',
+                'args': ['-time 10', '-locker "xlock -mode blank"'],
+                }
+        yield {
+                'prog': '/usr/bin/tilda',
+                'args': '-h',
+                }
+        yield {
+                'prog': '/usr/bin/nm-applet',
+                }
+        yield {
+                'prog': '/usr/bin/package-update-indicator',
+                }
+        yield {
+                'prog': '/usr/lib/polkit-gnome-authentication-agent-1',
+                }
+        yield {
+                'prog': '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1',
+                }
+        yield {
+                'prog': '/usr/bin/feh', 
+                'args': ['--bg-scale', '--randomize', '~/.config/bspwm/backgrounds/', '-Z'],
+                }
+        yield {
+                'prog': '/usr/bin/clipit',
+                }
 
-    def __init__():
-        pass
+    def __init__(self):
+        self.run()
+
+    def run(self):
+        logger.error('Starting class AutoStart')
+        for item in self.commands():
+            if not 'prog' in item:
+                logger.error('Empty yield in commands?') 
+            elif not os.access(item['prog'], os.X_OK):
+                logger.error('Does not exist or is not executable: %s' % item['prog'])
+            else:
+                cmd = item['prog']
+                if 'args' in item:
+                    arg = ' '.join(item['args'])
+                    cmd = ' '.join([cmd, arg])
+
+                logger.info('Running: %s' % cmd)
+                Popen([cmd], shell=True, stderr=STDOUT) 
 
 mod = "mod4"
 
@@ -151,7 +164,7 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
 main = None
 follow_mouse_focus = False
-bring_front_click = True
+bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'confirm'},
@@ -214,18 +227,22 @@ def floating_dialogs(window):
 wmname = "LG3D"
 
 @hook.subscribe.startup_once
-def autostart():
-    for command, args in Commands.autostart.items():
-        logger.info('Command to run: %s with arguments: %s' % (command, args))
-        if not os.access(command, os.X_OK):
-            logger.error('Does not exist or is not executable: %s' % command)
-        else:
-            if not args is None:
-                command = '%s %s' % (command, args)
-            
-            logger.error('Run with args: %s' % command)
+def autostart_once():
+    AutoStart()
 
-            Popen([command], shell=True, stderr=STDOUT) 
+#@hook.subscribe.startup_once
+#def autostart():
+#    for command, args in Commands.autostart.items():
+#        logger.info('Command to run: %s with arguments: %s' % (command, args))
+#        if not os.access(command, os.X_OK):
+#            logger.error('Does not exist or is not executable: %s' % command)
+#        else:
+#            if not args is None:
+#                command = '%s %s' % (command, args)
+#            
+#            logger.error('Run with args: %s' % command)
+#
+#            Popen([command], shell=True, stderr=STDOUT) 
 
 #@hook.subscribe.startup
 #def dbus_register():
