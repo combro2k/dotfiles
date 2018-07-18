@@ -47,6 +47,16 @@ class AutoStart(object):
                 continue
             Popen([x] if type(i) is str else [x, a], shell=True, stderr=STDOUT)
 
+class Colors(object):
+    bg = '666666'
+    highlight_bg = '888888'
+    urgent_bg = 'fe8964'
+    text = 'ffffff'
+    inactive_text = '333333'
+    border = '333333'
+    border_focus = urgent_bg
+    highlight_text = urgent_bg
+
 mod = "mod4"
 
 keys = [
@@ -108,22 +118,20 @@ layouts = [
 widget_defaults = dict(
     font='Cousine Nerd Font Mono',
     fontsize=16,
-    padding=2,
+    padding=3,
 )
+
 extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                widget.Systray(),
-            ],
-            26,
-        ),
+        top=bar.Bar([
+            widget.GroupBox(padding=2, fontsize=14),
+            widget.Prompt(),
+            widget.WindowName(),
+            widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+            widget.Systray(),
+            ], 22),
     ),
 ]
 
@@ -142,26 +150,31 @@ main = None
 follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
-    {'wmclass': 'confirm'},
-    {'wmclass': 'dialog'},
-    {'wmclass': 'download'},
-    {'wmclass': 'error'},
-    {'wmclass': 'file_progress'},
-    {'wmclass': 'notification'},
-    {'wmclass': 'splash'},
-    {'wmclass': 'toolbar'},
-    {'wmclass': 'confirmreset'},  # gitk
-    {'wmclass': 'makebranch'},  # gitk
-    {'wmclass': 'maketag'},  # gitk
-    {'wname': 'branchdialog'},  # gitk
-    {'wname': 'pinentry'},  # GPG key password entry
-    {'wmclass': 'pinentry-gtk-2'}, # Pinentry
-    {'wmclass': 'ssh-askpass'},  # ssh-askpass
-    {'wmclass': 'Tilda'}, # tilda fun
-    {'wmclass': 'gpk-update-viewer'}, # package-updater-indicator
-    {'wmclass': 'package-update-indicator-prefs'}, # package-update-indicator
-])
+floating_layout = layout.Floating(
+        border_width=3,
+        border_normal=Colors.border,
+        border_focus=Colors.border_focus,
+        float_rules=[
+            {'wmclass': 'confirm'},
+            {'wmclass': 'dialog'},
+            {'wmclass': 'download'},
+            {'wmclass': 'error'},
+            {'wmclass': 'file_progress'},
+            {'wmclass': 'notification'},
+            {'wmclass': 'splash'},
+            {'wmclass': 'toolbar'},
+            {'wmclass': 'confirmreset'},
+            {'wmclass': 'makebranch'},
+            {'wmclass': 'maketag'},
+            {'wname': 'branchdialog'},
+            {'wname': 'pinentry'},
+            {'wmclass': 'pinentry-gtk-2'},
+            {'wmclass': 'ssh-askpass'},
+            {'wmclass': 'Tilda'},
+            {'wmclass': 'gpk-update-viewer'},
+            {'wmclass': 'package-update-indicator-prefs'},
+        ]
+)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
