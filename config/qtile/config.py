@@ -26,6 +26,7 @@
 
 import os
 
+import xcffib.xproto
 
 #from custom.functions import *
 from subprocess import Popen, PIPE, STDOUT
@@ -34,7 +35,7 @@ from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.log_utils import logger
 
-from xcffib.xproto import StackMode
+from xcffib.xproto import StackMode, ConfigureNotifyEvent, EventMask
 
 try:
     from typing import List  # noqa: F401
@@ -175,12 +176,25 @@ floating_layout = layout.Floating(float_rules=[
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-
 @hook.subscribe.client_new
 def register_zenity_instance(window):
+    obj = window.window
+
     if window.match(wmclass='zenity'):
-        window.window.configure(stackmode=StackMode.Above)
+        above = window.qtile.conn.atoms["_NET_WM_STATE_ABOVE"]
+        sticky = window.qtile.conn.atoms["_NET_WM_STATE_STICKY"]
+        state = list(obj.get_property('_NET_WM_STATE', 'ATOM', unpack=int))
+
+        if not above in state:
+            state.append(above)
+        if not sticky in state:
+            state.append(sticky)
+        obj.set_property('_NET_WM_STATE', state)
+
         window.static(0)
+
+        # WIP!
+        # dock = window.qtile.conn.atoms["_NET_WM_WINDOW_TYPE_DOCK"]
 
 @hook.subscribe.client_new
 def floating_dialogs(window):
