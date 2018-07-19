@@ -3,16 +3,12 @@ import os
 
 from logging import getLogger
 
-#import xcffib.xproto
-
 #from custom.functions import *
-from subprocess import Popen, PIPE, STDOUT
-from libqtile.config import Key, Screen, Group, Drag, Click
+from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
-from libqtile import layout, bar, widget, hook
+from libqtile import layout, bar, widget, hook, extension
 from libqtile.log_utils import logger
-
-#from xcffib.xproto import StackMode, ConfigureNotifyEvent, EventMask
+from subprocess import Popen
 
 try:
     from typing import List  # noqa: F401
@@ -22,13 +18,13 @@ except ImportError:
 class AutoStart(object):
     def commands(self):
         yield '/usr/bin/compton'
-        yield '/usr/bin/xautolock', '-time 10', '-locker "xlock -mode blank"'
+        yield '/usr/bin/xautolock', '-time', '10', '-locker', 'xlock -mode blank'
         yield '/usr/bin/tilda', '-h'
         yield '/usr/bin/nm-applet'
         yield '/usr/bin/package-update-indicator'
         yield '/usr/lib/polkit-gnome-authentication-agent-1'
         yield '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
-        yield '/usr/bin/feh', '--bg-scale', '--randomize', '~/.config/bspwm/backgrounds/', '-Z'
+        yield '/usr/bin/feh', '--bg-scale', '--randomize', '~/.config/backgrounds/', '-Z'
         yield '/usr/bin/clipit'
 
     def __init__(self):
@@ -41,11 +37,13 @@ class AutoStart(object):
             if i is None:
                 continue
             x = os.path.expanduser(i if type(i) is str else list(i)[0])
-            a = None if type(i) is str else ' '.join(list(i)[1:]) # asume one item then
             if not os.access(x, os.X_OK):
                 logger.error('Does not exist or is not executable: %s' % x)
                 continue
-            Popen([x] if type(i) is str else [x, a], shell=True, stderr=STDOUT)
+
+            c = [x] if type(i) is str else list(i)
+            logger.warning('Running Popen with: %s' % c)
+            Popen(c, shell=False)
 
 class Colors(object):
     bg = '666666'
@@ -58,44 +56,23 @@ class Colors(object):
     highlight_text = urgent_bg
 
 mod = "mod4"
+ctrl = "control"
 
 keys = [
-    # Switch between windows in current stack pane
     Key([mod], "k", lazy.layout.down()),
     Key([mod], "j", lazy.layout.up()),
-
-    # Move windows up or down in current stack
-    Key([mod, "control"], "k", lazy.layout.shuffle_down()),
-    Key([mod, "control"], "j", lazy.layout.shuffle_up()),
-
-    # Switch window focus to other pane(s) of stack
-    Key([mod], "space", lazy.layout.next()),
-
-    # Swap panes of split stack
+    Key([mod, ctrl], "k", lazy.layout.shuffle_down()),
+    Key([mod, ctrl], "j", lazy.layout.shuffle_up()),
+    Key([ctrl], "Tab", lazy.layout.next()),
     Key([mod, "shift"], "space", lazy.layout.rotate()),
-
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-    Key([mod], "Return", lazy.spawn("urxvt-256color")),
-
-    # Toggle between different layouts as defined below
+    Key([mod], "Return", lazy.spawn('urxvt-256color')),
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod], "w", lazy.window.kill()),
-
     Key([mod], "0", lazy.shutdown()),
-    Key([mod, "control"], "q", lazy.spawn([
-        "sh",
-        "-c",
-        "zenity --question --text='Shutdown?' && systemctl poweroff",
-    ])),
-    Key([mod, "control"], "r", lazy.spawn([
-        "sh",
-        "-c",
-        "zenity --question --text='Reboot?' && systemctl reboot",
-    ])),
+    Key([mod, "control"], "q", lazy.spawn('sh -c \'zenity --question --text="Shutdown?" && systemctl poweroff\'')),
+    Key([mod, "control"], "r", lazy.spawn('sh -c \'zenity --question --text="Reboot?" && systemctl reboot\'')),
+    Key([mod], "space", lazy.spawn('sh -c \'rofi -theme base16-twilight -demnu -show drun -modi drun\'')),
     Key([mod], "r", lazy.spawncmd()),
 ]
 
@@ -109,6 +86,17 @@ for i in groups:
         # mod1 + shift + letter of group = switch to & move focused window to group
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
     ])
+
+groups.append(
+    Group(
+        name='F',
+        matches=[Match(wm_class=["Firefox"])],
+        exclusive=True,
+        persist=False,
+        layout='max',
+        init=False,
+        label='Firefox',
+    ))
 
 layouts = [
     layout.Bsp(),

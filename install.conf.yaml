@@ -28,6 +28,7 @@
     ~/.local/share/applications/firefox.desktop: config/X11/firefox.desktop
     ~/.local/share/fonts/dotfiles: config/fonts
     ~/.local/share/rofi/themes: config/rofi/themes
+    ~/.config/backgrounds: config/backgrounds
     ~/.config/bspwm: config/bspwm
     ~/.config/conky: config/conky
     ~/.config/dunst/dunstrc: config/dunst/dunstrc
