@@ -24,7 +24,7 @@ class AutoStart(object):
         yield '/usr/bin/package-update-indicator'
         yield '/usr/lib/polkit-gnome-authentication-agent-1'
         yield '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
-        yield '/usr/bin/feh', '--bg-scale', '--randomize', '~/.config/backgrounds/', '-Z'
+        yield '/usr/bin/feh', '--bg-scale', '--randomize', os.path.expanduser('~/.config/backgrounds/'), '-Z'
         yield '/usr/bin/clipit'
 
     def __init__(self):
