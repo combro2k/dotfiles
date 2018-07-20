@@ -42,7 +42,7 @@ class AutoStart(object):
                 continue
 
             c = [x] if type(i) is str else list(i)
-            logger.warning('Running Popen with: %s' % c)
+            logger.info('Running Popen with: %s' % c)
             Popen(c, shell=False)
 
 class Colors(object):
@@ -89,7 +89,7 @@ for i in groups:
 
 groups.append(
     Group(
-        name='F',
+        name='Firefox',
         matches=[Match(wm_class=["Firefox"])],
         exclusive=True,
         persist=False,
@@ -114,12 +114,16 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         top=bar.Bar([
-            widget.GroupBox(padding=2, fontsize=14),
-            widget.Prompt(),
-            widget.WindowName(),
-            widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-            widget.Systray(),
-            ], 22),
+                widget.GroupBox(padding=2, fontsize=14),
+                widget.Prompt(),
+                widget.WindowName(),
+                widget.Clock(format='⏰ %Y-%m-%d %a %I:%M %p'),
+                widget.Systray(),
+            ],
+            size=24,
+            background='#1d1f21',
+            opacity=0.60
+        ),
     ),
 ]
 
@@ -163,8 +167,24 @@ floating_layout = layout.Floating(
             {'wmclass': 'package-update-indicator-prefs'},
         ]
 )
+
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+
+wmname = "LG3D"
+
+def main(qtile):
+    qtile.ready = True
+
+@hook.subscribe.startup_once
+def autostart_once():
+    AutoStart()
+
+@hook.subscribe.addgroup
+def firefox_group_created(qtile, group):
+    if group == 'Firefox':
+        if qtile.ready:
+            qtile.groupMap[group].cmd_toscreen() 
 
 @hook.subscribe.client_new
 def register_zenity_instance(window):
@@ -186,26 +206,14 @@ def register_zenity_instance(window):
         # WIP!
         # dock = window.qtile.conn.atoms["_NET_WM_WINDOW_TYPE_DOCK"]
 
+
 @hook.subscribe.client_new
 def floating_dialogs(window):
     dialog = window.window.get_wm_type() == 'dialog'
+    popup = window.window.get_wm_type() == 'popup'
     transient = window.window.get_wm_transient_for()
-    if dialog or transient:
+    if (dialog or transient) or popup:
         window.floating = True
-
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, github issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
-wmname = "LG3D"
-
-@hook.subscribe.startup_once
-def autostart_once():
-    AutoStart()
 
 #@hook.subscribe.startup
 #def dbus_register():
