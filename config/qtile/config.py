@@ -8,7 +8,9 @@ from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook, extension
 from libqtile.log_utils import logger
-from subprocess import Popen
+#from libqtile.extension import base
+
+from subprocess import Popen, call, check_call, PIPE
 
 try:
     from typing import List  # noqa: F401
@@ -45,6 +47,36 @@ class AutoStart(object):
             logger.info('Running Popen with: %s' % c)
             Popen(c, shell=False)
 
+#class Zenity(base.RunCommand):
+#    defaults = [
+#        ("zenity_command", 'dmenu', "the zenity command to be launched"),
+#        ("zenity_question", True, "it is an question"),
+#        ("zenity_title", None, "it is an question"),
+#        ("zenity_text", None, "it is an question"),
+#    ]
+#
+#    def __init__(self, **config):
+#        base.RunCommand.__init__(self, **config)
+#        self.add_defaults(Zenity.defaults)
+#
+#    def _configure(self, qtile):
+#        base.RunCommand._configure(self, qtile)
+#
+#        if self.zenity_question:
+#            self.configured_command.append("--question")
+#
+#        if self.zenity_text:
+#            self.configure_command.append("--text", str(self.zenity_text))
+#
+#        if self.zenity_title:
+#            self.configure_command.append("--title", str(self.zenity_title))
+#
+#
+#    def run(self, items=None):
+#        proc = super(Zenity, self).run()
+#
+#        return proc
+
 class Colors(object):
     bg = '666666'
     highlight_bg = '888888'
@@ -56,6 +88,7 @@ class Colors(object):
     highlight_text = urgent_bg
 
 def rofi_drun():
+    @lazy.function
     def f(qtile):
         Popen(['sh', '-c', 'rofi -theme base16-twilight -demnu -show drun -modi drun'], shell=False)
 
@@ -64,7 +97,10 @@ def rofi_drun():
 def zenity_question(command, title="Question", text="Are you sure?"):
     @lazy.function
     def f(qtile):
-        Popen(['sh', '-c', f'zenity --question --title="{title}" --text="{text}" && {command}'], shell=False)
+        try:
+            Popen(['sh', '-c', f'zenity --question --title="{title}" --text="{text}" && {command}'], shell=False)
+        except subprocess.CalledProcessError as e:
+            logger.error(e)
 
     return f
 
@@ -83,20 +119,16 @@ keys = [
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod], "w", lazy.window.kill()),
 
-    Key([mod], "0", zenity_question(
-        text="Logoff?",
-        command="qtile-cmd -o cmd -f shutdown",
-    )),
-    Key([mod, "control"], "q", zenity_question(
-        text="Shutdown?",
-        command="systemctl poweroff",
-    )),
-    Key([mod, "control"], "r", zenity_question(
-        text="Reboot?",
-        command="systemctl reboot",
-    )),
+#    Key([mod], "t", lazy.run_extension(Zenity(
+#        zenity_question=True,
+#        zenity_text="Test",
+#        zenity_title="test",
+#    ))),
+    Key([mod], "0", zenity_question(text="Logoff?", command="qtile-cmd -o cmd -f shutdown")),
+    Key([mod, "control"], "q", zenity_question(text="Shutdown?", command="systemctl poweroff")),
+    Key([mod, "control"], "r", zenity_question(text="Reboot?", command="systemctl reboot")),
 
-    Key([mod], "space", lazy.function(rofi_drun())),
+    Key([mod], "space", rofi_drun()),
     Key([mod], "r", lazy.spawncmd()),
 ]
 
@@ -200,6 +232,8 @@ wmname = "LG3D"
 def main(qtile):
     qtile.ready = True
 
+    pass
+
 @hook.subscribe.startup_once
 def autostart_once():
     AutoStart()
@@ -212,24 +246,12 @@ def firefox_group_created(qtile, group):
 
 @hook.subscribe.client_new
 def register_zenity_instance(window):
-    obj = window.window
-
     if window.match(wmclass='zenity'):
         above = window.qtile.conn.atoms["_NET_WM_STATE_ABOVE"]
-        sticky = window.qtile.conn.atoms["_NET_WM_STATE_STICKY"]
-        state = list(obj.get_property('_NET_WM_STATE', 'ATOM', unpack=int))
-
+        state = list(window.window.get_property('_NET_WM_STATE', 'ATOM', unpack=int))
         if not above in state:
             state.append(above)
-        if not sticky in state:
-            state.append(sticky)
-        obj.set_property('_NET_WM_STATE', state)
-
-#        window.static(0)
-
-        # WIP!
-        # dock = window.qtile.conn.atoms["_NET_WM_WINDOW_TYPE_DOCK"]
-
+        window.window.set_property('_NET_WM_STATE', state)
 
 @hook.subscribe.client_new
 def floating_dialogs(window):
@@ -238,10 +260,6 @@ def floating_dialogs(window):
     transient = window.window.get_wm_transient_for()
     if (dialog or transient) or popup:
         window.floating = True
-
-def main(qtile):
-    pass
-
 
 #@hook.subscribe.startup
 #def dbus_register():
