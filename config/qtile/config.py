@@ -55,6 +55,19 @@ class Colors(object):
     border_focus = urgent_bg
     highlight_text = urgent_bg
 
+def rofi_drun():
+    def f(qtile):
+        Popen(['sh', '-c', 'rofi -theme base16-twilight -demnu -show drun -modi drun'], shell=False)
+
+    return f
+
+def zenity_question(command, title="Question", text="Are you sure?"):
+    @lazy.function
+    def f(qtile):
+        Popen(['sh', '-c', f'zenity --question --title="{title}" --text="{text}" && {command}'], shell=False)
+
+    return f
+
 mod = "mod4"
 ctrl = "control"
 
@@ -69,10 +82,21 @@ keys = [
     Key([mod], "Return", lazy.spawn('urxvt-256color')),
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod], "w", lazy.window.kill()),
-    Key([mod], "0", lazy.shutdown()),
-    Key([mod, "control"], "q", lazy.spawn('sh -c \'zenity --question --text="Shutdown?" && systemctl poweroff\'')),
-    Key([mod, "control"], "r", lazy.spawn('sh -c \'zenity --question --text="Reboot?" && systemctl reboot\'')),
-    Key([mod], "space", lazy.spawn('sh -c \'rofi -theme base16-twilight -demnu -show drun -modi drun\'')),
+
+    Key([mod], "0", zenity_question(
+        text="Logoff?",
+        command="qtile-cmd -o cmd -f shutdown",
+    )),
+    Key([mod, "control"], "q", zenity_question(
+        text="Shutdown?",
+        command="systemctl poweroff",
+    )),
+    Key([mod, "control"], "r", zenity_question(
+        text="Reboot?",
+        command="systemctl reboot",
+    )),
+
+    Key([mod], "space", lazy.function(rofi_drun())),
     Key([mod], "r", lazy.spawncmd()),
 ]
 
@@ -143,7 +167,7 @@ follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
-        border_width=3,
+        border_width=2,
         border_normal=Colors.border,
         border_focus=Colors.border_focus,
         float_rules=[
@@ -201,7 +225,7 @@ def register_zenity_instance(window):
             state.append(sticky)
         obj.set_property('_NET_WM_STATE', state)
 
-        window.static(0)
+#        window.static(0)
 
         # WIP!
         # dock = window.qtile.conn.atoms["_NET_WM_WINDOW_TYPE_DOCK"]
@@ -214,6 +238,10 @@ def floating_dialogs(window):
     transient = window.window.get_wm_transient_for()
     if (dialog or transient) or popup:
         window.floating = True
+
+def main(qtile):
+    pass
+
 
 #@hook.subscribe.startup
 #def dbus_register():
