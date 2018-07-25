@@ -3,7 +3,8 @@ def autostart():
 
     yield '/usr/bin/compton'
     yield '/usr/bin/xautolock', '-time', '10', '-locker', 'xlock -mode blank'
-    yield '/usr/bin/tilda', '-h'
+    yield '/usr/bin/urxvtd-256color', '-o'
+#    yield '/usr/bin/tilda', '-h'
     yield '/usr/bin/nm-applet'
     yield '/usr/bin/package-update-indicator'
     yield '/usr/lib/polkit-gnome-authentication-agent-1'

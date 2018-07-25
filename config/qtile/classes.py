@@ -28,7 +28,7 @@ class AutoStart(object):
 
             c = [x] if type(i) is str else list(i)
 
-            logger.info('Running Popen with: %s' % c)
+            logger.error('Running Popen with: %s' % c)
             Popen(c, shell=False)
 
 class Colors(object):
@@ -59,4 +59,49 @@ class Helpers():
             except subprocess.CalledProcessError as e:
                 logger.error(e)
 
+        return f
+
+    def app_or_group(group, app):
+        """ Go to specified group if it exists. Otherwise, run the specified app.
+        When used in conjunction with dgroups to auto-assign apps to specific
+        groups, this can be used as a way to go to an app if it is already
+        running. """
+        def f(qtile):
+            try:
+                qtile.groupMap[group].cmd_toscreen()
+            except KeyError:
+                qtile.cmd_spawn(app)
+        return f
+
+    def window_to_prev_group():
+        @lazy.function
+        def f(qtile):
+            if qtile.currentWindow is not None:
+                index = qtile.groups.index(qtile.currentGroup)
+                newgroup = qtile.groups[index - 1].name if index > 0 else qtile.groups[len(qtile.groups) - 2].name
+
+                qtile.currentWindow.togroup(newgroup)
+                qtile.groupMap[newgroup].cmd_toscreen()
+           
+        return f
+
+    def window_to_next_group():
+        @lazy.function
+        def f(qtile):
+            if qtile.currentWindow is not None:
+                index = qtile.groups.index(qtile.currentGroup)
+                newgroup = qtile.groups[index + 1].name if index < len(qtile.groups) - 2 else qtile.groups[0].name
+
+                qtile.currentWindow.togroup(newgroup)
+                qtile.groupMap[newgroup].cmd_toscreen()
+           
+        return f
+
+    def window_to_group(newgroup):       
+        @lazy.function
+        def f(qtile):
+            if qtile.currentWindow is not None:
+                qtile.currentWindow.togroup(newgroup)
+                qtile.groupMap[newgroup].cmd_toscreen()
+            
         return f

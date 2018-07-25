@@ -1,22 +1,12 @@
-from libqtile.config import Key
-from libqtile.command import lazy
+#from libqtile.config import Key
+#from libqtile.command import lazy
+from libqtile.config import Group, Match, ScratchPad, DropDown
 
-from libqtile.config import Key, Group, Match
+#from keys import keys, mod
 
-from keys import keys, mod
+groups = [Group(i) for i in "1234567890"]
 
-groups = [Group(i) for i in "123456789"]
-
-for i in groups:
-    keys.extend([
-        # mod1 + letter of group = switch to group
-        Key([mod], i.name, lazy.group[i.name].toscreen()),
-
-        # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
-    ])
-
-groups.append(
+groups.extend([
     Group(
         name='Firefox',
         matches=[Match(wm_class=["Firefox"])],
@@ -25,9 +15,7 @@ groups.append(
         layout='max',
         init=False,
         label='Firefox',
-    ))
-
-groups.append(
+    ),
     Group(
         name='VisualCode',
         matches=[Match(wm_class=["Code"])],
@@ -36,4 +24,18 @@ groups.append(
         layout='max',
         init=False,
         label='VisualCode',
-    ))
+    ),
+    ScratchPad("scratchpad", [
+        # define a drop down terminal.
+        # it is placed in the upper third of screen by default.
+        DropDown("term", "urxvtc-256color", 
+            opacity=0.9,
+            on_focus_lost_hide=True,
+            x=0.1,
+            y=0.1,
+            width=0.8,
+            height=0.70
+        ),
+
+    ]),
+])
