@@ -1,4 +1,5 @@
 from libqtile import hook
+from libqtile.log_utils import logger
 
 @hook.subscribe.startup_once
 def autostart_once():
@@ -16,10 +17,16 @@ def group_created(qtile, group):
 
     if group == 'VisualCode':
         if qtile.ready:
-            qtile.groupMap[group].cmd_toscreen() 
+            logger.error(qtile.keyMap)
+            qtile.groupMap[group].cmd_toscreen()
+
+    if group == 'Skype':
+        if qtile.ready:
+            qtile.groupMap[group].cmd_toscreen()
+
 
 @hook.subscribe.client_new
-def register_zenity_instance(window):
+def zenity_instance(window):
     if window.match(wmclass='zenity'):
         above = window.qtile.conn.atoms["_NET_WM_STATE_ABOVE"]
         state = list(window.window.get_property('_NET_WM_STATE', 'ATOM', unpack=int))
@@ -34,3 +41,15 @@ def floating_dialogs(window):
     transient = window.window.get_wm_transient_for()
     if (dialog or transient) or popup:
         window.floating = True
+
+@hook.subscribe.client_new
+def conky_instance(window):
+    if window.match(wmclass='conky-sysinfo') or window.match(wmclass='conky-shortcuts'):
+        logger.error(window.info())
+
+        window.static(0)
+
+#@hook.subscribe.client_focus
+#def focus_unminimize(window):
+#    if window.minimized:
+#        window.minimized = False

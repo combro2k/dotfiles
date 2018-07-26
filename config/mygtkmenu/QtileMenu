@@ -1,0 +1,40 @@
+# …………… Beginning of menu ……………
+
+submenu = _Run..
+	icon = /usr/share/icons/Adwaita/scalable/actions/system-run-symbolic.svg
+
+	item = URxvt 256 Colors
+	cmd = urxvtc-256color
+	icon = /usr/share/icons/Adwaita/scalable/apps/utilities-terminal-symbolic.svg
+
+submenu = _Window..
+
+	icon = NULL
+
+	item = Toggle _Floating
+	cmd = qtile-cmd -o window -f toggle_floating
+	icon = NULL
+
+	item = Toggle Minimi_ze
+	cmd = qtile-cmd -o window -f toggle_minimize
+	icon = /usr/share/icons/Adwaita/scalable/actions/window-minimize-symbolic.svg
+
+	item = Toggle _Maximize
+	cmd = qtile-cmd -o window -f toggle_maximize
+	icon = /usr/share/icons/Adwaita/scalable/actions/window-maximize-symbolic.svg
+
+	item = _Close
+	cmd = qtile-cmd -o window -f kill
+	icon = /usr/share/icons/Adwaita/scalable/actions/window-close-symbolic.svg
+
+submenu = Q_tile..
+	
+	icon = NULL
+
+	item = _Reload
+	cmd = qtile-cmd -o cmd -f restart
+	icon = NULL
+
+	item = _Shutdown
+	cmd = qtile-cmd -o cmd -f shutdown
+	icon = /usr/share/icons/Adwaita/scalable/actions/system-run-symbolic.svg

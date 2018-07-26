@@ -8,7 +8,6 @@ from subprocess import Popen
 
 from defines import *
 from classes import *
-from widgets import *
 from extensions import *
 from layouts import *
 from keys import *

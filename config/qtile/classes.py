@@ -1,5 +1,12 @@
+import platform
+
+from subprocess import run, Popen
+
+from os import devnull, access, X_OK, makedirs
+from os.path import expanduser, isdir
 
 from libqtile.command import lazy
+from libqtile.log_utils import logger
 
 class AutoStart(object):
     commands = []
@@ -10,11 +17,7 @@ class AutoStart(object):
 
     def run(self):
         # needed imports for the function
-        from libqtile.log_utils import logger
-        from subprocess import Popen
-        from os import access, X_OK
-        from os.path import expanduser
-
+        
         logger.error('Starting class AutoStart')
         for i in self.commands:
             if i is None:
@@ -28,7 +31,7 @@ class AutoStart(object):
 
             c = [x] if type(i) is str else list(i)
 
-            logger.error('Running Popen with: %s' % c)
+            logger.error('Running run with: %s' % c)
             Popen(c, shell=False)
 
 class Colors(object):
@@ -45,17 +48,24 @@ class Helpers():
     def rofi_drun():
         @lazy.function
         def f(qtile):
-            from subprocess import Popen
-            Popen(['sh', '-c', 'rofi -theme base16-twilight -demnu -show drun -modi drun'], shell=False)
+            # Couldnt get it working under cmd_spawn :-(
+            run(['sh', '-c', 'rofi -theme base16-twilight -demnu -show drun -modi drun'], shell=False)
+
+        return f
+
+    def rofi_windowcd():
+        @lazy.function
+        def f(qtile):
+            # couldnt get it working under cmd_spawn
+            run(['sh', '-c', 'rofi -theme base16-twilight -demnu -show windowcd -modi windowcd'], shell=False)
 
         return f
 
     def zenity_question(command, title="Question", text="Are you sure?"):
         @lazy.function
         def f(qtile):
-            from subprocess import Popen
             try:
-                Popen(['sh', '-c', f'zenity --question --title="{title}" --text="{text}" && {command}'], shell=False)
+                Popen(['sh', '-c', f'zenity --display=":0" --question --title="{title}" --text="{text}" && {command}'], shell=False)
             except subprocess.CalledProcessError as e:
                 logger.error(e)
 
@@ -66,6 +76,7 @@ class Helpers():
         When used in conjunction with dgroups to auto-assign apps to specific
         groups, this can be used as a way to go to an app if it is already
         running. """
+        @lazy.function
         def f(qtile):
             try:
                 qtile.groupMap[group].cmd_toscreen()
@@ -104,4 +115,43 @@ class Helpers():
                 qtile.currentWindow.togroup(newgroup)
                 qtile.groupMap[newgroup].cmd_toscreen()
             
+        return f
+
+    def context_menu():
+        @lazy.function
+        def f(qtile):
+            qtile.cmd_spawn([expanduser('~/.config/mygtkmenu/mygtkmenui'), '--', expanduser('~/.config/mygtkmenu/QtileMenu')])
+
+        return f
+
+    def window_maximize():
+        @lazy.function
+        def f(qtile):
+            if qtile.currentLayout.name == 'max':
+                return
+
+            qtile.currentWindow.toggle_maximize()
+
+        return f
+
+    def create_screenshot(mode=False):
+        @lazy.function
+        def f(qtile):
+            targetdir = expanduser('~/Pictures/Screenshots/')
+
+            if not isdir(targetdir):
+                try: 
+                    makedirs(targetdir)
+                except OSError:
+                    if not isdir(targetdir):
+                        raise
+
+            hostname = platform.node()
+            if mode == 'window':
+                qtile.cmd_spawn(['scrot', '-u', f'{targetdir}/{hostname}_window_screenshot_%Y%m%d%H%M%S.png'])
+            elif mode == 'select':
+                qtile.cmd_spawn(['scrot', '-s', f'{targetdir}/{hostname}_select_screenshot_%Y%m%d%H%M%S.png'])
+            else:
+                qtile.cmd_spawn(['scrot', f'{targetdir}/{hostname}_screenshot_%Y%m%d%H%M%S.png'])
+
         return f
