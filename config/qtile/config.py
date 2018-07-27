@@ -30,26 +30,7 @@ floating_layout = layout.Floating(
         border_width=2,
         border_normal=Colors.border,
         border_focus=Colors.border_focus,
-        float_rules=[
-            {'wmclass': 'confirm'},
-            {'wmclass': 'dialog'},
-            {'wmclass': 'download'},
-            {'wmclass': 'error'},
-            {'wmclass': 'file_progress'},
-            {'wmclass': 'notification'},
-            {'wmclass': 'splash'},
-            {'wmclass': 'toolbar'},
-            {'wmclass': 'confirmreset'},
-            {'wmclass': 'makebranch'},
-            {'wmclass': 'maketag'},
-            {'wname': 'branchdialog'},
-            {'wname': 'pinentry'},
-            {'wmclass': 'pinentry-gtk-2'},
-            {'wmclass': 'ssh-askpass'},
-            {'wmclass': 'Tilda'},
-            {'wmclass': 'gpk-update-viewer'},
-            {'wmclass': 'package-update-indicator-prefs'},
-        ]
+        float_rules=[]
 )
 
 auto_fullscreen = True

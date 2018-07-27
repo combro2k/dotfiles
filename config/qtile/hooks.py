@@ -26,13 +26,20 @@ def group_created(qtile, group):
 
 
 @hook.subscribe.client_new
-def zenity_instance(window):
+def specific_instance_rules(window):
     if window.match(wmclass='zenity'):
         above = window.qtile.conn.atoms["_NET_WM_STATE_ABOVE"]
         state = list(window.window.get_property('_NET_WM_STATE', 'ATOM', unpack=int))
         if not above in state:
             state.append(above)
         window.window.set_property('_NET_WM_STATE', state)
+
+    if window.match(wmclass='pinentry-gtk-2'):
+        logger.error(window)
+
+    if window.match(wmclass='conky-sysinfo') or window.match(wmclass='conky-shortcuts'):
+        window.static(0)
+
 
 @hook.subscribe.client_new
 def floating_dialogs(window):
@@ -41,15 +48,3 @@ def floating_dialogs(window):
     transient = window.window.get_wm_transient_for()
     if (dialog or transient) or popup:
         window.floating = True
-
-@hook.subscribe.client_new
-def conky_instance(window):
-    if window.match(wmclass='conky-sysinfo') or window.match(wmclass='conky-shortcuts'):
-        logger.error(window.info())
-
-        window.static(0)
-
-#@hook.subscribe.client_focus
-#def focus_unminimize(window):
-#    if window.minimized:
-#        window.minimized = False

@@ -155,3 +155,19 @@ class Helpers():
                 qtile.cmd_spawn(['scrot', f'{targetdir}/{hostname}_screenshot_%Y%m%d%H%M%S.png'])
 
         return f
+
+    def minimize_group():
+        @lazy.function
+        def f(qtile):
+            for w in qtile.currentGroup.windows:
+                w.minimized = True
+
+        return f
+
+    def unminimize_group():
+        @lazy.function
+        def f(qtile):
+            for w in qtile.currentGroup.windows:
+                w.minimized = False
+
+        return f

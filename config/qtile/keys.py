@@ -21,6 +21,9 @@ create_screenshot = Helpers.create_screenshot
 
 context_menu = Helpers.context_menu
 
+minimize_group = Helpers.minimize_group
+unminimize_group = Helpers.unminimize_group
+
 keys = [
     Key([], "Print", create_screenshot()),
     Key([alt], "Print", create_screenshot('window')),
@@ -28,6 +31,9 @@ keys = [
 
     Key([mod], "k", lazy.layout.down()),
     Key([mod], "j", lazy.layout.up()),
+
+    Key([mod], "d", minimize_group()),
+    Key([mod, "shift"], "d", unminimize_group()),
 
     Key([mod], "m", lazy.window.toggle_maximize()),
     Key([mod, "shift"], "m", lazy.window.toggle_minimize()),
@@ -50,7 +56,7 @@ keys = [
     Key([mod, "control"], "r", zenity_question(text="Reboot?", command="systemctl reboot")),
     Key([mod], "space", rofi_drun()),
     Key([alt], "Tab", rofi_windowcd()),
-    Key([mod, "control"], "r", lazy.restart()),
+    Key([mod, "shift"], "r", lazy.restart()),
     Key([], 'F12', lazy.group['scratchpad'].dropdown_toggle('term')),
 
     Key([mod, "shift"], "F1", app_or_group('Firefox', 'firefox')),
