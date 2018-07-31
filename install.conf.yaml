@@ -83,6 +83,11 @@
         stdout: true
         description: Update font cache
       -
+        command: update-desktop-database -v ~/.local/share/applications
+        stdin: true
+        stdout: true
+        description: Update applications data
+      -
         command: bash -i -c 'test -x /usr/bin/xrdb && /usr/bin/xrdb merge ~/.Xresources || echo "No X11"'
         stdin: true
         stdout: true

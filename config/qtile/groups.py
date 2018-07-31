@@ -36,6 +36,16 @@ groups.extend([
         init=False,
         label=f'{skype_ico}',
     ),
+    Group(
+        name='GIMP',
+        matches=[Match(wm_instance_class=["gimp", "Gimp", "gimp-2.10"])],
+        exclusive=True,
+        persist=False,
+        layout='max',
+        init=False,
+        label=f'{gimp_ico}',
+    ),
+
     ScratchPad("scratchpad", [
         # define a drop down terminal.
         # it is placed in the upper third of screen by default.

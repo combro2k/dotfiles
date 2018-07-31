@@ -3,11 +3,13 @@ from libqtile import layout
 layouts = [
 
     layout.Bsp(
-        name='tiled'
+        name='bsp',
+        lower_right=True,
+        fair=True
     ),
 
     layout.MonadWide(
-        name='xmonadwide',
+        name='xmonadw',
     ),
 
     layout.Max(

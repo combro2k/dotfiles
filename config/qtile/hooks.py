@@ -17,10 +17,13 @@ def group_created(qtile, group):
 
     if group == 'VisualCode':
         if qtile.ready:
-            logger.error(qtile.keyMap)
             qtile.groupMap[group].cmd_toscreen()
 
     if group == 'Skype':
+        if qtile.ready:
+            qtile.groupMap[group].cmd_toscreen()
+
+    if group == 'GIMP':
         if qtile.ready:
             qtile.groupMap[group].cmd_toscreen()
 

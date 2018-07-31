@@ -1,8 +1,9 @@
 import platform
 
-from subprocess import run, Popen
+from subprocess import run, Popen, PIPE
+from time import time
 
-from os import devnull, access, X_OK, makedirs
+from os import devnull, access, X_OK, makedirs, remove
 from os.path import expanduser, isdir
 
 from libqtile.command import lazy
@@ -134,7 +135,7 @@ class Helpers():
 
         return f
 
-    def create_screenshot(mode=False):
+    def create_screenshot(mode=False, clipboard=False):
         @lazy.function
         def f(qtile):
             targetdir = expanduser('~/Pictures/Screenshots/')
@@ -147,12 +148,32 @@ class Helpers():
                         raise
 
             hostname = platform.node()
+            cmd = ['maim']
+            opts = []
+
             if mode == 'window':
-                qtile.cmd_spawn(['scrot', '-u', f'{targetdir}/{hostname}_window_screenshot_%Y%m%d%H%M%S.png'])
+                target = f'{targetdir}/{hostname}_window_{str(int(time() * 100))}.png'
+                _id = qtile.currentWindow.cmd_info()['id']
+                opts.extend(['-i', f'{_id}'])
             elif mode == 'select':
-                qtile.cmd_spawn(['scrot', '-s', f'{targetdir}/{hostname}_select_screenshot_%Y%m%d%H%M%S.png'])
+                target = f'{targetdir}/{hostname}_select_{str(int(time() * 100))}.png'
+                opts.append('-s')
             else:
-                qtile.cmd_spawn(['scrot', f'{targetdir}/{hostname}_screenshot_%Y%m%d%H%M%S.png'])
+                target = f'{targetdir}/{hostname}_full_{str(int(time() * 100))}.png'
+
+            cmd.extend(opts)
+            cmd.append(target)
+
+            r = run(cmd)
+
+            if clipboard:
+                logger.error('Copying to clipboard!')
+                if r.returncode == 0:
+                    f = open(target, 'rb')
+                    x = run(['xclip', '-selection', 'c', '-t', 'image/png'], input=f.read())
+                    remove(target)
+                else:
+                    logger.error(f'Strange thing happend! {r}')
 
         return f
 

@@ -26,8 +26,12 @@ unminimize_group = Helpers.unminimize_group
 
 keys = [
     Key([], "Print", create_screenshot()),
-    Key([alt], "Print", create_screenshot('window')),
-    Key(["control"], "Print", create_screenshot('select')),
+    Key([alt], "Print", create_screenshot(mode='window')),
+    Key(["control"], "Print", create_screenshot(mode='select')),
+
+    Key(["shift"], "Print", create_screenshot(clipboard=True)),
+    Key([alt, "shift"], "Print", create_screenshot(mode='window', clipboard=True)),
+    Key(["control", "shift"], "Print", create_screenshot(mode='select', clipboard=True)),
 
     Key([mod], "k", lazy.layout.down()),
     Key([mod], "j", lazy.layout.up()),
@@ -44,7 +48,7 @@ keys = [
     Key(["control"], "Tab", lazy.group.next_window()),
     Key(["control", "shift"], "Tab", lazy.group.prev_window()),
 
-    Key([mod, "shift"], "space", lazy.layout.toggle_split().when('tiled')),
+    Key([mod, "shift"], "space", lazy.layout.toggle_split().when('bsp')),
 
     Key([mod], "Return", lazy.spawn('urxvtc-256color')),
     Key([mod], "Tab", lazy.next_layout()),
@@ -61,7 +65,8 @@ keys = [
 
     Key([mod, "shift"], "F1", app_or_group('Firefox', 'firefox')),
     Key([mod, "shift"], "F2", app_or_group('VisualCode', 'code')),
-    Key([mod, "shift"], "F3", app_or_group('Skype', 'skypeforlinux')),
+    Key([mod, "shift"], "F3", app_or_group('GIMP', 'gimp')),
+    Key([mod, "shift"], "F4", app_or_group('Skype', 'skypeforlinux')),
 ]
 
 for i in groups:
