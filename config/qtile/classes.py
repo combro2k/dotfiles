@@ -12,28 +12,38 @@ from libqtile.log_utils import logger
 class AutoStart(object):
     commands = []
 
-    def __init__(self, commands):
-        self.commands = commands
+    def __init__(self):
         self.run()
 
+    def load_commands(self):
+        from defines import autostart as load
+        self.commands = load()
+
+    def check_running(self, cmd):
+        r = run(['pgrep', '-f', '-l', '-a', ' '.join(cmd)])
+        if r.returncode == 1:
+            logger.error(f'Process {cmd} is not started!')
+
+            return False
+
+        return True
+
     def run(self):
-        # needed imports for the function
-        
-        logger.error('Starting class AutoStart')
+        self.load_commands()
         for i in self.commands:
             if i is None:
                 continue
 
             x = expanduser(i if type(i) is str else list(i)[0])
-
+            c = [x] if type(i) is str else list(i)
+            
             if not access(x, X_OK):
-                logger.error('Does not exist or is not executable: %s' % x)
+                logger.error(f'{x} does not exist or is not executable!')
                 continue
 
-            c = [x] if type(i) is str else list(i)
-
-            logger.error('Running run with: %s' % c)
-            Popen(c, shell=False)
+            if not self.check_running(c):
+                logger.error(f'{c} starting...')
+                Popen(c, shell=False)
 
 class Colors(object):
     bg = '666666'

@@ -1,7 +1,7 @@
 def autostart():
     from os.path import expanduser
 
-    yield '/usr/bin/feh', '--bg-scale', '--randomize', expanduser('~/.config/backgrounds/'), '-Z'
+    # yield '/usr/bin/feh', '--bg-scale', '--randomize', expanduser('~/.config/backgrounds/'), '-Z'
     yield '/usr/bin/compton'
 
     yield '/usr/bin/conky', '-c', expanduser('~/.config/conky/conky.conf')

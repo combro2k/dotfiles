@@ -1,13 +1,11 @@
 from libqtile import hook
 from libqtile.log_utils import logger
+from classes import AutoStart
 
-@hook.subscribe.startup_once
-def autostart_once():
-    # needed imports for the function
-    from classes import AutoStart
-    from defines import autostart
 
-    AutoStart(autostart())
+@hook.subscribe.startup
+def autostart():
+    AutoStart()
 
 @hook.subscribe.addgroup
 def group_created(qtile, group):

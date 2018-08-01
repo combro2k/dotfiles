@@ -38,6 +38,7 @@
     ~/.config/fish/functions/emacs.fish: config/fish/functions/emacs.fish
     ~/.config/fish/functions/fssh.fish: config/fish/functions/fssh.fish
     ~/.config/fish/functions/fish_greeting.fish: config/fish/functions/fish_greeting.fish
+    ~/.config/fish/functions/fish_title.fish: config/fish/functions/fish_title.fish
     ~/.config/fish/functions/fpass.fish: config/fish/functions/fpass.fish
     ~/.config/fish/functions/hc.fish: config/fish/functions/hc.fish
     ~/.config/fish/functions/ls.fish: config/fish/functions/ls.fish
@@ -83,7 +84,7 @@
         stdout: true
         description: Update font cache
       -
-        command: update-desktop-database -v ~/.local/share/applications
+        command: bash -i -c 'test -x /usr/bin/update-desktop-database && update-desktop-database -v ~/.local/share/applications || echo "No X11"'
         stdin: true
         stdout: true
         description: Update applications data
