@@ -15,6 +15,22 @@ submenu = _Window..
 	cmd = qtile-cmd -o window -f toggle_floating
 	icon = NULL
 
+	item = Move to _Left
+	cmd = qtile-cmd -o layout -f flip_left
+	icon = None
+
+	item = Move to _Right
+	cmd = qtile-cmd -o layout -f flip_right
+	icon = None
+
+	item = Move to _Up
+	cmd = qtile-cmd -o layout -f flip_up
+	icon = None
+
+	item = Move to _Down
+	cmd = qtile-cmd -o layout -f flip_down
+	icon = None
+
 	item = Toggle Minimi_ze
 	cmd = qtile-cmd -o window -f toggle_minimize
 	icon = /usr/share/icons/Adwaita/scalable/actions/window-minimize-symbolic.svg
@@ -38,3 +54,6 @@ submenu = Q_tile..
 	item = _Shutdown
 	cmd = qtile-cmd -o cmd -f shutdown
 	icon = /usr/share/icons/Adwaita/scalable/actions/system-run-symbolic.svg
+
+
+# vim:set noexpandtab:

@@ -1,6 +1,10 @@
 from libqtile.config import Screen
 from libqtile import bar, widget
 
+from classes import MenuWidget
+
+#from classes import MenuWidget
+
 widget_defaults = dict(
     font='Cousine Nerd Font Mono',
     fontsize=14,
@@ -11,6 +15,8 @@ widget_defaults = dict(
 screens = [
     Screen(
         top=bar.Bar([
+                MenuWidget(),
+                
                 widget.Spacer(
                     length=5
                 ),

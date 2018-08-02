@@ -8,6 +8,11 @@ from os.path import expanduser, isdir
 
 from libqtile.command import lazy
 from libqtile.log_utils import logger
+from libqtile.widget import base
+from libqtile import bar
+
+from threading import Thread,Event
+
 
 class AutoStart(object):
     commands = []
@@ -44,6 +49,10 @@ class AutoStart(object):
             if not self.check_running(c):
                 logger.error(f'{c} starting...')
                 Popen(c, shell=False)
+
+class Wallpaper(Thread):
+    def __init__(self):
+        pass
 
 class Colors(object):
     bg = '666666'
@@ -202,3 +211,16 @@ class Helpers():
                 w.minimized = False
 
         return f
+
+class MenuWidget(base._TextBox):
+    defaults = []
+
+    def __init__(self, width=bar.CALCULATED, **config):
+        base._TextBox.__init__(self, "", width, **config)
+    
+    def _configure(self, qtile, bar):
+        base._TextBox._configure(self, qtile, bar)
+        self.text = '\uf0c9'
+    
+    def button_press(self, x, y, button):
+        self.qtile.cmd_spawn([expanduser('~/.config/mygtkmenu/mygtkmenui'), '--', expanduser('~/.config/mygtkmenu/QtileMenu')])

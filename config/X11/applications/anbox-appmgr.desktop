@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Anbox App Manager
+Exec=anbox.appmgr
+TryExec=anbox.appmgr
+Type=Application
+Terminal=false
+Encoding=UTF-8
+StartupNotify=true

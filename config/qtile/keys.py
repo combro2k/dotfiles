@@ -53,8 +53,15 @@ keys = [
     Key([mod], "Return", lazy.spawn('urxvtc-256color')),
     Key([mod], "Tab", lazy.next_layout()),
     Key([alt], "F4", lazy.window.kill()),
+
+    Key([mod], "Left", lazy.layout.flip_left().when('bsp')),
+    Key([mod], "Right", lazy.layout.flip_right().when('bsp')),
+    Key([mod], "Up", lazy.layout.flip_up().when('bsp')),
+    Key([mod], "Down", lazy.layout.flip_down().when('bsp')),
+
     Key([mod, "shift"], "Left", window_to_prev_group()),
     Key([mod, "shift"], "Right", window_to_next_group()),
+
     Key([mod, "shift"], "q", zenity_question(text="Logoff?", command="qtile-cmd -o cmd -f shutdown")),
     Key([mod, "control"], "q", zenity_question(text="Shutdown?", command="systemctl poweroff")),
     Key([mod, "control"], "r", zenity_question(text="Reboot?", command="systemctl reboot")),
@@ -65,8 +72,9 @@ keys = [
 
     Key([mod, "shift"], "F1", app_or_group('Firefox', 'firefox')),
     Key([mod, "shift"], "F2", app_or_group('VisualCode', 'code')),
-    Key([mod, "shift"], "F3", app_or_group('GIMP', 'gimp')),
-    Key([mod, "shift"], "F4", app_or_group('Skype', 'skypeforlinux')),
+    Key([mod, "shift"], "F3", app_or_group('Anbox', 'anbox.appmgr')),
+    Key([mod, "shift"], "F4", app_or_group('GIMP', 'gimp')),
+    Key([mod, "shift"], "F5", app_or_group('Skype', 'skypeforlinux')),
 ]
 
 for i in groups:

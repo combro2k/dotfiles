@@ -1,7 +1,6 @@
 from libqtile import hook
 from libqtile.log_utils import logger
-from classes import AutoStart
-
+from classes import AutoStart, Wallpaper
 
 @hook.subscribe.startup
 def autostart():
@@ -25,6 +24,9 @@ def group_created(qtile, group):
         if qtile.ready:
             qtile.groupMap[group].cmd_toscreen()
 
+    if group == 'Anbox':
+        if qtile.ready:
+            qtile.groupMap[group].cmd_toscreen()
 
 @hook.subscribe.client_new
 def specific_instance_rules(window):
@@ -41,6 +43,8 @@ def specific_instance_rules(window):
     if window.match(wmclass='conky-sysinfo') or window.match(wmclass='conky-shortcuts'):
         window.static(0)
 
+    if window.match(wmclass='anbox'):
+        window.floating = True
 
 @hook.subscribe.client_new
 def floating_dialogs(window):

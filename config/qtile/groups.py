@@ -18,6 +18,7 @@ groups.extend([
         init=False,
         label=f'{www_ico}',
     ),
+    
     Group(
         name='VisualCode',
         matches=[Match(wm_class=["Code"])],
@@ -27,6 +28,7 @@ groups.extend([
         init=False,
         label=f'{edit_ico}',
     ),
+    
     Group(
         name='Skype',
         matches=[Match(wm_class=["Skype"])],
@@ -36,6 +38,7 @@ groups.extend([
         init=False,
         label=f'{skype_ico}',
     ),
+    
     Group(
         name='GIMP',
         matches=[Match(wm_instance_class=["gimp", "Gimp", "gimp-2.10"])],
@@ -44,6 +47,16 @@ groups.extend([
         layout='max',
         init=False,
         label=f'{gimp_ico}',
+    ),
+
+    Group(
+        name='Anbox',
+        matches=[Match(wm_instance_class=["Anbox", "anbox"])],
+        exclusive=True,
+        persist=False,
+        layout='max',
+        init=False,
+        label=f'{android_ico}',
     ),
 
     ScratchPad("scratchpad", [
@@ -57,6 +70,5 @@ groups.extend([
             width=0.8,
             height=0.70
         ),
-
     ]),
 ])
