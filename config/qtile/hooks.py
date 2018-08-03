@@ -43,6 +43,9 @@ def specific_instance_rules(window):
     if window.match(wmclass='conky-sysinfo') or window.match(wmclass='conky-shortcuts'):
         window.static(0)
 
+    if window.match(wmclass='qtile-actionmenu'):
+        window.static(0)
+
     if window.match(wmclass='anbox'):
         window.floating = True
 

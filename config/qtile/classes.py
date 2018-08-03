@@ -217,6 +217,7 @@ class MenuWidget(base._TextBox):
 
     def __init__(self, width=bar.CALCULATED, **config):
         base._TextBox.__init__(self, "", width, **config)
+        self.add_defaults(ActionMenuWidget.defaults)
     
     def _configure(self, qtile, bar):
         base._TextBox._configure(self, qtile, bar)
@@ -224,3 +225,17 @@ class MenuWidget(base._TextBox):
     
     def button_press(self, x, y, button):
         self.qtile.cmd_spawn([expanduser('~/.config/mygtkmenu/mygtkmenui'), '--', expanduser('~/.config/mygtkmenu/QtileMenu')])
+
+class ActionMenuWidget(base._TextBox):
+    defaults = []
+
+    def __init__(self, width=bar.CALCULATED, **config):
+        base._TextBox.__init__(self, "", width, **config)
+        self.add_defaults(ActionMenuWidget.defaults)
+    
+    def _configure(self, qtile, bar):
+        base._TextBox._configure(self, qtile, bar)
+        self.text = '\uf013'
+    
+    def button_press(self, x, y, button):
+        self.qtile.cmd_spawn([expanduser('~/.config/qtile/actionmenu.py')])
