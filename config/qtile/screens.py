@@ -35,9 +35,8 @@ screens = [
                     inactive='8e8e8e'
                 ),
 
-                widget.Sep(
-                    size_percent=100,
-                    padding=25
+                widget.Spacer(
+                    length=5
                 ),
 
                 widget.CurrentLayout(
@@ -50,20 +49,14 @@ screens = [
                     padding=10
                 ),
 
-                widget.Sep(
-                    size_percent=100,
-                    padding=25
+                widget.Spacer(
+                    length=5
                 ),
 
                 widget.Clock(format='⏰ %Y-%m-%d %a %I:%M %p', **widget_defaults),
 
                 widget.Systray(
-                    padding=2,
-                ),
-
-    
-                widget.Spacer(
-                    length=5
+                    padding=2    
                 ),
 
                 ActionMenuWidget(

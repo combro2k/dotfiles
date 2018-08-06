@@ -39,6 +39,10 @@ submenu = _Window..
 	cmd = qtile-cmd -o window -f toggle_maximize
 	icon = /usr/share/icons/Adwaita/scalable/actions/window-maximize-symbolic.svg
 
+	item = _Bring to Front
+	cmd = qtile-cmd -o window -f bring_to_front
+	icon = None
+
 	item = _Close
 	cmd = qtile-cmd -o window -f kill
 	icon = /usr/share/icons/Adwaita/scalable/actions/window-close-symbolic.svg

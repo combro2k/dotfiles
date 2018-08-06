@@ -28,7 +28,17 @@ groups.extend([
         init=False,
         label=f'{edit_ico}',
     ),
-    
+ 
+    Group(
+        name='Builder',
+        matches=[Match(wm_instance_class=["gnome-builder"])],
+        exclusive=True,
+        persist=False,
+        layout='max',
+        init=False,
+        label=f'{gnome_ico}',
+    ),
+   
     Group(
         name='Skype',
         matches=[Match(wm_class=["Skype"])],
@@ -49,15 +59,15 @@ groups.extend([
         label=f'{gimp_ico}',
     ),
 
-    Group(
-        name='Anbox',
-        matches=[Match(wm_instance_class=["Anbox", "anbox"])],
-        exclusive=True,
-        persist=False,
-        layout='max',
-        init=False,
-        label=f'{android_ico}',
-    ),
+    # Group(
+    #     name='Anbox',
+    #     matches=[Match(wm_instance_class=["Anbox", "anbox"])],
+    #     exclusive=True,
+    #     persist=False,
+    #     layout='max',
+    #     init=False,
+    #     label=f'{android_ico}',
+    # ),
 
     ScratchPad("scratchpad", [
         # define a drop down terminal.

@@ -25,9 +25,14 @@ class AutoStart(object):
         self.commands = load()
 
     def check_running(self, cmd):
-        r = run(['pgrep', '-f', '-l', '-a', ' '.join(cmd)])
-        if r.returncode == 1:
-            logger.error(f'Process {cmd} is not started!')
+        try:
+            r = run(['pgrep', '-f', '-l', '-a', ' '.join(cmd)])
+            if r.returncode == 1:
+                logger.error(f'Process {cmd} is not started!')
+
+                return False
+        except Exception as e:
+            logger.error(e)
 
             return False
 
@@ -48,7 +53,10 @@ class AutoStart(object):
 
             if not self.check_running(c):
                 logger.error(f'{c} starting...')
-                Popen(c, shell=False)
+                try:
+                    Popen(c, shell=False)
+                except Exception as e:
+                    logger.error(e)
 
 class Wallpaper(Thread):
     def __init__(self):

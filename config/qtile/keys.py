@@ -72,9 +72,9 @@ keys = [
 
     Key([mod, "shift"], "F1", app_or_group('Firefox', 'firefox')),
     Key([mod, "shift"], "F2", app_or_group('VisualCode', 'code')),
-    Key([mod, "shift"], "F3", app_or_group('Anbox', 'anbox.appmgr')),
-    Key([mod, "shift"], "F4", app_or_group('GIMP', 'gimp')),
-    Key([mod, "shift"], "F5", app_or_group('Skype', 'skypeforlinux')),
+    # Key([mod, "shift"], "F3", app_or_group('Anbox', 'anbox.appmgr')),
+    Key([mod, "shift"], "F3", app_or_group('GIMP', 'gimp')),
+    Key([mod, "shift"], "F4", app_or_group('Skype', 'skypeforlinux')),
 ]
 
 for i in groups:
