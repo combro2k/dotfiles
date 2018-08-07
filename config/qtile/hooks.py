@@ -104,3 +104,20 @@ def auto_screens():
 
     except Exception as e:
         logger.error(e)
+
+@hook.subscribe.client_focus
+def dim_inactive_urxvtc(window):
+    if window.match(wmclass='urxvtc-256color'):
+        qtile = window.qtile
+
+        try:
+            index = qtile.groups.index(qtile.currentGroup)
+            group = qtile.groups[index]
+            window.opacity = 1.0
+
+            for w in group.windows:
+                if w.match(wmclass='urxvtc-256color') and w.has_focus is False:
+                    w.opacity = 0.70
+
+        except Exception as e:
+            logger.error(e)
