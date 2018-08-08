@@ -39,8 +39,8 @@ keys = [
     Key([mod], "d", minimize_group()),
     Key([mod, "shift"], "d", unminimize_group()),
 
-    Key([mod], "m", lazy.window.toggle_maximize()),
-    Key([mod, "shift"], "m", lazy.window.toggle_minimize()),
+    Key([mod, "shift"], "m", lazy.window.toggle_maximize()),
+    Key([mod], "m", lazy.window.toggle_minimize()),
 
     Key([mod, "control"], "k", lazy.layout.shuffle_down()),
     Key([mod, "control"], "j", lazy.layout.shuffle_up()),
@@ -48,7 +48,8 @@ keys = [
     Key(["control"], "Tab", lazy.group.next_window()),
     Key(["control", "shift"], "Tab", lazy.group.prev_window()),
 
-    Key([mod, "shift"], "space", lazy.layout.toggle_split().when('bsp')),
+    Key([mod], "q", lazy.layout.toggle_split().when('bsp')),
+    Key([mod], "n", lazy.layout.normalize().when('bsp')),
 
     Key([mod], "Return", lazy.spawn('urxvtc-256color')),
     Key([mod], "Tab", lazy.next_layout()),
@@ -59,8 +60,8 @@ keys = [
     Key([mod], "Up", lazy.layout.flip_up().when('bsp')),
     Key([mod], "Down", lazy.layout.flip_down().when('bsp')),
 
-    Key([mod, "shift"], "Left", window_to_prev_group()),
-    Key([mod, "shift"], "Right", window_to_next_group()),
+    Key([mod, "control"], "Left", window_to_prev_group()),
+    Key([mod, "control"], "Right", window_to_next_group()),
 
     Key([mod, "shift"], "q", zenity_question(text="Logoff?", command="qtile-cmd -o cmd -f shutdown")),
     Key([mod, "control"], "q", zenity_question(text="Shutdown?", command="systemctl poweroff")),
@@ -84,7 +85,7 @@ for i in groups:
             Key([mod], i.name, lazy.group[i.name].toscreen()),
 
             # mod1 + shift + letter of group = switch to & move focused window to group
-            Key([mod, "shift"], i.name, window_to_group(i.name)),
+            Key([mod, "control"], i.name, window_to_group(i.name)),
         ])
 
 # Drag floating layouts.

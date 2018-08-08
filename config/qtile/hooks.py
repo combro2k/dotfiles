@@ -4,7 +4,7 @@ from libqtile.command import lazy
 from classes import AutoStart, Wallpaper
 from os import environ
 
-from subprocess import run, PIPE
+from subprocess import Popen, run, PIPE
 
 #import gi
 #gi.require_version('Gdk', '3.0')
@@ -93,17 +93,8 @@ def restart_on_randr(qtile, ev):
 
 @hook.subscribe.startup_complete
 def auto_screens():
-    try:
-        import re
-
-        r = run(['xrandr', '--listactivemonitors'], stdout=PIPE)
-
-#        logger.error(r.find(b'Monitors: '))
-
-        logger.error(r)
-
-    except Exception as e:
-        logger.error(e)
+    r = run(['sh', '-c', 'xrandr --listactivemonitors | head -n1'], stdout=PIPE, universal_newlines=True)
+    logger.error(f'Found {r.stdout} displays')
 
 @hook.subscribe.client_focus
 def dim_inactive_urxvtc(window):
@@ -117,7 +108,8 @@ def dim_inactive_urxvtc(window):
 
             for w in group.windows:
                 if w.match(wmclass='urxvtc-256color') and w.has_focus is False:
-                    w.opacity = 0.70
+                    w.opacity = 0.80
+                    # w.cmd_down_opacity()
 
         except Exception as e:
             logger.error(e)
