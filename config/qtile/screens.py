@@ -1,7 +1,7 @@
 from libqtile.config import Screen
 from libqtile import bar, widget
 
-from classes import MenuWidget, ActionMenuWidget
+from widgets import MenuWidget, ActionMenuWidget, WindowNameNew
 
 widget_defaults = dict(
     font='Cousine Nerd Font Mono',
@@ -47,7 +47,7 @@ screens = [
                     length=5
                 ),
                 # widget.Prompt(**widget_defaults),
-                widget.WindowName(
+                WindowNameNew(
                     # background='3badea',
                     padding=10
                 ),

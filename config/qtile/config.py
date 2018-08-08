@@ -4,7 +4,7 @@
 
 # import classes, defines, layouts, keys, groups, screens, hooks
 
-from subprocess import Popen
+# from subprocess import Popen
 
 from defines import *
 from classes import *
@@ -40,4 +40,3 @@ wmname = "LG3D"
 
 def main(qtile):
     qtile.ready = True
-    pass
