@@ -24,6 +24,8 @@ context_menu = Helpers.context_menu
 minimize_group = Helpers.minimize_group
 unminimize_group = Helpers.unminimize_group
 
+toggle_follow_mouse_focus = Helpers.toggle_follow_mouse_focus
+
 keys = [
     Key([], "Print", create_screenshot()),
     Key([alt], "Print", create_screenshot(mode='window')),
@@ -35,6 +37,8 @@ keys = [
 
     Key([mod], "k", lazy.layout.down()),
     Key([mod], "j", lazy.layout.up()),
+
+    Key([mod], "f", toggle_follow_mouse_focus()),
 
     Key([mod], "d", minimize_group()),
     Key([mod, "shift"], "d", unminimize_group()),

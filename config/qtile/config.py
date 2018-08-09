@@ -23,14 +23,20 @@ except ImportError:
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
 main = None
-follow_mouse_focus = False
+follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
-        border_width=2,
-        border_normal=Colors.border,
-        border_focus=Colors.border_focus,
-        float_rules=[]
+    border_width=2,
+    border_normal=Colors.border,
+    border_focus=Colors.border_focus,
+    float_rules=[],
+    auto_float_types=[
+        "notification",
+        "toolbar",
+        "splash",
+        "dialog",
+    ]
 )
 
 auto_fullscreen = True

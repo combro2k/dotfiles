@@ -45,8 +45,8 @@ class WindowNameNew(WindowName):
         else:
             w = self.bar.screen.group.currentWindow
         if button == 1:
-            run(['sh', '-c', 'rofi -theme base16-twilight -demnu -show windowcd -modi windowcd'], shell=False)
-        if button == 2:
             w.toggle_maximize()
-        if button == 3:
+        if button == 2:
             w.toggle_minimize()
+        if button == 3:
+            run(['sh', '-c', 'rofi -theme base16-twilight -demnu -show windowcd -modi windowcd'], shell=False)

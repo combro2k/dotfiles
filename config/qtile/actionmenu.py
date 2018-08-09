@@ -32,28 +32,28 @@ class ActionMenu(Gtk.Window):
         Set up the window
     """
     def _configure(self):
-        self.set_type_hint(Gdk.WindowTypeHint.DIALOG)
+        self.set_type_hint(Gdk.WindowTypeHint.DOCK)
         self.set_position(Gtk.WindowPosition.CENTER)
-        self.set_border_width(10)
+        self.set_border_width(20)
         
-        self.stick()
-        self.set_urgency_hint(True)
-        self.set_keep_above(True)
+        # self.stick()
+        # self.set_urgency_hint(True)
+        # self.set_keep_above(True)
         self.set_mnemonics_visible(True)
-        self.set_focus_visible(True)
+        # self.set_focus_visible(True)
+        self.set_focus()
 
         self.set_wmclass('Qtile-ActionMenu', 'qtile-actionmenu')
         self.resize(300, 60)
         self.connect('key-press-event', self._key_press_event)
 
     def render(self):
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
 
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         vbox.pack_start(self.create_button('_Logout', 'system-log-out', self.logout), False, False, 0)
         vbox.pack_start(self.create_button('_Restart', 'view-refresh-symbolic', self.restart), False, False, 0)
         vbox.pack_start(self.create_button('_Shutdown', 'system-shutdown-symbolic', self.shutdown), False, False, 0)
         vbox.pack_start(self.create_button('_Cancel', 'gtk-cancel', self.cancel), False, False, 0)
-        
         self.add(vbox)
 
     """

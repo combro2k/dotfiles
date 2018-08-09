@@ -9,7 +9,7 @@ from os.path import expanduser, isdir
 from libqtile.command import lazy
 from libqtile.log_utils import logger
 
-from threading import Thread,Event
+from threading import Thread, Event
 
 class AutoStart(object):
     commands = []
@@ -214,5 +214,12 @@ class Helpers():
         def f(qtile):
             for w in qtile.currentGroup.windows:
                 w.minimized = False
+
+        return f
+
+    def toggle_follow_mouse_focus():
+        @lazy.function
+        def f(qtile):
+            qtile.config.follow_mouse_focus = not qtile.config.follow_mouse_focus
 
         return f
