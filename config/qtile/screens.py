@@ -11,6 +11,8 @@ widget_defaults = dict(
     markup=True
 )
 
+extension_defaults = widget_defaults.copy()
+
 screens = [
     Screen(
         top=bar.Bar([

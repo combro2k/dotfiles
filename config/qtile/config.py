@@ -30,7 +30,13 @@ floating_layout = layout.Floating(
     border_width=2,
     border_normal=Colors.border,
     border_focus=Colors.border_focus,
-    float_rules=[],
+    float_rules=[
+        dict(wmclass="skype"), 
+        dict(wmclass="gimp"),
+        dict(wmclass="pinentry-gtk-2"),
+        dict(wmclass="zenity"),
+        dict(wmclass="qtile-actionmenu"),
+    ],
     auto_float_types=[
         "notification",
         "toolbar",

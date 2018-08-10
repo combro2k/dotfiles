@@ -32,7 +32,7 @@ class ActionMenu(Gtk.Window):
         Set up the window
     """
     def _configure(self):
-        self.set_type_hint(Gdk.WindowTypeHint.DOCK)
+        self.set_type_hint(Gdk.WindowTypeHint.NORMAL)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_border_width(20)
         

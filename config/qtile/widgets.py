@@ -5,7 +5,9 @@ from libqtile.log_utils import logger
 from classes import Helpers
 from subprocess import run
 
-rofi_windowcd = Helpers.rofi_windowcd
+from extensions import RofiMenu
+
+#from extensions import RofiMenu
 
 class MenuWidget(base._TextBox):
     defaults = []
@@ -39,6 +41,21 @@ class ActionMenuWidget(base._TextBox):
 
 class WindowNameNew(WindowName):
 
+    _windowcd = None
+
+    def __init__(self, width=bar.STRETCH, **config):
+        WindowName.__init__(self, width=width, **config)
+        self.add_defaults(WindowName.defaults)
+
+    @property
+    def windowcd(self):
+        if self._windowcd is None:
+            windowcd = RofiMenu(modi='windowcd')
+            windowcd._configure(self.qtile)
+            self._windowcd = windowcd
+
+        return self._windowcd
+
     def button_press(self, x, y, button):
         if self.for_current_screen:
             w = self.qtile.currentScreen.group.currentWindow
@@ -49,4 +66,5 @@ class WindowNameNew(WindowName):
         if button == 2:
             w.toggle_minimize()
         if button == 3:
-            run(['sh', '-c', 'rofi -theme base16-twilight -demnu -show windowcd -modi windowcd'], shell=False)
+            # Dirty hack :-(
+            self.qtile.cmd_run_extension(self.windowcd)

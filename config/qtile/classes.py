@@ -70,22 +70,6 @@ class Colors(object):
     highlight_text = urgent_bg
 
 class Helpers():
-    def rofi_drun():
-        @lazy.function
-        def f(qtile):
-            # Couldnt get it working under cmd_spawn :-(
-            run(['sh', '-c', 'rofi -theme base16-twilight -demnu -show drun -modi drun'], shell=False)
-
-        return f
-
-    def rofi_windowcd():
-        @lazy.function
-        def f(qtile):
-            # couldnt get it working under cmd_spawn
-            run(['sh', '-c', 'rofi -theme base16-twilight -demnu -show windowcd -modi windowcd'], shell=False)
-
-        return f
-
     def zenity_question(command, title="Question", text="Are you sure?"):
         @lazy.function
         def f(qtile):

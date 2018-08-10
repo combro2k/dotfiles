@@ -2,15 +2,13 @@ from libqtile.config import Key, Drag, Click, ScratchPad
 from libqtile.command import lazy
 from classes import Helpers
 from groups import groups
+from extensions import RofiMenu, Zenity
 
 mod = "mod4"
 alt = "mod1"
 
 app_or_group = Helpers.app_or_group
 zenity_question = Helpers.zenity_question
-
-rofi_drun = Helpers.rofi_drun
-rofi_windowcd = Helpers.rofi_windowcd
 
 window_to_group = Helpers.window_to_group
 window_to_prev_group = Helpers.window_to_prev_group
@@ -67,11 +65,12 @@ keys = [
     Key([mod, "control"], "Left", window_to_prev_group()),
     Key([mod, "control"], "Right", window_to_next_group()),
 
+    # Key([mod, "shift"], "q", lazy.run_extension(Zenity(success=True))),
     Key([mod, "shift"], "q", zenity_question(text="Logoff?", command="qtile-cmd -o cmd -f shutdown")),
     Key([mod, "control"], "q", zenity_question(text="Shutdown?", command="systemctl poweroff")),
     Key([mod, "control"], "r", zenity_question(text="Reboot?", command="systemctl reboot")),
-    Key([mod], "space", rofi_drun()),
-    Key([alt], "Tab", rofi_windowcd()),
+    Key([mod], "space", lazy.run_extension(RofiMenu(modi="drun"))),
+    Key([alt], "Tab", lazy.run_extension(RofiMenu(modi="windowcd"))),
     Key([mod, "shift"], "r", lazy.restart()),
     Key([], 'F12', lazy.group['scratchpad'].dropdown_toggle('term')),
 
