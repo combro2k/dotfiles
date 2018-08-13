@@ -51,7 +51,7 @@ def group_created(qtile, group):
         qtile.groupMap[group].cmd_toscreen()
 
 @hook.subscribe.client_new
-def specific_instance_rules(window):
+def specific_instance_rules(window): # type: Window
     # if window.floating:
     # logger.error(window.floating)
     # logger.error(window.name)
@@ -63,6 +63,9 @@ def specific_instance_rules(window):
             state.append(wmtype)
         window.window.set_property('_NET_WM_WINDOW_TYPE', state)
         window.above = True
+
+    if window.match(wmclass='qtile-contextmenu'):
+        window.static(0)
 
 @hook.subscribe.client_focus
 def dim_inactive(window):

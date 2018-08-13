@@ -1,66 +1,50 @@
 #! /usr/bin/env python3
 
+import sys
 import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk, Gio
-from subprocess import Popen
 
-from gi.repository.GdkPixbuf import Pixbuf
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gio, Gtk, Gdk
 
 from libqtile.command import Client
 
-class ActionMenu(Gtk.Window):
+from subprocess import Popen
 
-    _qtile = None
+class ActionMenuWindow(Gtk.ApplicationWindow):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-    """
-        Magic init handler
-    """
-    def __init__(self):
-        Gtk.Window.__init__(self, title="ActionMenu")
-        self._configure()
-        self.render()
+        if 'application' in kwargs:
+            self.application = kwargs['application']
 
-    @property
-    def qtile(self):
-        if self._qtile is None:
-            self._qtile = Client()
-
-        return self._qtile
-
-    """
-        Set up the window
-    """
-    def _configure(self):
-        self.set_type_hint(Gdk.WindowTypeHint.NORMAL)
+        self.set_type_hint(Gdk.WindowTypeHint.DOCK)
         self.set_position(Gtk.WindowPosition.CENTER)
-        self.set_border_width(20)
-        
-        # self.stick()
-        # self.set_urgency_hint(True)
-        # self.set_keep_above(True)
-        self.set_mnemonics_visible(True)
-        # self.set_focus_visible(True)
-        self.set_focus()
-
         self.set_wmclass('Qtile-ActionMenu', 'qtile-actionmenu')
         self.resize(300, 60)
-        self.connect('key-press-event', self._key_press_event)
 
-    def render(self):
+        self.set_border_width(20)
+        self.set_mnemonics_visible(True)
+        # window.connect('key-press-event', self._key_press_event)
 
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
-        vbox.pack_start(self.create_button('_Logout', 'system-log-out', self.logout), False, False, 0)
-        vbox.pack_start(self.create_button('_Restart', 'view-refresh-symbolic', self.restart), False, False, 0)
-        vbox.pack_start(self.create_button('_Shutdown', 'system-shutdown-symbolic', self.shutdown), False, False, 0)
-        vbox.pack_start(self.create_button('_Cancel', 'gtk-cancel', self.cancel), False, False, 0)
-        self.add(vbox)
+    def present(self):
+        self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.vbox.pack_start(self.create_button('_Logout', 'system-log-out', self.logout), False, False, 0)
+        self.vbox.pack_start(self.create_button('_Restart', 'view-refresh-symbolic', self.restart), False, False, 0)
+        self.vbox.pack_start(self.create_button('_Shutdown', 'system-shutdown-symbolic', self.shutdown), False, False, 0)
+        self.vbox.pack_start(self.create_button('_Cancel', 'gtk-cancel', self.cancel), False, False, 0)
+        self.vbox.show()
 
+        self.add(self.vbox)
+
+        super().present()
+      
     """
         GTK3 Create buton helper
     """
     def create_button(self, label=None, icon=None, callback=None):
         btn = Gtk.Button.new_with_mnemonic(label=label)
+        btn.show()
 
         if icon is not None:
             try:
@@ -98,7 +82,7 @@ class ActionMenu(Gtk.Window):
 
     def logout(self, button):
         try:
-            self.qtile.shutdown()
+            self.application.qtile.shutdown()
         except Exception as v:
             print(v)
 
@@ -111,8 +95,27 @@ class ActionMenu(Gtk.Window):
     def shutdown(self, button):
         Popen(['sh', '-c', f'sleep 2 && /usr/bin/systemctl poweroff'], shell=False)
         self.destroy()
-        
-win = ActionMenu()
-win.connect("destroy", Gtk.main_quit)
-win.show_all()
-Gtk.main()
+
+class ActionMenu(Gtk.Application):
+    
+    _qtile = None
+
+    def __init__(self):
+        Gtk.Application.__init__(self, application_id="org.qtile.actionmenu", flags=Gio.ApplicationFlags.FLAGS_NONE)
+
+        self.window = None
+
+    def do_activate(self):
+        window = ActionMenuWindow(application=self, title="Main Window")
+        window.present()
+
+    @property
+    def qtile(self):
+        if self._qtile is None:
+            self._qtile = Client()
+
+        return self._qtile
+
+if __name__ == '__main__':
+    app = ActionMenu()
+    app.run(sys.argv)
