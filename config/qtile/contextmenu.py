@@ -44,7 +44,8 @@ class ContextMenuApp(Gtk.Application):
         )
 
         self.add_menu_item(
-            command=self.cmd_qtile_debug,
+            command=self.cmd_qtile,
+            command_args='debug',
             title="_Debug",
             submenu='_Qtile'
         )
@@ -121,6 +122,11 @@ class ContextMenuApp(Gtk.Application):
                 return m
         
         return None
+
+    def cmd_qtile(self, item, *args, **kwargs):
+#        with self.qtile:
+#            args()
+        print(args, kwargs)
 
     def cmd_destroy(self, item):
         Gtk.main_quit()
