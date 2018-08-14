@@ -126,16 +126,25 @@ class ContextMenuApp(Gtk.Application):
         Gtk.main_quit()
 
     def cmd_qtile_restart(self, item):
-        self.qtile.restart()
+        try:
+            self.qtile.restart()
+        except Exception:
+            pass
 
     def cmd_qtile_shutdown(self, item):
-        self.qtile.shutdown()
+        try:
+            self.qtile.shutdown()
+        except Exception:
+            pass
 
     def cmd_qtile_debug(self, item):
         print(self.qtile.commands())
 
     def cmd_qtile_maximize(self, item):
-        self.qtile.window.toggle_maximize()
+        try:
+            self.qtile.window.toggle_maximize()
+        except Exception as e:
+            print(e)
 
 if __name__ == '__main__':
     app = ContextMenuApp()
