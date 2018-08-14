@@ -129,7 +129,7 @@ class Helpers():
     def context_menu():
         @lazy.function
         def f(qtile):
-            qtile.cmd_spawn([expanduser('~/.config/mygtkmenu/mygtkmenui'), '--', expanduser('~/.config/mygtkmenu/QtileMenu')])
+            qtile.cmd_spawn([expanduser('~/.config/qtile/contextmenu.py')])
 
         return f
 

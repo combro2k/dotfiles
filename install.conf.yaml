@@ -31,6 +31,7 @@
     ~/.local/share/rofi/themes: config/rofi/themes
     ~/.config/backgrounds: config/backgrounds
     ~/.config/bspwm: config/bspwm
+    ~/.config/clipit: config/clipit
     ~/.config/compton.conf: config/compton.conf
     ~/.config/conky: config/conky
     ~/.config/dunst/dunstrc: config/dunst/dunstrc

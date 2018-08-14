@@ -64,8 +64,8 @@ def specific_instance_rules(window): # type: Window
         window.window.set_property('_NET_WM_WINDOW_TYPE', state)
         window.above = True
 
-    if window.match(wmclass='qtile-contextmenu'):
-        window.static(0)
+    # if window.match(wmclass='qtile-contextmenu'):
+    #     window.static(0)
 
 @hook.subscribe.client_focus
 def dim_inactive(window):

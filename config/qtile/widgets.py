@@ -22,7 +22,7 @@ class MenuWidget(base._TextBox):
     
     def button_press(self, x, y, button):
         if button == 1:
-            self.qtile.cmd_spawn([expanduser('~/.config/mygtkmenu/mygtkmenui'), '--', expanduser('~/.config/mygtkmenu/QtileMenu')])
+            self.qtile.cmd_spawn([expanduser('~/.config/qtile/contextmenu.py')])
 
 class ActionMenuWidget(base._TextBox):
     defaults = []
