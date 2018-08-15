@@ -59,10 +59,20 @@ class ContextMenuApp(Gtk.Application):
                 callback=self.cmd_qtile,
                 command='toggle_maximize',
                 key='window',
-                label="_Unmaximize Window" if currentWindow['maximized'] else "_Maximize Window",
-                menu=self.get_submenu_item('_Qtile'),
+                label="Disable _Maximize" if currentWindow['maximized'] else "Enable _Maximize",
+#                menu=self.get_submenu_item('_Qtile'),
                 submenu='_Window'
             )
+
+            self.add_menu_item(
+                callback=self.cmd_qtile,
+                command='toggle_floating',
+                key='window',
+                label="Disable _Float" if currentWindow['floating'] else "Enable _Float",
+#                menu=self.get_submenu_item('_Qtile'),
+                submenu='_Window'
+            )
+
 
             self.add_menu_separator(
                 submenu='_Qtile',
