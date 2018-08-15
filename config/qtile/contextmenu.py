@@ -7,6 +7,9 @@ import subprocess
 import shlex
 import os.path
 
+import xdg.Menu
+import xdg.DesktopEntry
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gio, Gtk, Gdk
 
@@ -38,8 +41,41 @@ class ContextMenuApp(Gtk.Application):
 
     def __init__(self):
         Gtk.Application.__init__(self, application_id="org.qtile.actionmenu")
+
+    def xdg_menu(self, menu=None, parent=None, depth=1):
+        if menu is None:
+            menu = xdg.Menu.parse(filename=None, debug=False)
         
+        menu.sort()
+
+        entries = set()
+
+        for entry in menu.getEntries(): # xdg.
+            if isinstance(entry, xdg.Menu.Menu):
+                self.xdg_menu(
+                    menu=entry,
+                    parent=self.get_submenu_item(entry.getName(), parent),
+                    depth=depth+1,
+                )
+            elif (
+                isinstance(entry, xdg.Menu.MenuEntry) and 
+                entry.DesktopEntry.getType() == 'Application' and
+                not entry.DesktopEntry.getHidden()
+            ):
+                if entry.DesktopEntry.getName() not in entries:
+                    entries.add(entry.DesktopEntry.getName())
+                    self.add_menu_item(
+                        label=entry.DesktopEntry.getName(),
+                        menu=parent
+                    )
+
+        return None
+
     def _configure(self):
+        # entries = self.xdg_menu()
+
+        # return False
+
         try:
             currentWindow = self.qtile.window.info()
         except:
@@ -52,6 +88,10 @@ class ContextMenuApp(Gtk.Application):
             submenu='_Run'
         )
 
+        #self.xdg_menu(
+        #   parent=self.get_submenu_item('_Applications') 
+        #)
+
         self.add_menu_separator()
 
         if currentWindow is not None:
@@ -60,7 +100,7 @@ class ContextMenuApp(Gtk.Application):
                 command='toggle_maximize',
                 key='window',
                 label="Disable _Maximize" if currentWindow['maximized'] else "Enable _Maximize",
-#                menu=self.get_submenu_item('_Qtile'),
+                menu=self.get_submenu_item('_Qtile'),
                 submenu='_Window'
             )
 
@@ -69,7 +109,7 @@ class ContextMenuApp(Gtk.Application):
                 command='toggle_floating',
                 key='window',
                 label="Disable _Float" if currentWindow['floating'] else "Enable _Float",
-#                menu=self.get_submenu_item('_Qtile'),
+                menu=self.get_submenu_item('_Qtile'),
                 submenu='_Window'
             )
 
@@ -98,6 +138,7 @@ class ContextMenuApp(Gtk.Application):
             label="_Quit",
             submenu='_Qtile'
         )
+
 
     def popup(self):
         self.add_menu_separator()
@@ -134,9 +175,10 @@ class ContextMenuApp(Gtk.Application):
         return aMenuitem
 
     def get_submenu_item(self, title, menu=None):
-        menu = self.menu if menu is None else menu
+        if menu is None:
+            menu = self.menu
 
-        for m in self.menu:
+        for m in menu:
             if m.get_label() == title and not m.get_submenu() is None:
                 s = m.get_submenu()
 
@@ -158,6 +200,9 @@ class ContextMenuApp(Gtk.Application):
             self.menu.append(aMenuseparator)
 
     def add_menu_item(self, callback=None, label='', submenu=None, menu=None, **kwargs):
+        if menu is None:
+            menu = self.menu
+
         aMenuitem = Gtk.MenuItem.new_with_mnemonic(label)
 
         if callback is not None:
@@ -170,7 +215,7 @@ class ContextMenuApp(Gtk.Application):
             s = self.get_submenu_item(submenu, menu) # type: Gtk.Menu
             s.append(aMenuitem)
         else:
-            self.menu.append(aMenuitem)
+            menu.append(aMenuitem)
 
     def get_menu_item(self, menu):
         for m in self.menu.get_children():

@@ -28,7 +28,6 @@ screens = [
                     length=5
                 ),
                 widget.CurrentLayout(
-                    background='000000',
                     foreground='ffffff',
                     padding=3
                 ),
@@ -62,9 +61,8 @@ screens = [
                 widget.Spacer(
                     length=5
                 ),
-                widget.BatteryIcon(
-
-                ),
+                widget.BatteryIcon(),
+                widget.Volume(),
                 widget.Spacer(
                     length=5
                 ),
