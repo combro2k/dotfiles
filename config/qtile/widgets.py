@@ -23,6 +23,7 @@ class MenuWidget(base._TextBox):
     def button_press(self, x, y, button):
         if button == 1:
             self.qtile.cmd_spawn([expanduser('~/.config/qtile/contextmenu.py')])
+            logger.error('passed')
 
 class ActionMenuWidget(base._TextBox):
     defaults = []
@@ -60,10 +61,10 @@ class WindowNameNew(WindowName):
         if self.for_current_screen:
             w = self.qtile.currentScreen.group.currentWindow
         else:
-            w = self.bar.screen.group.currentWindow
-        if button == 1:
+            w = self.bar.screen.group.currentWindow           
+        if button == 1 and not w is None:
             w.toggle_maximize()
-        if button == 2:
+        if button == 2 and not w is None:
             w.toggle_minimize()
         if button == 3:
             # Dirty hack :-(

@@ -3,6 +3,9 @@
 import sys
 import gi
 import time
+import subprocess
+import shlex
+import os.path
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gio, Gtk, Gdk
@@ -36,38 +39,66 @@ class ContextMenuApp(Gtk.Application):
     def __init__(self):
         Gtk.Application.__init__(self, application_id="org.qtile.actionmenu")
         
-    def do_activate(self):
+    def _configure(self):
+        try:
+            currentWindow = self.qtile.window.info()
+        except:
+            currentWindow = None
+
         self.add_menu_item(
-            command=self.cmd_qtile_maximize,
-            title="_Unmaximize Window" if self.qtile.window.info()['maximized'] else "_Maximize Window",
+            callback=self.cmd_execute,
+            command='urxvtc-256color',
+            label="_URXvt",
+            submenu='_Run'
+        )
+
+        self.add_menu_separator()
+
+        if currentWindow is not None:
+            self.add_menu_item(
+                callback=self.cmd_qtile,
+                command='toggle_maximize',
+                key='window',
+                label="_Unmaximize Window" if currentWindow['maximized'] else "_Maximize Window",
+                menu=self.get_submenu_item('_Qtile'),
+                submenu='_Window'
+            )
+
+            self.add_menu_separator(
+                submenu='_Qtile',
+            )
+
+        self.add_menu_item(
+            callback=self.cmd_qtile,
+            command='debug',
+            label="_Debug",
             submenu='_Qtile'
         )
 
         self.add_menu_item(
-            command=self.cmd_qtile,
-            command_args='debug',
-            title="_Debug",
+            callback=self.cmd_qtile,
+            command='restart',
+            label="_Reload",
             submenu='_Qtile'
         )
 
         self.add_menu_item(
-            command=self.cmd_qtile_restart,
-            title="_Reload",
+            callback=self.cmd_qtile,
+            command='shutdown',
+            label="_Quit",
             submenu='_Qtile'
         )
 
-        self.add_menu_item(
-            command=self.cmd_qtile_shutdown,
-            title="_Quit",
-            submenu='_Qtile'
-        )
+    def popup(self):
+        self.add_menu_separator()
 
         self.add_menu_item(
-            command=self.cmd_destroy,
-            title="Quit"
+            callback=self.cmd_destroy,
+            label="_Cancel"
         )
 
-        # self.window.hide()
+        self.menu.show_all()
+
         self.menu.popup(
             parent_menu_shell=None,
             parent_menu_item=None,
@@ -77,44 +108,59 @@ class ContextMenuApp(Gtk.Application):
             activate_time=Gdk.CURRENT_TIME
         )
 
+    def do_activate(self):
+        self._configure()
+        self.popup()
+
         Gtk.main()
 
-    def add_submenu_item(self, title):
+    def add_submenu_item(self, title, menu=None):
         aMenuitem = Gtk.MenuItem.new_with_mnemonic(title)
         aMenuitem.set_submenu(Gtk.Menu())
 
-        self.menu.append(aMenuitem)
+        menu = self.menu if menu is None else menu
+        menu.append(aMenuitem)
 
         return aMenuitem
 
-    def get_submenu_item(self, title):
+    def get_submenu_item(self, title, menu=None):
+        menu = self.menu if menu is None else menu
+
         for m in self.menu:
             if m.get_label() == title and not m.get_submenu() is None:
                 s = m.get_submenu()
 
                 return s
         
-        m = self.add_submenu_item(title)
+        m = self.add_submenu_item(title, menu)
         s = m.get_submenu()
 
         return s
 
-    def add_menu_item(self, command=None, command_args=None, title='', submenu=None):
-        aMenuitem = Gtk.MenuItem.new_with_mnemonic(title)
+    def add_menu_separator(self, label='', submenu=None):
+        aMenuseparator = Gtk.SeparatorMenuItem()
+        aMenuseparator.set_label(label)
 
-        if not command is None:
-            if not command_args is None:
-                aMenuitem.connect("activate", command, command_args)
+        if submenu is not None:
+            s = self.get_submenu_item(submenu) # type: Gtk.Menu
+            s.append(aMenuseparator)
+        else:
+            self.menu.append(aMenuseparator)
+
+    def add_menu_item(self, callback=None, label='', submenu=None, menu=None, **kwargs):
+        aMenuitem = Gtk.MenuItem.new_with_mnemonic(label)
+
+        if callback is not None:
+            if len(kwargs) > 0:
+                aMenuitem.connect("activate", callback, kwargs)
             else:
-                aMenuitem.connect("activate", command)
+                aMenuitem.connect("activate", callback)
 
-        if not submenu is None:
-            s = self.get_submenu_item(submenu) # type: Gtk.MenuItem
+        if submenu is not None:
+            s = self.get_submenu_item(submenu, menu) # type: Gtk.Menu
             s.append(aMenuitem)
         else:
             self.menu.append(aMenuitem)
-
-        self.menu.show_all()
 
     def get_menu_item(self, menu):
         for m in self.menu.get_children():
@@ -123,34 +169,42 @@ class ContextMenuApp(Gtk.Application):
         
         return None
 
-    def cmd_qtile(self, item, *args, **kwargs):
-#        with self.qtile:
-#            args()
-        print(args, kwargs)
+    def cmd_qtile(self, item, kwargs):
+        command = kwargs.get('command', 'info')
+        key = kwargs.get('key', None)
+        args = kwargs.get('args', None)
+        
+        if key is not None:
+            mod = getattr(self.qtile, key)
+        else:
+            mod = self.qtile
+
+        try:
+            if args is not None:
+                getattr(mod, command)(args)
+            else:
+                getattr(mod, command)()
+        except Exception as e:
+            print(e)
+
+    def cmd_execute(self, item, kwargs):
+        command = kwargs.get('command', None)
+        shell = kwargs.get('shell', False)
+        args = kwargs.get('args', None)
+
+        if command is not None:
+            if type(command) is str:
+                command = [os.path.expanduser(command)]
+            else:
+                command[0] = os.path.expanduser(command[0])
+            
+            if args is not None:
+                subprocess.Popen(command + shlex.split(args), shell=shell)
+            else:
+                subprocess.Popen(command, shell=shell)
 
     def cmd_destroy(self, item):
         Gtk.main_quit()
-
-    def cmd_qtile_restart(self, item):
-        try:
-            self.qtile.restart()
-        except Exception:
-            pass
-
-    def cmd_qtile_shutdown(self, item):
-        try:
-            self.qtile.shutdown()
-        except Exception:
-            pass
-
-    def cmd_qtile_debug(self, item):
-        print(self.qtile.commands())
-
-    def cmd_qtile_maximize(self, item):
-        try:
-            self.qtile.window.toggle_maximize()
-        except Exception as e:
-            print(e)
 
 if __name__ == '__main__':
     app = ContextMenuApp()
