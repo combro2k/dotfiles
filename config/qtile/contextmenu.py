@@ -141,6 +141,48 @@ class ContextMenuApp(Gtk.Application):
             parent=self.menu,
         )
 
+        systemMenu = self.addMenu(
+            item=self.createMenu(title='_System'),
+            icon='system',
+            parent=self.menu
+        )
+
+        self.addMenuItem(
+            item=self.createMenuItem(
+                title='_Logout',
+                callback=self.cmd_qtile,
+                icon='system-log-out',
+                command='shutdown',
+            ),
+            parent=systemMenu
+        )
+
+        self.addMenuItem(
+            item=self.createMenuItem(
+                title='_Restart',
+                callback=self.cmd_execute,
+                icon='view-refresh',
+                command='systemctl reboot',
+            ),
+            parent=systemMenu
+        )
+
+        self.addMenuItem(
+            item=self.createMenuItem(
+                title='_Shutdown',
+                callback=self.cmd_execute,
+                icon='system-shutdown-symbolic',
+                command='systemctl poweroff',
+            ),
+            parent=systemMenu
+        )
+
+
+        self.addMenuItem(
+            item=self.createMenuItemSeparator(),
+            parent=self.menu,
+        )
+
         self.addMenuItem(
             item=self.createMenuItem(
                 title='_Close',

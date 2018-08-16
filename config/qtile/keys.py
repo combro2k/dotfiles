@@ -79,6 +79,8 @@ keys = [
     # Key([mod, "shift"], "F3", app_or_group('Anbox', 'anbox.appmgr')),
     Key([mod], "F3", app_or_group('GIMP', 'gimp')),
     Key([mod], "F4", app_or_group('Skype', 'skypeforlinux')),
+
+    Key([], "Menu", context_menu()),
 ]
 
 for i in groups:
