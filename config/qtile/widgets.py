@@ -23,7 +23,6 @@ class MenuWidget(base._TextBox):
     def button_press(self, x, y, button):
         if button == 1:
             self.qtile.cmd_spawn([expanduser('~/.config/qtile/contextmenu.py')])
-            logger.error('passed')
 
 class ActionMenuWidget(base._TextBox):
     defaults = []

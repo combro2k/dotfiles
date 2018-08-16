@@ -74,11 +74,11 @@ keys = [
     Key([mod, "shift"], "r", lazy.restart()),
     Key([], 'F12', lazy.group['scratchpad'].dropdown_toggle('term')),
 
-    Key([mod, "shift"], "F1", app_or_group('Firefox', 'firefox')),
-    Key([mod, "shift"], "F2", app_or_group('VisualCode', 'code')),
+    Key([mod], "F1", app_or_group('Firefox', 'firefox')),
+    Key([mod], "F2", app_or_group('VisualCode', 'code')),
     # Key([mod, "shift"], "F3", app_or_group('Anbox', 'anbox.appmgr')),
-    Key([mod, "shift"], "F3", app_or_group('GIMP', 'gimp')),
-    Key([mod, "shift"], "F4", app_or_group('Skype', 'skypeforlinux')),
+    Key([mod], "F3", app_or_group('GIMP', 'gimp')),
+    Key([mod], "F4", app_or_group('Skype', 'skypeforlinux')),
 ]
 
 for i in groups:
@@ -88,13 +88,14 @@ for i in groups:
             Key([mod], i.name, lazy.group[i.name].toscreen()),
 
             # mod1 + shift + letter of group = switch to & move focused window to group
-            Key([mod, "control"], i.name, window_to_group(i.name)),
+            Key([mod, "shift"], i.name, window_to_group(i.name)),
         ])
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod, alt], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod, alt], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-    Click([mod, alt], "Button2", lazy.window.bring_to_front()),
+    Drag(["control", alt], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag(["control", alt], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click(["control", alt], "Button2", lazy.window.bring_to_front()),
+#    Click(["control", alt], "Button4", ),
     Click([alt], "Button3", context_menu()),
 ]

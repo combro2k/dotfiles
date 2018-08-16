@@ -87,10 +87,11 @@ class Helpers():
         running. """
         @lazy.function
         def f(qtile):
-            try:
+            if group in qtile.groupMap:
                 qtile.groupMap[group].cmd_toscreen()
-            except KeyError:
+            else:
                 qtile.cmd_spawn(app)
+
         return f
 
     def window_to_prev_group():

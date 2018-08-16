@@ -33,6 +33,7 @@ class ContextMenuApp(Gtk.Application):
     def menu(self):
         if self._menu is None:
             menu = Gtk.Menu()
+            menu.set_title('ROOT')
             menu.connect('deactivate', self.cmd_destroy)
 
             self._menu = menu            
@@ -42,112 +43,225 @@ class ContextMenuApp(Gtk.Application):
     def __init__(self):
         Gtk.Application.__init__(self, application_id="org.qtile.actionmenu")
 
-    def xdg_menu(self, menu=None, parent=None, depth=1):
-        if menu is None:
-            menu = xdg.Menu.parse(filename=None, debug=False)
-        
-        menu.sort()
-
-        entries = set()
-
-        for entry in menu.getEntries(): # xdg.
-            if isinstance(entry, xdg.Menu.Menu):
-                self.xdg_menu(
-                    menu=entry,
-                    parent=self.get_submenu_item(entry.getName(), parent),
-                    depth=depth+1,
-                )
-            elif (
-                isinstance(entry, xdg.Menu.MenuEntry) and 
-                entry.DesktopEntry.getType() == 'Application' and
-                not entry.DesktopEntry.getHidden()
-            ):
-                if entry.DesktopEntry.getName() not in entries:
-                    entries.add(entry.DesktopEntry.getName())
-                    self.add_menu_item(
-                        label=entry.DesktopEntry.getName(),
-                        menu=parent
-                    )
-
-        return None
-
     def _configure(self):
-        # entries = self.xdg_menu()
-
-        # return False
-
         try:
             currentWindow = self.qtile.window.info()
         except:
             currentWindow = None
 
-        self.add_menu_item(
-            callback=self.cmd_execute,
-            command='urxvtc-256color',
-            label="_URXvt",
-            submenu='_Run'
+        self.createXdgMenu(
+            menu=xdg.Menu.parse(
+                filename=None, 
+                debug=False,
+            ), 
+            submenu=self.addMenu(
+                item=self.createMenu(title='Applications'),
+                icon='applications-other'
+            )
+        )
+        
+        self.addMenuItem(
+            item=self.createMenuItemSeparator(),
+            parent=self.menu,
         )
 
-        #self.xdg_menu(
-        #   parent=self.get_submenu_item('_Applications') 
-        #)
+        qtileMenu = self.addMenu(
+            item=self.createMenu(title='_Qtile'),
+            icon='qtile',
+            parent=self.menu
+        )
 
-        self.add_menu_separator()
+        if currentWindow:
+            qtileWindowMenu = self.addMenu(
+                item=self.createMenu(title='_Window'),
+                parent=qtileMenu,
+                icon='preferences-system-windows',
+            )
 
-        if currentWindow is not None:
-            self.add_menu_item(
+            self.addMenuItem(
+                item=self.createMenuItem(
+                    title='Toggle _Maximize', 
+                    callback=self.cmd_qtile,
+                    icon='window-maximize-symbolic',
+                    key='window',
+                    command='toggle_maximize',
+                ),
+                parent=qtileWindowMenu
+            )
+
+            self.addMenuItem(
+                item=self.createMenuItem(
+                    title='Toggle _Minimize', 
+                    callback=self.cmd_qtile,
+                    icon='window-minimize-symbolic',
+                    key='window',
+                    command='toggle_minimize',
+                ),
+                parent=qtileWindowMenu
+            )
+
+            self.addMenuItem(
+                item=self.createMenuItem(
+                    title='Toggle _Float', 
+                    callback=self.cmd_qtile,
+                    key='window',
+                    command='toggle_floating',
+                ),
+                parent=qtileWindowMenu
+            )
+
+        qtileCommandsMenu = self.addMenu(
+            item=self.createMenu(
+                title='_Commands',
+            ),
+            icon='system-run',
+            parent=qtileMenu,
+        )
+
+        self.addMenuItem(
+            item=self.createMenuItem(
+                title='_Restart',
                 callback=self.cmd_qtile,
-                command='toggle_maximize',
-                key='window',
-                label="Disable _Maximize" if currentWindow['maximized'] else "Enable _Maximize",
-                menu=self.get_submenu_item('_Qtile'),
-                submenu='_Window'
-            )
+                command='restart',
+            ),
+            parent=qtileCommandsMenu
+        )
 
-            self.add_menu_item(
+        self.addMenuItem(
+            item=self.createMenuItem(
+                title='_Quit',
                 callback=self.cmd_qtile,
-                command='toggle_floating',
-                key='window',
-                label="Disable _Float" if currentWindow['floating'] else "Enable _Float",
-                menu=self.get_submenu_item('_Qtile'),
-                submenu='_Window'
-            )
-
-
-            self.add_menu_separator(
-                submenu='_Qtile',
-            )
-
-        self.add_menu_item(
-            callback=self.cmd_qtile,
-            command='debug',
-            label="_Debug",
-            submenu='_Qtile'
+                command='shutdown',
+            ),
+            parent=qtileCommandsMenu
         )
 
-        self.add_menu_item(
-            callback=self.cmd_qtile,
-            command='restart',
-            label="_Reload",
-            submenu='_Qtile'
+        self.addMenuItem(
+            item=self.createMenuItemSeparator(),
+            parent=self.menu,
         )
 
-        self.add_menu_item(
-            callback=self.cmd_qtile,
-            command='shutdown',
-            label="_Quit",
-            submenu='_Qtile'
+        self.addMenuItem(
+            item=self.createMenuItem(
+                title='_Close',
+                callback=self.cmd_destroy,
+            ),
+            parent=self.menu
         )
 
+    def createXdgMenu(self, menu, submenu=None):
+        groups = []
+        entries = []
+
+        for entry in menu.getEntries():
+            if isinstance(entry, xdg.Menu.Menu):
+                groupsTuple = {
+                    'title': entry.getName(),
+                }
+
+                if groupsTuple not in groups:
+                    newSubmenu = self.createMenu(title=entry.getName())
+
+                    self.addMenu(
+                        item=newSubmenu,
+                        icon=entry.getIcon(),
+                        parent=submenu
+                    )
+
+                    entries.extend(
+                        self.createXdgMenu(
+                            menu=entry, 
+                            submenu=newSubmenu,
+                        )
+                    )
+
+                    groups.append(groupsTuple)
+
+            elif (isinstance(entry, xdg.Menu.MenuEntry)):
+                cmd = None
+                entryTuple = {
+                    'title': entry.DesktopEntry.getName(),
+                    'command': entry.DesktopEntry.getExec(),
+                    'icon': entry.DesktopEntry.getIcon(),
+                }
+
+                if entryTuple not in entries:
+                    cmd = entry.DesktopEntry.getExec() \
+                        .replace('%U', '', 1) \
+                        .replace('%u', '', 1) \
+                        .replace('%F', '', 1)
+
+                    item = self.createMenuItem(
+                        title=entry.DesktopEntry.getName(),
+                        callback=self.cmd_execute,
+                        command=cmd,
+                        icon=entry.DesktopEntry.getIcon(),
+                    )
+
+                    self.addMenuItem(
+                        item=item,
+                        parent=submenu
+                    )
+
+                    entries.append(entryTuple)
+
+        return entries
+
+    def getThemeIcon(self, icon, size=24):           
+        icon = Gio.ThemedIcon(name=icon)
+        img = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
+
+        return img
+
+    def createMenu(self, title='', icon=None):
+        item = Gtk.Menu()
+        item.set_title(title)
+
+        return item # type: gi.overrides.Gtk.Menu
+
+    def createMenuItem(self, title='', callback=None, icon=None, **kwargs):
+        if icon:
+            item = Gtk.ImageMenuItem.new_with_mnemonic(title)
+            item.set_image(self.getThemeIcon(icon))
+        else:
+            item = Gtk.MenuItem.new_with_mnemonic(title)
+
+        if callback:
+            if len(kwargs) > 0:
+                item.connect("activate", callback, kwargs)
+            else:
+                item.connect("activate", callback)
+
+        return item # type: gi.overrides.Gtk.MenuItem
+
+    def createMenuItemSeparator(self, title=''):
+        item = Gtk.SeparatorMenuItem()
+        item.set_label(title)
+
+        return item
+
+    def addMenuItem(self, item, parent=None):
+        if parent is None:
+            parent = self.menu
+
+        parent.append(item)
+
+    def addMenu(self, item, icon=None, parent=None):
+        if parent is None: 
+            parent = self.menu # type: gi.overrides.Gtk.Menu
+
+        menuItem = self.createMenuItem(
+            title=item.get_title(),
+            icon=icon,
+        )
+
+        menuItem.set_submenu(item)
+
+        parent.append(menuItem)
+
+        return item
 
     def popup(self):
-        self.add_menu_separator()
-
-        self.add_menu_item(
-            callback=self.cmd_destroy,
-            label="_Cancel"
-        )
-
         self.menu.show_all()
 
         self.menu.popup(
@@ -157,77 +271,23 @@ class ContextMenuApp(Gtk.Application):
             data=None,
             button=0,
             activate_time=Gdk.CURRENT_TIME
-        )
+        )       
 
     def do_activate(self):
         self._configure()
         self.popup()
 
-        Gtk.main()
+        Gtk.main()   
 
-    def add_submenu_item(self, title, menu=None):
-        aMenuitem = Gtk.MenuItem.new_with_mnemonic(title)
-        aMenuitem.set_submenu(Gtk.Menu())
-
-        menu = self.menu if menu is None else menu
-        menu.append(aMenuitem)
-
-        return aMenuitem
-
-    def get_submenu_item(self, title, menu=None):
-        if menu is None:
-            menu = self.menu
-
-        for m in menu:
-            if m.get_label() == title and not m.get_submenu() is None:
-                s = m.get_submenu()
-
-                return s
-        
-        m = self.add_submenu_item(title, menu)
-        s = m.get_submenu()
-
-        return s
-
-    def add_menu_separator(self, label='', submenu=None):
-        aMenuseparator = Gtk.SeparatorMenuItem()
-        aMenuseparator.set_label(label)
-
-        if submenu is not None:
-            s = self.get_submenu_item(submenu) # type: Gtk.Menu
-            s.append(aMenuseparator)
+    def cmd_qtile(self, item, kwargs=None):
+        if kwargs:
+            command = kwargs.get('command', 'commands')
+            key = kwargs.get('key', None)
+            args = kwargs.get('args', None)
         else:
-            self.menu.append(aMenuseparator)
-
-    def add_menu_item(self, callback=None, label='', submenu=None, menu=None, **kwargs):
-        if menu is None:
-            menu = self.menu
-
-        aMenuitem = Gtk.MenuItem.new_with_mnemonic(label)
-
-        if callback is not None:
-            if len(kwargs) > 0:
-                aMenuitem.connect("activate", callback, kwargs)
-            else:
-                aMenuitem.connect("activate", callback)
-
-        if submenu is not None:
-            s = self.get_submenu_item(submenu, menu) # type: Gtk.Menu
-            s.append(aMenuitem)
-        else:
-            menu.append(aMenuitem)
-
-    def get_menu_item(self, menu):
-        for m in self.menu.get_children():
-            if m.get_label() == menu:
-                return m
-        
-        return None
-
-    def cmd_qtile(self, item, kwargs):
-        command = kwargs.get('command', 'info')
-        key = kwargs.get('key', None)
-        args = kwargs.get('args', None)
+            command = 'commands'
+            key = None
+            args = None
         
         if key is not None:
             mod = getattr(self.qtile, key)
@@ -236,27 +296,35 @@ class ContextMenuApp(Gtk.Application):
 
         try:
             if args is not None:
-                getattr(mod, command)(args)
+                ret = getattr(mod, command)(args)
             else:
-                getattr(mod, command)()
+                ret = getattr(mod, command)()
+
+            if ret is not None:
+                print(ret)
         except Exception as e:
             print(e)
 
-    def cmd_execute(self, item, kwargs):
-        command = kwargs.get('command', None)
-        shell = kwargs.get('shell', False)
-        args = kwargs.get('args', None)
+    def cmd_execute(self, item, kwargs=None):
+        if kwargs:
+            command = kwargs.get('command', None)
+            shell = kwargs.get('shell', False)
+        else:
+            command = None
+            shell = False
 
         if command is not None:
             if type(command) is str:
-                command = [os.path.expanduser(command)]
-            else:
-                command[0] = os.path.expanduser(command[0])
-            
-            if args is not None:
-                subprocess.Popen(command + shlex.split(args), shell=shell)
-            else:
+                command = shlex.split(command)  
+
+            command[0] = os.path.expanduser(command[0])
+            try:
                 subprocess.Popen(command, shell=shell)
+            except Exception as e:
+                print(e)
+
+        else:
+            print('Nothing to run!')
 
     def cmd_destroy(self, item):
         Gtk.main_quit()
