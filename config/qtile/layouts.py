@@ -7,6 +7,12 @@ layouts = [
         fair=True
     ),
 
+    layout.Stack(
+        name='stack',
+        autosplit=True,
+        fair=True,
+    ),
+
     # layout.MonadWide(
     #     name='xmonadw',
     # ),

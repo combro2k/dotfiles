@@ -56,7 +56,7 @@ class ContextMenuApp(Gtk.Application):
             ), 
             submenu=self.addMenu(
                 item=self.createMenu(title='Applications'),
-                icon='applications-other'
+                icon='go-home'
             )
         )
         
@@ -67,7 +67,7 @@ class ContextMenuApp(Gtk.Application):
 
         qtileMenu = self.addMenu(
             item=self.createMenu(title='_Qtile'),
-            icon='qtile',
+            icon='emblem-system',
             parent=self.menu
         )
 
@@ -80,9 +80,31 @@ class ContextMenuApp(Gtk.Application):
 
             self.addMenuItem(
                 item=self.createMenuItem(
+                    title='Bring to _Front', 
+                    callback=self.cmd_qtile,
+                    icon='go-top-symbolic',
+                    key='window',
+                    command='bring_to_front',
+                ),
+                parent=qtileWindowMenu
+            )
+
+            self.addMenuItem(
+                item=self.createMenuItem(
+                    title='Toggle F_loat', 
+                    callback=self.cmd_qtile,
+                    icon='preferences-system-windows',
+                    key='window',
+                    command='toggle_floating',
+                ),
+                parent=qtileWindowMenu
+            )
+
+            self.addMenuItem(
+                item=self.createMenuItem(
                     title='Toggle _Maximize', 
                     callback=self.cmd_qtile,
-                    icon='window-maximize-symbolic',
+                    icon='zoom-fit-best-symbolic',
                     key='window',
                     command='toggle_maximize',
                 ),
@@ -91,7 +113,7 @@ class ContextMenuApp(Gtk.Application):
 
             self.addMenuItem(
                 item=self.createMenuItem(
-                    title='Toggle _Minimize', 
+                    title='Toggle M_inimize', 
                     callback=self.cmd_qtile,
                     icon='window-minimize-symbolic',
                     key='window',
@@ -102,10 +124,11 @@ class ContextMenuApp(Gtk.Application):
 
             self.addMenuItem(
                 item=self.createMenuItem(
-                    title='Toggle _Float', 
+                    title='_Kill', 
                     callback=self.cmd_qtile,
+                    icon='window-close',
                     key='window',
-                    command='toggle_floating',
+                    command='kill',
                 ),
                 parent=qtileWindowMenu
             )
@@ -120,8 +143,9 @@ class ContextMenuApp(Gtk.Application):
 
         self.addMenuItem(
             item=self.createMenuItem(
-                title='_Restart',
+                title='_Reload',
                 callback=self.cmd_qtile,
+                icon='view-refresh',
                 command='restart',
             ),
             parent=qtileCommandsMenu
@@ -131,6 +155,7 @@ class ContextMenuApp(Gtk.Application):
             item=self.createMenuItem(
                 title='_Quit',
                 callback=self.cmd_qtile,
+                icon='application-exit-symbolic',
                 command='shutdown',
             ),
             parent=qtileCommandsMenu
@@ -151,7 +176,7 @@ class ContextMenuApp(Gtk.Application):
             item=self.createMenuItem(
                 title='_Logout',
                 callback=self.cmd_qtile,
-                icon='system-log-out',
+                icon='application-exit-symbolic',
                 command='shutdown',
             ),
             parent=systemMenu
@@ -185,13 +210,14 @@ class ContextMenuApp(Gtk.Application):
 
         self.addMenuItem(
             item=self.createMenuItem(
-                title='_Close',
+                title='_Cancel',
                 callback=self.cmd_destroy,
+                icon='window-close',
             ),
             parent=self.menu
         )
 
-    def createXdgMenu(self, menu, submenu=None):
+    def createXdgMenu(self, menu, submenu=None) -> list:
         groups = []
         entries = []
 
@@ -207,7 +233,7 @@ class ContextMenuApp(Gtk.Application):
                     self.addMenu(
                         item=newSubmenu,
                         icon=entry.getIcon(),
-                        parent=submenu
+                        parent=submenu,
                     )
 
                     entries.extend(
@@ -249,19 +275,19 @@ class ContextMenuApp(Gtk.Application):
 
         return entries
 
-    def getThemeIcon(self, icon, size=24):           
+    def getThemeIcon(self, icon, size=24) -> Gio.ThemedIcon:           
         icon = Gio.ThemedIcon(name=icon)
         img = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
 
         return img
 
-    def createMenu(self, title='', icon=None):
+    def createMenu(self, title='', icon=None) -> Gtk.Menu:
         item = Gtk.Menu()
         item.set_title(title)
 
         return item # type: gi.overrides.Gtk.Menu
 
-    def createMenuItem(self, title='', callback=None, icon=None, **kwargs):
+    def createMenuItem(self, title='', callback=None, icon=None, **kwargs) -> Gtk.MenuItem:
         if icon:
             item = Gtk.ImageMenuItem.new_with_mnemonic(title)
             item.set_image(self.getThemeIcon(icon))
@@ -276,7 +302,7 @@ class ContextMenuApp(Gtk.Application):
 
         return item # type: gi.overrides.Gtk.MenuItem
 
-    def createMenuItemSeparator(self, title=''):
+    def createMenuItemSeparator(self, title='') -> Gtk.SeparatorMenuItem:
         item = Gtk.SeparatorMenuItem()
         item.set_label(title)
 
