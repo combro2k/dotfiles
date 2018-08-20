@@ -62,7 +62,7 @@ screens = [
                     length=5
                 ),
                 widget.BatteryIcon(),
-                widget.Volume(),
+#                widget.Volume(),
                 widget.Spacer(
                     length=5
                 ),

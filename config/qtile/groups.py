@@ -19,9 +19,10 @@ groups.extend([
         label=f'{www_ico}',
     ),
     
+    
     Group(
-        name='VisualCode',
-        matches=[Match(wm_class=["Code"])],
+        name='Editors',
+        matches=[Match(wm_instance_class=["code", "Code", "emacs", "Emacs"])],
         exclusive=True,
         persist=False,
         layout='max',

@@ -90,7 +90,10 @@ class Helpers():
             if group in qtile.groupMap:
                 qtile.groupMap[group].cmd_toscreen()
             else:
-                qtile.cmd_spawn(app)
+                if group == 'Editors' and app == 'emacs-nox':
+                    qtile.cmd_spawn(app)                    
+                else:
+                    qtile.cmd_spawn(app)
 
         return f
 
