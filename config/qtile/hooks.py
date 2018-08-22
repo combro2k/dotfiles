@@ -33,6 +33,7 @@ def autostart():
 def auto_screens():
     r = run(['sh', '-c', 'xrandr --listactivemonitors | head -n1'], stdout=PIPE, universal_newlines=True)
     logger.error(f'Found {r.stdout} displays')
+    run(['pkill', '-SIGHUP', 'conky'])
 
 @hook.subscribe.screen_change
 def restart_on_randr(qtile, ev):
