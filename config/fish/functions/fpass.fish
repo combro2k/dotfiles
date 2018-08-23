@@ -23,7 +23,11 @@ function fpass -d "Fuzzy-find a Lastpass entry and copy the password"
     return
   end
 
-  set id (lpass ls --sync=now | fzf | string replace -r -a '.+\[id: (\d+)\]' '$1')
+  if not test -z "$argv"
+    set id $argv 
+  else
+    set id (lpass ls --sync=now | fzf | string replace -r -a '.+\[id: (\d+)\]' '$1')
+  end
 
   if not test -z "$id"
     lpass show "$id"

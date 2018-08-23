@@ -130,6 +130,48 @@ class Helpers():
             
         return f
 
+    def windows_to_prev_group():
+        @lazy.function
+        def f(qtile):
+            if qtile.currentGroup.windows is not None:
+                index = qtile.groups.index(qtile.currentGroup)
+                newgroup = qtile.groups[index - 1].name if index > 0 else qtile.groups[len(qtile.groups) - 2].name
+
+                windows = qtile.currentGroup.windows.copy()
+                for w in windows:
+                    w.togroup(newgroup)
+                
+                qtile.groupMap[newgroup].cmd_toscreen()
+           
+        return f
+
+    def windows_to_next_group():
+        @lazy.function
+        def f(qtile):
+           if qtile.currentGroup.windows is not None:
+                index = qtile.groups.index(qtile.currentGroup)
+                newgroup = qtile.groups[index + 1].name if index < len(qtile.groups) - 2 else qtile.groups[0].name
+
+                windows = qtile.currentGroup.windows.copy()
+                for w in windows:
+                    w.togroup(newgroup)
+                
+                qtile.groupMap[newgroup].cmd_toscreen()
+           
+        return f   
+
+    def windows_to_group(newgroup):
+        @lazy.function
+        def f(qtile):
+            if qtile.currentGroup.windows is not None:
+                windows = qtile.currentGroup.windows.copy()
+                for w in windows:
+                    w.togroup(newgroup)
+                
+                qtile.groupMap[newgroup].cmd_toscreen()
+
+        return f
+
     def context_menu():
         @lazy.function
         def f(qtile):

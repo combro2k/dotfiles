@@ -13,6 +13,11 @@ zenity_question = Helpers.zenity_question
 window_to_group = Helpers.window_to_group
 window_to_prev_group = Helpers.window_to_prev_group
 window_to_next_group = Helpers.window_to_next_group
+
+windows_to_group = Helpers.windows_to_group
+windows_to_prev_group = Helpers.windows_to_prev_group
+windows_to_next_group = Helpers.windows_to_next_group
+
 window_maximize = Helpers.window_maximize
 
 create_screenshot = Helpers.create_screenshot
@@ -74,8 +79,11 @@ keys = [
         lazy.layout.shuffle_down().when('stack'),
     ),
 
-    Key([mod, "control"], "Left", window_to_prev_group()),
-    Key([mod, "control"], "Right", window_to_next_group()),
+    Key([mod, "shift"], "Left", window_to_prev_group()),
+    Key([mod, "shift"], "Right", window_to_next_group()),
+
+    Key([mod, "control"], "Left", windows_to_prev_group()),
+    Key([mod, "control"], "Right", windows_to_next_group()),
 
     # Key([mod, "shift"], "q", lazy.run_extension(Zenity(success=True))),
     Key([mod, "shift"], "q", zenity_question(text="Logoff?", command="qtile-cmd -o cmd -f shutdown")),
@@ -103,6 +111,9 @@ for i in groups:
 
             # mod1 + shift + letter of group = switch to & move focused window to group
             Key([mod, "shift"], i.name, window_to_group(i.name)),
+
+            # mod1 + control + letter of group = switch to & move focused window to group
+            Key([mod, "control"], i.name, windows_to_group(i.name)),
         ])
 
 # Drag floating layouts.

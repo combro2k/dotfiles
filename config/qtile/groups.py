@@ -17,8 +17,7 @@ groups.extend([
         layout='max',
         init=False,
         label=f'{www_ico}',
-    ),
-    
+    ),    
     
     Group(
         name='Editors',
