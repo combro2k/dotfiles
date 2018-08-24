@@ -8,7 +8,6 @@ mod = "mod4"
 alt = "mod1"
 
 app_or_group = Helpers.app_or_group
-zenity_question = Helpers.zenity_question
 
 window_to_group = Helpers.window_to_group
 window_to_prev_group = Helpers.window_to_prev_group
@@ -17,17 +16,17 @@ window_to_next_group = Helpers.window_to_next_group
 windows_to_group = Helpers.windows_to_group
 windows_to_prev_group = Helpers.windows_to_prev_group
 windows_to_next_group = Helpers.windows_to_next_group
-
 window_maximize = Helpers.window_maximize
 
 create_screenshot = Helpers.create_screenshot
-
 context_menu = Helpers.context_menu
 
 minimize_group = Helpers.minimize_group
 unminimize_group = Helpers.unminimize_group
 
 toggle_follow_mouse_focus = Helpers.toggle_follow_mouse_focus
+
+qtile_shutdown = Helpers.qtile_shutdown
 
 keys = [
     Key([], "Print", create_screenshot()),
@@ -85,10 +84,10 @@ keys = [
     Key([mod, "control"], "Left", windows_to_prev_group()),
     Key([mod, "control"], "Right", windows_to_next_group()),
 
-    # Key([mod, "shift"], "q", lazy.run_extension(Zenity(success=True))),
-    Key([mod, "shift"], "q", zenity_question(text="Logoff?", command="qtile-cmd -o cmd -f shutdown")),
-    Key([mod, "control"], "q", zenity_question(text="Shutdown?", command="systemctl poweroff")),
-    Key([mod, "control"], "r", zenity_question(text="Reboot?", command="systemctl reboot")),
+    Key([mod, "shift"], "q", lazy.run_extension(Zenity(text="Logoff?", exec=lazy.shutdown()))),
+    Key([mod, "control"], "q", lazy.run_extension(Zenity(text="Shutdown?", exec=lazy.spawn(['systemctl', 'poweroff'])))),
+    Key([mod, "control"], "r", lazy.run_extension(Zenity(text="Reboot?", exec=lazy.spawn(['systemctl', 'reboot'])))),
+
     Key([mod], "space", lazy.run_extension(RofiMenu(modi="drun"))),
     Key([alt], "Tab", lazy.run_extension(RofiMenu(modi="windowcd"))),
     Key([mod, "shift"], "r", lazy.restart()),

@@ -43,7 +43,7 @@ class AutoStart(object):
 
             x = expanduser(i if type(i) is str else list(i)[0])
             c = [x] if type(i) is str else list(i)
-            
+
             if not access(x, X_OK):
                 logger.error(f'{x} does not exist or is not executable!')
                 continue
@@ -70,16 +70,6 @@ class Colors(object):
     highlight_text = urgent_bg
 
 class Helpers():
-    def zenity_question(command, title="Question", text="Are you sure?"):
-        @lazy.function
-        def f(qtile):
-            try:
-                Popen(['sh', '-c', f'zenity --display=":0" --question --title="{title}" --text="{text}" && {command}'], shell=False)
-            except subprocess.CalledProcessError as e:
-                logger.error(e)
-
-        return f
-
     def app_or_group(group, app):
         """ Go to specified group if it exists. Otherwise, run the specified app.
         When used in conjunction with dgroups to auto-assign apps to specific
@@ -91,7 +81,7 @@ class Helpers():
                 qtile.groupMap[group].cmd_toscreen()
             else:
                 if group == 'Editors' and app == 'emacs-nox':
-                    qtile.cmd_spawn(app)                    
+                    qtile.cmd_spawn(app)
                 else:
                     qtile.cmd_spawn(app)
 
@@ -106,7 +96,7 @@ class Helpers():
 
                 qtile.currentWindow.togroup(newgroup)
                 qtile.groupMap[newgroup].cmd_toscreen()
-           
+
         return f
 
     def window_to_next_group():
@@ -118,16 +108,16 @@ class Helpers():
 
                 qtile.currentWindow.togroup(newgroup)
                 qtile.groupMap[newgroup].cmd_toscreen()
-           
+
         return f
 
-    def window_to_group(newgroup):       
+    def window_to_group(newgroup):
         @lazy.function
         def f(qtile):
             if qtile.currentWindow is not None:
                 qtile.currentWindow.togroup(newgroup)
                 qtile.groupMap[newgroup].cmd_toscreen()
-            
+
         return f
 
     def windows_to_prev_group():
@@ -140,9 +130,9 @@ class Helpers():
                 windows = qtile.currentGroup.windows.copy()
                 for w in windows:
                     w.togroup(newgroup)
-                
+
                 qtile.groupMap[newgroup].cmd_toscreen()
-           
+
         return f
 
     def windows_to_next_group():
@@ -155,10 +145,10 @@ class Helpers():
                 windows = qtile.currentGroup.windows.copy()
                 for w in windows:
                     w.togroup(newgroup)
-                
+
                 qtile.groupMap[newgroup].cmd_toscreen()
-           
-        return f   
+
+        return f
 
     def windows_to_group(newgroup):
         @lazy.function
@@ -167,7 +157,7 @@ class Helpers():
                 windows = qtile.currentGroup.windows.copy()
                 for w in windows:
                     w.togroup(newgroup)
-                
+
                 qtile.groupMap[newgroup].cmd_toscreen()
 
         return f
@@ -195,7 +185,7 @@ class Helpers():
             targetdir = expanduser('~/Pictures/Screenshots/')
 
             if not isdir(targetdir):
-                try: 
+                try:
                     makedirs(targetdir)
                 except OSError:
                     if not isdir(targetdir):
@@ -251,5 +241,15 @@ class Helpers():
         @lazy.function
         def f(qtile):
             qtile.config.follow_mouse_focus = not qtile.config.follow_mouse_focus
+
+        return f
+
+    def qtile_shutdown():
+        @lazy.function
+        def f(qtile):
+            try:
+                qtile.shutdown()
+            except Exception as e:
+                pass
 
         return f
