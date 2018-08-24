@@ -2,7 +2,7 @@ from libqtile.config import Key, Drag, Click, ScratchPad
 from libqtile.command import lazy
 from classes import Helpers
 from groups import groups
-from extensions import RofiMenu, Zenity
+from extensions import RofiMenu, Zenity, QtileActionMenu
 
 mod = "mod4"
 alt = "mod1"

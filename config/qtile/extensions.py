@@ -22,7 +22,7 @@ class RofiMenu(RunCommand):
 
     def _configure(self, qtile):
         RunCommand._configure(self, qtile)
-        
+
         rofi_command = self.rofi_command or self.command
         if isinstance(rofi_command, str):
             self.configured_command = shlex.split(rofi_command)
@@ -46,7 +46,7 @@ class RofiMenu(RunCommand):
         subprocess.run(self.configured_command, shell=False)
 
 class Zenity(RunCommand):
-    
+
     defaults = [
         ("zenity_command", "zenity", "the command to be launched (string or list with arguments)"),
         ("type", "question", "the type of dialog"),
@@ -75,10 +75,10 @@ class Zenity(RunCommand):
 
         if self.type == "question":
             self.configured_command.append("--question")
-        
+
         elif self.type == "warning":
             self.configured_command.append("--warning")
-        
+
         elif self.type == "notification":
             self.configured_command.append("--notification")
         else:
@@ -132,7 +132,7 @@ class Zenity(RunCommand):
                         return False
 
                     func(*args)
-                        
+
                 elif isinstance(clb, list):
                     x = subprocess.run(clb, shell=False)
                 elif isinstance(clb, str):
@@ -140,3 +140,22 @@ class Zenity(RunCommand):
                     x = subprocess.run(cbl)
 
         return True
+
+class QtileActionMenu(RunCommand):
+
+    def __init__(self, **config):
+        RunCommand.__init__(self, **config)
+
+    def run(self):
+        try:
+            from threading import Thread
+            Thread(
+                    target=self.thread_run
+                    ).start()
+        except Exception as e:
+            logger.error(e)
+
+    def thread_run(self):
+        from actionmenu import ActionMenu
+        app = ActionMenu()
+        app.run(sys.argv)
