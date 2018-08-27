@@ -36,6 +36,7 @@ floating_layout = layout.Floating(
         dict(wmclass="pinentry-gtk-2"),
         dict(wmclass="zenity"),
         dict(wmclass="qtile-actionmenu"),
+        dict(wmclass="YaST2"),
     ],
     auto_float_types=[
         "notification",

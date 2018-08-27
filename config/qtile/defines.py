@@ -1,7 +1,9 @@
 def autostart():
     from os.path import expanduser
 
-    # yield '/usr/bin/feh', '--bg-scale', '--randomize', expanduser('~/.config/backgrounds/'), '-Z'
+    #yield '/usr/bin/feh', '--bg-scale', '--randomize', expanduser('~/.config/backgrounds/'), '-Z'
+
+    yield '/usr/bin/ibus-daemon', '--xim'
     
     yield '/usr/bin/conky', '-c', expanduser('~/.config/conky/conky.conf')
 #    yield '/usr/bin/conky', '-c', expanduser('~/.config/conky/conky-shortcuts.conf')
@@ -15,9 +17,11 @@ def autostart():
 
     yield '/usr/lib/polkit-gnome-authentication-agent-1'
     yield '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
-    yield '/usr/bin/gnome-keyring-daemon', '-f', '--start', '--components=ssh'
+#    yield '/usr/bin/gnome-keyring-daemon', '-f', '--start', '--components=ssh'
 
     yield '/usr/bin/clipit'
 
-    yield '/usr/bin/compton'
+    yield '/usr/bin/compton', '--dbus'
+
+    yield '/usr/bin/vmware-user-suid-wrapper'
 

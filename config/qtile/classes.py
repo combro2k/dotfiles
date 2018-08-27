@@ -39,7 +39,7 @@ class AutoStart(object):
         logger.info(f'Starting {cmd}')
 
         try:
-            run(cmd, shell=False)
+            Popen(cmd, shell=False)
         except Exception as e:
             logger.error(e)
 

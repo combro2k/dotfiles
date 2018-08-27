@@ -71,8 +71,6 @@ class Zenity(RunCommand):
             # it's shared among all the instances of this class
             self.configured_command = list(zenity_command)
 
-        self.configured_command.append('--display=:0')
-
         if self.type == "question":
             self.configured_command.append("--question")
 
