@@ -15,6 +15,8 @@ def autostart():
 
     yield '/usr/lib/polkit-gnome-authentication-agent-1'
     yield '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
+    yield '/usr/bin/gnome-keyring-daemon', '-f', '--start', '--components=ssh'
+
     yield '/usr/bin/clipit'
 
     yield '/usr/bin/compton'

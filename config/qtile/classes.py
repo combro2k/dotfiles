@@ -25,7 +25,7 @@ class AutoStart(object):
         try:
             r = run(['pgrep', '-f', '-l', '-a', ' '.join(cmd)])
             if r.returncode == 1:
-                logger.error(f'Process {cmd} is not started!')
+                logger.info(f'Process {cmd} is not started!')
 
                 return False
         except Exception as e:
@@ -34,6 +34,14 @@ class AutoStart(object):
             return False
 
         return True
+
+    def thread_run(self, *cmd):
+        logger.info(f'Starting {cmd}')
+
+        try:
+            run(cmd, shell=False)
+        except Exception as e:
+            logger.error(e)
 
     def run(self):
         self.load_commands()
@@ -49,9 +57,11 @@ class AutoStart(object):
                 continue
 
             if not self.check_running(c):
-                logger.error(f'{c} starting...')
+                logger.info(f'{c} Starting thread...')
+
                 try:
-                    Popen(c, shell=False)
+                    Thread(target=self.thread_run, args=(c)).start()
+                    # Popen(c, shell=False)
                 except Exception as e:
                     logger.error(e)
 
