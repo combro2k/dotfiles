@@ -13,7 +13,7 @@ URxvt.font: xft:Cousine Nerd Font Mono:style=Regular:size=11:antialias=true
 
 URxvt*skipBuiltinGlyphs: true
 
-URxvt*termName: rxvt-unicode-256color
+! URxvt*termName: rxvt-unicode-256color
 ! URxvt*termName: xterm-256color
 
 URxvt.letterSpace: 0
@@ -54,3 +54,10 @@ URxvt.matcher.button: 2
 URxvt.tabbed.autohide: true
 URxvt.tabbedex.new-button: false
 
+! URxvt*inheritPixmap: false
+! URxvt*shading: 25
+
+URxvt*background: [99]#1e1e1e
+URxvt*inheritPixmap: false
+URxvt*transparent: true
+URxvt*fading: 25

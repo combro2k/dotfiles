@@ -7,7 +7,8 @@ from libqtile.command import lazy
 from libqtile.manager import Qtile
 from libqtile.window import Window
 
-from classes import AutoStart, Wallpaper
+from classes import AutoStart
+from extensions import Wallpaper
 
 @hook.subscribe.startup
 def dbus_register():
@@ -24,10 +25,13 @@ def dbus_register():
         'string:qtile',
         'string:' + id])
 
-
 @hook.subscribe.startup
 def autostart():
     AutoStart()
+
+    # set wallpaper :-)
+    wallpaper = Wallpaper()
+    wallpaper.run()
 
 @hook.subscribe.startup_complete
 def auto_screens():
@@ -68,20 +72,20 @@ def specific_instance_rules(window): # type: Window
     # if window.match(wmclass='qtile-contextmenu'):
     #     window.static(0)
 
-@hook.subscribe.client_focus
-def dim_inactive(window):
-    try:
-        qtile = window.qtile # type: Qtile
-
-        if window == qtile.currentWindow:
-            index = qtile.groups.index(qtile.currentGroup)
-            group = qtile.groups[index] # type: libqtile.config.Group
-            if isinstance(window, Window) and window.match(wmclass='urxvtc-256color'):           
-                window.opacity = 1.0
-                
-                for w in group.windows:
-                    if w.match(wmclass='urxvtc-256color') and w.has_focus is False:
-                        w.opacity = 0.80
-
-    except Exception as e:
-        logger.error(e)
+#@hook.subscribe.client_focus
+#def dim_inactive(window):
+#    try:
+#        qtile = window.qtile # type: Qtile
+#
+#        if window == qtile.currentWindow:
+#            index = qtile.groups.index(qtile.currentGroup)
+#            group = qtile.groups[index] # type: libqtile.config.Group
+#            if isinstance(window, Window) and window.match(wmclass='urxvtc-256color'):           
+#                window.opacity = 1.0
+#                
+#                for w in group.windows:
+#                    if w.match(wmclass='urxvtc-256color') and w.has_focus is False:
+#                        w.opacity = 0.80
+#
+#    except Exception as e:
+#        logger.error(e)

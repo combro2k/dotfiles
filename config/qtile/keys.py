@@ -2,7 +2,7 @@ from libqtile.config import Key, Drag, Click, ScratchPad
 from libqtile.command import lazy
 from classes import Helpers
 from groups import groups
-from extensions import RofiMenu, Zenity, QtileActionMenu
+from extensions import *
 
 mod = "mod4"
 alt = "mod1"
@@ -98,6 +98,8 @@ keys = [
     # Key([mod, "shift"], "F3", app_or_group('Anbox', 'anbox.appmgr')),
     Key([mod], "F3", app_or_group('GIMP', 'gimp')),
     Key([mod], "F4", app_or_group('Skype', 'skypeforlinux')),
+
+    Key([], "F11", lazy.run_extension(Wallpaper())),
 
     Key([], "Menu", context_menu()),
 ]

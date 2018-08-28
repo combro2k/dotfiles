@@ -65,10 +65,6 @@ class AutoStart(object):
                 except Exception as e:
                     logger.error(e)
 
-class Wallpaper(Thread):
-    def __init__(self):
-        pass
-
 class Colors(object):
     bg = '666666'
     highlight_bg = '888888'

@@ -1,12 +1,17 @@
 import six
 import shlex
 import subprocess
+import sys
+import time
 
-from libqtile.extension.base import RunCommand
+from libqtile.extension.base import RunCommand, _Extension
 from libqtile.log_utils import logger
 from libqtile.command import _Call
+from libqtile import window, xcbq
 
-# rofi -theme base16-twilight -demnu -show drun -modi drun
+from threading import Thread
+
+from os.path import expanduser
 
 class RofiMenu(RunCommand):
     defaults = [
@@ -91,69 +96,57 @@ class Zenity(RunCommand):
         self.configured_command = ["sh", "-c", ' '.join(self.configured_command)]
 
     def run(self):
-        try:
-            from threading import Thread
-            Thread(
-                    target=self.thread_run
-            ).start()
-        except Exception as e:
-            logger.error(e)
+        def worker():
+            x = subprocess.run(self.configured_command, stdout=subprocess.PIPE, shell=False)
+            if x.returncode == 0:
+                clb = self.exec
 
-    def thread_run(self):
-        x = subprocess.run(self.configured_command, stdout=subprocess.PIPE, shell=False)
+                if clb:
+                    if isinstance(clb, _Call) and clb.check(self.qtile):
+                        logger.error(clb)
 
-        if x.returncode == 0:
-            clb = self.exec
+                        obj = self.qtile
+                        funcname = 'cmd_' + clb.name
+                        args = clb.args
 
-            if clb:
-                if isinstance(clb, _Call) and clb.check(self.qtile):
-                    logger.error(clb)
+                        for s in clb.selectors:
+                            try:
+                                obj = obj[s]
+                            except KeyError:
+                                obj = getattr(obj, s)
+                            except AttributeError:
+                                log.error("Specified object does not exist " + " ".join(sel))
 
-                    obj = self.qtile
-                    funcname = 'cmd_' + clb.name
-                    args = clb.args
-
-                    for s in clb.selectors:
+                                return False
                         try:
-                            obj = obj[s]
-                        except KeyError:
-                            obj = getattr(obj, s)
+                            func = getattr(obj, funcname)
                         except AttributeError:
-                            log.error("Specified object does not exist " + " ".join(sel))
+                            log.error("error: Sorry no function " + funcname)
 
                             return False
-                    try:
-                        func = getattr(obj, funcname)
-                    except AttributeError:
-                        log.error("error: Sorry no function " + funcname)
 
-                        return False
+                        func(*args)
 
-                    func(*args)
-
-                elif isinstance(clb, list):
-                    x = subprocess.run(clb, shell=False)
-                elif isinstance(clb, str):
-                    clb = shlex.split(clb)
-                    x = subprocess.run(cbl)
-
-        return True
-
-class QtileActionMenu(RunCommand):
-
-    def __init__(self, **config):
-        RunCommand.__init__(self, **config)
-
-    def run(self):
+                    elif isinstance(clb, list):
+                        x = subprocess.run(clb, shell=False)
+                    elif isinstance(clb, str):
+                        clb = shlex.split(clb)
+                        x = subprocess.run(cbl)
         try:
-            from threading import Thread
-            Thread(
-                    target=self.thread_run
-                    ).start()
+            Thread(target=worker).start()
         except Exception as e:
             logger.error(e)
 
-    def thread_run(self):
-        from actionmenu import ActionMenu
-        app = ActionMenu()
-        app.run(sys.argv)
+class Wallpaper(_Extension):
+
+    defaults = [
+        ("directory", "~/.config/backgrounds", "the command to be launched (string or list with arguments)"),
+    ]
+
+    def __init__(self, **config):
+        _Extension.__init__(self, **config)
+        self.add_defaults(Wallpaper.defaults)
+
+    def run(self):
+        logger.error('Setting wallpaper')
+        x = subprocess.run(['feh', '-r', '-z', '--bg-scale', '-Z', expanduser(self.directory)])

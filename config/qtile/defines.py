@@ -9,7 +9,7 @@ def autostart():
 #    yield '/usr/bin/conky', '-c', expanduser('~/.config/conky/conky-shortcuts.conf')
 
     yield '/usr/bin/xautolock', '-time', '10', '-locker', 'xlock -mode blank'
-    yield '/usr/bin/urxvtd-256color', '-o'
+    yield '/usr/bin/urxvtd-256color', '-o', '-q'
 
     # broken?
     yield '/usr/bin/nm-applet'

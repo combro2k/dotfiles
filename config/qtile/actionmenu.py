@@ -100,8 +100,11 @@ class ActionMenu(Gtk.Application):
     
     _qtile = None
 
-    def __init__(self):
+    def __init__(self, qtile=None):
         Gtk.Application.__init__(self, application_id="org.qtile.actionmenu", flags=Gio.ApplicationFlags.FLAGS_NONE)
+
+        if qtile is not None:
+            self._qtile = qtile
 
         self.window = None
 
@@ -119,3 +122,4 @@ class ActionMenu(Gtk.Application):
 if __name__ == '__main__':
     app = ActionMenu()
     app.run(sys.argv)
+    print('test')
