@@ -72,9 +72,9 @@ groups.extend([
     ScratchPad("scratchpad", [
         # define a drop down terminal.
         # it is placed in the upper third of screen by default.
-        DropDown("term", "urxvt-256color -e tmuxp load default -y", 
-            opacity=0.50,
-            warp_pointer=True,
+        DropDown("term", "urxvt-256color -sh 100 -e tmuxp load default -y", 
+#            opacity=0.50,
+            warp_pointer=False,
             on_focus_lost_hide=False,
             x=0.05,
             y=0.05,

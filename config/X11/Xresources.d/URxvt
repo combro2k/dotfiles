@@ -57,7 +57,7 @@ URxvt.tabbedex.new-button: false
 ! URxvt*inheritPixmap: false
 ! URxvt*shading: 25
 
-URxvt*background: [99]#1e1e1e
+URxvt*background: #1e1e1e
 URxvt*inheritPixmap: false
-URxvt*transparent: true
-URxvt*fading: 25
+URxvt*transparent: false
+URxvt*fading: 27
