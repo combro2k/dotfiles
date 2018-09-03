@@ -41,7 +41,7 @@ groups.extend([
    
     Group(
         name='Skype',
-        matches=[Match(wm_class=["Skype"])],
+        matches=[Match(wm_instance_class=["skype", "Skype"])],
         exclusive=True,
         persist=False,
         layout='max',

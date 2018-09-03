@@ -10,7 +10,7 @@ from libqtile.window import Window
 from classes import AutoStart
 from extensions import Wallpaper
 
-@hook.subscribe.startup
+@hook.subscribe.startup_complete
 def dbus_register():
     id = environ.get('DESKTOP_AUTOSTART_ID')
     if not id:
