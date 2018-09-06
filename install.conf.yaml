@@ -12,6 +12,7 @@
   # The config files!  
 - link:
     ~/.emacs.d: config/spacemacs
+    ~/.linuxbrew: config/linuxbrew
     ~/.gtkrc: config/gtk2/base16-twilight.gtkrc
     ~/.spacemacs: config/emacs/spacemacs
     ~/.screenrc: config/screen/screenrc
