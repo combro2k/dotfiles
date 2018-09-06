@@ -18,6 +18,3 @@
 [submodule "config/tmux/plugins/tpm"]
 	path = config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "linuxbrew"]
-	path = config/linuxbrew
-	url = https://github.com/Linuxbrew/brew.git
