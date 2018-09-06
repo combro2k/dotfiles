@@ -57,10 +57,6 @@ def group_created(qtile, group):
 
 @hook.subscribe.client_new
 def specific_instance_rules(window): # type: Window
-    # if window.floating:
-    # logger.error(window.floating)
-    # logger.error(window.name)
-
     if window.match(wmclass='zenity') or window.match(wmclass='qtile-actionmenu'):
         wmtype = window.qtile.conn.atoms["_NET_WM_WINDOW_TYPE_DOCK"]
         state = list(window.window.get_property('_NET_WM_WINDOW_TYPE', 'ATOM', unpack=int))
@@ -68,24 +64,3 @@ def specific_instance_rules(window): # type: Window
             state.append(wmtype)
         window.window.set_property('_NET_WM_WINDOW_TYPE', state)
         window.above = True
-
-    # if window.match(wmclass='qtile-contextmenu'):
-    #     window.static(0)
-
-#@hook.subscribe.client_focus
-#def dim_inactive(window):
-#    try:
-#        qtile = window.qtile # type: Qtile
-#
-#        if window == qtile.currentWindow:
-#            index = qtile.groups.index(qtile.currentGroup)
-#            group = qtile.groups[index] # type: libqtile.config.Group
-#            if isinstance(window, Window) and window.match(wmclass='urxvtc-256color'):           
-#                window.opacity = 1.0
-#                
-#                for w in group.windows:
-#                    if w.match(wmclass='urxvtc-256color') and w.has_focus is False:
-#                        w.opacity = 0.80
-#
-#    except Exception as e:
-#        logger.error(e)
