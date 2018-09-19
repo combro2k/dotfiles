@@ -10,15 +10,25 @@ groups = [Group(i) for i in "1234567890"]
 
 groups.extend([
     Group(
+        name='TeamViewer',
+        matches=[Match(wm_instance_class=["TeamViewer"])],
+        exclusive=True,
+        persist=False,
+        layout='max',
+        init=False,
+        label=f'TeamViewer',
+    ),
+ 
+    Group(
         name='Firefox',
-        matches=[Match(wm_class=["Firefox"])],
+        matches=[Match(wm_instance_class=["Firefox"])],
         exclusive=True,
         persist=False,
         layout='max',
         init=False,
         label=f'{www_ico}',
-    ),    
-    
+    ),
+   
     Group(
         name='Editors',
         matches=[Match(wm_instance_class=["code", "Code", "emacs", "Emacs"])],

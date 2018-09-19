@@ -94,7 +94,7 @@ keys = [
     Key([], 'F12', lazy.group['scratchpad'].dropdown_toggle('term')),
 
     Key([mod], "F1", app_or_group('Firefox', 'firefox')),
-    Key([mod], "F2", app_or_group('Editors', 'urxvtc-256color -name emacs -e emacs-nox')),
+    Key([mod], "F2", app_or_group('Editors', 'urxvtc-256color -name emacs -e emacsclient -t')),
     # Key([mod, "shift"], "F3", app_or_group('Anbox', 'anbox.appmgr')),
     Key([mod], "F3", app_or_group('GIMP', 'gimp')),
     Key([mod], "F4", app_or_group('Skype', 'urxvtc-256color -name Skype -e env TERM=xterm ssh weechat@vmaurik.nl -p 5000')),

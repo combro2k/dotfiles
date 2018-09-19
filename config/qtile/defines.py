@@ -10,6 +10,7 @@ def autostart():
 
     yield '/usr/bin/xautolock', '-time', '10', '-locker', 'xlock -mode blank'
     yield '/usr/bin/urxvtd-256color', '-o', '-q'
+    yield '/usr/bin/emacs-nox', '--daemon'
 
     # broken?
     yield '/usr/bin/nm-applet'
