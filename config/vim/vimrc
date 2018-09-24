@@ -23,6 +23,8 @@ Plug 'mikewest/vim-markdown'
 Plug 'dag/vim-fish'
 Plug 'chriskempson/base16-vim'
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
 call plug#end()
 
 function! s:tig_status()

@@ -58,7 +58,17 @@ groups.extend([
         init=False,
         label=f'{skype_ico}',
     ),
-    
+ 
+    Group(
+        name='WeeChat',
+        matches=[Match(wm_instance_class=["weechat", "WeeChat"])],
+        exclusive=True,
+        persist=False,
+        layout='max',
+        init=False,
+        label=f'{wheechat_ico}',
+    ),
+   
     Group(
         name='GIMP',
         matches=[Match(wm_instance_class=["gimp", "Gimp", "gimp-2.10"])],

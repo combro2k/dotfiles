@@ -97,7 +97,7 @@ keys = [
     Key([mod], "F2", app_or_group('Editors', 'urxvtc-256color -name emacs -e emacsclient -t')),
     # Key([mod, "shift"], "F3", app_or_group('Anbox', 'anbox.appmgr')),
     Key([mod], "F3", app_or_group('GIMP', 'gimp')),
-    Key([mod], "F4", app_or_group('Skype', 'urxvtc-256color -name Skype -e env TERM=xterm ssh weechat@vmaurik.nl -p 5000')),
+    Key([mod], "F4", app_or_group('WeeChat', 'urxvtc-256color -name WeeChat -e ssh weechat@vmaurik.nl -p 5000')),
 
     Key([], "F11", lazy.run_extension(Wallpaper())),
 

@@ -16,6 +16,7 @@ URxvt*skipBuiltinGlyphs: true
 ! URxvt*termName: rxvt-unicode-256color
 ! URxvt*termName: xterm-256color
 URxvt*termName: rxvt-unicode
+URxvt*title: rxvt-unicode
 
 URxvt.letterSpace: 0
 URxvt.perl-ext-common: font-size,tabbedex,matcher,searchable-scrollback
