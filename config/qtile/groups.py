@@ -79,6 +79,16 @@ groups.extend([
         label=f'{gimp_ico}',
     ),
 
+    Group(
+        name='E-Mail',
+        matches=[Match(wm_instance_class=["thunderbird", "Thunderbird", "Mail"])],
+        exclusive=True,
+        persist=False,
+        layout='max',
+        init=False,
+        label=f'{email_ico}',
+    ),
+
     # Group(
     #     name='Anbox',
     #     matches=[Match(wm_instance_class=["Anbox", "anbox"])],

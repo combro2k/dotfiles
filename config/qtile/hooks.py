@@ -52,7 +52,7 @@ def group_created(qtile, group):
     if not qtile.ready:
         return False
 
-    if  ((group == 'Firefox') or (group == 'Editors') or (group == 'Skype') or (group == 'GIMP') or (group == 'Builder') or (group == 'TeamViewer') or (group == 'WeeChat')):
+    if  ((group == 'Firefox') or (group == 'Editors') or (group == 'Skype') or (group == 'GIMP') or (group == 'Builder') or (group == 'TeamViewer') or (group == 'WeeChat') or (group == 'E-Mail')):
         qtile.groupMap[group].cmd_toscreen()
 
 @hook.subscribe.client_new
