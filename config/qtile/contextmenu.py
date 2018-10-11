@@ -16,7 +16,7 @@ from gi.repository import Gio, Gtk, Gdk
 from libqtile.command import Client
 
 class ContextMenuApp(Gtk.Application):
-    
+
     _qtile = None
     _menu = None
     _quit = False
@@ -36,7 +36,7 @@ class ContextMenuApp(Gtk.Application):
             menu.set_title('ROOT')
             menu.connect('deactivate', self.cmd_destroy)
 
-            self._menu = menu            
+            self._menu = menu
 
         return self._menu
 
@@ -51,15 +51,15 @@ class ContextMenuApp(Gtk.Application):
 
         self.createXdgMenu(
             menu=xdg.Menu.parse(
-                filename=None, 
+                filename=None,
                 debug=False,
-            ), 
+            ),
             submenu=self.addMenu(
                 item=self.createMenu(title='Applications'),
                 icon='go-home'
             )
         )
-        
+
         self.addMenuItem(
             item=self.createMenuItemSeparator(),
             parent=self.menu,
@@ -78,9 +78,15 @@ class ContextMenuApp(Gtk.Application):
                 icon='preferences-system-windows',
             )
 
+            qtileMoveWindowMenu = self.addMenu(
+                item=self.createMenu(title='_Move'),
+                parent=qtileWindowMenu,
+                icon='preferences-system-windows',
+            )
+
             self.addMenuItem(
                 item=self.createMenuItem(
-                    title='Bring to _Front', 
+                    title='Bring to _Front',
                     callback=self.cmd_qtile,
                     icon='go-top-symbolic',
                     key='window',
@@ -91,7 +97,7 @@ class ContextMenuApp(Gtk.Application):
 
             self.addMenuItem(
                 item=self.createMenuItem(
-                    title='Toggle F_loat', 
+                    title='Toggle F_loat',
                     callback=self.cmd_qtile,
                     icon='preferences-system-windows',
                     key='window',
@@ -102,7 +108,7 @@ class ContextMenuApp(Gtk.Application):
 
             self.addMenuItem(
                 item=self.createMenuItem(
-                    title='Toggle _Maximize', 
+                    title='Toggle _Maximize',
                     callback=self.cmd_qtile,
                     icon='zoom-fit-best-symbolic',
                     key='window',
@@ -113,7 +119,7 @@ class ContextMenuApp(Gtk.Application):
 
             self.addMenuItem(
                 item=self.createMenuItem(
-                    title='Toggle M_inimize', 
+                    title='Toggle M_inimize',
                     callback=self.cmd_qtile,
                     icon='window-minimize-symbolic',
                     key='window',
@@ -124,7 +130,7 @@ class ContextMenuApp(Gtk.Application):
 
             self.addMenuItem(
                 item=self.createMenuItem(
-                    title='_Kill', 
+                    title='_Kill',
                     callback=self.cmd_qtile,
                     icon='window-close',
                     key='window',
@@ -132,6 +138,23 @@ class ContextMenuApp(Gtk.Application):
                 ),
                 parent=qtileWindowMenu
             )
+
+            groups = self.cmd_qtile(item='groups', kwargs={'command': 'groups'})
+            for group in groups:
+                if group == 'scratchpad':
+                    continue
+
+                self.addMenuItem(
+                    item=self.createMenuItem(
+                        title=group,
+                        callback=self.cmd_qtile,
+                        icon='window-move',
+                        key='window',
+                        command='togroup',
+                        args=group,
+                    ),
+                    parent=qtileMoveWindowMenu
+                )
 
         qtileCommandsMenu = self.addMenu(
             item=self.createMenu(
@@ -238,7 +261,7 @@ class ContextMenuApp(Gtk.Application):
 
                     entries.extend(
                         self.createXdgMenu(
-                            menu=entry, 
+                            menu=entry,
                             submenu=newSubmenu,
                         )
                     )
@@ -275,7 +298,7 @@ class ContextMenuApp(Gtk.Application):
 
         return entries
 
-    def getThemeIcon(self, icon, size=24) -> Gio.ThemedIcon:           
+    def getThemeIcon(self, icon, size=24) -> Gio.ThemedIcon:
         icon = Gio.ThemedIcon(name=icon)
         img = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
 
@@ -315,7 +338,7 @@ class ContextMenuApp(Gtk.Application):
         parent.append(item)
 
     def addMenu(self, item, icon=None, parent=None):
-        if parent is None: 
+        if parent is None:
             parent = self.menu # type: gi.overrides.Gtk.Menu
 
         menuItem = self.createMenuItem(
@@ -339,13 +362,13 @@ class ContextMenuApp(Gtk.Application):
             data=None,
             button=0,
             activate_time=Gdk.CURRENT_TIME
-        )       
+        )
 
     def do_activate(self):
         self._configure()
         self.popup()
 
-        Gtk.main()   
+        Gtk.main()
 
     def cmd_qtile(self, item, kwargs=None):
         if kwargs:
@@ -356,7 +379,7 @@ class ContextMenuApp(Gtk.Application):
             command = 'commands'
             key = None
             args = None
-        
+
         if key is not None:
             mod = getattr(self.qtile, key)
         else:
@@ -369,7 +392,8 @@ class ContextMenuApp(Gtk.Application):
                 ret = getattr(mod, command)()
 
             if ret is not None:
-                print(ret)
+                #print(ret)
+                return ret
         except Exception as e:
             print(e)
 
@@ -383,7 +407,7 @@ class ContextMenuApp(Gtk.Application):
 
         if command is not None:
             if type(command) is str:
-                command = shlex.split(command)  
+                command = shlex.split(command)
 
             command[0] = os.path.expanduser(command[0])
             try:

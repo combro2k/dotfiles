@@ -23,7 +23,7 @@ layouts = [
 
     layout.TreeTab(
         name='tree',
-        panel_width=100,
+        panel_width=150,
         previous_on_rm=True,
         fontsize=16,
         sections=['Shell']

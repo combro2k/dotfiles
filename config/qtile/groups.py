@@ -21,7 +21,7 @@ groups.extend([
  
     Group(
         name='Firefox',
-        matches=[Match(wm_instance_class=["Firefox"])],
+        matches=[Match(wm_instance_class=["Firefox", "Navigator"])],
         exclusive=True,
         persist=False,
         layout='max',

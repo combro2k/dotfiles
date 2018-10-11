@@ -45,8 +45,8 @@ keys = [
     Key([mod], "d", minimize_group()),
     Key([mod, "shift"], "d", unminimize_group()),
 
-    Key([mod, "shift"], "m", lazy.window.toggle_maximize()),
-    Key([mod], "m", lazy.window.toggle_minimize()),
+    Key([mod], "m", lazy.window.toggle_maximize()),
+    Key([mod, "shift"], "m", lazy.window.toggle_minimize()),
 
     Key([mod, "control"], "k", lazy.layout.shuffle_down()),
     Key([mod, "control"], "j", lazy.layout.shuffle_up()),
