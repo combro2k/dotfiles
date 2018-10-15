@@ -14,11 +14,11 @@ class MenuWidget(base._TextBox):
 
     def __init__(self, width=bar.CALCULATED, **config):
         base._TextBox.__init__(self, "", width, **config)
-        self.add_defaults(ActionMenuWidget.defaults)
+        self.add_defaults(MenuWidget.defaults)
     
     def _configure(self, qtile, bar):
         base._TextBox._configure(self, qtile, bar)
-        self.text = '\uf0c9'
+        self.text = '\uf308'
     
     def button_press(self, x, y, button):
         if button == 1:
@@ -33,7 +33,7 @@ class ActionMenuWidget(base._TextBox):
     
     def _configure(self, qtile, bar):
         base._TextBox._configure(self, qtile, bar)
-        self.text = '\uf013'
+        self.text = '\uf2be'
     
     def button_press(self, x, y, button):
         if button == 1:
@@ -55,6 +55,22 @@ class WindowNameNew(WindowName):
             self._windowcd = windowcd
 
         return self._windowcd
+
+    def update(self, *args):
+        if self.for_current_screen:
+            w = self.qtile.currentScreen.group.currentWindow
+        else:
+            w = self.bar.screen.group.currentWindow
+        state = ''
+        if self.show_state and w is not None:
+            if w.maximized:
+                state = '\uf2d0 '
+            elif w.minimized:
+                state = '\uf2d1 '
+            elif w.floating:
+                state = '\uf2d2 '
+        self.text = "%s%s" % (state, w.name if w and w.name else " ")
+        self.bar.draw()
 
     def button_press(self, x, y, button):
         if self.for_current_screen:

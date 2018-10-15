@@ -5,7 +5,7 @@ from widgets import MenuWidget, ActionMenuWidget, WindowNameNew
 
 widget_defaults = dict(
     font='Cousine Nerd Font Mono',
-    fontsize=14,
+    fontsize=16,
     padding=2,
     background='001c3d',
     markup=True
@@ -21,7 +21,7 @@ screens = [
                 ),
                 MenuWidget(
                     background='3badea',
-                    fontsize=24,
+                    fontsize=36,
                     padding=4
                 ),
                 widget.Spacer(
@@ -29,11 +29,12 @@ screens = [
                 ),
                 widget.CurrentLayout(
                     foreground='ffffff',
+                    fontsize=12,
                     padding=3
                 ),
                 widget.GroupBox(
                     padding=1,
-                    fontsize=19,
+                    fontsize=20,
                     highlight_method='block',
                     spacing=0,
                     use_mouse_wheel=False,
@@ -73,7 +74,8 @@ screens = [
                     length=5
                 ),
                 ActionMenuWidget(
-                    fontsize=24
+                    fontsize=36,
+                    padding=4
                 ),
                 widget.Spacer(
                     length=10
