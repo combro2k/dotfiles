@@ -58,7 +58,7 @@ keys = [
     Key([mod], "q", lazy.layout.toggle_split().when('bsp')),
     Key([mod], "n", lazy.layout.normalize().when('bsp')),
 
-    Key([mod], "Return", lazy.spawn('urxvtc-256color')),
+    Key([mod], "Return", lazy.spawn('urxvtc-256color -bg "#1e1e1e"')),
     Key([mod], "Tab", lazy.next_layout()),
     Key([alt], "F4", lazy.window.kill()),
 
@@ -92,17 +92,18 @@ keys = [
     Key([mod], "space", lazy.run_extension(RofiMenu(modi="drun"))),
     Key([alt], "Tab", lazy.run_extension(RofiMenu(modi="windowcd"))),
     Key([mod, "shift"], "r", lazy.restart()),
-    Key([], 'F12', lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key([], 'F11', lazy.group['dropdown'].dropdown_toggle('weechat')),
+    Key([], 'F12', lazy.group['dropdown'].dropdown_toggle('term')),
 
     Key([mod], "F1", app_or_group('Firefox', 'firefox')),
-    Key([mod], "F2", app_or_group('Editors', 'urxvtc-256color -name emacs -e emacsclient -t')),
+    Key([mod], "F2", app_or_group('Editors', 'urxvtc-256color -bg "#1e1e1e" -name emacs -e emacsclient -t')),
     Key([mod], "F3", app_or_group('E-Mail', 'thunderbird')),
 #    Key([mod], "F3", app_or_group('GIMP', 'gimp')),
-    Key([mod], "F4", app_or_group('WeeChat', 'urxvtc-256color -name WeeChat -e ssh weechat@vmaurik.nl -p 5000')),
+#    Key([mod], "F4", app_or_group('WeeChat', 'urxvtc-256color -name WeeChat -e ssh weechat@vmaurik.nl -p 5000')),
     Key([mod], "F5", app_or_group('TeamViewer', 'teamviewer')),
 
 
-    Key([], "F11", lazy.run_extension(Wallpaper())),
+    Key([], "F10", lazy.run_extension(Wallpaper())),
 
     Key([], "Menu", context_menu()),
 ]

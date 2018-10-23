@@ -41,4 +41,8 @@ if status --is-interactive
   fundle plugin 'combro2k/theme-cmorrell-twilight'
 
   fundle init
+
+  if functions -q base16
+    base16 twilight
+  end
 end

@@ -59,15 +59,14 @@ groups.extend([
         label=f'{skype_ico}',
     ),
  
-    Group(
-        name='WeeChat',
-        matches=[Match(wm_instance_class=["weechat", "WeeChat"])],
-        exclusive=True,
-        persist=False,
-        layout='max',
-        init=False,
-        label=f'{wheechat_ico}',
-    ),
+#    Group(
+#        name='WeeChat',
+#        matches=[Match(wm_instance_class=["weechat", "WeeChat"])],
+#        exclusive=True,
+#        persist=False,
+#        layout='max',
+#        init=False,
+#        label=f'{wheechat_ico}',
    
     Group(
         name='GIMP',
@@ -99,10 +98,10 @@ groups.extend([
     #     label=f'{android_ico}',
     # ),
 
-    ScratchPad("scratchpad", [
+    ScratchPad("dropdown", [
         # define a drop down terminal.
         # it is placed in the upper third of screen by default.
-        DropDown("term", "urxvt-256color -name scratchpad -sh 100",
+        DropDown("term", "urxvt-256color -bg '#1e1e1e' -name scratchpad -sh 100",
             opacity=1,
             warp_pointer=False,
             on_focus_lost_hide=False,
@@ -110,6 +109,16 @@ groups.extend([
             y=0.05,
             width=0.9,
             height=0.85,
+        ),
+
+        DropDown("weechat", "urxvt-256color -name weechat -sh 100 -e ssh weechat@vmaurik.nl -p 5000",
+            opacity=1,
+            warp_pointer=False,
+            on_focus_lost_hide=False,
+            x=0.025,
+            y=0.025,
+            width=0.95,
+            height=0.90,
         ),
     ]),
 ])
