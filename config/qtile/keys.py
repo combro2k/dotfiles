@@ -23,6 +23,7 @@ context_menu = Helpers.context_menu
 
 minimize_group = Helpers.minimize_group
 unminimize_group = Helpers.unminimize_group
+toggle_minimize_group = Helpers.toggle_minimize_group
 
 toggle_follow_mouse_focus = Helpers.toggle_follow_mouse_focus
 
@@ -42,8 +43,8 @@ keys = [
 
     Key([mod], "f", toggle_follow_mouse_focus()),
 
-    Key([mod], "d", minimize_group()),
-    Key([mod, "shift"], "d", unminimize_group()),
+    Key([mod], "d", toggle_minimize_group()),
+    # Key([mod, "shift"], "d", unminimize_group()),
 
     Key([mod], "m", lazy.window.toggle_maximize()),
     Key([mod, "shift"], "m", lazy.window.toggle_minimize()),

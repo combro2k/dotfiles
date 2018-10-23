@@ -37,6 +37,7 @@ if status --is-interactive
   # theme
   # fundle plugin 'oh-my-fish/theme-bira'
   # fundle plugin 'oh-my-fish/theme-bobthefish'
+  fundle plugin 'smh/base16-shell-fish'
   fundle plugin 'combro2k/theme-cmorrell-twilight'
 
   fundle init

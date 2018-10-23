@@ -227,6 +227,15 @@ class Helpers():
 
         return f
 
+    def toggle_minimize_group():
+        @lazy.function
+        def f(qtile):
+            state = not qtile.currentWindow.minimized
+            if qtile.currentGroup.windows is not None:
+                for w in qtile.currentGroup.windows:
+                    w.minimized = state
+        return f
+
     def minimize_group():
         @lazy.function
         def f(qtile):
