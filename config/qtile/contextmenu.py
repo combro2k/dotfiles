@@ -74,7 +74,7 @@ class ContextMenuApp(Gtk.Application):
         if currentWindow:
             qtileWindowMenu = self.addMenu(
                 item=self.createMenu(title='_Window'),
-                parent=qtileMenu,
+#                parent=qtileMenu,
                 icon='preferences-system-windows',
             )
 
@@ -141,28 +141,28 @@ class ContextMenuApp(Gtk.Application):
 
             groups = self.cmd_qtile(item='groups', kwargs={'command': 'groups'})
             for group in groups:
-                if group == 'scratchpad':
+                group = groups[group]
+
+                if group['layout'] == 'floating':
                     continue
 
                 self.addMenuItem(
                     item=self.createMenuItem(
-                        title=group,
-                        callback=self.cmd_qtile,
+                        title=group['name'],
+                        callback=self.cmd_qtile_window_move,
                         icon='window-move',
-                        key='window',
-                        command='togroup',
-                        args=group,
+                        group=group['name'],
                     ),
                     parent=qtileMoveWindowMenu
                 )
 
-        qtileCommandsMenu = self.addMenu(
-            item=self.createMenu(
-                title='_Commands',
-            ),
-            icon='system-run',
-            parent=qtileMenu,
-        )
+#        qtileCommandsMenu = self.addMenu(
+#            item=self.createMenu(
+#                title='_Commands',
+#            ),
+#            icon='system-run',
+#            parent=qtileMenu,
+#        )
 
         self.addMenuItem(
             item=self.createMenuItem(
@@ -171,7 +171,7 @@ class ContextMenuApp(Gtk.Application):
                 icon='view-refresh',
                 command='restart',
             ),
-            parent=qtileCommandsMenu
+            parent=qtileMenu
         )
 
         self.addMenuItem(
@@ -181,7 +181,7 @@ class ContextMenuApp(Gtk.Application):
                 icon='application-exit-symbolic',
                 command='shutdown',
             ),
-            parent=qtileCommandsMenu
+            parent=qtileMenu
         )
 
         self.addMenuItem(
@@ -392,10 +392,23 @@ class ContextMenuApp(Gtk.Application):
                 ret = getattr(mod, command)()
 
             if ret is not None:
-                #print(ret)
                 return ret
         except Exception as e:
             print(e)
+
+    def cmd_qtile_window_move(self, item, kwargs=None):
+        if kwargs:
+            group = kwargs.get('group', None)
+        else:
+            group = None
+
+        self.cmd_qtile(item, kwargs={
+            'key': 'window',
+            'command': 'togroup',
+            'args': group
+        })
+
+        self.qtile.group[group].toscreen()
 
     def cmd_execute(self, item, kwargs=None):
         if kwargs:
