@@ -85,5 +85,10 @@ screens = [
             background='#1d1f21',
             opacity=0.888888880
         ),
+#        bottom=bar.Bar([
+#            size=30,
+#            background='#1d1f21',
+#            opacity=0.888888880
+#        ]),
     ),
 ]

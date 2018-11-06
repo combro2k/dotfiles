@@ -150,7 +150,7 @@ class ContextMenuApp(Gtk.Application):
                     item=self.createMenuItem(
                         title=group['name'],
                         callback=self.cmd_qtile_window_move,
-                        icon='window-move',
+                        icon='go-jump-symbolic',
                         group=group['name'],
                     ),
                     parent=qtileMoveWindowMenu

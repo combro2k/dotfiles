@@ -48,6 +48,7 @@ keys = [
 
     Key([mod], "m", lazy.window.toggle_maximize()),
     Key([mod, "shift"], "m", lazy.window.toggle_minimize()),
+    Key([mod], "f", lazy.window.toggle_floating()),
 
     Key([mod, "control"], "k", lazy.layout.shuffle_down()),
     Key([mod, "control"], "j", lazy.layout.shuffle_up()),
@@ -79,6 +80,11 @@ keys = [
         lazy.layout.shuffle_down().when('stack'),
     ),
 
+    Key([alt, "control"], "Left", lazy.layout.grow_left().when('bsp')),
+    Key([alt, "control"], "Right", lazy.layout.grow_right().when('bsp')),
+    Key([alt, "control"], "Up", lazy.layout.grow_up().when('bsp')),
+    Key([alt, "control"], "Down", lazy.layout.grow_down().when('bsp')),
+
     Key([mod, "shift"], "Left", window_to_prev_group()),
     Key([mod, "shift"], "Right", window_to_next_group()),
 
@@ -92,6 +98,7 @@ keys = [
     Key([mod], "space", lazy.run_extension(RofiMenu(modi="drun"))),
     Key([alt], "Tab", lazy.run_extension(RofiMenu(modi="windowcd"))),
     Key([mod, "shift"], "r", lazy.restart()),
+
     Key([], 'F11', lazy.group['dropdown'].dropdown_toggle('weechat')),
     Key([], 'F12', lazy.group['dropdown'].dropdown_toggle('term')),
 
