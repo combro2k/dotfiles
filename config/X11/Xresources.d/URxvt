@@ -55,6 +55,7 @@ URxvt.matcher.button: 2
 
 URxvt.tabbed.autohide: true
 URxvt.tabbedex.new-button: false
+URxvt.tabbed.title: no
 
 ! URxvt*inheritPixmap: false
 ! URxvt*shading: 25

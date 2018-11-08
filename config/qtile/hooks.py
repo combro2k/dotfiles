@@ -64,3 +64,8 @@ def specific_instance_rules(window): # type: Window
             state.append(wmtype)
         window.window.set_property('_NET_WM_WINDOW_TYPE', state)
         window.above = True
+    if window.match(wmclass='conky-sysinfo'):
+        pass
+        #window.above = False
+
+        #window.static(0)

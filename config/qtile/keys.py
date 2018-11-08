@@ -8,25 +8,19 @@ mod = "mod4"
 alt = "mod1"
 
 app_or_group = Helpers.app_or_group
-
 window_to_group = Helpers.window_to_group
 window_to_prev_group = Helpers.window_to_prev_group
 window_to_next_group = Helpers.window_to_next_group
-
+window_maximize = Helpers.window_maximize
 windows_to_group = Helpers.windows_to_group
 windows_to_prev_group = Helpers.windows_to_prev_group
 windows_to_next_group = Helpers.windows_to_next_group
-window_maximize = Helpers.window_maximize
-
-create_screenshot = Helpers.create_screenshot
-context_menu = Helpers.context_menu
-
 minimize_group = Helpers.minimize_group
 unminimize_group = Helpers.unminimize_group
 toggle_minimize_group = Helpers.toggle_minimize_group
-
+create_screenshot = Helpers.create_screenshot
+context_menu = Helpers.context_menu
 toggle_follow_mouse_focus = Helpers.toggle_follow_mouse_focus
-
 qtile_shutdown = Helpers.qtile_shutdown
 
 keys = [
@@ -57,33 +51,53 @@ keys = [
     Key(["control", "shift"], "Tab", lazy.group.prev_window()),
 
     Key([mod], "q", lazy.layout.toggle_split().when('bsp')),
-    Key([mod], "n", lazy.layout.normalize().when('bsp')),
+    Key([mod], "n", 
+        lazy.layout.reset_size().when('plasma'),
+        lazy.layout.normalize().when('bsp'),
+    ),
 
     Key([mod], "Return", lazy.spawn('urxvtc-256color -bg "#1e1e1e"')),
     Key([mod], "Tab", lazy.next_layout()),
     Key([alt], "F4", lazy.window.kill()),
 
     Key([mod], "Left", 
-        lazy.layout.flip_left().when('bsp'),
+        lazy.layout.move_left().when('plasma'),
+        lazy.layout.shuffle_left().when('bsp'),
         lazy.layout.rotate().when('stack'),
     ),
-    Key([mod], "Right", 
-        lazy.layout.flip_right().when('bsp'),
+    Key([mod], "Right",
+        lazy.layout.move_right().when('plasma'),
+        lazy.layout.shuffle_right().when('bsp'),
         lazy.layout.rotate().when('stack'),
     ),
-    Key([mod], "Up", 
-        lazy.layout.flip_up().when('bsp'),
+    Key([mod], "Up",
+        lazy.layout.move_up().when('plasma'),
+        lazy.layout.shuffle_up().when('bsp'),
         lazy.layout.shuffle_up().when('stack'),
     ),
-    Key([mod], "Down", 
-        lazy.layout.flip_down().when('bsp'),
+    Key([mod], "Down",
+        lazy.layout.move_down().when('plasma'),
+        lazy.layout.shuffle_down().when('bsp'),
         lazy.layout.shuffle_down().when('stack'),
     ),
 
-    Key([alt, "control"], "Left", lazy.layout.grow_left().when('bsp')),
-    Key([alt, "control"], "Right", lazy.layout.grow_right().when('bsp')),
-    Key([alt, "control"], "Up", lazy.layout.grow_up().when('bsp')),
-    Key([alt, "control"], "Down", lazy.layout.grow_down().when('bsp')),
+    Key([mod, alt], "Left",
+        lazy.layout.integrate_left().when('plasma')
+    ),
+    Key([mod, alt], "Right",
+        lazy.layout.integrate_right().when('plasma')
+    ),
+    Key([mod, alt], "Up",
+        lazy.layout.integrate_up().when('plasma')
+    ),
+    Key([mod, alt], "Down",
+        lazy.layout.integrate_down().when('plasma')
+    ),
+
+    # Key([alt, "control"], "Left", lazy.layout.grow_left().when('bsp')),
+    # Key([alt, "control"], "Right", lazy.layout.grow_right().when('bsp')),
+    # Key([alt, "control"], "Up", lazy.layout.grow_up().when('bsp')),
+    # Key([alt, "control"], "Down", lazy.layout.grow_down().when('bsp')),
 
     Key([mod, "shift"], "Left", window_to_prev_group()),
     Key([mod, "shift"], "Right", window_to_next_group()),
@@ -105,8 +119,6 @@ keys = [
     Key([mod], "F1", app_or_group('Firefox', 'firefox')),
     Key([mod], "F2", app_or_group('Editors', 'urxvtc-256color -bg "#1e1e1e" -name emacs -e emacsclient -t')),
     Key([mod], "F3", app_or_group('E-Mail', 'thunderbird')),
-#    Key([mod], "F3", app_or_group('GIMP', 'gimp')),
-#    Key([mod], "F4", app_or_group('WeeChat', 'urxvtc-256color -name WeeChat -e ssh weechat@vmaurik.nl -p 5000')),
     Key([mod], "F5", app_or_group('TeamViewer', 'teamviewer')),
 
 
@@ -133,6 +145,5 @@ mouse = [
     Drag(["control", alt], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
     Drag(["control", alt], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
     Click(["control", alt], "Button2", lazy.window.bring_to_front()),
-#    Click(["control", alt], "Button4", ),
     Click([alt], "Button3", context_menu()),
 ]

@@ -268,3 +268,38 @@ class Helpers():
                 pass
 
         return f
+
+    def move_window_to_left():
+        @lazy.function
+        def f(qtile):
+            currentLayout = qtile.currentLayout
+            if qtile.currentWindow is not None:
+                if currentLayout.name == 'plasma':
+                    currentLayout.cmd_move_left()
+                elif currentLayout.name == 'bsp':
+                    currentLayout.cmd_shuffle_left()
+                elif currentLayout.name == 'stack':
+                    currentLayout.cmd_shuffle_left()
+
+        return f
+    
+    def move_window_to_right():
+        @lazy.function
+        def f(qtile):
+            pass
+
+        return f
+
+    def move_window_to_up():
+        @lazy.function
+        def f(qtile):
+            pass
+
+        return f
+    
+    def move_window_to_down():
+        @lazy.function
+        def f(qtile):
+            pass
+
+        return f
