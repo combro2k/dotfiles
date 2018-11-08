@@ -22,7 +22,7 @@ def autostart():
 
     yield '/usr/bin/clipit'
 
-#    yield '/usr/bin/compton', '--dbus'
+    yield '/usr/bin/compton', '--dbus'
 
     yield '/usr/bin/vmware-user-suid-wrapper'
 
