@@ -17,7 +17,7 @@ Xcursor.theme: DMZ-White
 
 ! XTerm*reverseVideo: off
 ! XTerm*faceName: Terminus:size=11:antialias=true
-XTerm*faceName: Cousine Nerd Font Mono:style=Regular:size=11:antialias=true
+XTerm*faceName: Blex Mono Nerd Font:style=Regular:size=11:antialias=true
 xTerm*selectToClipboard: true
 
 !-- Xft settings -- !

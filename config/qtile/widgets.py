@@ -18,7 +18,7 @@ class MenuWidget(base._TextBox):
     
     def _configure(self, qtile, bar):
         base._TextBox._configure(self, qtile, bar)
-        self.text = '\uf308'
+        self.text = '\uf314'
     
     def button_press(self, x, y, button):
         if button == 1:

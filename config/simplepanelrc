@@ -22,9 +22,9 @@ TMP="${XDG_RUNTIME_DIR}/simplepanel"
 
 SP_FONT_1="-xos4-terminus-medium-r-normal--18-*-*-*-*-*-iso10646-1"	# main font
 SP_OFFSET_1=0
-SP_FONT_2="Cousine Nerd Font"	# iconic font
+SP_FONT_2="Blex Mono Nerd Font"	# iconic font
 SP_OFFSET_2=0
-SP_FONT_3="Cousine Nerd Font Mono"	# extra font
+SP_FONT_3="Blex Mono Nerd Font"	# extra font
 SP_OFFSET_3=0
 
 # SP_FONT_1="Hack Nerd Font:pixelsize=16"	# main font
