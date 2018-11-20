@@ -23,7 +23,7 @@
 
 #### Polybar (choice)
 
-	# Depracated in favor of lemonbar
+	# Depracated in favor of qtile
 
 	# Use zypper repository
 	[polybar](https://software.opensuse.org/ymp/home:sysek/openSUSE_Tumbleweed/polybar.ymp?base=openSUSE%3AFactory&query=polybar)
@@ -53,6 +53,8 @@
 		sudo make install
 
 #### Lemonbar (suggested)
+
+    # deprecated in favor of qtile
 
 	# Download patched xft lemonbar
 	[Krypt-n lemonbar](https://github.com/krypt-n/bar)
@@ -99,6 +101,17 @@
 #### Pipsi
 
 	pip install --user pipsi
+
+#### Qtile Plasma
+
+    I'm a favor of qtile plasma layout
+    You can install it via
+
+    # For current user only
+    pip install --user --upgrade https://github.com/combro2k/qtile-plasma/archive/master.zip
+
+    # For globally
+    sudo pip install --upgrade https://github.com/combro2k/qtile-plasma/archive/master.zip
 
 #### Other useful stuff
 

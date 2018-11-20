@@ -9,10 +9,6 @@ layouts = []
 
 try:
     layouts.extend([
-        layout.Bsp(
-            name='bsp'
-        ),
-
         Plasma(
             border_normal='#333333',
             border_focus='#00e891',
@@ -28,7 +24,10 @@ except:
 
 
 layouts.extend([
-    
+    layout.Bsp(                                                                                                                                                                                              
+        name='bsp'                                                                                                                                                                                           
+    ),
+
     layout.Max(
         name='max'
     ),  
