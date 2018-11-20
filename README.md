@@ -2,17 +2,15 @@
 
 ## DotBot
 
-  Configs can be symlinked via [dotbot](https://git.io/dotbot), use ./install to use that 
-
-  In order to automaticly install python libs install the python development package:
-
-  python3-devel or python3-dev (depending on OS)
+Configs can be symlinked via [dotbot](https://git.io/dotbot), use ./install to use that 
+In order to automaticly install python libs install the python development package:
+python3-devel or python3-dev (depending on OS)
 
 ## Hints
 
 #### VMWARE config
 
-/etc/lightdm.conf or /etc/xdg/lightdm/lightdm.conf.d/vmware.conf
+To be placed in /etc/lightdm.conf or /etc/xdg/lightdm/lightdm.conf.d/vmware.conf
 
 	[Seat:*]
 	...
@@ -23,7 +21,7 @@
 
 #### Polybar (choice)
 
-	# Depracated in favor of qtile
+[b]Depracated in favor of qtile[/b]
 
 	# Use zypper repository
 	[polybar](https://software.opensuse.org/ymp/home:sysek/openSUSE_Tumbleweed/polybar.ymp?base=openSUSE%3AFactory&query=polybar)
@@ -54,19 +52,21 @@
 
 #### Lemonbar (suggested)
 
-    # deprecated in favor of qtile
+[b]deprecated in favor of qtile[/b]
 
-	# Download patched xft lemonbar
+    # Download patched xft lemonbar
 	[Krypt-n lemonbar](https://github.com/krypt-n/bar)
 
-	# Download xtitle dependency
+Download xtitle dependency
+
 	[Xtitle](https://cerberus.site4u.nl/profiles/ticket/BNU-71184-425/conversation)
 	git clone https://github.com/baskerville/xtitle.git
 	cd xtitle
 	make PREFIX=/usr
 	sudo make PREFIX=/usr install
 
-	# Compile on OpenSUSE
+Compile on OpenSUSE
+
 	sudo zypper install \
 		make \
 		libXft-devel
@@ -82,7 +82,7 @@
 
 #### Dunst
 
-		I use dunst for notifications, in order to work with it you need to install dunst:
+I use dunst for notifications, in order to work with it you need to install dunst:
 
 		sudo pacman -S dunst
 
@@ -104,8 +104,8 @@
 
 #### Qtile Plasma
 
-    I'm a favor of qtile plasma layout
-    You can install it via
+I'm a favor of qtile plasma layout
+You can install it via
 
     # For current user only
     pip install --user --upgrade https://github.com/combro2k/qtile-plasma/archive/master.zip
