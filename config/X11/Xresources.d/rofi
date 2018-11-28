@@ -5,7 +5,7 @@ rofi.ssh-command: {terminal} -e {ssh-client} {host}
 rofi.opacity: 100
 rofi.width: 90
 rofi.lines: 25
-rofi.font: Blex Mono Nerd Font 12
+rofi.font: SauceCodePro Nerd Font Mono 12
 rofi.location: 0
 rofi.padding: 5
 rofi.levenshtein-sort: true

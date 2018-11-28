@@ -4,7 +4,7 @@ from libqtile import bar, widget
 from widgets import MenuWidget, ActionMenuWidget, WindowNameNew
 
 widget_defaults = dict(
-    font='Blex Mono Italic Nerd Font',
+    font='SauceCodePro Nerd Font Mono',
     fontsize=14,
     padding=10,
     background='001c3d',

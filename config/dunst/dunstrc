@@ -5,7 +5,7 @@
     browser = /usr/bin/firefox -new-tab
     dmenu = /usr/bin/dmenu -p dunst:
     follow = none
-    font = Blex Mono Nerd Font Regular 12
+    font = SauceCodePro Nerd Font Mono Semibold 12
     format = "<b>%s</b>\n%b"
     # geometry [{width}]x{height}][+/-{x}+/-{y}]
     geometry = "333x60-10-10"

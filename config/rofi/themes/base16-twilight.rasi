@@ -33,7 +33,7 @@
     alternate-active-foreground: @blue;
     active-background:           @background;
     selected-active-background:  @blue;
-    font:                        "Blex Mono Nerd Font 12";
+    font:                        "SauceCodePro Nerd Font Mono 12";
 }
 #window {
     background-color: @background;
