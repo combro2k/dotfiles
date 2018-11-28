@@ -5,10 +5,10 @@ from widgets import MenuWidget, ActionMenuWidget, WindowNameNew
 
 widget_defaults = dict(
     font='SauceCodePro Nerd Font Mono',
-    fontsize=14,
-    padding=10,
+#    fontsize=14,
+#    padding=10,
     background='001c3d',
-    markup=True
+#    markup=True
 )
 
 extension_defaults = widget_defaults.copy()
@@ -16,23 +16,20 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         top=bar.Bar([
-                widget.Spacer(
-                    length=4
-                ),
                 MenuWidget(
                     background='3badea',
-                    fontsize=28,
-                    padding=10
+                    fontsize=36,
+                    padding=10,
                 ),
                 widget.CurrentLayout(
                     foreground='ffffff',
                     background='585858',
-                    fontsize=12,
-                    padding=10
+                    fontsize=13,
+                    padding=10,
                 ),
                 widget.GroupBox(
-                    padding=1,
-                    fontsize=16,
+                    padding=0,
+                    fontsize=15,
                     highlight_method='block',
                     spacing=0,
                     use_mouse_wheel=False,
@@ -42,32 +39,33 @@ screens = [
                     this_current_screen_border='3badea',
                     other_current_screen_border='ffffff',
                     urgent_alert_method='block',
-                    inactive='8e8e8e'
+                    inactive='8e8e8e',
                 ),
                 WindowNameNew(
                     background='3badea',
-                    padding=10
+                    fontsize=14,
+                    padding=10,
                 ),
                 widget.Systray(
                     background='585858',
-                    padding=10
+                    padding=10,
                 ),
                 widget.BatteryIcon(
                     background='585858',
                 ),
                 widget.Clock(
                     background='585858',
-                    fontsize=18,
+                    fontsize=16,
                     format='%I:%M %p',
-                    padding=20
+                    padding=10,
                 ),
                 ActionMenuWidget(
                     background='3badea',
-                    fontsize=20,
-                    padding=10
+                    fontsize=32,
+                    padding=10,
                 ),
             ],
-            size=30,
+            size=26,
 #            background='1d1f21',
             background='585858',
             opacity=0.888888880
