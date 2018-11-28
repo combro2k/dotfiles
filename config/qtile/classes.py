@@ -133,8 +133,7 @@ class Helpers():
                 index = qtile.groups.index(qtile.currentGroup)
                 newgroup = qtile.groups[index - 1].name if index > 0 else qtile.groups[len(qtile.groups) - 2].name
 
-                windows = qtile.currentGroup.windows.copy()
-                for w in windows:
+                for w in qtile.currentGroup.windows.copy():
                     w.togroup(newgroup)
 
                 qtile.groupMap[newgroup].cmd_toscreen()
@@ -148,8 +147,7 @@ class Helpers():
                 index = qtile.groups.index(qtile.currentGroup)
                 newgroup = qtile.groups[index + 1].name if index < len(qtile.groups) - 2 else qtile.groups[0].name
 
-                windows = qtile.currentGroup.windows.copy()
-                for w in windows:
+                for w in qtile.currentGroup.windows.copy():
                     w.togroup(newgroup)
 
                 qtile.groupMap[newgroup].cmd_toscreen()
@@ -160,8 +158,7 @@ class Helpers():
         @lazy.function
         def f(qtile):
             if qtile.currentGroup.windows is not None:
-                windows = qtile.currentGroup.windows.copy()
-                for w in windows:
+                for w in qtile.currentGroup.windows.copy():
                     w.togroup(newgroup)
 
                 qtile.groupMap[newgroup].cmd_toscreen()

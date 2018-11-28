@@ -30,6 +30,7 @@
     ~/.local/share/applications/anbox-appmgr.desktop: config/X11/applications/anbox-appmgr.desktop
     ~/.local/share/fonts/dotfiles: config/fonts
     ~/.local/share/rofi/themes: config/rofi/themes
+    ~/.config/awesome: config/awesome
     ~/.config/backgrounds: config/backgrounds
     ~/.config/base16-shell: config/base16-shell
     ~/.config/bspwm: config/bspwm
