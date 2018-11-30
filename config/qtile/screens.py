@@ -7,7 +7,7 @@ widget_defaults = dict(
     font='SauceCodePro Nerd Font Mono',
 #    fontsize=14,
 #    padding=10,
-    background='001c3d',
+    background='585858',
 #    markup=True
 )
 
@@ -41,11 +41,21 @@ screens = [
                     urgent_alert_method='block',
                     inactive='8e8e8e',
                 ),
-                WindowNameNew(
-                    background='3badea',
-                    fontsize=14,
-                    padding=10,
+                widget.TaskList(
+                    spacing=0,
+                    padding=0,
+                    background='585858',
+                    border='3badea',
+                    fontsize=16,
+                    highlight_method='block',
+                    rounded=False,
+                    title_width_method='uniform',
                 ),
+#                WindowNameNew(
+#                    background='3badea',
+#                    fontsize=14,
+#                    padding=10,
+#                ),
                 widget.Systray(
                     background='585858',
                     padding=10,
@@ -65,7 +75,7 @@ screens = [
                     padding=10,
                 ),
             ],
-            size=26,
+            size=25,
 #            background='1d1f21',
             background='585858',
             opacity=0.888888880
