@@ -1,14 +1,11 @@
 #! /usr/bin/env python3
 
-import sys
-import gi
-import time
-import subprocess
-import shlex
-import os.path
+import sys, gi, time, subprocess, shlex, os.path
 
-import xdg.Menu
-import xdg.DesktopEntry
+try:
+    import xdg.Menu, xdg.DesktopEntry
+except Exception as e:
+    print("XDG is not loaded: %s" % e)
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gio, Gtk, Gdk
@@ -49,21 +46,23 @@ class ContextMenuApp(Gtk.Application):
         except:
             currentWindow = None
 
-        self.createXdgMenu(
-            menu=xdg.Menu.parse(
-                filename=None,
-                debug=False,
-            ),
-            submenu=self.addMenu(
-                item=self.createMenu(title='Applications'),
-                icon='go-home'
+        try:
+            self.createXdgMenu(
+                menu=xdg.Menu.parse(
+                    filename=None,
+                    debug=False,
+                ),
+                submenu=self.addMenu(
+                    item=self.createMenu(title='Applications'),
+                    icon='go-home'
+                )
             )
-        )
-
-        self.addMenuItem(
-            item=self.createMenuItemSeparator(),
-            parent=self.menu,
-        )
+            self.addMenuItem(
+                item=self.createMenuItemSeparator(),
+                parent=self.menu,
+            )
+        except Exception as e:
+            print("No XDG menu: %s" % e)
 
         qtileMenu = self.addMenu(
             item=self.createMenu(title='_Qtile'),
@@ -252,21 +251,23 @@ class ContextMenuApp(Gtk.Application):
 
                 if groupsTuple not in groups:
                     newSubmenu = self.createMenu(title=entry.getName())
-
-                    self.addMenu(
-                        item=newSubmenu,
-                        icon=entry.getIcon(),
-                        parent=submenu,
+                    newEntries = self.createXdgMenu(
+                        menu=entry,
+                        submenu=newSubmenu,
                     )
 
-                    entries.extend(
-                        self.createXdgMenu(
-                            menu=entry,
-                            submenu=newSubmenu,
+                    if len(newEntries) > 0:
+                        self.addMenu(
+                            item=newSubmenu,
+                            icon=entry.getIcon(),
+                            parent=submenu,
                         )
-                    )
 
-                    groups.append(groupsTuple)
+                        entries.extend(
+                            newEntries
+                        )
+
+                        groups.append(groupsTuple)
 
             elif (isinstance(entry, xdg.Menu.MenuEntry)):
                 cmd = None
@@ -330,6 +331,12 @@ class ContextMenuApp(Gtk.Application):
         item.set_label(title)
 
         return item
+
+    def removeMenuItem(self, item, parent=None):
+        if parent is None:
+            parent = self.menu
+
+        parent.remove(item)
 
     def addMenuItem(self, item, parent=None):
         if parent is None:
