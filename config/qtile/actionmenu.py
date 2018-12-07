@@ -21,18 +21,18 @@ class ActionMenuWindow(Gtk.ApplicationWindow):
         self.set_type_hint(Gdk.WindowTypeHint.DOCK)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_wmclass('Qtile-ActionMenu', 'qtile-actionmenu')
-        self.resize(300, 60)
+        self.resize(400, 350)
 
         self.set_border_width(20)
         self.set_mnemonics_visible(True)
         # window.connect('key-press-event', self._key_press_event)
 
     def present(self):
-        self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
-        self.vbox.pack_start(self.create_button('_Logout', 'system-log-out', self.logout), False, False, 0)
-        self.vbox.pack_start(self.create_button('_Restart', 'view-refresh-symbolic', self.restart), False, False, 0)
-        self.vbox.pack_start(self.create_button('_Shutdown', 'system-shutdown-symbolic', self.shutdown), False, False, 0)
-        self.vbox.pack_start(self.create_button('_Cancel', 'gtk-cancel', self.cancel), False, False, 0)
+        self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
+        self.vbox.pack_start(self.create_button('_Logout', 'system-log-out', self.logout), True, True, 0)
+        self.vbox.pack_start(self.create_button('_Restart', 'view-refresh-symbolic', self.restart), True, True, 0)
+        self.vbox.pack_start(self.create_button('_Shutdown', 'system-shutdown-symbolic', self.shutdown), True, True, 0)
+        self.vbox.pack_start(self.create_button('_Cancel', 'gtk-cancel', self.cancel), True, True, 0)
         self.vbox.show()
 
         self.add(self.vbox)
@@ -61,7 +61,7 @@ class ActionMenuWindow(Gtk.ApplicationWindow):
     """
         GTK3 Icon Theme Helper
     """
-    def _get_theme_icon(self, icon, size=24):           
+    def _get_theme_icon(self, icon, size=64):
         icon = Gio.ThemedIcon(name=icon)
         img = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
 
