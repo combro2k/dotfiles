@@ -19,6 +19,8 @@ class ContextMenuApp(Gtk.Application):
     _quit = False
     _submenu = []
 
+    lockmenu = False
+
     @property
     def qtile(self):
         if self._qtile is None:
@@ -32,7 +34,7 @@ class ContextMenuApp(Gtk.Application):
             menu = Gtk.Menu()
             menu.set_title('ROOT')
             menu.connect('deactivate', self.cmd_destroy)
-
+            
             self._menu = menu
 
         return self._menu
@@ -256,18 +258,23 @@ class ContextMenuApp(Gtk.Application):
                         submenu=newSubmenu,
                     )
 
-                    if len(newEntries) > 0:
-                        self.addMenu(
-                            item=newSubmenu,
-                            icon=entry.getIcon(),
+                    self.addMenu(
+                        item=newSubmenu,
+                        icon=entry.getIcon(),
+                        parent=submenu,
+                    )
+
+                    entries.extend(
+                        newEntries
+                    )
+
+                    if len(newEntries) == 0:
+                        self.removeMenuItem(
                             parent=submenu,
+                            item=newSubmenu,
                         )
 
-                        entries.extend(
-                            newEntries
-                        )
-
-                        groups.append(groupsTuple)
+                    groups.append(groupsTuple)
 
             elif (isinstance(entry, xdg.Menu.MenuEntry)):
                 cmd = None
@@ -370,6 +377,8 @@ class ContextMenuApp(Gtk.Application):
             button=0,
             activate_time=Gdk.CURRENT_TIME
         )
+
+        self.menu.reposition()
 
     def do_activate(self):
         self._configure()
