@@ -1,7 +1,7 @@
 from libqtile.config import Screen
 from libqtile import bar, widget
 
-from widgets import MenuWidget, ActionMenuWidget, WindowNameNew
+from widgets import MenuWidget, ActionMenuWidget, WindowNameNew, TaskListNew
 
 widget_defaults = dict(
     font='SauceCodePro Nerd Font Mono',
@@ -41,7 +41,7 @@ screens = [
                     urgent_alert_method='block',
                     inactive='8e8e8e',
                 ),
-                widget.TaskList(
+                TaskListNew(
                     spacing=0,
                     padding=0,
                     background='585858',

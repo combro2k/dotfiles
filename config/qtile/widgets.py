@@ -1,4 +1,4 @@
-from libqtile.widget import base, WindowName
+from libqtile.widget import base, WindowName, TaskList
 from libqtile import bar
 from os.path import expanduser
 from libqtile.log_utils import logger
@@ -84,3 +84,52 @@ class WindowNameNew(WindowName):
         if button == 3:
             # Dirty hack :-(
             self.qtile.cmd_run_extension(self.windowcd)
+
+class TaskListNew(TaskList):
+   
+    _windowcd = None
+
+    defaults = [
+        (
+            'txt_minimized',
+            '\uFAAF ',
+            'Text representation of the minimized window state. '
+            'e.g., "_ " or "\U0001F5D5 "'
+        ),
+        (
+            'txt_maximized',
+            '\uFAAE ',
+            'Text representation of the maximized window state. '
+            'e.g., "[] " or "\U0001F5D6 "'
+        ),
+        (
+            'txt_floating',
+            'V ',
+            'Text representation of the floating window state. '
+            'e.g., "V " or "\U0001F5D7 "'
+        ),
+    ]
+
+    def __init__(self, **config):
+        TaskList.__init__(self, **config)
+        self.add_defaults(TaskListNew.defaults)
+
+    @property
+    def windowcd(self):
+        if self._windowcd is None:
+            windowcd = RofiMenu(modi='windowcd')
+            windowcd._configure(self.qtile)
+            self._windowcd = windowcd
+
+        return self._windowcd
+
+    def button_press(self, x, y, button):
+        w = self.bar.screen.group.currentWindow           
+        if button == 1 and not w is None:
+            w.toggle_maximize()
+        if button == 2 and not w is None:
+            w.toggle_minimize()
+        if button == 3:
+            # Dirty hack :-(
+            self.qtile.cmd_run_extension(self.windowcd)
+
