@@ -57,15 +57,15 @@ def group_created(qtile, group):
 
 @hook.subscribe.client_new
 def specific_instance_rules(window): # type: Window
+    qtile = window.qtile
     if window.match(wmclass='zenity') or window.match(wmclass='qtile-actionmenu'):
-        wmtype = window.qtile.conn.atoms["_NET_WM_WINDOW_TYPE_DOCK"]
+        wmtype = qtile.conn.atoms["_NET_WM_WINDOW_TYPE_DOCK"]
         state = list(window.window.get_property('_NET_WM_WINDOW_TYPE', 'ATOM', unpack=int))
         if not wmtype in state:
             state.append(wmtype)
         window.window.set_property('_NET_WM_WINDOW_TYPE', state)
         window.above = True
-    if window.match(wmclass='conky-sysinfo'):
-        pass
-        #window.above = False
+    if window.match(wmclass='skype'):
+        window.cmd_set_size_floating(w=1512,h=800, curx=0, cury=0)
 
-        #window.static(0)
+    logger.error(window.window.get_wm_class())

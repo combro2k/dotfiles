@@ -86,9 +86,6 @@ class WindowNameNew(WindowName):
             self.qtile.cmd_run_extension(self.windowcd)
 
 class TaskListNew(TaskList):
-   
-    _windowcd = None
-
     defaults = [
         (
             'txt_minimized',
@@ -114,22 +111,17 @@ class TaskListNew(TaskList):
         TaskList.__init__(self, **config)
         self.add_defaults(TaskListNew.defaults)
 
-    @property
-    def windowcd(self):
-        if self._windowcd is None:
-            windowcd = RofiMenu(modi='windowcd')
-            windowcd._configure(self.qtile)
-            self._windowcd = windowcd
-
-        return self._windowcd
-
     def button_press(self, x, y, button):
-        w = self.bar.screen.group.currentWindow           
-        if button == 1 and not w is None:
-            w.toggle_maximize()
-        if button == 2 and not w is None:
-            w.toggle_minimize()
+        window = None
+        current_win = self.bar.screen.group.currentWindow           
+        if button == 1 or button == 2 or button == 3:
+            window = self.get_clicked(x, y)
+
+        if window and window is not current_win:
+            window.group.focus(window, False)
+
+        if button == 2 and window is not None:
+            window.toggle_minimize()
         if button == 3:
-            # Dirty hack :-(
-            self.qtile.cmd_run_extension(self.windowcd)
+            self.qtile.cmd_spawn([expanduser('~/.config/qtile/contextmenu.py')])
 

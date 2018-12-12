@@ -22,7 +22,8 @@ def autostart():
 
     yield '/usr/bin/clipit'
 
-    yield '/usr/bin/compton', '--dbus'
+#   to resource hungry :-(
+#    yield '/usr/bin/compton', '--dbus'
 
     yield '/usr/bin/vmware-user-suid-wrapper'
 

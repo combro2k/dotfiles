@@ -49,15 +49,15 @@ groups.extend([
         label=f'{gnome_ico}',
     ),
    
-    Group(
-        name='Skype',
-        matches=[Match(wm_instance_class=["skype", "Skype"])],
-        exclusive=True,
-        persist=False,
-        layout='max',
-        init=False,
-        label=f'{skype_ico}',
-    ),
+#    Group(
+#        name='Skype',
+#        matches=[Match(wm_instance_class=["skype", "Skype"])],
+#        exclusive=True,
+#        persist=False,
+#        layout='max',
+#        init=False,
+#        label=f'{skype_ico}',
+#    ),
  
 #    Group(
 #        name='WeeChat',

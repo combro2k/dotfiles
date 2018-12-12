@@ -37,6 +37,8 @@ floating_layout = layout.Floating(
         dict(wmclass="zenity"),
         dict(wmclass="qtile-actionmenu"),
         dict(wmclass="YaST2"),
+        dict(wmclass="nautilus"),
+        dict(wmclass="gnome-calculator"),
     ],
     auto_float_types=[
         "notification",

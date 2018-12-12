@@ -125,6 +125,12 @@ keys = [
     Key([], "F10", lazy.run_extension(Wallpaper())),
 
     Key([], "Menu", context_menu()),
+
+    # Specific XF86 keys
+    Key([], "XF86MyComputer", lazy.spawn(["nautilus"])),
+    Key([], "XF86Calculator", lazy.spawn(["gnome-calculator"])),
+    Key([], "XF86HomePage", app_or_group('Firefox', 'firefox')),
+    Key([], "XF86Mail", app_or_group('E-Mail', 'thunderbird')),
 ]
 
 for i in groups:
