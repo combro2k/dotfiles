@@ -29,7 +29,8 @@ class ActionMenuWindow(Gtk.ApplicationWindow):
 
     def present(self):
         self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
-        self.vbox.pack_start(self.create_button('_Logout', 'system-log-out', self.logout), True, True, 0)
+        self.vbox.pack_start(self.create_button('_Lock', 'system-lock-screen', self.lock), True, True, 0)
+        self.vbox.pack_start(self.create_button('L_ogout', 'system-log-out', self.logout), True, True, 0)
         self.vbox.pack_start(self.create_button('_Restart', 'view-refresh-symbolic', self.restart), True, True, 0)
         self.vbox.pack_start(self.create_button('_Shutdown', 'system-shutdown-symbolic', self.shutdown), True, True, 0)
         self.vbox.pack_start(self.create_button('_Cancel', 'gtk-cancel', self.cancel), True, True, 0)
@@ -86,6 +87,10 @@ class ActionMenuWindow(Gtk.ApplicationWindow):
         except Exception as v:
             print(v)
 
+        self.destroy()
+
+    def lock(self, button):
+        Popen(['sh', '-c' , 'xlock -mode blank'])
         self.destroy()
 
     def restart(self, button):
