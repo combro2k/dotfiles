@@ -300,3 +300,23 @@ class Helpers():
             pass
 
         return f
+
+    def get_screen_size():
+        try:
+            r = run(['sh', '-c', '/usr/bin/xrandr | awk \'/*/ {print $1}\''], stdout=PIPE, universal_newlines=True)
+
+            s = r.stdout.rstrip().split('x', 2)
+            w = s[0]
+            h = s[1]
+
+            return {
+                'width': int(w),
+                'height': int(h),
+            }
+        except Exception as e:
+            logger.error(e)
+
+        return {
+            'width': 0,
+            'height': 0,
+        }

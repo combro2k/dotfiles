@@ -3,6 +3,11 @@ from libqtile import bar, widget
 
 from widgets import MenuWidget, ActionMenuWidget, WindowNameNew, TaskListNew
 
+from classes import Helpers
+
+get_screen_size = Helpers.get_screen_size
+screensize = get_screen_size()
+
 widget_defaults = dict(
     font='SauceCodePro Nerd Font Mono',
 #    fontsize=14,
@@ -12,6 +17,7 @@ widget_defaults = dict(
 )
 
 extension_defaults = widget_defaults.copy()
+
 
 screens = [
     Screen(
@@ -75,7 +81,7 @@ screens = [
                     padding=10,
                 ),
             ],
-            size=25,
+            size=27 if screensize['height'] <= 1050 else 37,
 #            background='1d1f21',
             background='585858',
             opacity=0.888888880
