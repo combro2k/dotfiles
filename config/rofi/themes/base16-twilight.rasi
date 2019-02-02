@@ -33,17 +33,17 @@
     alternate-active-foreground: @blue;
     active-background:           @background;
     selected-active-background:  @blue;
-    font:                        "SauceCodePro Nerd Font Mono 12";
+    font:                        "SauceCodePro Nerd Font Mono 14";
 }
 #window {
     background-color: @background;
-    border:           1;
-    padding:          15px;
-    border-radius:    15px;
+    border:           0.25em;
+    padding:          0.75em;
+    border-radius:    0.75em;
 }
 #mainbox {
-    border:  0;
-    padding: 0;
+    border:           0;
+    padding:          0;
 }
 #message {
     border:       1px dash 0px 0px ;
@@ -55,11 +55,11 @@
 }
 #listview {
     fixed-height: 0;
-    border:       2px dash 0px 0px ;
+    border:       1px dash 0 0 ;
     border-color: @separatorcolor;
-    spacing:      2px ;
+    spacing:      0.1em;
     scrollbar:    true;
-    padding:      2px 0px 0px ;
+    padding:      1em 0.5em 0.5em 0.5em;
 }
 #element {
     border:  0;
