@@ -28,6 +28,8 @@ if status --is-interactive
   fundle plugin 'oh-my-fish/plugin-bang-bang'
   fundle plugin 'oh-my-fish/plugin-license'
   fundle plugin 'oh-my-fish/plugin-sudope'
+  fundle plugin 'maman/plugin-gvm'
+
   # fundle plugin 'oh-my-fish/plugin-rustup'
   fundle plugin 'fisherman/fzf'
   #fundle plugin 'fisherman/docker-completion'
