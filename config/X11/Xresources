@@ -17,13 +17,18 @@ Xcursor.theme: DMZ-White
 
 ! XTerm*reverseVideo: off
 ! XTerm*faceName: Terminus:size=11:antialias=true
+#if HEIGHT == 1050
 XTerm*faceName: SauceCodePro Nerd Font Mono:style=Semibold:size=10:antialias=true
+#else
+XTerm*faceName: SauceCodePro Nerd Font Mono:style=Semibold:size=16:antialias=true
+#endif
 xTerm*selectToClipboard: true
 
 !-- Xft settings -- !
-Xft.dpi: 96
+! Xft.dpi: 96
 Xft.antialias: true
-Xft.rgba: rgb
+! Xft.rgba: rgb
+Xft.rgba: vrgb
 Xft.hinting: true
 Xft.hintstyle: hintfull
 

@@ -5,7 +5,11 @@ rofi.ssh-command: {terminal} -e {ssh-client} {host}
 rofi.opacity: 100
 rofi.width: 90
 rofi.lines: 25
+#if HEIGHT == 1050
 rofi.font: SauceCodePro Nerd Font Mono 12
+#else
+rofi.font: SauceCodePro Nerd Font Mono 16
+#endif
 rofi.location: 0
 rofi.padding: 5
 rofi.levenshtein-sort: true
