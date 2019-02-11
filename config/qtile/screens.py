@@ -10,14 +10,12 @@ screensize = get_screen_size()
 
 widget_defaults = dict(
     font='SauceCodePro Nerd Font Mono',
-#    fontsize=14,
-#    padding=10,
+    fontsize=12 if screensize['height'] <= 1050 else 16,
     background='585858',
-#    markup=True
+    markup=True,
 )
 
 extension_defaults = widget_defaults.copy()
-
 
 screens = [
     Screen(

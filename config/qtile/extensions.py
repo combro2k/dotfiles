@@ -18,6 +18,8 @@ class RofiMenu(RunCommand):
         ("rofi_command", "rofi", "the command to be launched (string or list with arguments)"),
         ("modi", "combi", "the mode you want to show"),
         ("theme", "base16-twilight", "theme"),
+        ("font", "SauceCodePro Nerd Font Mono", "Use other font"),
+        ("fontsize", 12, "Fontsize"),
         ("dmenu", False, "enable DMenu's replacement mode"),
     ]
 
@@ -45,9 +47,13 @@ class RofiMenu(RunCommand):
         if self.modi:
             self.configured_command.extend(("-modi", self.modi))
 
+        if self.font:
+            self.configured_command.extend(("-font", "%s %s" % (self.font, self.fontsize)))
+
         self.configured_command.append("-show")
 
     def run(self):
+        logger.error(self.configured_command)
         subprocess.run(self.configured_command, shell=False)
 
 class Zenipy(RunCommand):
