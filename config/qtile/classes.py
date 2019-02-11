@@ -305,7 +305,7 @@ class Helpers():
         try:
             r = run(['sh', '-c', '/usr/bin/xrandr | awk \'/*/ {print $1}\''], stdout=PIPE, universal_newlines=True)
 
-            s = r.stdout.rstrip().split('x', 2)
+            s = r.stdout.lstrip().split('x', 2)
             w = s[0]
             h = s[1]
 
@@ -320,3 +320,27 @@ class Helpers():
             'width': 0,
             'height': 0,
         }
+
+    def get_type_screen():
+        det = 'SD'
+
+        dim = Helpers.get_screen_size()
+
+        if dim['height'] >= 720:
+            det = 'HD'
+
+        if dim['height'] >= 900:
+            det = 'HD+'
+
+        if dim['height'] >= 1050:
+            det = 'WSXGA+'
+
+        if dim['height'] >= 1080:
+            det = 'FHD'
+
+        if dim['height'] >= 2160:
+            det = '4K UHD'
+
+        logger.error('Detected ~ resolution: %s' % det)
+
+        return det

@@ -5,12 +5,12 @@ from widgets import MenuWidget, ActionMenuWidget, WindowNameNew, TaskListNew
 
 from classes import Helpers
 
-get_screen_size = Helpers.get_screen_size
-screensize = get_screen_size()
+get_type_screen = Helpers.get_type_screen
+type_screen = get_type_screen()
 
 widget_defaults = dict(
     font='SauceCodePro Nerd Font Mono',
-    fontsize=12 if screensize['height'] <= 1050 else 16,
+    fontsize=12 if type_screen != '4K UHD' else 16,
     background='585858',
     markup=True,
 )
@@ -22,18 +22,18 @@ screens = [
         top=bar.Bar([
                 MenuWidget(
                     background='3badea',
-                    fontsize=36 if screensize['height'] <= 1050 else 40,
+                    fontsize=36 if type_screen != '4K UHD' else 40,
                     padding=10,
                 ),
                 widget.CurrentLayout(
                     foreground='ffffff',
                     background='585858',
-                    fontsize=13 if screensize['height'] <= 1050 else 14,
+                    fontsize=13 if type_screen != '4K UHD' else 14,
                     padding=10,
                 ),
                 widget.GroupBox(
-                    padding=0 if screensize['height'] <= 1050 else 5,
-                    fontsize=15 if screensize['height'] <= 1050 else 19,
+                    padding=0 if type_screen != '4K UHD' else 5,
+                    fontsize=15 if type_screen != '4K UHD' else 19,
                     highlight_method='block',
                     spacing=0,
                     use_mouse_wheel=False,
@@ -47,10 +47,10 @@ screens = [
                 ),
                 TaskListNew(
                     spacing=0,
-                    padding=0 if screensize['height'] <= 1050 else 5,
+                    padding=0 if type_screen != '4K UHD' else 5,
                     background='585858',
                     border='3badea',
-                    fontsize=16 if screensize['height'] <= 1050 else 19,
+                    fontsize=16 if type_screen != '4K UHD' else 19,
                     highlight_method='block',
                     rounded=False,
                     title_width_method='uniform',
@@ -69,17 +69,17 @@ screens = [
                 ),
                 widget.Clock(
                     background='585858',
-                    fontsize=16 if screensize['height'] <= 1050 else 20,
+                    fontsize=16 if type_screen != '4K UHD' else 20,
                     format='%I:%M %p',
                     padding=10,
                 ),
                 ActionMenuWidget(
                     background='3badea',
-                    fontsize=32 if screensize['height'] <= 1050 else 40,
+                    fontsize=32 if type_screen != '4K UHD' else 40,
                     padding=10,
                 ),
             ],
-            size=27 if screensize['height'] <= 1050 else 40,
+            size=27 if type_screen != '4K UHD' else 40,
 #            background='1d1f21',
             background='585858',
             opacity=0.888888880
