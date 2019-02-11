@@ -1,4 +1,5 @@
 virtualenvwrapper
 pipsi
+pipsi-tool
 zenipy
 https://github.com/combro2k/qtile-plasma/archive/master.zip
