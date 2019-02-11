@@ -50,31 +50,30 @@ class RofiMenu(RunCommand):
     def run(self):
         subprocess.run(self.configured_command, shell=False)
 
-class Zenity(RunCommand):
+class Zenipy(RunCommand):
 
     defaults = [
-        ("zenity_command", "zenity", "the command to be launched (string or list with arguments)"),
+        ("zenipy_command", "~/.config/qtile/zenipy.py", "the command to be launched (string or list with arguments)"),
         ("type", "question", "the type of dialog"),
-        ("text", None, "The text of the dialog"),
         ("title", None, "The title of the dialog"),
-        ("text", None, "The text"),
+        ("text", None, "The text of the dialog"),
         ("exec", None, "Run after exit code 0")
     ]
 
     def __init__(self, **config):
         RunCommand.__init__(self, **config)
-        self.add_defaults(Zenity.defaults)
+        self.add_defaults(Zenipy.defaults)
 
     def _configure(self, qtile):
         RunCommand._configure(self, qtile)
 
-        zenity_command = self.zenity_command or self.command
-        if isinstance(zenity_command, str):
-            self.configured_command = shlex.split(zenity_command)
+        zenipy_command = self.zenipy_command or self.command
+        if isinstance(zenipy_command, str):
+            self.configured_command = shlex.split(expanduser(zenipy_command))
         else:
             # Create a clone of dmenu_command, don't use it directly since
             # it's shared among all the instances of this class
-            self.configured_command = list(zenity_command)
+            self.configured_command = list(zenipy_command)
 
         if self.type == "question":
             self.configured_command.append("--question")
@@ -97,7 +96,12 @@ class Zenity(RunCommand):
 
     def run(self):
         def worker():
-            x = subprocess.run(self.configured_command, stdout=subprocess.PIPE, shell=False)
+            try:
+                x = subprocess.run(self.configured_command, stdout=subprocess.PIPE, shell=False)
+                logger.error(x)
+            except Exception as e:
+                logger.error(x)
+
             if x.returncode == 0:
                 clb = self.exec
 

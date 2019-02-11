@@ -105,9 +105,9 @@ keys = [
     Key([mod, "control"], "Left", windows_to_prev_group()),
     Key([mod, "control"], "Right", windows_to_next_group()),
 
-    Key([mod, "shift"], "q", lazy.run_extension(Zenity(text="Logoff?", exec=lazy.shutdown()))),
-    Key([mod, "control"], "q", lazy.run_extension(Zenity(text="Shutdown?", exec=lazy.spawn(['systemctl', 'poweroff'])))),
-    Key([mod, "control"], "r", lazy.run_extension(Zenity(text="Reboot?", exec=lazy.spawn(['systemctl', 'reboot'])))),
+    Key([mod, "shift"], "q", lazy.run_extension(Zenipy(text="Logoff?", exec=lazy.shutdown()))),
+    Key([mod, "control"], "q", lazy.run_extension(Zenipy(text="Shutdown?", exec=lazy.spawn(['systemctl', 'poweroff'])))),
+    Key([mod, "control"], "r", lazy.run_extension(Zenipy(text="Reboot?", exec=lazy.spawn(['systemctl', 'reboot'])))),
 
     Key([mod], "space", lazy.run_extension(RofiMenu(modi="drun"))),
     Key([alt], "Tab", lazy.run_extension(RofiMenu(modi="windowcd"))),

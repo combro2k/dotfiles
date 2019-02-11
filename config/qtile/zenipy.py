@@ -14,6 +14,9 @@ class Application(object):
     exitcode = 0
     _zenipy = None
 
+    DEFAULT_WIDTH = 330
+    DEFAULT_HEIGHT = 120
+
     @property
     def zenipy(self):
         if self._zenipy is None:
@@ -31,27 +34,65 @@ class Application(object):
         parser = argparse.ArgumentParser()
 
         group = parser.add_mutually_exclusive_group()
-        group.add_argument("-d", "--dialog",
+        group.add_argument("--info",
             action="store_const",
-            const="dialog",
+            const="info",
             dest="type",
-            help="Use Dialog"
+            help="Info Dialog"
         )
-        group.add_argument("-q", "--question", 
+        group.add_argument("--notification",
+            action="store_const",
+            const="info",
+            dest="type",
+            help="Info Dialog"
+        )
+        group.add_argument("--question", 
             action="store_const",
             const="question",
             dest="type",
             help="Use Question Dialog"
         )
-        group.add_argument("-e", "--error", 
+        group.add_argument("--error", 
             action="store_const",
             const="error",
             dest="type",
-            help="Use Error Dialog"
+            help="Use error dialog"
+        )
+        group.add_argument("--warning", 
+            action="store_const",
+            const="warning",
+            dest="type",
+            help="Use warning dialog"
         )
 
-        parser.add_argument("-t", "--title", help="Title of the dialog")
-        parser.add_argument("-m", "--message", help="Message to display")
+#        group.add_argument("--warning",
+#            action="store_const",
+#            const="warning",
+#            dest="type",
+#            help="Use Warning Dialog"
+#        )
+
+
+        parser.add_argument("-t", "--title", 
+            help="Title of the dialog",
+            default=sys.argv[0],
+        )
+        parser.add_argument("--text", 
+            help="Text to display",
+            default=None,
+        )
+        parser.add_argument("--width", 
+            help="Width of dialog",
+            type=int,
+            metavar='N',
+            default=self.DEFAULT_WIDTH,
+        )
+        parser.add_argument("--height", 
+            help="Height of dialog",
+            type=int,
+            metavar='N',
+            default=self.DEFAULT_HEIGHT,
+        )
 
         parser.add_argument("--timeout", 
             help="Dialog timeout",
@@ -65,33 +106,51 @@ class Application(object):
 
     def run(self):
         switcher = {
-            'dialog': self.dialog,
+            'info': self.info,
             'question': self.question,
             'error': self.error,
+            'warning': self.warning,
+            None: self.info,
         }
 
-        return switcher.get(self.args.type, lambda: False)()
+        return switcher.get(self.args.type, lambda: None)()
 
-    def dialog(self):
+    def info(self):
         return self.zenipy.message(
             title=self.args.title, 
-            text=self.args.message,
+            text=self.args.text,
             timeout=self.args.timeout,
+            width=self.args.width,
+            height=self.args.height,
         )
 
     def error(self):
         return self.zenipy.error(
             title=self.args.title, 
-            text=self.args.message,
+            text=self.args.text,
             timeout=self.args.timeout,
-        )
+            width=self.args.width,
+            height=self.args.height,
+       )
+
+    def warning(self):
+        return self.zenipy.warning(
+            title=self.args.title, 
+            text=self.args.text,
+            timeout=self.args.timeout,
+            width=self.args.width,
+            height=self.args.height,
+      )
+
 
     def question(self):
         return self.zenipy.question(
             title=self.args.title, 
-            text=self.args.message,
+            text=self.args.text,
             timeout=self.args.timeout,
-        )
+            width=self.args.width,
+            height=self.args.height,
+       )
 
 if __name__ == '__main__':
     app = Application()
