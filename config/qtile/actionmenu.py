@@ -127,4 +127,3 @@ class ActionMenu(Gtk.Application):
 if __name__ == '__main__':
     app = ActionMenu()
     app.run(sys.argv)
-    print('test')
