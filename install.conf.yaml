@@ -50,6 +50,7 @@
     ~/.config/fish/functions/fpass.fish: config/fish/functions/fpass.fish
     ~/.config/fish/functions/hc.fish: config/fish/functions/hc.fish
     ~/.config/fish/functions/ls.fish: config/fish/functions/ls.fish
+    ~/.config/fish/functions/rdp.fish: config/fish/functions/rdp.fish
     ~/.config/fish/functions/rustup.fish: config/fish/functions/rustup.fish
     ~/.config/fish/functions/takeover.fish: config/fish/functions/takeover.fish
     ~/.config/fish/functions/tmux_wrapper.fish: config/fish/functions/tmux_wrapper.fish
