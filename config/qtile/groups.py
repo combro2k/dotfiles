@@ -88,6 +88,16 @@ groups.extend([
         label=f'{email_ico}',
     ),
 
+    Group(
+        name='RDP',
+        matches=[Match(wm_instance_class=["xfreerdp"])],
+        exclusive=True,
+        persist=False,
+        layout='max',
+        init=False,
+        label=f'{rdp_ico}',
+    ),
+
     # Group(
     #     name='Anbox',
     #     matches=[Match(wm_instance_class=["Anbox", "anbox"])],

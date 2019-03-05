@@ -25,7 +25,7 @@ XTerm*faceName: SauceCodePro Nerd Font Mono:style=Semibold:size=16:antialias=tru
 xTerm*selectToClipboard: true
 
 !-- Xft settings -- !
-! Xft.dpi: 96
+Xft.dpi: 102
 Xft.antialias: true
 ! Xft.rgba: rgb
 Xft.rgba: vrgb
