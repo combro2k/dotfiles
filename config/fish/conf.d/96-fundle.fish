@@ -13,6 +13,7 @@ if status --is-interactive
 
   # list plugin dependencies
   fundle plugin 'fishpkg/fish-await'
+  fundle plugin 'decors/fish-colored-man'
   fundle plugin 'tuvistavie/fish-completion-helpers'
   fundle plugin 'tuvistavie/oh-my-fish-core'
   fundle plugin 'tuvistavie/fish-completion-helpers'
