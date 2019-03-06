@@ -1,4 +1,4 @@
-function emacs --description 'Star emacs'
+function emacs --description 'Start emacs'
   if not type -qf emacs; and not type -qf emacs-nox
     echo "Emacs is not installed, install it first!"
 
