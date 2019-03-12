@@ -13,3 +13,4 @@ def autostart():
     yield '/usr/bin/clipit'
     yield '/usr/bin/vmware-user-suid-wrapper'
     yield '/usr/bin/blueman-applet'
+    yield '/usr/bin/kdeconnect-indicator'

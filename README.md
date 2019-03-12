@@ -119,5 +119,6 @@ I'm a favor of qtile plasma layout; You can install it by using one of those met
 	nm-applet
 	xautolock
 	tickr
+  qutebrowser (including: libqt5-qtwebengine python3-qtwebengine-qt5)
 
 #

@@ -20,8 +20,8 @@ groups.extend([
     ),
  
     Group(
-        name='Firefox',
-        matches=[Match(wm_instance_class=["Firefox", "Navigator"])],
+        name='WWW',
+        matches=[Match(wm_instance_class=["Firefox", "Navigator", "qutebrowser"])],
         exclusive=True,
         persist=False,
         layout='max',
