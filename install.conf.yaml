@@ -79,7 +79,6 @@
     user: true
     stdout: true
     stderr: true
-    binary: /usr/bin/pip
 
 - pipsi:
     file: python/requirements-pipsi.txt
