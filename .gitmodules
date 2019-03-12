@@ -14,7 +14,7 @@
 	url = https://github.com/combro2k/dotbot-rust.git
 [submodule ".plugins/dotbot-pip"]
 	path = .plugins/dotbot-pip
-	url = https://github.com/sobolevn/dotbot-pip.git
+	url = https://github.com/combro2k/dotbot-pip.git
 [submodule "config/tmux/plugins/tpm"]
 	path = config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
