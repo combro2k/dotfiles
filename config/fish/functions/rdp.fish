@@ -5,7 +5,7 @@ function rdp --description 'RDP wrapper'
     return 1
   end
 
-  if set -q argv
+  if not set -q argv
     echo "Please provide servername"
 
     return 0
