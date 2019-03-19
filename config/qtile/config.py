@@ -36,6 +36,7 @@ floating_layout = layout.Floating(
         dict(wmclass="pinentry-gtk-2"),
         dict(wmclass="pinentry-qt"),
         dict(wmclass="pinentry-qt5"),
+        dict(wmclass="pinentry-x11"),
         dict(wmclass="gcr-prompter"),
         dict(wmclass="zenity"),
         dict(wmclass="qtile-actionmenu"),
