@@ -1,0 +1,13 @@
+[Desktop Entry]
+Categories=Network;GTK;
+Encoding=UTF-8
+Name=RPD
+GenericName=Remote Desktop Protocol
+Comment=RDP
+TryExec=~/.config/qtile/rdp.py
+Exec=~/.config/qtile/rdp.py
+Icon=
+Terminal=false
+StartupNotify=true
+Type=Application
+

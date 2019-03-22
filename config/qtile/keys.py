@@ -120,7 +120,8 @@ keys = [
     Key([mod], "F2", app_or_group('Editors', 'urxvtc-256color -bg "#1e1e1e" -name emacs -e emacsclient -t')),
     Key([mod], "F3", app_or_group('E-Mail', 'thunderbird')),
     Key([mod], "F5", app_or_group('TeamViewer', 'teamviewer')),
-
+    Key([mod], "F6", app_or_group('RPD', '~/.config/qtile/rdp.py')),
+    Key([mod], "r", app_or_group('RPD', '~/.config/qtile/rdp.py')),
 
     Key([], "F10", lazy.run_extension(Wallpaper())),
 

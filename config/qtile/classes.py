@@ -78,6 +78,9 @@ class Colors(object):
 
 class Helpers():
     def app_or_group(group, app):
+        """ Fix ~ references in commands """
+        app = expanduser(app)
+
         """ Go to specified group if it exists. Otherwise, run the specified app.
         When used in conjunction with dgroups to auto-assign apps to specific
         groups, this can be used as a way to go to an app if it is already

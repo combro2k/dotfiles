@@ -64,6 +64,12 @@ class Application(object):
             dest="type",
             help="Use warning dialog"
         )
+        group.add_argument("--entry",
+            action="store_const",
+            const="entry",
+            dest="type",
+            help="Use entry dialog"
+        )
 
 #        group.add_argument("--warning",
 #            action="store_const",
@@ -110,6 +116,7 @@ class Application(object):
             'question': self.question,
             'error': self.error,
             'warning': self.warning,
+            'entry': self.entry,
             None: self.info,
         }
 
@@ -152,6 +159,21 @@ class Application(object):
             height=self.args.height,
        )
 
+    def entry(self):
+       return self.zenipy.entry(
+            title=self.args.title, 
+            text=self.args.text,
+            timeout=self.args.timeout,
+            width=self.args.width,
+            height=self.args.height,
+       )
+
 if __name__ == '__main__':
     app = Application()
-    sys.exit(0) if app.exitcode else sys.exit(1)
+
+    if (isinstance(app.exitcode, str)):
+        print(app.exitcode)
+        sys.exit(0)
+    else:
+        sys.exit(0) if app.exitcode else sys.exit(1)
+

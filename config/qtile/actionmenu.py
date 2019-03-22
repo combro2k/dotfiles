@@ -25,7 +25,7 @@ class ActionMenuWindow(Gtk.ApplicationWindow):
 
         self.set_border_width(20)
         self.set_mnemonics_visible(True)
-        # window.connect('key-press-event', self._key_press_event)
+        self.connect('key-press-event', self._key_press_event)
 
     def present(self):
         self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
