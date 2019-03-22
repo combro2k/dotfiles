@@ -45,6 +45,7 @@ class AutoStart(object):
 
     def run(self):
         self.load_commands()
+
         for i in self.commands:
             if i is None:
                 continue

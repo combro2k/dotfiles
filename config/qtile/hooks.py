@@ -68,4 +68,4 @@ def specific_instance_rules(window): # type: Window
     if window.match(wmclass='skype'):
         window.cmd_set_size_floating(w=1512,h=800, curx=0, cury=0)
 
-    # logger.error(window.window.get_wm_class())
+    logger.error(window.window.get_wm_class())

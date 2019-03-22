@@ -33,6 +33,7 @@ floating_layout = layout.Floating(
     float_rules=[
         dict(wmclass="skype"), 
         dict(wmclass="gimp"),
+        dict(wmclass="pinentry"),
         dict(wmclass="pinentry-gtk-2"),
         dict(wmclass="pinentry-qt"),
         dict(wmclass="pinentry-qt5"),
@@ -43,6 +44,8 @@ floating_layout = layout.Floating(
         dict(wmclass="YaST2"),
         dict(wmclass="nautilus"),
         dict(wmclass="gnome-calculator"),
+        dict(wmclass="gnome-shell-extension-prefs"),
+        dict(wmclass="gpaste-ui"),
     ],
     auto_float_types=[
         "notification",

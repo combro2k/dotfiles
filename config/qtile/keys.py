@@ -127,7 +127,7 @@ keys = [
     Key([], "Menu", context_menu()),
 
     # Specific XF86 keys
-    Key([], "XF86MyComputer", lazy.spawn(["nautilus"])),
+    Key([], "XF86MyComputer", lazy.spawn(["xdg-open", "."])),
     Key([], "XF86Calculator", lazy.spawn(["gnome-calculator"])),
     Key([], "XF86HomePage", app_or_group('WWW', 'qutebrowser')),
     Key([], "XF86Mail", app_or_group('E-Mail', 'thunderbird')),
