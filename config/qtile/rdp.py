@@ -8,7 +8,7 @@ from gi.repository import Gio, Gtk, Gdk
 
 from libqtile.command import Client
 
-from subprocess import Popen
+from subprocess import run
 
 class RDPWindow(Gtk.ApplicationWindow):
 
@@ -23,7 +23,7 @@ class RDPWindow(Gtk.ApplicationWindow):
 
         self.set_wmclass('Qtile-RDP', 'qtile-rdp')
         self.resize(600, 150)
-        
+
         self.set_border_width(20)
         self.set_mnemonics_visible(True)
 
@@ -39,7 +39,7 @@ class RDPWindow(Gtk.ApplicationWindow):
         return False
 
     def present(self):
-        qscreen = self.qtile.screen 
+        qscreen = self.qtile.screen
         qinfo = qscreen.info()
         qbar = qscreen.bar['top'].info()
 
@@ -47,7 +47,7 @@ class RDPWindow(Gtk.ApplicationWindow):
         self.height = qinfo['height'] - qbar['size']
 
         self.host = Gtk.Entry(
-            visible=True, 
+            visible=True,
             placeholder_text='Hostname or address',
             xalign=0
         )
@@ -62,9 +62,15 @@ class RDPWindow(Gtk.ApplicationWindow):
         )
         self.btn_connect = Gtk.Button(
             visible=True,
-            label='Connect'
+            label='_Connect',
+            use_underline=True,
+            xalign=2
         )
-        self.fullscreen = Gtk.CheckButton(label='Fullscreen', visible=True)
+        self.fullscreen = Gtk.CheckButton(
+            visible=True,
+            label='_Fullscreen',
+            use_underline=True
+        )
 
         self.btn_connect.connect("clicked", self.cmd_connect)
         self.host.connect('key-press-event', self._key_press_event)
@@ -79,24 +85,30 @@ class RDPWindow(Gtk.ApplicationWindow):
         hbox4 = Gtk.Box(spacing=10, visible=True)
 
         hbox0.pack_start(Gtk.Label(
-            label='Hostname:',
             visible=True,
+            label='_Hostname:',
+            mnemonic_widget=self.host,
+            use_underline=True,
             xalign=0
         ), True, True, 0)
 
         hbox1.pack_start(self.host, True, True, 0)
-        
+
         hbox2.pack_start(Gtk.Label(
-            label='Username:', 
             visible=True,
+            label='_Username:',
+            mnemonic_widget=self.username,
+            use_underline=True,
             xalign=0
         ), True, True, 0)
         hbox2.pack_start(Gtk.Label(
-            label='Password:', 
+            label='_Password:',
+            mnemonic_widget=self.password,
+            use_underline=True,
             visible=True,
             xalign=0
         ), True, True, 0)
-                
+
         hbox3.pack_start(self.username, True, True, 0)
         hbox3.pack_start(self.password, True, True, 0)
 
@@ -120,21 +132,36 @@ class RDPWindow(Gtk.ApplicationWindow):
         host = self.host.get_text()
         username = self.username.get_text() or 'Administrator'
         password = self.password.get_text()
-        
+
         if not (host and username and password):
             return False
 
-        cmd = f'/usr/bin/xfreerdp /cert-ignore /v:%s /w:%s /h:%s /u:%s /p:%s +clipboard' % (
-                host, 
-                self.width, 
-                self.height, 
-                username,
-                password
-        )
+        if self.fullscreen.get_active():
+            cmd = f'/usr/bin/xfreerdp /cert-ignore /v:%s /f /u:%s /p:%s +clipboard' % (
+                    host,
+                    username,
+                    password
+            )
+        else:
+            cmd = f'/usr/bin/xfreerdp /cert-ignore /v:%s /w:%s /h:%s /u:%s /p:%s +clipboard' % (
+                    host,
+                    self.width,
+                    self.height,
+                    username,
+                    password
+            )
 
-        Popen(['sh', '-c', cmd], shell=False)
+        self.hide()
 
-        self.destroy()
+        try:
+            r = run(['sh', '-c', cmd], shell=False)
+
+            if not r.returncode == 0 and not r.returncode == 12:
+                self.show()
+            else:
+                self.destroy()
+        except Exception as e:
+            print(e)
 
 class RDP(Gtk.Application):
     _qtile = None
@@ -156,7 +183,7 @@ class RDP(Gtk.Application):
         if self._qtile is None:
             self._qtile = Client()
 
-        return self._qtile 
+        return self._qtile
 
 if __name__ == '__main__':
     app = RDP()
