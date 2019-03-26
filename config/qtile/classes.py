@@ -186,7 +186,7 @@ class Helpers():
 
         return f
 
-    def create_screenshot(mode=False, clipboard=False):
+    def create_screenshot(mode=False, clipboard=True):
         @lazy.function
         def f(qtile):
             targetdir = expanduser('~/Pictures/Screenshots/')

@@ -8,7 +8,7 @@ from gi.repository import Gio, Gtk, Gdk
 
 from libqtile.command import Client
 
-from subprocess import run
+from subprocess import Popen
 
 class RDPWindow(Gtk.ApplicationWindow):
 
@@ -154,12 +154,9 @@ class RDPWindow(Gtk.ApplicationWindow):
         self.hide()
 
         try:
-            r = run(['sh', '-c', cmd], shell=False)
+            Popen(['sh', '-c', cmd], shell=False)
 
-            if not r.returncode == 0 and not r.returncode == 12:
-                self.show()
-            else:
-                self.destroy()
+            self.destroy()
         except Exception as e:
             print(e)
 

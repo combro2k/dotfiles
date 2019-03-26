@@ -90,7 +90,7 @@ groups.extend([
 
     Group(
         name='RDP',
-        matches=[Match(wm_instance_class=["xfreerdp"])],
+        matches=[Match(wm_instance_class=["xfreerdp", "qtile-rdp"])],
         exclusive=True,
         persist=False,
         layout='max',

@@ -28,9 +28,9 @@ keys = [
     Key([alt], "Print", create_screenshot(mode='window')),
     Key(["control"], "Print", create_screenshot(mode='select')),
 
-    Key(["shift"], "Print", create_screenshot(clipboard=True)),
-    Key([alt, "shift"], "Print", create_screenshot(mode='window', clipboard=True)),
-    Key(["control", "shift"], "Print", create_screenshot(mode='select', clipboard=True)),
+    Key(["shift"], "Print", create_screenshot(clipboard=False)),
+    Key([alt, "shift"], "Print", create_screenshot(mode='window', clipboard=False)),
+    Key(["control", "shift"], "Print", create_screenshot(mode='select', clipboard=False)),
 
     Key([mod], "k", lazy.layout.down()),
     Key([mod], "j", lazy.layout.up()),

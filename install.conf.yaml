@@ -66,6 +66,7 @@
     ~/.config/qtile: config/qtile
     ~/.config/sxhkd: config/sxhkd
     ~/.config/tilda: config/tilda
+    ~/.config/qutebrowser/config.py: config/qutebrowser/config.py
     ~/.newsboat/config: config/newsboat/config
     ~/.tickr/tickr-conf: config/tickr/tickr-conf
     ~/.tickr/tickr-url-list: config/tickr/tickr-url-list

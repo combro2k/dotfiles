@@ -2,7 +2,7 @@
 Categories=Network;RemoteAccess;GTK;
 Encoding=UTF-8
 Version=1.0
-Name=RPD
+Name=RDP
 GenericName=Remote Desktop Protocol
 Comment=RDP
 Exec=.config/qtile/rdp.py
