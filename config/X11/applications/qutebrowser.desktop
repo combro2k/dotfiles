@@ -2,7 +2,7 @@
 Categories=Network;WebBrowser;GTK;
 Encoding=UTF-8
 Version=1.0
-Name=RDP
+Name=qutebrowser
 GenericName=Web Browser
 Comment=RDP
 TryExec=.local/bin/qutebrowser
