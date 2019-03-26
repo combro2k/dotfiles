@@ -1,5 +1,6 @@
 
 config.bind('t', 'set-cmd-text -s :open -t')
+config.bind('<Alt-d>', 'set-cmd-text -s :open')
 
 config.bind('O', 'set-cmd-text :open {url:pretty}')
 
@@ -30,5 +31,5 @@ c.url.searchengines = {
 c.auto_save.session = True
 
 c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0'
-c.tabs.show = 'never'
+c.tabs.show = 'always'
 c.tabs.background = True

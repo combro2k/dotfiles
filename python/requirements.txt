@@ -2,4 +2,7 @@ virtualenvwrapper
 pipsi
 pipsi-tool
 zenipy
+qutebrowser
+PyQt5
+PyQtWebEngine
 https://github.com/combro2k/qtile-plasma/archive/master.zip

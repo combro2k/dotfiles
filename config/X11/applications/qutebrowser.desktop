@@ -1,0 +1,13 @@
+[Desktop Entry]
+Categories=Network;WebBrowser;GTK;
+Encoding=UTF-8
+Version=1.0
+Name=RDP
+GenericName=Web Browser
+Comment=RDP
+TryExec=.local/bin/qutebrowser
+Exec=.local/bin/qutebrowser
+Terminal=false
+StartupNotify=true
+Type=Application
+
