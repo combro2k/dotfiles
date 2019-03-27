@@ -116,7 +116,7 @@ keys = [
     Key([], 'F11', lazy.group['dropdown'].dropdown_toggle('weechat')),
     Key([], 'F12', lazy.group['dropdown'].dropdown_toggle('term')),
 
-    Key([mod], "F1", app_or_group('WWW', 'qutebrowser')),
+    Key([mod], "F1", app_or_group('WWW', '~/.local/bin/qutebrowser')),
     Key([mod], "F2", app_or_group('Editors', 'urxvtc-256color -bg "#1e1e1e" -name emacs -e emacsclient -t')),
     Key([mod], "F3", app_or_group('E-Mail', 'thunderbird')),
     Key([mod], "F5", app_or_group('TeamViewer', 'teamviewer')),
@@ -130,7 +130,7 @@ keys = [
     # Specific XF86 keys
     Key([], "XF86MyComputer", lazy.spawn(["xdg-open", "."])),
     Key([], "XF86Calculator", lazy.spawn(["gnome-calculator"])),
-    Key([], "XF86HomePage", app_or_group('WWW', 'qutebrowser')),
+    Key([], "XF86HomePage", app_or_group('WWW', '~/.local/bin/qutebrowser')),
     Key([], "XF86Mail", app_or_group('E-Mail', 'thunderbird')),
 ]
 
