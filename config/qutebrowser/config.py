@@ -23,6 +23,8 @@ config.bind('<Ctrl-i>', 'open-editor', mode='insert')
 # c.content.proxy = 'socks://localhost:1086'
 # c.content.proxy = 'system'
 
+c.content.headers.do_not_track = True
+
 c.url.searchengines = {
     "DEFAULT": "https://www.google.com/search?q={}",
     "d": "https://duckduckgo.com/?q={}"

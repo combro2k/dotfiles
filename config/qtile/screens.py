@@ -64,6 +64,10 @@ screens = [
                     background='585858',
                     padding=10,
                 ),
+                widget.Volume(
+                     background='585858',
+                     padding=10,
+                ),
                 widget.BatteryIcon(
                     background='585858',
                 ),
