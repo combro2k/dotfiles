@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 
 import sys
 import gi
@@ -21,7 +21,11 @@ class RDPWindow(Gtk.ApplicationWindow):
             self.application = kwargs['application']
             self.qtile = self.application.qtile
 
-        self.set_wmclass('Qtile-RDP', 'qtile-rdp')
+        self.set_role('qtile-rdp')
+        self.set_type_hint(Gdk.WindowTypeHint.TOOLBAR)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_accept_focus(True)
+        self.stick()
         self.resize(600, 150)
 
         self.set_border_width(20)
@@ -49,33 +53,38 @@ class RDPWindow(Gtk.ApplicationWindow):
         self.host = Gtk.Entry(
             visible=True,
             placeholder_text='Hostname or address',
-            xalign=0
+            xalign=0,
         )
         self.username = Gtk.Entry(
             visible=True,
-            placeholder_text='Administrator'
+            placeholder_text='Administrator',
         )
         self.password = Gtk.Entry(
             visible=True,
             placeholder_text='Password',
-            visibility=False
+            visibility=False,
         )
         self.btn_connect = Gtk.Button(
             visible=True,
             label='_Connect',
             use_underline=True,
-            xalign=2
         )
         self.fullscreen = Gtk.CheckButton(
             visible=True,
             label='_Fullscreen',
-            use_underline=True
+            use_underline=True,
+        )
+        self.password_reveal = Gtk.CheckButton(
+            visible=True,
+            label='_Reveal',
+            use_underline=True,
         )
 
         self.btn_connect.connect("clicked", self.cmd_connect)
         self.host.connect('key-press-event', self._key_press_event)
         self.username.connect('key-press-event', self._key_press_event)
         self.password.connect('key-press-event', self._key_press_event)
+        self.password_reveal.connect("clicked", self.cmd_password_reveal)
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
         hbox0 = Gtk.Box(spacing=10, visible=True)
@@ -89,7 +98,7 @@ class RDPWindow(Gtk.ApplicationWindow):
             label='_Hostname:',
             mnemonic_widget=self.host,
             use_underline=True,
-            xalign=0
+            xalign=0,
         ), True, True, 0)
 
         hbox1.pack_start(self.host, True, True, 0)
@@ -99,18 +108,19 @@ class RDPWindow(Gtk.ApplicationWindow):
             label='_Username:',
             mnemonic_widget=self.username,
             use_underline=True,
-            xalign=0
+            xalign=0,
         ), True, True, 0)
         hbox2.pack_start(Gtk.Label(
             label='_Password:',
             mnemonic_widget=self.password,
             use_underline=True,
             visible=True,
-            xalign=0
+            xalign=0,
         ), True, True, 0)
 
         hbox3.pack_start(self.username, True, True, 0)
         hbox3.pack_start(self.password, True, True, 0)
+        hbox3.pack_start(self.password_reveal, True, True, 0)
 
         hbox4.pack_start(self.fullscreen, True, True, 0)
 
@@ -126,7 +136,11 @@ class RDPWindow(Gtk.ApplicationWindow):
 
         self.add(vbox)
 
+        self.host.grab_focus()
+
         super().present()
+
+        self.set_focus(self.host)
 
     def cmd_connect(self, button):
         host = self.host.get_text()
@@ -154,17 +168,24 @@ class RDPWindow(Gtk.ApplicationWindow):
         self.hide()
 
         try:
+            print(cmd)
             Popen(['sh', '-c', cmd], shell=False)
 
             self.destroy()
         except Exception as e:
             print(e)
 
+    def cmd_password_reveal(self, button):
+        self.password.set_visibility(button.get_active())
+
 class RDP(Gtk.Application):
     _qtile = None
 
     def __init__(self, qtile=None):
-        Gtk.Application.__init__(self, application_id="org.qtile.actionmenu", flags=Gio.ApplicationFlags.FLAGS_NONE)
+        Gtk.Application.__init__(self,
+            application_id="org.qtile.rdp",
+            flags=Gio.ApplicationFlags.FLAGS_NONE,
+        )
 
         if qtile is not None:
             self._qtile = qtile
@@ -172,7 +193,7 @@ class RDP(Gtk.Application):
         self.window = None
 
     def do_activate(self):
-        window = RDPWindow(application=self, title="Main Window")
+        window = RDPWindow(application=self, title="Qtile RDP")
         window.present()
 
     @property

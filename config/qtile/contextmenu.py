@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 
 import sys, gi, time, subprocess, shlex, os.path
 
@@ -31,8 +31,7 @@ class ContextMenuApp(Gtk.Application):
     @property
     def menu(self):
         if self._menu is None:
-            menu = Gtk.Menu()
-            menu.set_title('ROOT')
+            menu = Gtk.Menu(name='ROOT')
             menu.connect('deactivate', self.cmd_destroy)
             
             self._menu = menu
@@ -156,14 +155,6 @@ class ContextMenuApp(Gtk.Application):
                     ),
                     parent=qtileMoveWindowMenu
                 )
-
-#        qtileCommandsMenu = self.addMenu(
-#            item=self.createMenu(
-#                title='_Commands',
-#            ),
-#            icon='system-run',
-#            parent=qtileMenu,
-#        )
 
         self.addMenuItem(
             item=self.createMenuItem(
@@ -313,17 +304,24 @@ class ContextMenuApp(Gtk.Application):
         return img
 
     def createMenu(self, title='', icon=None) -> Gtk.Menu:
-        item = Gtk.Menu()
-        item.set_title(title)
+        item = Gtk.Menu(
+            name=title,
+        )
 
         return item # type: gi.overrides.Gtk.Menu
 
     def createMenuItem(self, title='', callback=None, icon=None, **kwargs) -> Gtk.MenuItem:
         if icon:
-            item = Gtk.ImageMenuItem.new_with_mnemonic(title)
-            item.set_image(self.getThemeIcon(icon))
+            item = Gtk.ImageMenuItem(
+                label=title,
+                use_underline=True,
+                image=self.getThemeIcon(icon),
+            )
         else:
-            item = Gtk.MenuItem.new_with_mnemonic(title)
+            item = Gtk.MenuItem(
+                label=title,
+                use_underline=True,
+            )
 
         if callback:
             if len(kwargs) > 0:
@@ -356,7 +354,7 @@ class ContextMenuApp(Gtk.Application):
             parent = self.menu # type: gi.overrides.Gtk.Menu
 
         menuItem = self.createMenuItem(
-            title=item.get_title(),
+            title=item.get_name(),
             icon=icon,
         )
 

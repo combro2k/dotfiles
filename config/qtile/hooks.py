@@ -58,7 +58,7 @@ def group_created(qtile, group):
 @hook.subscribe.client_new
 def specific_instance_rules(window): # type: Window
     qtile = window.qtile
-    if window.match(wmclass='zenity') or window.match(wmclass='qtile-actionmenu'):
+    if window.match(wmclass='zenity'):
         wmtype = qtile.conn.atoms["_NET_WM_WINDOW_TYPE_DOCK"]
         state = list(window.window.get_property('_NET_WM_WINDOW_TYPE', 'ATOM', unpack=int))
         if not wmtype in state:

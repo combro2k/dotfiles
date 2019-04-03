@@ -40,13 +40,11 @@ floating_layout = layout.Floating(
         dict(wmclass="pinentry-x11"),
         dict(wmclass="gcr-prompter"),
         dict(wmclass="zenity"),
-        dict(wmclass="qtile-actionmenu"),
         dict(wmclass="YaST2"),
         dict(wmclass="nautilus"),
         dict(wmclass="gnome-calculator"),
         dict(wmclass="gnome-shell-extension-prefs"),
         dict(wmclass="gpaste-ui"),
-        dict(wmclass="qtile-rdp"),
     ],
     auto_float_types=[
         "notification",

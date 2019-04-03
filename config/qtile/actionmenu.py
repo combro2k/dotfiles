@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 
 import sys
 import gi
@@ -18,9 +18,10 @@ class ActionMenuWindow(Gtk.ApplicationWindow):
         if 'application' in kwargs:
             self.application = kwargs['application']
 
-        self.set_type_hint(Gdk.WindowTypeHint.DOCK)
+        self.set_type_hint(Gdk.WindowTypeHint.TOOLBAR)
         self.set_position(Gtk.WindowPosition.CENTER)
-        self.set_wmclass('Qtile-ActionMenu', 'qtile-actionmenu')
+        self.set_accept_focus(True)
+        self.stick()
         self.resize(400, 350)
 
         self.set_border_width(20)
@@ -114,7 +115,7 @@ class ActionMenu(Gtk.Application):
         self.window = None
 
     def do_activate(self):
-        window = ActionMenuWindow(application=self, title="Main Window")
+        window = ActionMenuWindow(application=self, title="Qtile Action Menu")
         window.present()
 
     @property

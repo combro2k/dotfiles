@@ -5,4 +5,5 @@ zenipy
 qutebrowser
 PyQt5
 PyQtWebEngine
+pyperclip
 https://github.com/combro2k/qtile-plasma/archive/master.zip

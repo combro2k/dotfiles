@@ -75,6 +75,7 @@
     ~/.terminfo/r/rxvt-unicode-256color: config/terminfo/rxvt-unicode-256color
     ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
     ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
+    ~/bin/lastpass.py: config/tooling/lastpass.py
 
 - pip:
     file: python/requirements.txt
