@@ -38,6 +38,12 @@ class LastPass():
             result = json.loads(Popen(q, stdout=PIPE).communicate()[0])
             r = result[0]
 
+            if 'password' in r:
+                try:
+                    pyperclip.copy(r['password'])
+                    r['password'] = 'Copied to clipboard'
+                except NotImplementedError as e:
+                    pass
             t = """==== %s ====
 ID:
  %s
@@ -51,16 +57,13 @@ Notes:
  %s
 
 ===============""" % (
-                r['fullname']   if 'fullname' in r  else 'N/A',
-                r['id']         if 'id' in r        else 'N/A',
-                r['url']        if 'url' in r       else 'None',
-                r['username']   if 'username' in r  else 'N/A',
-                r['password']   if 'password' in r  else 'N/A',
-                r['note']       if 'note' in r      else 'N/A',
+                r['fullname']   if 'fullname' in r              else 'N/A',
+                r['id']         if 'id' in r                    else 'N/A',
+                r['url']        if 'url' in r                   else 'None',
+                r['username']   if 'username' in r              else 'N/A',
+                r['password']   if 'password' in r              else 'N/A',
+                r['note']       if 'note' in r                  else 'N/A',
             )
-
-            if 'password' in r:
-                pyperclip.copy(r['password'])
 
             print(t)
 

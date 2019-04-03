@@ -30,6 +30,6 @@ function fpass -d "Fuzzy-find a Lastpass entry and copy the password"
   end
 
   if not test -z "$id"
-    lpass show "$id"
+    ~/bin/lastpass.py "$id"
   end
 end
