@@ -35,15 +35,16 @@ class LastPass():
             item = sys.argv[1]
 
             q = ['/usr/bin/lpass', 'show', '-j', item]
-            result = json.loads(Popen(q, stdout=PIPE).communicate()[0])
+            r = run(q, stdout=PIPE)
+            result = json.loads(r.stdout.decode())
             r = result[0]
 
             if 'password' in r:
                 try:
                     pyperclip.copy(r['password'])
                     r['password'] = 'Copied to clipboard'
-                except NotImplementedError as e:
-                    pass
+                except Exception as e:
+                    print('Could not copy password to clipboard: %s' % e)
             t = """==== %s ====
 ID:
  %s
