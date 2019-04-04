@@ -1,3 +1,4 @@
 virtualenvwrapper
 pipsi
 pipsi-tool
+pyperclip
