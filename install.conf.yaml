@@ -12,7 +12,6 @@
   # The config files!  
 - link:
     ~/.emacs.d: config/spacemacs
-    #    ~/.linuxbrew: config/linuxbrew
     ~/.gtkrc: config/gtk2/base16-twilight.gtkrc
     ~/.spacemacs: config/emacs/spacemacs
     ~/.screenrc: config/screen/screenrc
@@ -25,7 +24,6 @@
     ~/.vim/autoload/plug.vim: config/vim-plug/plug.vim
     ~/.Xresources: config/X11/Xresources
     ~/.Xresources.d: config/X11/Xresources.d
-    # ~/.xinitrc: config/X11/xinitrc
     ~/.local/share/applications/firefox.desktop: config/X11/applications/firefox.desktop
     ~/.local/share/applications/anbox-appmgr.desktop: config/X11/applications/anbox-appmgr.desktop
     ~/.local/share/applications/rdp.desktop: config/X11/applications/rdp.desktop
