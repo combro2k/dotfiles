@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 
-import sys
-import gi
+import sys, gi, socket, os
 
 gi.require_version('Gtk', '3.0')
+
 from gi.repository import Gio, Gtk, Gdk
-
 from libqtile.command import Client
-
 from subprocess import Popen
+from os.path import expanduser
 
 class RDPWindow(Gtk.ApplicationWindow):
 
+    _history_file = expanduser('~/.rdp_history')
     qtile = None
 
     def __init__(self, *args, **kwargs):
@@ -42,6 +42,9 @@ class RDPWindow(Gtk.ApplicationWindow):
 
         return False
 
+#    def _history_update(self, widget, event):
+#        print(widget, widget.prop.popup_shown)
+
     def present(self):
         qscreen = self.qtile.screen
         qinfo = qscreen.info()
@@ -50,11 +53,26 @@ class RDPWindow(Gtk.ApplicationWindow):
         self.width = qinfo['width']
         self.height = qinfo['height'] - qbar['size']
 
-        self.host = Gtk.Entry(
-            visible=True,
-            placeholder_text='Hostname or address',
-            xalign=0,
+        host_entries = Gtk.ListStore(str)
+        for i in self.history:
+            if i not in host_entries:
+                host_entries.append([i])
+
+        completion = Gtk.EntryCompletion(
+            model=host_entries,
         )
+        completion.set_text_column(0)
+
+        self.host = Gtk.ComboBox(
+            visible=True,
+            has_entry=True,
+            model=host_entries,
+            entry_text_column=0,
+        )
+
+        self.host.get_child().set_completion(completion)
+        self.host.get_child().set_placeholder_text('Hostname')
+
         self.username = Gtk.Entry(
             visible=True,
             placeholder_text='Administrator',
@@ -82,6 +100,7 @@ class RDPWindow(Gtk.ApplicationWindow):
 
         self.btn_connect.connect("clicked", self.cmd_connect)
         self.host.connect('key-press-event', self._key_press_event)
+#        self.host.connect('popup', self._history_update)
         self.username.connect('key-press-event', self._key_press_event)
         self.password.connect('key-press-event', self._key_press_event)
         self.password_reveal.connect("clicked", self.cmd_password_reveal)
@@ -143,40 +162,76 @@ class RDPWindow(Gtk.ApplicationWindow):
         self.set_focus(self.host)
 
     def cmd_connect(self, button):
-        host = self.host.get_text()
-        username = self.username.get_text() or 'Administrator'
-        password = self.password.get_text()
-
-        if not (host and username and password):
-            return False
-
-        if self.fullscreen.get_active():
-            cmd = f'/usr/bin/xfreerdp /cert-ignore /v:%s /f /u:%s /p:%s +clipboard' % (
-                    host,
-                    username,
-                    password
-            )
-        else:
-            cmd = f'/usr/bin/xfreerdp /cert-ignore /v:%s /w:%s /h:%s /u:%s /p:%s +clipboard' % (
-                    host,
-                    self.width,
-                    self.height,
-                    username,
-                    password
-            )
-
-        self.hide()
-
         try:
-            print(cmd)
-            Popen(['sh', '-c', cmd], shell=False)
+            host = self.host.get_child().get_text()
 
-            self.destroy()
+            socket.gethostbyname(host)
+
+            self.add_history(host) 
+
+            username = self.username.get_text() or 'Administrator'
+            password = self.password.get_text()
+
+            if not (host and username and password):
+                return False
+
+            if self.fullscreen.get_active():
+                cmd = f'/usr/bin/xfreerdp /cert-ignore /v:%s /f /u:%s /p:%s +clipboard' % (
+                        host,
+                        username,
+                        password
+                )
+            else:
+                cmd = f'/usr/bin/xfreerdp /cert-ignore /v:%s /w:%s /h:%s /u:%s /p:%s +clipboard' % (
+                        host,
+                        self.width,
+                        self.height,
+                        username,
+                        password
+                )
+
+            self.hide()
+
+            try:
+                print(cmd)
+                Popen(['sh', '-c', cmd], shell=False)
+
+                self.destroy()
+            except Exception as e:
+                print(e)
+
         except Exception as e:
             print(e)
 
     def cmd_password_reveal(self, button):
         self.password.set_visibility(button.get_active())
+
+    @property
+    def history(self):
+        history = []
+
+        if not os.path.exists(self._history_file):
+            return history
+
+        with open(self._history_file, 'r') as f:
+            for l in sorted(f.read().splitlines()):
+                if l not in history:
+                    history.append(l)
+
+        return history
+
+    def add_history(self, value):
+        history = self.history
+
+        if not value in history:
+            history.append(value)
+            history = sorted(history)
+
+            with open(self._history_file, 'w') as f:
+                for l in history:
+                    f.write('%s\n' % (l))
+
+            #f.write('%s\n' % (value))
 
 class RDP(Gtk.Application):
     _qtile = None

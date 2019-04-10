@@ -3,7 +3,6 @@ pipsi
 pipsi-tool
 zenipy
 qutebrowser
-PyQt5
 PyQtWebEngine
 pyperclip
 qtpy
