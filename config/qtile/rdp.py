@@ -176,18 +176,20 @@ class RDPWindow(Gtk.ApplicationWindow):
                 return False
 
             if self.fullscreen.get_active():
-                cmd = f'/usr/bin/xfreerdp /cert-ignore /v:%s /f /u:%s /p:%s +clipboard' % (
+                cmd = f'/usr/bin/xfreerdp /cert-ignore /v:%s /f /u:%s /p:%s /drive:home,%s +clipboard' % (
                         host,
                         username,
-                        password
+                        password,
+                        expanduser('~'),
                 )
             else:
-                cmd = f'/usr/bin/xfreerdp /cert-ignore /v:%s /w:%s /h:%s /u:%s /p:%s +clipboard' % (
+                cmd = f'/usr/bin/xfreerdp /cert-ignore /v:%s /w:%s /h:%s /u:%s /p:%s /drive:home,%s +clipboard' % (
                         host,
                         self.width,
                         self.height,
                         username,
-                        password
+                        password,
+                        expanduser('~'),
                 )
 
             self.hide()
