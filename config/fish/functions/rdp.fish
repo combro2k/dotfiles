@@ -1,4 +1,4 @@
 function rdp --description 'RDP wrapper'
-  ~/.config/qtile/rdp.py
+  ~/.local/bin/xfreerdpui
 end
 

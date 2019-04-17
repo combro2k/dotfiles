@@ -7,3 +7,4 @@ PyQtWebEngine
 pyperclip
 qtpy
 https://github.com/combro2k/qtile-plasma/archive/master.zip
+https://github.com/combro2k/xfreerdp-python3-ui/archive/master.zip
