@@ -90,7 +90,7 @@
 
 - pipx:
     file: python/requirements-pipx.txt
-    system_site_packages: true
+    system-site-packages: true
     stdout: true
     stderr: true
 
