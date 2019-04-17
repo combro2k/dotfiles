@@ -83,9 +83,15 @@
     stdout: false
     stderr: true
 
-- pipsi:
-    file: python/requirements-pipsi.txt
-    stdout: false
+#- pipsi:
+#    file: python/requirements-pipsi.txt
+#    stdout: false
+#    stderr: true
+
+- pipx:
+    file: python/requirements-pipx.txt
+    system_site_packages: true
+    stdout: true
     stderr: true
 
 - cargo:
