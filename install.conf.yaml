@@ -80,12 +80,12 @@
     file-nox: python/requirements-nox.txt
     binary: /usr/bin/pip3
     user: true
-    stdout: true
+    stdout: false
     stderr: true
 
 - pipsi:
     file: python/requirements-pipsi.txt
-    stdout: true
+    stdout: false
     stderr: true
 
 - cargo:
@@ -100,7 +100,7 @@
       - 
         command: fc-cache -fv ~/.local/share/fonts
         stdin: true
-        stdout: true
+        stdout: false
         description: Update font cache
       -
         command: bash -i -c 'test -x /usr/bin/update-desktop-database && update-desktop-database -v ~/.local/share/applications || echo "No X11"'
