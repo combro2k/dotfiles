@@ -1,0 +1,5 @@
+git+https://github.com/combro2k/xfreerdp-python3-ui.git xfreerdpui
+Pygments pygments
+cookiecutter cookiecutter
+glances[docker,gpu,ip] glances
+tmuxp tmuxp
