@@ -78,7 +78,7 @@
 - pip:
     file: python/requirements.txt
     file-nox: python/requirements-nox.txt
-    binary: /usr/bin/pip3
+    binary: /usr/bin/pip3.7
     user: true
     stdout: false
     stderr: true
