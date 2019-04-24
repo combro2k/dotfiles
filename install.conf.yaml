@@ -87,6 +87,7 @@
 
 - pipx:
     file: python/requirements-pipx.txt
+    file-nox: python/requirements-pipx-nox.txt
     system-site-packages: true
     stdout: true
     stderr: true
