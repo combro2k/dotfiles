@@ -305,6 +305,19 @@ class Helpers():
 
         return f
 
+    def get_num_screen():
+        num = 1
+
+        try:
+            r = run(['sh', '-c', '/usr/bin/xrandr --listactivemonitors | head -n1 | tr -dc \'0-9\''], stdout=PIPE, universal_newlines=True)
+
+            num = r.stdout.strip()
+
+        except Exception as e:
+            logger.error(e)
+
+        return num
+
     def get_screen_size():
         try:
             r = run(['sh', '-c', '/usr/bin/xrandr | awk \'/*/ {print $1}\''], stdout=PIPE, universal_newlines=True)
