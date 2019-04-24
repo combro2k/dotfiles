@@ -172,7 +172,7 @@ class Helpers():
     def context_menu():
         @lazy.function
         def f(qtile):
-            qtile.cmd_spawn([expanduser('~/.config/qtile/contextmenu.py')])
+            qtile.cmd_spawn([expanduser('~/.local/bin/qtile-contextmenu')])
 
         return f
 

@@ -1,5 +1,6 @@
 git+https://github.com/combro2k/xfreerdp-python3-ui.git xfreerdpui
-Pygments pygments
-cookiecutter cookiecutter
-glances[docker,gpu,ip] glances
-tmuxp tmuxp
+git+https://github.com/combro2k/qtile-actionmenu.git qtile-actionmenu
+git+https://github.com/combro2k/qtile-contextmenu.git qtile-contextmenu
+glances[docker,gpu,ip]
+tmuxp
+qutebrowser

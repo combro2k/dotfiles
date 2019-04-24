@@ -10,34 +10,60 @@ from extensions import RofiMenu
 #from extensions import RofiMenu
 
 class MenuWidget(base._TextBox):
-    defaults = []
+    defaults = [
+        (
+            'program',
+            '~/.local/bin/qtile-contextmenu',
+            'Location of the program to run on click'
+            'e.g. ~/.local/bin/qtile-contextmenu'
+        ),
+        (
+            'icon',
+            '\uf314',
+            'Icon to use',
+            'e.g. "\uf314 "'
+        ),
+    ]
 
     def __init__(self, width=bar.CALCULATED, **config):
         base._TextBox.__init__(self, "", width, **config)
         self.add_defaults(MenuWidget.defaults)
-    
+
     def _configure(self, qtile, bar):
         base._TextBox._configure(self, qtile, bar)
-        self.text = '\uf314'
-    
+        self.text = self.icon
+
     def button_press(self, x, y, button):
         if button == 1:
-            self.qtile.cmd_spawn([expanduser('~/.config/qtile/contextmenu.py')])
+            self.qtile.cmd_spawn([expanduser(self.program)])
 
 class ActionMenuWidget(base._TextBox):
-    defaults = []
+    defaults = [
+        (
+            'program',
+            '~/.local/bin/qtile-actionmenu',
+            'Location of the program to run on click'
+            'e.g. ~/.local/bin/qtile-actionmenu'
+        ),
+        (
+            'icon',
+            '\uf2be',
+            'Icon to use',
+            'e.g. "\uf2be "'
+        ),
+    ]
 
     def __init__(self, width=bar.CALCULATED, **config):
         base._TextBox.__init__(self, "", width, **config)
         self.add_defaults(ActionMenuWidget.defaults)
-    
+
     def _configure(self, qtile, bar):
         base._TextBox._configure(self, qtile, bar)
-        self.text = '\uf2be'
-    
+        self.text = self.icon
+
     def button_press(self, x, y, button):
         if button == 1:
-            self.qtile.cmd_spawn([expanduser('~/.config/qtile/actionmenu.py')])
+            self.qtile.cmd_spawn([expanduser(self.program)])
 
 class WindowNameNew(WindowName):
 
@@ -76,7 +102,7 @@ class WindowNameNew(WindowName):
         if self.for_current_screen:
             w = self.qtile.currentScreen.group.currentWindow
         else:
-            w = self.bar.screen.group.currentWindow           
+            w = self.bar.screen.group.currentWindow
         if button == 1 and not w is None:
             w.toggle_maximize()
         if button == 2 and not w is None:
@@ -113,7 +139,7 @@ class TaskListNew(TaskList):
 
     def button_press(self, x, y, button):
         window = None
-        current_win = self.bar.screen.group.currentWindow           
+        current_win = self.bar.screen.group.currentWindow
         if button == 1 or button == 2 or button == 3:
             window = self.get_clicked(x, y)
 

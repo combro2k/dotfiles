@@ -39,10 +39,10 @@ class LastPass():
             result = json.loads(r.stdout.decode())
             r = result[0]
 
-            if 'password' in r:
+            if 'password' in r and r['password'].strip() != '':
                 try:
                     pyperclip.copy(r['password'])
-                    r['password'] = 'Copied to clipboard'
+#                    r['password'] = 'Copied to clipboard'
                 except Exception as e:
                     print('Could not copy password to clipboard: %s' % e)
             t = """==== %s ====
