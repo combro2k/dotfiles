@@ -82,17 +82,16 @@
     user: true
     stdout: false
     stderr: true
-
-#- pipsi:
-#    file: python/requirements-pipsi.txt
-#    stdout: false
-#    stderr: true
+    verbose: true
+    force: true
 
 - pipx:
     file: python/requirements-pipx.txt
     system-site-packages: true
     stdout: true
     stderr: true
+    verbose: true
+    force: true
 
 - cargo:
     - exa:
