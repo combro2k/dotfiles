@@ -47,3 +47,7 @@ let base16colorspace=256  " Access colors present in 256 colorspace
 " colorscheme zellner
 " less readable on twilight coloured theme .. :-(
 colorscheme base16-twilight
+
+" enable modelines for easier use might be a risk I know ;-)
+set modeline
+set modelines=5
