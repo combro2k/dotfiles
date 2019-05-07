@@ -53,7 +53,6 @@ class RofiMenu(RunCommand):
         self.configured_command.append("-show")
 
     def run(self):
-        logger.error(self.configured_command)
         subprocess.run(self.configured_command, shell=False)
 
 class Zenipy(RunCommand):
