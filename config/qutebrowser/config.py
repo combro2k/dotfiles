@@ -55,6 +55,14 @@ c.content.plugins = True
 # Type: Bool
 c.content.webgl = True
 
+# When to show the scrollbar.
+# Type: String
+# Valid values:
+#   - always: Always show the scrollbar.
+#   - never: Never show the scrollbar.
+#   - when-searching: Show the scrollbar when searching for text in the webpage. With the QtWebKit backend, this is equal to `never`.
+c.scrolling.bar = 'always'
+
 # Open new tabs (middleclick/ctrl+click) in the background.
 # Type: Bool
 c.tabs.background = True
@@ -102,6 +110,7 @@ config.bind('t', 'set-cmd-text -s :open -t')
 config.bind('tt', 'open -t')
 config.bind('w', 'set-cmd-text -s :open -w')
 config.bind('ww', 'open -w')
+config.bind('<Ctrl+Shift+i>', 'inspector')
 
 # Bindings for insert mode
 config.bind('<Ctrl+i>', 'open-editor', mode='insert')
