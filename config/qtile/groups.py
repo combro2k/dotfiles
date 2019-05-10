@@ -3,6 +3,7 @@
 from libqtile.config import Group, Match, ScratchPad, DropDown
 
 from font_images import *
+from os.path import expanduser
 
 #from keys import keys, mod
 
@@ -21,7 +22,7 @@ groups.extend([
  
     Group(
         name='WWW',
-        matches=[Match(wm_instance_class=["Firefox", "Navigator", "qutebrowser"])],
+        matches=[Match(wm_instance_class=["Firefox", "Navigator"])],
         exclusive=True,
         persist=False,
         layout='max',
@@ -130,5 +131,16 @@ groups.extend([
             width=0.95,
             height=0.90,
         ),
+
+        DropDown("qutebrowser", expanduser("~/.local/bin/qutebrowser"),
+            opacity=1,
+            warp_pointer=False,
+            on_focus_lost_hide=False,
+            x=0.025,
+            y=0.025,
+            width=0.95,
+            height=0.90,
+        ),
+
     ]),
 ])

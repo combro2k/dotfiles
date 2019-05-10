@@ -83,7 +83,7 @@
     stdout: false
     stderr: true
     verbose: true
-#    force: true
+    force: true
 
 - pipx:
     file: python/requirements-pipx.txt
@@ -92,7 +92,7 @@
     stdout: true
     stderr: true
     verbose: true
-#    force: true
+    force: true
 
 - cargo:
     - exa:

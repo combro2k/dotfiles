@@ -113,6 +113,7 @@ keys = [
     Key([alt], "Tab", lazy.run_extension(RofiMenu(modi="windowcd"))),
     Key([mod, "shift"], "r", lazy.restart()),
 
+    Key([], 'F10', lazy.group['dropdown'].dropdown_toggle('qutebrowser')),
     Key([], 'F11', lazy.group['dropdown'].dropdown_toggle('weechat')),
     Key([], 'F12', lazy.group['dropdown'].dropdown_toggle('term')),
 
@@ -123,7 +124,7 @@ keys = [
     Key([mod], "F6", app_or_group('RPD', '~/.local/bin/xfreerdpui')),
     Key([mod], "r", app_or_group('RPD', '~/.local/bin/xfreerdpui')),
 
-    Key([], "F10", lazy.run_extension(Wallpaper())),
+#    Key([], "F10", lazy.run_extension(Wallpaper())),
 
     Key([], "Menu", context_menu()),
 
