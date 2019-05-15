@@ -8,7 +8,7 @@ from datetime import datetime
 from subprocess import PIPE, run
 
 try:
-    import pyperclipl
+    import pyperclip
 except ImportError:
     pass
 
@@ -65,9 +65,10 @@ class LastPass(object):
                     fromtimestamp(int(r['last_modified_gmt'])). \
                     strftime('%d-%m-%Y %T')
 
-            if 'password' in r and r['password'].strip() != '':
+            if 'password' in r and not r['password'].strip() == '':
                 try:
                     if 'pyperclip' in sys.modules:
+                        print('test')
                         pyperclip.copy(r['password'])
                         r['password'] = 'Copied to clipboard'
                         clipboard = True
