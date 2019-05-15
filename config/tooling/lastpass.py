@@ -1,12 +1,22 @@
 #! /usr/bin/env python3
 
-from subprocess import run, Popen, PIPE
+from __future__ import print_function
 
-import json, pyperclip, sys
+import json
+import sys
+from datetime import datetime
+from subprocess import PIPE, run
 
-class LastPass():
+try:
+    import pyperclipl
+except ImportError:
+    pass
 
-    def __init__(self):
+
+class LastPass(object):
+
+    @staticmethod
+    def check_login():
         try:
             q = ['/usr/bin/lpass', 'status']
             r = run(q, stdout=PIPE)
@@ -18,15 +28,20 @@ class LastPass():
                 q = ['/usr/bin/lpass', 'login', e]
                 r = run(q, stdout=PIPE)
 
-                print('')
+                print('', file=sys.stdout)
 
         except Exception as e:
-            print(e)
+            print(e, file=sys.stdout)
 
             sys.exit(255)
 
-    def run(self):
+    @staticmethod
+    def run():
         try:
+            LastPass.check_login()
+
+            clipboard = False
+
             if len(sys.argv) < 2:
                 print('No query given!')
 
@@ -39,38 +54,92 @@ class LastPass():
             result = json.loads(r.stdout.decode())
             r = result[0]
 
+            if 'note' in r and r['note'].strip() == '':
+                del r['note']
+
+            if 'username' in r and r['username'].strip() == '':
+                del r['username']
+
+            if 'last_modified_gmt' in r and r['last_modified_gmt'].strip() != '':
+                r['last_modified_gmt'] = datetime. \
+                    fromtimestamp(int(r['last_modified_gmt'])). \
+                    strftime('%d-%m-%Y %T')
+
             if 'password' in r and r['password'].strip() != '':
                 try:
-                    pyperclip.copy(r['password'])
-#                    r['password'] = 'Copied to clipboard'
+                    if 'pyperclip' in sys.modules:
+                        pyperclip.copy(r['password'])
+                        r['password'] = 'Copied to clipboard'
+                        clipboard = True
                 except Exception as e:
                     print('Could not copy password to clipboard: %s' % e)
-            t = """==== %s ====
-ID:
+
+            if 'url' in r and r['url'] == 'http://sn':
+                t = """
+\033[95m==== %s ====\033[0m
+\033[93mName:\033[0m
  %s
-URL:
+\033[93mModified:\033[0m
  %s
-Username:
+\033[93mShared:\033[0m
  %s
-Password:
+\033[93mFolder:\033[0m
  %s
-Notes:
+\033[93mNotes:\033[0m
  %s
 
-===============""" % (
-                r['fullname']   if 'fullname' in r              else 'N/A',
-                r['id']         if 'id' in r                    else 'N/A',
-                r['url']        if 'url' in r                   else 'None',
-                r['username']   if 'username' in r              else 'N/A',
-                r['password']   if 'password' in r              else 'N/A',
-                r['note']       if 'note' in r                  else 'N/A',
-            )
+===============
+                    """ % (
+                    r['fullname'] if 'fullname' in r else 'N/A',
+                    r['name'] if 'name' in r else 'N/A',
+                    r['last_modified_gmt'] if 'last_modified_gmt' in r else 'N/A',
+                    r['share'] if 'share' in r else 'NO',
+                    r['group'] if 'group' in r else 'N/A',
+                    r['note'] if 'note' in r else 'N/A',
+                )
+            else:
+                t = """
+\x1b[3m\033[95m==== %s ====\033[0m\x1b[0m
+\033[93mName:\033[0m
+ %s
+\033[93mModified:\033[0m
+ %s
+\033[93mShared:\033[0m
+ %s
+\033[93mFolder:\033[0m
+ %s
+\033[93mURL:\033[0m
+ %s
+\033[93mUsername:\033[0m
+ %s
+\033[93mPassword:\033[0m
+ %s
+\033[93mNotes:\033[0m
+ %s
 
-            print(t)
+===============
+                    """ % (
+                    r['fullname'] if 'fullname' in r else 'N/A',
+                    r['name'] if 'name' in r else 'N/A',
+                    r['last_modified_gmt'] if 'last_modified_gmt' in r else 'N/A',
+                    r['share'] if 'share' in r else 'NO',
+                    r['group'] if 'group' in r else 'N/A',
+                    r['url'] if 'url' in r else 'None',
+                    r['username'] if 'username' in r else 'N/A',
+                    r['password'] if 'password' in r else 'N/A',
+                    r['note'] if 'note' in r else 'N/A',
+                )
+
+            print(t.strip(), file=sys.stdout)
+
+            if 'password' in r and not clipboard:
+                print('\033[91mWarning: automatic clipboard is not loaded', file=sys.stderr)
 
         except Exception as e:
-            print(e)
+            print(e, file=sys.stderr)
+
+        return True
+
 
 if __name__ == '__main__':
-    app = LastPass()
-    app.run()
+    LastPass.run()

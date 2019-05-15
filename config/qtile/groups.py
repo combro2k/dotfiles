@@ -32,7 +32,7 @@ groups.extend([
    
     Group(
         name='Editors',
-        matches=[Match(wm_instance_class=["code", "Code", "emacs", "Emacs"])],
+        matches=[Match(wm_instance_class=["code", "Code", "emacs", "Emacs", "jetbrains-pycharm-ce"])],
         exclusive=True,
         persist=False,
         layout='max',
