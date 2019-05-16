@@ -16,3 +16,5 @@ def autostart():
     yield '/usr/lib64/libexec/kdeconnectd'
     yield '/usr/bin/kdeconnect-indicator'
     yield '/usr/bin/urxvtd-256color', '-o', '-q', '-m'
+    #yield '/usr/bin/compton', '-b'
+    yield '/usr/bin/simplescreenrecorder', '--start-hidden'

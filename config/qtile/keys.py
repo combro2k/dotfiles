@@ -19,18 +19,22 @@ minimize_group = Helpers.minimize_group
 unminimize_group = Helpers.unminimize_group
 toggle_minimize_group = Helpers.toggle_minimize_group
 create_screenshot = Helpers.create_screenshot
+create_video = Helpers.create_video
 context_menu = Helpers.context_menu
 toggle_follow_mouse_focus = Helpers.toggle_follow_mouse_focus
 qtile_shutdown = Helpers.qtile_shutdown
 
 keys = [
-    Key([], "Print", create_screenshot()),
-    Key([alt], "Print", create_screenshot(mode='window')),
-    Key(["control"], "Print", create_screenshot(mode='select')),
+    Key([], "Print", create_screenshot(clipboard=False)),
+    Key([alt], "Print", create_screenshot(mode='window', clipboard=False)),
+    Key(["control"], "Print", create_screenshot(mode='select', clipboard=False)),
 
-    Key(["shift"], "Print", create_screenshot(clipboard=False)),
-    Key([alt, "shift"], "Print", create_screenshot(mode='window', clipboard=False)),
-    Key(["control", "shift"], "Print", create_screenshot(mode='select', clipboard=False)),
+#    Key(["shift"], "Print", create_screenshot(clipboard=True)),
+#    Key([alt, "shift"], "Print", create_screenshot(mode='window', clipboard=True)),
+#    Key(["control", "shift"], "Print", create_screenshot(mode='select', clipboard=True)),
+
+    Key([mod], "Print", create_video()),
+    Key([mod,  "shift"], "Print", create_video(mode='window')),
 
     Key([mod], "k", lazy.layout.down()),
     Key([mod], "j", lazy.layout.up()),

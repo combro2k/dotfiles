@@ -45,6 +45,8 @@ floating_layout = layout.Floating(
         dict(wmclass="gnome-calculator"),
         dict(wmclass="gnome-shell-extension-prefs"),
         dict(wmclass="gpaste-ui"),
+        dict(wmclass="SimpleScreenRecorder"),
+        dict(wmclass="ibus-setup"),
     ],
     auto_float_types=[
         "notification",

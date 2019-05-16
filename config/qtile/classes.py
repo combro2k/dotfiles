@@ -186,6 +186,61 @@ class Helpers():
 
         return f
 
+    def create_video(mode=False):
+        @lazy.function
+        def f(qtile):
+            def check_running():
+                r = run(['pgrep', '-fla', 'byzanz-record'])
+                logger.error(r)
+
+                return False if r.returncode == 1 else True
+
+            def thread_run(*cmd):
+                r = run(cmd)
+                logger.error(r)
+
+                return True
+
+            targetdir = expanduser('~/Pictures/Screenshots/')
+
+            if not isdir(targetdir):
+                try:
+                    makedirs(targetdir)
+                except OSError:
+                    if not isdir(targetdir):
+                        raise
+
+            hostname = platform.node()
+            cmd = ['byzanz-record', '-c', '--duration=3600']
+            opts = []
+
+            if mode == 'window':
+                qinfo = qtile.currentWindow.cmd_info()               
+
+                opts.extend([
+                    '-x', str(qinfo['x']),
+                    '-y', str(qinfo['y']),
+                    '-w', str(qinfo['width'] + 2),
+                    '-h', str(qinfo['height'] + 2),
+                ])
+                target = f'{targetdir}/{hostname}_window_{str(int(time() * 100))}.gif'
+            else:
+                target = f'{targetdir}/{hostname}_full_{str(int(time() * 100))}.gif'
+
+            cmd.extend(opts)
+            cmd.append(target)
+
+            logger.error(opts)
+            logger.error(cmd)
+
+            if not check_running():
+                Thread(target=thread_run, args=(cmd)).start()
+            else:
+                r = run(['pkill', 'byzanz-record'])
+                logger.error(r)
+
+        return f
+
     def create_screenshot(mode=False, clipboard=True):
         @lazy.function
         def f(qtile):
@@ -283,7 +338,7 @@ class Helpers():
                     currentLayout.cmd_shuffle_left()
 
         return f
-    
+
     def move_window_to_right():
         @lazy.function
         def f(qtile):
@@ -297,7 +352,7 @@ class Helpers():
             pass
 
         return f
-    
+
     def move_window_to_down():
         @lazy.function
         def f(qtile):
