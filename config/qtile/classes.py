@@ -215,7 +215,7 @@ class Helpers():
             opts = []
 
             if mode == 'window':
-                qinfo = qtile.currentWindow.cmd_info()               
+                qinfo = qtile.currentWindow.cmd_info()
 
                 opts.extend([
                     '-x', str(qinfo['x']),
