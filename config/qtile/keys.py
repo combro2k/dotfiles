@@ -3,6 +3,7 @@ from libqtile.command import lazy
 from classes import Helpers
 from groups import groups
 from extensions import *
+from os.path import expanduser
 
 mod = "mod4"
 alt = "mod1"
@@ -126,7 +127,15 @@ keys = [
     Key([mod], "F3", app_or_group('E-Mail', 'thunderbird')),
     Key([mod], "F5", app_or_group('TeamViewer', 'teamviewer')),
     Key([mod], "F6", app_or_group('RPD', '~/.local/bin/xfreerdpui')),
+    Key([mod], "F7", lazy.spawn([
+        expanduser('~/.local/bin/lastpass-gtk')
+    ])),
+
+
     Key([mod], "r", app_or_group('RPD', '~/.local/bin/xfreerdpui')),
+    Key([mod], "p", lazy.spawn([
+        expanduser('~/.local/bin/lastpass-gtk')
+    ])),
 
 #    Key([], "F10", lazy.run_extension(Wallpaper())),
 

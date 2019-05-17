@@ -1,6 +1,7 @@
 git+https://github.com/combro2k/xfreerdp-python3-ui.git xfreerdpui
 git+https://github.com/combro2k/qtile-actionmenu.git qtile-actionmenu
 git+https://github.com/combro2k/qtile-contextmenu.git qtile-contextmenu
+git+https://github.com/combro2k/lastpass-gtk.git lastpassgtk
 glances[docker,gpu,ip]
 tmuxp
 qutebrowser
