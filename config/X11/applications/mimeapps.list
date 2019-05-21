@@ -1,0 +1,24 @@
+[Default Applications]
+x-scheme-handler/http=qutebrowser.desktop,firefox.desktop
+x-scheme-handler/https=qutebrowser.desktop,firefox.desktop
+x-scheme-handler/ftp=qutebrowser.desktop,firefox.desktop
+x-scheme-handler/chrome=qutebrowser.desktop,firefox.desktop
+text/html=qutebrowser.desktop,firefox.desktop
+application/x-extension-htm=qutebrowser.desktop,firefox.desktop
+application/x-extension-html=qutebrowser.desktop,firefox.desktop
+application/x-extension-shtml=qutebrowser.desktop,firefox.desktop
+application/xhtml+xml=qutebrowser.desktop,firefox.desktop
+application/x-extension-xhtml=qutebrowser.desktop,firefox.desktop
+application/x-extension-xht=qutebrowser.desktop,firefox.desktop
+image/jpeg=mpv.desktop
+image/svg+xml=inkscape.desktop
+video/mp4=mpv.desktop
+video/quicktime=mpv.desktop
+video/mpeg=mpv.desktop
+image/png=mpv.desktop
+image/bmp=mpv.desktop
+image/gif=mpv.desktop
+image/jpg=mpv.desktop
+image/tiff=mpv.desktop
+image/x-bmp=mpv.desktop
+inode/directory=ranger.desktop

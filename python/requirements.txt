@@ -2,7 +2,7 @@
 pipx
 # pipsi
 # pipsi-tool
-# zenipy
+zenipy
 #qutebrowser
 #PyQtWebEngine
 pyperclip

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=ranger
+GenericName=ranger
+X-SuSE-translate=false
+Comment=Launches the ranger file manager
+Icon=utilities-terminal
+Terminal=true
+Exec=ranger
+Categories=ConsoleOnly;System;FileTools;FileManager;
+MimeType=inode/directory;

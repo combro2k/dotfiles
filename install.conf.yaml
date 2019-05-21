@@ -26,8 +26,10 @@
     ~/.Xresources.d: config/X11/Xresources.d
     ~/.local/share/applications/firefox.desktop: config/X11/applications/firefox.desktop
     ~/.local/share/applications/anbox-appmgr.desktop: config/X11/applications/anbox-appmgr.desktop
+    ~/.local/share/applications/ranger.desktop: config/X11/applications/ranger.desktop
     ~/.local/share/applications/rdp.desktop: config/X11/applications/rdp.desktop
     ~/.local/share/applications/qutebrowser.desktop: config/X11/applications/qutebrowser.desktop
+    ~/.local/share/applications/mimeapps.list: config/X11/applications/mimeapps.list
     ~/.local/share/fonts/dotfiles: config/fonts
     ~/.local/share/rofi/themes: config/rofi/themes
     ~/.local/share/xsessions: config/X11/xsessions
@@ -83,7 +85,7 @@
     stdout: false
     stderr: true
     verbose: true
-    force: true
+    force: false
 
 - pipx:
     file: python/requirements-pipx.txt
@@ -92,7 +94,7 @@
     stdout: true
     stderr: true
     verbose: true
-    force: true
+    force: false
 
 - cargo:
     - exa:
