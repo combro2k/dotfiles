@@ -68,7 +68,6 @@ class LastPass(object):
             if 'password' in r and not r['password'].strip() == '':
                 try:
                     if 'pyperclip' in sys.modules:
-                        print('test')
                         pyperclip.copy(r['password'])
                         r['password'] = 'Copied to clipboard'
                         clipboard = True

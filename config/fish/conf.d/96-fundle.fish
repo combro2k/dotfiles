@@ -12,6 +12,7 @@ if status --is-interactive
   set -x FZF_LEGACY_KEYBINDINGS 0
 
   # list plugin dependencies
+  fundle plugin 'smh/base16-shell-fish'
   fundle plugin 'fishpkg/fish-await'
   fundle plugin 'decors/fish-colored-man'
   fundle plugin 'tuvistavie/fish-completion-helpers'
@@ -24,12 +25,8 @@ if status --is-interactive
   fundle plugin 'maman/plugin-gvm'
   fundle plugin 'jethrokuan/fzf'
   fundle plugin 'edc/bass'
-  fundle plugin 'smh/base16-shell-fish'
-  fundle plugin 'combro2k/theme-cmorrell-twilight'
+  fundle plugin 'oh-my-fish/theme-cmorrell.com'
+  # fundle plugin 'combro2k/theme-cmorrell-twilight'
 
   fundle init
-
-  if functions -q base16
-    base16 twilight
-  end
 end

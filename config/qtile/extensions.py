@@ -158,4 +158,4 @@ class Wallpaper(_Extension):
 
     def run(self):
         logger.error('Setting wallpaper')
-        x = subprocess.run(['feh', '-r', '-z', '--bg-scale', '-Z', expanduser(self.directory)])
+        #x = subprocess.run(['feh', '-r', '-z', '--bg-scale', '-Z', expanduser(self.directory)])

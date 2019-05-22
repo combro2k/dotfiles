@@ -61,7 +61,7 @@ keys = [
         lazy.layout.normalize().when('bsp'),
     ),
 
-    Key([mod], "Return", lazy.spawn('urxvtc-256color -bg "#1e1e1e"')),
+    Key([mod], "Return", lazy.spawn('urxvtc-256color')),
     Key([mod], "Tab", lazy.next_layout()),
     Key([alt], "F4", lazy.window.kill()),
 

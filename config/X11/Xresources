@@ -5,7 +5,7 @@
 ! / \| | | __/\__ \ (_) | |_| | | | (_| __/\__ \
 ! /_/\_\_| \___||___/\___/ \__,_|_| \___\___||___/
 
-#include ".Xresources.d/base16-twilight-256"
+! #include ".Xresources.d/base16-twilight-256"
 #include ".Xresources.d/URxvt"
 #include ".Xresources.d/rofi"
 
