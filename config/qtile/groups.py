@@ -122,7 +122,7 @@ groups.extend([
             height=0.85,
         ),
 
-        DropDown("weechat", "urxvt-256color -name weechat -sh 100 -e ssh weechat@vmaurik.nl -p 5000",
+        DropDown("weechat", "urxvt-256color -name weechat -sh 100 -e fish -i -c \"~/.local/bin/weechat.sh\"",
             opacity=1,
             warp_pointer=False,
             on_focus_lost_hide=False,
