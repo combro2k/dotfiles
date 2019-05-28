@@ -10,9 +10,9 @@ URxvt*loginShell: false
 ! URxvt.font: xft:TerminessTTF Nerd Font Mono:Book:size=10:antialias=true:hinting=true
 
 #if HEIGHT <= 1080
-URxvt.font: xft:SauceCodePro Nerd Font Mono:style=Semibold:size=10:antialias=true
+URxvt.font: xft:SauceCodePro Nerd Font Mono:style=Semibold:pixelsize=13:antialias=true:hinting=true
 #else
-URxvt.font: xft:SauceCodePro Nerd Font Mono:style=Semibold:size=16:antialias=true
+URxvt.font: xft:SauceCodePro Nerd Font Mono:style=Semibold:pixelsize=16:antialias=true:hinting=true
 #endif
 ! URxvt.font: xft:Cousine Nerd Font Mono:style=Regular:size=10:antialias=true
 ! URxvt.font: xft:Blex Mono Nerd Font:style=Regular:size=10:antialias=true

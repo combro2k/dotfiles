@@ -32,4 +32,7 @@ Xft.rgba: vrgb
 Xft.hinting: true
 Xft.hintstyle: hintfull
 
+XLock.background: #1e1e1e
+XLock.foreground: white
+
 !(call-process-shell-command "xrdb -load ~/.Xresources")

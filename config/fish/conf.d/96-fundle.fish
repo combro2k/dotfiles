@@ -25,8 +25,11 @@ if status --is-interactive
   fundle plugin 'maman/plugin-gvm'
   fundle plugin 'jethrokuan/fzf'
   fundle plugin 'edc/bass'
-  fundle plugin 'oh-my-fish/theme-cmorrell.com'
+  # fundle plugin 'oh-my-fish/theme-cmorrell.com'
   # fundle plugin 'combro2k/theme-cmorrell-twilight'
+  # fundle plugin 'oh-my-fish/fishbone'
+  # fundle plugin 'combro2k/theme-idan'
+  fundle plugin 'combro2k/theme-cbjohnson'
 
   fundle init
 end
