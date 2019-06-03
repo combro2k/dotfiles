@@ -1,10 +1,5 @@
-# virtualenvwrapper
 pipx
-# pipsi
-# pipsi-tool
 zenipy
-#qutebrowser
-#PyQtWebEngine
 pyperclip
-#qtpy
+jedi
 https://github.com/combro2k/qtile-plasma/archive/master.zip
