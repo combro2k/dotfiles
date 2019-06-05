@@ -1,8 +1,13 @@
 function ls --description 'List contents of directory'
   if type -qf exa
-    if set -q argv; and [ "$argv" = '-altrn' ]
-      set argv "-balgsold"
-     end
+    switch "$argv"
+      case '-altrn'
+        set argv "--all --long --sort modified"
+      case '-al'
+        set argv "--all --long --sort name"
+      case '-alt'
+        set argv "--all --long --reverse --sort modified"
+    end
 
     eval exa $argv
   else
