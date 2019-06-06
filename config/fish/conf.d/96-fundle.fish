@@ -6,13 +6,13 @@ if status --is-interactive
   # Fish git prompt
   set fish_prompt_pwd_dir_length 0
   set -g theme_nerd_fonts yes
-  set -g theme_color_scheme base16-dark
+  #  set -g theme_color_scheme base16-dark
 
   # Use FZF new keybindings
   set -x FZF_LEGACY_KEYBINDINGS 0
 
   # list plugin dependencies
-  fundle plugin 'smh/base16-shell-fish'
+  fundle plugin 'combro2k/base16-shell-fish'
   fundle plugin 'jorgebucaran/fish-getopts'
   fundle plugin 'fishpkg/fish-await'
   fundle plugin 'decors/fish-colored-man'

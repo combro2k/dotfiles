@@ -20,5 +20,5 @@
 	url = https://github.com/tmux-plugins/tpm
 [submodule "base16-shell"]
 	path = config/base16-shell
-	url = https://github.com/ondono/base16-shell.git
+	url = https://github.com/combro2k/base16-shell.git
 	branch = master

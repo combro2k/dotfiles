@@ -20,8 +20,8 @@ function ls --description 'List contents of directory'
 #          set opts $opts -$key $value
 #        case '*' true
 #          set opts $opts --$key
-#        case '*' '*'
-#          set opts $opts --$key=$value
+        case '*' '*'
+          set opts $opts $key $value
       end
     end
 
