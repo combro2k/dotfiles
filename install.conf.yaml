@@ -36,7 +36,7 @@
     ~/.config/awesome: config/awesome
     ~/.config/backgrounds: config/backgrounds
     ~/.config/base16-shell: config/base16-shell
-    ~/.config/bash/bashrc: .bashrc
+    ~/.bashrc: config/bash/.bashrc
     ~/.config/bspwm: config/bspwm
     ~/.config/clipit: config/clipit
     ~/.config/compton.conf: config/compton.conf
