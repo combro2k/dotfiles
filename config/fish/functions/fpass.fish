@@ -16,7 +16,7 @@ function fpass -d "Fuzzy-find a Lastpass entry and copy the password"
       read LP_EMAIL -P 'What is the email? ' 
     end
 
-    env LPASS_AGENT_TIMEOUT=28800 lpass login $LP_EMAIL
+    command env LPASS_AGENT_TIMEOUT=28800 lpass login $LP_EMAIL
   end
 
   if not lpass status -q
@@ -30,6 +30,6 @@ function fpass -d "Fuzzy-find a Lastpass entry and copy the password"
   end
 
   if not test -z "$id"
-    ~/bin/lastpass.py "$id"
+    command ~/bin/lastpass.py "$id"
   end
 end

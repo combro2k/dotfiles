@@ -25,9 +25,9 @@ function ls --description 'List contents of directory'
       end
     end
 
-    eval exa $opts
+    command exa $opts
   else
     set -l ls (which ls)
-    eval $ls --color=auto $argv
+    command $ls --color=auto $argv
   end
 end
