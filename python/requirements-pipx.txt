@@ -3,6 +3,6 @@ git+https://github.com/combro2k/qtile-actionmenu.git qtile-actionmenu
 git+https://github.com/combro2k/qtile-contextmenu.git qtile-contextmenu
 git+https://github.com/combro2k/lastpass-gtk.git lastpassgtk
 glances
-git+https://github.com/combro2k/base16-shell-preview.git base16-shell-preview
+base16-shell-preview
 tmuxp
 qutebrowser
