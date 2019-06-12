@@ -1,27 +1,22 @@
 function ls --description 'List contents of directory'
   if type -qf exa
-    set -l opts
+    set -l opts --classify --modified --reverse
 
     getopts $argv | while read -l key value
-      switch $key
-        case l true
-          set opts $opts --long --group
-        case t true
-          set opts $opts --sort modified
-        case r true
-          set opts $opts --reverse
-        case n true
-          continue
-        case a true
-          set opts $opts --all
-#        case '?' true
-#          set opts $opts -$key
-#        case '?' '*'
-#          set opts $opts -$key $value
-#        case '*' true
-#          set opts $opts --$key
-        case '*' '*'
-          set opts $opts $key $value
+      if [ "$key" = "l" ]
+        set -a opts --long --group
+      else if [ "$key" = "t" ]
+        set -a opts --sort modified
+      else if [ "$key" = "r" ]
+        #set -a opts --reverse
+      else if [ "$key" = "n" ]
+        # nothing here :-O 
+      else if [ "$key" = "a" ]
+        set -a opts --all
+      end
+
+      if [ "$key" = "_" ] || [ "$value" != true ]
+        set -a opts $value
       end
     end
 
