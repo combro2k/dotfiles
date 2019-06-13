@@ -4,7 +4,6 @@ from subprocess import Popen, run, PIPE
 from libqtile import hook
 from libqtile.log_utils import logger
 from libqtile.command import lazy
-from libqtile.manager import Qtile
 from libqtile.window import Window
 
 from classes import AutoStart
