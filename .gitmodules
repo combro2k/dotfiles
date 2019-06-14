@@ -26,3 +26,7 @@
 	path = config/base16-rofi
 	url = https://github.com/0xdec/base16-rofi.git
 	branch = master
+[submodule "config/base16-gtk2"]
+	path = config/base16-gtk2
+	url = https://github.com/dawikur/base16-gtk2.git
+	branch = master

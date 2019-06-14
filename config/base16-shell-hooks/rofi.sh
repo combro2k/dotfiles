@@ -9,6 +9,7 @@ fi
 
 cat > $rofi_config <<EOF
 configuration {
+  show-icons: true;
   theme: "base16-$BASE16_THEME";
 }
 EOF
