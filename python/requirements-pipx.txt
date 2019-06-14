@@ -6,3 +6,4 @@ glances
 base16-shell-preview
 tmuxp
 qutebrowser
+pybase16-builder
