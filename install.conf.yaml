@@ -31,11 +31,12 @@
     ~/.local/share/applications/qutebrowser.desktop: config/X11/applications/qutebrowser.desktop
     ~/.local/share/applications/mimeapps.list: config/X11/applications/mimeapps.list
     ~/.local/share/fonts/dotfiles: config/fonts
-    ~/.local/share/rofi/themes: config/rofi/themes
     ~/.local/share/xsessions: config/X11/xsessions
     ~/.config/awesome: config/awesome
     ~/.config/backgrounds: config/backgrounds
     ~/.config/base16-shell: config/base16-shell
+    ~/.config/base16-shell-hooks: config/base16-shell-hooks
+    ~/.local/share/rofi/themes: config/base16-rofi/themes
     ~/.bashrc: config/bash/bashrc
     ~/.config/bspwm: config/bspwm
     ~/.config/clipit: config/clipit

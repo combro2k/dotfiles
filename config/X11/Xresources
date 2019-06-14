@@ -7,7 +7,7 @@
 
 ! #include ".Xresources.d/base16-twilight-256"
 #include ".Xresources.d/URxvt"
-#include ".Xresources.d/rofi"
+! #include ".Xresources.d/rofi"
 
 *TkTheme: clearlooks
 Xcursor.theme: DMZ-White

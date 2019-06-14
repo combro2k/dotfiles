@@ -17,7 +17,7 @@ class RofiMenu(RunCommand):
     defaults = [
         ("rofi_command", "rofi", "the command to be launched (string or list with arguments)"),
         ("modi", "combi", "the mode you want to show"),
-        ("theme", "base16-twilight", "theme"),
+        ("theme", None, "theme"),
         ("font", "SauceCodePro Nerd Font Mono", "Use other font"),
         ("fontsize", 12, "Fontsize"),
         ("dmenu", False, "enable DMenu's replacement mode"),
