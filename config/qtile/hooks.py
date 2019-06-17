@@ -52,7 +52,7 @@ def group_created(qtile, group):
         return False
 
     if  ((group == 'WWW') or (group == 'Editors') or (group == 'Skype') or (group == 'GIMP') or (group == 'Builder') or (group == 'TeamViewer') or (group == 'WeeChat') or (group == 'E-Mail') or (group == 'RDP')):
-        qtile.groupMap[group].cmd_toscreen()
+        qtile.groups_map[group].cmd_toscreen()
 
 @hook.subscribe.client_new
 def specific_instance_rules(window): # type: Window

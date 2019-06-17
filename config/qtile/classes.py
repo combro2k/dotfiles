@@ -87,8 +87,8 @@ class Helpers():
         running. """
         @lazy.function
         def f(qtile):
-            if group in qtile.groupMap:
-                qtile.groupMap[group].cmd_toscreen()
+            if group in qtile.groups:
+                qtile.groups[group].cmd_toscreen()
             else:
                 if group == 'Editors' and app == 'emacs-nox':
                     qtile.cmd_spawn(app)
@@ -105,7 +105,7 @@ class Helpers():
                 newgroup = qtile.groups[index - 1].name if index > 0 else qtile.groups[len(qtile.groups) - 2].name
 
                 qtile.currentWindow.togroup(newgroup)
-                qtile.groupMap[newgroup].cmd_toscreen()
+                qtile.group_map[newgroup].cmd_toscreen()
 
         return f
 
@@ -117,7 +117,7 @@ class Helpers():
                 newgroup = qtile.groups[index + 1].name if index < len(qtile.groups) - 2 else qtile.groups[0].name
 
                 qtile.currentWindow.togroup(newgroup)
-                qtile.groupMap[newgroup].cmd_toscreen()
+                qtile.group_map[newgroup].cmd_toscreen()
 
         return f
 
@@ -126,7 +126,7 @@ class Helpers():
         def f(qtile):
             if qtile.currentWindow is not None:
                 qtile.currentWindow.togroup(newgroup)
-                qtile.groupMap[newgroup].cmd_toscreen()
+                qtile.group_map[newgroup].cmd_toscreen()
 
         return f
 
@@ -140,7 +140,7 @@ class Helpers():
                 for w in qtile.currentGroup.windows.copy():
                     w.togroup(newgroup)
 
-                qtile.groupMap[newgroup].cmd_toscreen()
+                qtile.group_map[newgroup].cmd_toscreen()
 
         return f
 
@@ -154,7 +154,7 @@ class Helpers():
                 for w in qtile.currentGroup.windows.copy():
                     w.togroup(newgroup)
 
-                qtile.groupMap[newgroup].cmd_toscreen()
+                qtile.group_map[newgroup].cmd_toscreen()
 
         return f
 
@@ -165,7 +165,7 @@ class Helpers():
                 for w in qtile.currentGroup.windows.copy():
                     w.togroup(newgroup)
 
-                qtile.groupMap[newgroup].cmd_toscreen()
+                qtile.group_map[newgroup].cmd_toscreen()
 
         return f
 
