@@ -88,84 +88,83 @@ class Helpers():
         @lazy.function
         def f(qtile):
             if group in qtile.groups:
-                qtile.groups[group].cmd_toscreen()
+                logger.error(group)
+                qtile.groups_map[group].cmd_toscreen()
             else:
-                if group == 'Editors' and app == 'emacs-nox':
-                    qtile.cmd_spawn(app)
-                else:
-                    qtile.cmd_spawn(app)
+                logger.error('SPAWN {0}'.format(app))
+                qtile.cmd_spawn(app)
 
         return f
 
     def window_to_prev_group():
         @lazy.function
         def f(qtile):
-            if qtile.currentWindow is not None:
-                index = qtile.groups.index(qtile.currentGroup)
+            if qtile.current_window is not None:
+                index = qtile.groups.index(qtile.current_group)
                 newgroup = qtile.groups[index - 1].name if index > 0 else qtile.groups[len(qtile.groups) - 2].name
 
-                qtile.currentWindow.togroup(newgroup)
-                qtile.group_map[newgroup].cmd_toscreen()
+                qtile.current_window.togroup(newgroup)
+                qtile.groups_map[newgroup].cmd_toscreen()
 
         return f
 
     def window_to_next_group():
         @lazy.function
         def f(qtile):
-            if qtile.currentWindow is not None:
-                index = qtile.groups.index(qtile.currentGroup)
+            if qtile.current_window is not None:
+                index = qtile.groups.index(qtile.current_group)
                 newgroup = qtile.groups[index + 1].name if index < len(qtile.groups) - 2 else qtile.groups[0].name
 
-                qtile.currentWindow.togroup(newgroup)
-                qtile.group_map[newgroup].cmd_toscreen()
+                qtile.current_window.togroup(newgroup)
+                qtile.groups_map[newgroup].cmd_toscreen()
 
         return f
 
     def window_to_group(newgroup):
         @lazy.function
         def f(qtile):
-            if qtile.currentWindow is not None:
-                qtile.currentWindow.togroup(newgroup)
-                qtile.group_map[newgroup].cmd_toscreen()
+            if qtile.current_window is not None:
+                qtile.current_window.togroup(newgroup)
+                qtile.groups_map[newgroup].cmd_toscreen()
 
         return f
 
     def windows_to_prev_group():
         @lazy.function
         def f(qtile):
-            if qtile.currentGroup.windows is not None:
-                index = qtile.groups.index(qtile.currentGroup)
+            if qtile.current_group.windows is not None:
+                index = qtile.groups.index(qtile.current_group)
                 newgroup = qtile.groups[index - 1].name if index > 0 else qtile.groups[len(qtile.groups) - 2].name
 
-                for w in qtile.currentGroup.windows.copy():
+                for w in qtile.current_group.windows.copy():
                     w.togroup(newgroup)
 
-                qtile.group_map[newgroup].cmd_toscreen()
+                qtile.groups_map[newgroup].cmd_toscreen()
 
         return f
 
     def windows_to_next_group():
         @lazy.function
         def f(qtile):
-           if qtile.currentGroup.windows is not None:
-                index = qtile.groups.index(qtile.currentGroup)
+           if qtile.current_group.windows is not None:
+                index = qtile.groups.index(qtile.current_group)
                 newgroup = qtile.groups[index + 1].name if index < len(qtile.groups) - 2 else qtile.groups[0].name
 
-                for w in qtile.currentGroup.windows.copy():
+                for w in qtile.current_group.windows.copy():
                     w.togroup(newgroup)
 
-                qtile.group_map[newgroup].cmd_toscreen()
+                qtile.groups_map[newgroup].cmd_toscreen()
 
         return f
 
     def windows_to_group(newgroup):
         @lazy.function
         def f(qtile):
-            if qtile.currentGroup.windows is not None:
-                for w in qtile.currentGroup.windows.copy():
+            if qtile.current_group.windows is not None:
+                for w in qtile.current_group.windows.copy():
                     w.togroup(newgroup)
 
-                qtile.group_map[newgroup].cmd_toscreen()
+                qtile.groups_map[newgroup].cmd_toscreen()
 
         return f
 
@@ -179,10 +178,10 @@ class Helpers():
     def window_maximize():
         @lazy.function
         def f(qtile):
-            if qtile.currentLayout.name == 'max':
+            if qtile.current_layout.name == 'max':
                 return
 
-            qtile.currentWindow.toggle_maximize()
+            qtile.current_window.toggle_maximize()
 
         return f
 
@@ -215,7 +214,7 @@ class Helpers():
             opts = []
 
             if mode == 'window':
-                qinfo = qtile.currentWindow.cmd_info()
+                qinfo = qtile.current_window.cmd_info()
 
                 opts.extend([
                     '-x', str(qinfo['x']),
@@ -259,7 +258,7 @@ class Helpers():
 
             if mode == 'window':
                 target = f'{targetdir}/{hostname}_window_{str(int(time() * 100))}.png'
-                _id = qtile.currentWindow.cmd_info()['id']
+                _id = qtile.current_window.cmd_info()['id']
                 opts.extend(['-i', f'{_id}'])
             elif mode == 'select':
                 target = f'{targetdir}/{hostname}_select_{str(int(time() * 100))}.png'
@@ -286,16 +285,16 @@ class Helpers():
     def toggle_minimize_group():
         @lazy.function
         def f(qtile):
-            state = not qtile.currentWindow.minimized
-            if qtile.currentGroup.windows is not None:
-                for w in qtile.currentGroup.windows:
+            state = not qtile.current_window.minimized
+            if qtile.current_group.windows is not None:
+                for w in qtile.current_group.windows:
                     w.minimized = state
         return f
 
     def minimize_group():
         @lazy.function
         def f(qtile):
-            for w in qtile.currentGroup.windows:
+            for w in qtile.current_group.windows:
                 w.minimized = True
 
         return f
@@ -303,7 +302,7 @@ class Helpers():
     def unminimize_group():
         @lazy.function
         def f(qtile):
-            for w in qtile.currentGroup.windows:
+            for w in qtile.current_group.windows:
                 w.minimized = False
 
         return f
@@ -329,7 +328,7 @@ class Helpers():
         @lazy.function
         def f(qtile):
             currentLayout = qtile.currentLayout
-            if qtile.currentWindow is not None:
+            if qtile.current_window is not None:
                 if currentLayout.name == 'plasma':
                     currentLayout.cmd_move_left()
                 elif currentLayout.name == 'bsp':
