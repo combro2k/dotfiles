@@ -84,9 +84,9 @@ class WindowNameNew(WindowName):
 
     def update(self, *args):
         if self.for_current_screen:
-            w = self.qtile.currentScreen.group.currentWindow
+            w = self.qtile.current_screen.group.current_window
         else:
-            w = self.bar.screen.group.currentWindow
+            w = self.bar.screen.group.current_window
         state = ''
         if self.show_state and w is not None:
             if w.maximized:
@@ -100,9 +100,9 @@ class WindowNameNew(WindowName):
 
     def button_press(self, x, y, button):
         if self.for_current_screen:
-            w = self.qtile.currentScreen.group.currentWindow
+            w = self.qtile.current_screen.group.current_window
         else:
-            w = self.bar.screen.group.currentWindow
+            w = self.bar.screen.group.current_window
         if button == 1 and not w is None:
             w.toggle_maximize()
         if button == 2 and not w is None:
@@ -139,7 +139,7 @@ class TaskListNew(TaskList):
 
     def button_press(self, x, y, button):
         window = None
-        current_win = self.bar.screen.group.currentWindow
+        current_win = self.bar.screen.group.current_window
         if button == 1 or button == 2 or button == 3:
             window = self.get_clicked(x, y)
 
