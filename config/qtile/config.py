@@ -47,6 +47,7 @@ floating_layout = layout.Floating(
         dict(wmclass="gpaste-ui"),
         dict(wmclass="SimpleScreenRecorder"),
         dict(wmclass="ibus-setup"),
+        dict(wmclass="copyq"),
     ],
     auto_float_types=[
         "notification",

@@ -12,7 +12,7 @@ if status --is-interactive
   set -x FZF_LEGACY_KEYBINDINGS 0
 
   # list plugin dependencies
-  fundle plugin 'combro2k/base16-shell-fish'
+  fundle plugin 'smh/base16-shell-fish'
   fundle plugin 'jorgebucaran/fish-getopts'
   fundle plugin 'fishpkg/fish-await'
   fundle plugin 'decors/fish-colored-man'

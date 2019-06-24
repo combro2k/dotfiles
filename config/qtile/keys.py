@@ -42,6 +42,8 @@ keys = [
 
     Key([mod], "f", toggle_follow_mouse_focus()),
 
+    Key([mod], "v", lazy.spawn(["/usr/bin/copyq", "toggle"])),
+
     Key([mod], "d", toggle_minimize_group()),
     # Key([mod, "shift"], "d", unminimize_group()),
 
