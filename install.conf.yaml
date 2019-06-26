@@ -11,9 +11,8 @@
 
   # The config files!  
 - link:
-    ~/.emacs.d: config/spacemacs
+    ~/.emacs.d: config/emacs
     ~/.config/base16-gtk2: config/base16-gtk2
-    ~/.spacemacs: config/emacs/spacemacs
     ~/.screenrc: config/screen/screenrc
     ~/.simplepanelrc: config/simplepanelrc
     ~/.tmux.conf: config/tmux/tmux.conf

@@ -2,3 +2,4 @@
 .vscode/*
 config/fonts/.uuid
 .idea/*
+config/emacs/elpa/*

@@ -5,9 +5,7 @@ function emacs --description 'Start emacs'
     return 1
   end
 
-  if set -q DISPLAY
-    eval /usr/bin/emacs $argv
-  else if type -qf emacs-nox
+  if type -qf emacs-nox
     eval /usr/bin/emacs-nox $argv
   else
     eval /usr/bin/emacs $argv
