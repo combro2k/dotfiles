@@ -87,7 +87,7 @@ class Helpers():
         running. """
         @lazy.function
         def f(qtile):
-            if group in qtile.groups:
+            if group in qtile.groups_map:
                 logger.error(group)
                 qtile.groups_map[group].cmd_toscreen()
             else:
@@ -100,11 +100,10 @@ class Helpers():
         @lazy.function
         def f(qtile):
             if qtile.current_window is not None:
-                index = qtile.groups.index(qtile.current_group)
-                newgroup = qtile.groups[index - 1].name if index > 0 else qtile.groups[len(qtile.groups) - 2].name
+                newgroup = qtile.current_group.get_previous_group()
 
-                qtile.current_window.togroup(newgroup)
-                qtile.groups_map[newgroup].cmd_toscreen()
+                qtile.current_window.togroup(newgroup.name)
+                newgroup.cmd_toscreen()
 
         return f
 
@@ -112,11 +111,10 @@ class Helpers():
         @lazy.function
         def f(qtile):
             if qtile.current_window is not None:
-                index = qtile.groups.index(qtile.current_group)
-                newgroup = qtile.groups[index + 1].name if index < len(qtile.groups) - 2 else qtile.groups[0].name
+                newgroup = qtile.current_group.get_next_group()
 
-                qtile.current_window.togroup(newgroup)
-                qtile.groups_map[newgroup].cmd_toscreen()
+                qtile.current_window.togroup(newgroup.name)
+                newgroup.cmd_toscreen()
 
         return f
 
@@ -133,13 +131,12 @@ class Helpers():
         @lazy.function
         def f(qtile):
             if qtile.current_group.windows is not None:
-                index = qtile.groups.index(qtile.current_group)
-                newgroup = qtile.groups[index - 1].name if index > 0 else qtile.groups[len(qtile.groups) - 2].name
+                newgroup = qtile.current_group.get_previous_group()
 
                 for w in qtile.current_group.windows.copy():
-                    w.togroup(newgroup)
+                    w.togroup(newgroup.name)
 
-                qtile.groups_map[newgroup].cmd_toscreen()
+                newgroup.cmd_toscreen()
 
         return f
 
@@ -147,13 +144,12 @@ class Helpers():
         @lazy.function
         def f(qtile):
            if qtile.current_group.windows is not None:
-                index = qtile.groups.index(qtile.current_group)
-                newgroup = qtile.groups[index + 1].name if index < len(qtile.groups) - 2 else qtile.groups[0].name
+                newgroup = qtile.current_group.get_next_group()
 
                 for w in qtile.current_group.windows.copy():
-                    w.togroup(newgroup)
+                    w.togroup(newgroup.name)
 
-                qtile.groups_map[newgroup].cmd_toscreen()
+                newgroup.cmd_toscreen()
 
         return f
 
