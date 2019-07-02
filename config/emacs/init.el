@@ -47,8 +47,9 @@
   :ensure t
   :init
   (setq base16-theme-256-color-source 'base16-shell)
-  (load "~/.emacs.d/base16-test")
-  ;;(load-theme (quote base16-oceanicnext) t)
+  (if (file-exists-p "~/.emacs_theme.el") 
+    (load "~/.emacs_theme.el")
+    )
   )
 (use-package doom-modeline
   :ensure t
@@ -61,4 +62,3 @@
   )
 (menu-bar-mode -1)
 (custom-set-faces)
-(eval-after-load "load-theme" '((concat "base16-" (getenv "BASE16_THEME")) t))
