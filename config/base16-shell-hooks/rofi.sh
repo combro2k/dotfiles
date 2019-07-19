@@ -13,3 +13,5 @@ configuration {
   theme: "base16-$BASE16_THEME";
 }
 EOF
+
+echo -e "\e[93mUpdated \e[31m.config/rofi/config.rasi\e[0m"
