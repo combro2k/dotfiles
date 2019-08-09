@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Trello
+Exec=/opt/Trello/Trello
+Terminal=false
+Type=Application
+Icon=/opt/Trello/resources/app/static/Icon.png

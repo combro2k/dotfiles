@@ -69,7 +69,17 @@ groups.extend([
         init=False,
         label=f'{discord_ico}',
     ),
-   
+
+    Group(
+        name='Trello',
+        matches=[Match(wm_instance_class=["trello", "Trello"])],
+        exclusive=True,
+        persist=False,
+        layout='max',
+        init=False,
+        label=f'{trello_ico}',
+    ),
+
     Group(
         name='GIMP',
         matches=[Match(wm_instance_class=["gimp", "Gimp", "gimp-2.10"])],

@@ -136,7 +136,7 @@ keys = [
     Key([mod], "F2", app_or_group('Editors', 'urxvtc-256color -bg "#1e1e1e" -name emacs -e emacsclient -t')),
     Key([mod], "F3", app_or_group('E-Mail', 'thunderbird')),
     Key([mod], "F4", app_or_group('Discord', 'discord')),
-    Key([mod], "F5", app_or_group('TeamViewer', 'teamviewer')),
+    Key([mod], "F5", app_or_group('Trello', '/opt/Trello/Trello')),
     Key([mod], "F6", app_or_group('RPD', '~/.local/bin/xfreerdpui')),
     Key([mod], "F7", lazy.spawn([
         expanduser('~/.local/bin/lastpass-gtk')

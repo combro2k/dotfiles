@@ -27,6 +27,7 @@
     ~/.local/share/applications/anbox-appmgr.desktop: config/X11/applications/anbox-appmgr.desktop
     ~/.local/share/applications/ranger.desktop: config/X11/applications/ranger.desktop
     ~/.local/share/applications/rdp.desktop: config/X11/applications/rdp.desktop
+    ~/.local/share/applications/trello.desktop: config/X11/applications/trello.desktop
     ~/.local/share/applications/qutebrowser.desktop: config/X11/applications/qutebrowser.desktop
     ~/.local/share/applications/mimeapps.list: config/X11/applications/mimeapps.list
     ~/.local/share/fonts/dotfiles: config/fonts
