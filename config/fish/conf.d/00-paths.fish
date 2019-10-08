@@ -7,5 +7,5 @@ if status --is-interactive
   test -d ~/.cargo/bin/; and if not contains ~/.cargo/bin/ $PATH; set -x fish_user_paths ~/.cargo/bin/ $fish_user_paths; end
   test -d ~/.linuxbrew/bin/; and if not contains ~/.linuxbrew/bin/ $PATH; set -x fish_user_paths ~/.linuxbrew/bin/ $fish_user_paths; end
   test -d ~/.fzf/bin/; and if not contains ~/.fzf/bin/ $PATH; set -x fish_user_paths ~/.fzf/bin/ $fish_user_paths; end
-  #  test -d /snap/bin/; and if not contains /snap/bin $PATH; set -U fish_user_paths /snap/bin/ $fish_user_paths; end
+  test -d /snap/bin/; and if not contains /snap/bin $PATH; set -U fish_user_paths /snap/bin/ $fish_user_paths; end
 end
