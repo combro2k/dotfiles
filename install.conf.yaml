@@ -128,3 +128,8 @@
         stdin: true
         stdout: true
         description: Set correct permissions on .gnupg
+      -
+        command: bash -i -c 'test -x ~/.fzf/bin/fzf || ~/.fzf/install --bin'
+        stdin: true
+        stdout: true
+        description: Install FZF binary
