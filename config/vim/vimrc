@@ -67,6 +67,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'dag/vim-fish'
 	
   Plug 'ryanoasis/vim-devicons'
+
+  Plug '~/.fzf'
 call plug#end()
 
 function! s:tig_status()
