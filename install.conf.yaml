@@ -32,7 +32,6 @@
     ~/.local/share/applications/mimeapps.list: config/X11/applications/mimeapps.list
     ~/.local/share/fonts/dotfiles: config/fonts
     ~/.local/share/xsessions: config/X11/xsessions
-    ~/.muttrc: config/neomutt/muttrc
     ~/.config/awesome: config/awesome
     ~/.config/backgrounds: config/backgrounds
     ~/.config/base16-shell: config/base16-shell
