@@ -30,7 +30,3 @@
 	path = config/emacs/evil
 	url = https://github.com/emacs-evil/evil
 	branch = master
-[submodule "config/fzf"]
-	path = config/fzf
-	url = https://github.com/junegunn/fzf.git
-	branch = master

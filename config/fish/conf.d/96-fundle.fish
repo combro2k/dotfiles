@@ -23,7 +23,7 @@ if status --is-interactive
   fundle plugin 'oh-my-fish/plugin-bang-bang'
   fundle plugin 'oh-my-fish/plugin-license'
   fundle plugin 'oh-my-fish/plugin-sudope'
-  fundle plugin 'jethrokuan/fzf'
+  fundle plugin 'combro2k/fish-fzf'
   fundle plugin 'edc/bass'
   fundle plugin 'combro2k/theme-combro2k'
 

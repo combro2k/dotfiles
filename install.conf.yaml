@@ -58,7 +58,6 @@
     ~/.config/fish/functions/rustup.fish: config/fish/functions/rustup.fish
     ~/.config/fish/functions/takeover.fish: config/fish/functions/takeover.fish
     ~/.config/fish/functions/tmux_wrapper.fish: config/fish/functions/tmux_wrapper.fish
-    ~/.fzf: config/fzf
     ~/.config/fontconfig/fonts.conf: config/fontconfig.conf
     ~/.config/gtk-2.0/gtkfilechooser.ini: config/gtk2/gtkfilechooser.ini
     ~/.config/gtk-3.0/settings.ini: config/gtk3/settings.ini
@@ -128,8 +127,3 @@
         stdin: true
         stdout: true
         description: Set correct permissions on .gnupg
-      -
-        command: bash -i -c 'test -x ~/.fzf/bin/fzf || ~/.fzf/install --bin'
-        stdin: true
-        stdout: true
-        description: Install FZF binary
