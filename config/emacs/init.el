@@ -5,15 +5,20 @@
  ;; If there is more than one, they won't work right.
  '(coding-system-for-read (quote utf-8) t)
  '(default-fill-column 80)
+ '(indent-tabs-mode nil)
+ '(tab-width 1)
  '(delete-old-versions -1)
  '(delete-selection-mode nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message "Welcome in Emacs")
+ '(package-selected-packages
+   (quote
+    (fish-mode use-package helm evil doom-modeline base16-theme)))
  '(ring-bell-function (quote ignore))
  '(sentence-end-double-space nil)
- '(version-control t)
  '(use-package-always-ensure t)
- )
+ '(debug-on-error nil)
+ '(version-control t))
 
 (require 'package)
 (add-to-list 'package-archives 
@@ -93,5 +98,12 @@
   (global-set-key (kbd "M-x") 'helm-M-x)
   )
 (use-package all-the-icons)
+(use-package fish-mode)
 (menu-bar-mode -1)
-(custom-set-faces)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+

@@ -41,6 +41,7 @@
     ~/.config/bspwm: config/bspwm
     ~/.config/clipit: config/clipit
     ~/.config/compton.conf: config/compton.conf
+    ~/.config/cheat: config/cheat
     ~/.config/conky: config/conky
     ~/.config/dunst/dunstrc: config/dunst/dunstrc
     ~/.config/fish/config.fish: config/fish/config.fish
