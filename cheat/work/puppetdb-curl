@@ -1,0 +1,5 @@
+# Negate
+curl -sfG 'http://localhost:8080/v3/nodes' --data-urlencode 'query=["not", ["=", ["fact", "domain"], "example.org"]]'
+
+# Specifiek veld
+curl -sfG 'http://localhost:8080/v3/nodes' --data-urlencode 'query=["=", ["fact", "domain"], "example.org"]'

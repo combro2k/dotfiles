@@ -1,0 +1,15 @@
+# See uncommited changes
+svn diff
+
+# Compare difference between 2 revisions
+svn diff -r 2:1 rules.txt
+svn diff -c 3 rules.txt
+
+# See file from a specific commit
+svn cat -r 2 rules.txt
+
+# See available brances
+svn list -v file:///var/svn/repos
+
+# cheatlist
+# http://svnbook.red-bean.com/en/1.6/svn.tour.history.html
