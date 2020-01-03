@@ -1,4 +1,5 @@
 function fish_greeting
+  test ! -x /usr/bin/neofetch; and return
   set -q SUDO_USER; and return
   set -q TMUX_STATE; and return
 
