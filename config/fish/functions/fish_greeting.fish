@@ -6,8 +6,13 @@ function fish_greeting
     return
   end
 
-  type -fq neofetch; and set -q TMUX; and neofetch --off; or neofetch
-  type -fq fortune; and fortune -s
+  if type -fq neofetch
+    set -q TMUX; and neofetch --off; or neofetch
+  end
+
+  if type -fq fortune
+    fortune -s
+  end
 
   echo ""
   uname -snrmio
