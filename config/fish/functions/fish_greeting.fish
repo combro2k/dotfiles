@@ -1,5 +1,4 @@
 function fish_greeting
-  test ! -x /usr/bin/neofetch; and return
   set -q SUDO_USER; and return
   set -q TMUX_STATE; and return
 
@@ -7,8 +6,8 @@ function fish_greeting
     return
   end
 
-  set -q TMUX; and /usr/bin/neofetch --off; or /usr/bin/neofetch
-  type -q fortune; and fortune -s
+  type -fq neofetch; and set -q TMUX; and neofetch --off; or neofetch
+  type -fq fortune; and fortune -s
 
   echo ""
   uname -snrmio
