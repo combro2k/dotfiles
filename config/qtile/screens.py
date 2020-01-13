@@ -72,9 +72,9 @@ for i in range(0, num_screen):
                     background='585858',
                     padding=10,
                     ),
-                widget.BatteryIcon(
-                    background='585858',
-                    ),
+#                widget.BatteryIcon(
+#                    background='585858',
+#                    ),
                 widget.Clock(
                     background='585858',
                     fontsize=16 if type_screen != '4K UHD' else 26,
