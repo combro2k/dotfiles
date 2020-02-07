@@ -36,7 +36,7 @@ class AutoStart(object):
         return True
 
     def thread_run(self, *cmd):
-        logger.info(f'Starting {cmd}')
+        logger.warning(f'Starting {cmd}')
 
         try:
             Popen(cmd, shell=False)
