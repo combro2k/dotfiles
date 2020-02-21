@@ -70,6 +70,7 @@
     ~/.config/qtile: config/qtile
     ~/.config/sxhkd: config/sxhkd
     ~/.config/tilda: config/tilda
+    ~/.config/vis: config/vis
     ~/.config/qutebrowser/config.py: config/qutebrowser/config.py
     ~/.newsboat/config: config/newsboat/config
     ~/.tickr/tickr-conf: config/tickr/tickr-conf
