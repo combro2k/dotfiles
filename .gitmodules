@@ -30,3 +30,7 @@
 	path = config/emacs/evil
 	url = https://github.com/emacs-evil/evil
 	branch = master
+[submodule "config/vis/plugins/vis-go"]
+	path = config/vis/plugins/vis-go
+	url = https://gitlab.com/timoha/vis-go
+	branch = master
