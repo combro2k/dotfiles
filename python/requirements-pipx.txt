@@ -8,3 +8,5 @@ tmuxp
 qutebrowser
 pybase16-builder
 sshuttle
+httpie
+archey4
