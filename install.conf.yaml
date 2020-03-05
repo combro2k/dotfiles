@@ -38,6 +38,7 @@
     ~/.config/base16-shell-hooks: config/base16-shell-hooks
     ~/.local/share/rofi/themes: config/base16-rofi/themes
     ~/.bashrc: config/bash/bashrc
+    ~/.config/archey4: config/archey4
     ~/.config/bspwm: config/bspwm
     ~/.config/clipit: config/clipit
     ~/.config/compton.conf: config/compton.conf
