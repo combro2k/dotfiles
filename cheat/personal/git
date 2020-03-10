@@ -1,0 +1,2 @@
+# Find specific file in git history
+git log --all --full-history -- directory/file.ext
