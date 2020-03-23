@@ -405,6 +405,9 @@ class Helpers():
         if dim['height'] >= 1080:
             det = 'FHD'
 
+        if dim['height'] >= 1971:
+            det = '4K VMware'
+
         if dim['height'] >= 2160:
             det = '4K UHD'
 
