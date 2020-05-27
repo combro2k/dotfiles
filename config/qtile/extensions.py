@@ -6,7 +6,7 @@ import time
 
 from libqtile.extension.base import RunCommand, _Extension
 from libqtile.log_utils import logger
-from libqtile.command import _Call
+#from libqtile.command import _Call
 from libqtile import window
 
 from threading import Thread
@@ -111,7 +111,7 @@ class Zenipy(RunCommand):
                 clb = self.exec
 
                 if clb:
-                    if isinstance(clb, _Call) and clb.check(self.qtile):
+                    if clb.check(self.qtile):
                         logger.error(clb)
 
                         obj = self.qtile

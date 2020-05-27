@@ -1,5 +1,6 @@
 from libqtile.config import Key, Drag, Click, ScratchPad
-from libqtile.command import lazy
+#from libqtile.command import lazy
+from libqtile.lazy import lazy
 from classes import Helpers
 from groups import groups
 from extensions import *
@@ -64,11 +65,11 @@ keys = [
     ),
 
     Key([mod], "Return",
-        lazy.layout.mode_horizontal().when('plasma'),
+        lazy.layout.mode_horizontal(),
         lazy.spawn('urxvtc-256color')
     ),
     Key([mod, alt], "Return",
-        lazy.layout.mode_vertical().when('plasma'),
+        lazy.layout.mode_vertical(),
         lazy.spawn('urxvtc-256color')
     ),
 

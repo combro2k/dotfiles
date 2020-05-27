@@ -1,0 +1,2 @@
+# Show all puppet agent classes
+cat $(puppet agent --configprint classfile)
