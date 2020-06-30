@@ -56,6 +56,9 @@
     ~/.config/fish/functions/fpass.fish: config/fish/functions/fpass.fish
     ~/.config/fish/functions/hc.fish: config/fish/functions/hc.fish
     ~/.config/fish/functions/ls.fish: config/fish/functions/ls.fish
+    ~/.config/fish/functions/nvm.fish: config/fish/functions/nvm.fish
+    ~/.config/fish/functions/nvm_find_nvmrc.fish: config/fish/functions/nvm_find_nvmrc.fish
+    ~/.config/fish/functions/load_nvm.fish: config/fish/functions/load_nvm.fish
     ~/.config/fish/functions/rdp.fish: config/fish/functions/rdp.fish
     ~/.config/fish/functions/rustup.fish: config/fish/functions/rustup.fish
     ~/.config/fish/functions/takeover.fish: config/fish/functions/takeover.fish
