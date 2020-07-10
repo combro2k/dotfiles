@@ -51,7 +51,12 @@ class LastPass(object):
 
             q = ['/usr/bin/lpass', 'show', '-j', item]
             r = run(q, stdout=PIPE)
-            result = json.loads(r.stdout.decode())
+            try:
+                result = json.loads(r.stdout.decode())
+            except Exception as e:
+                print("Could not decode: %s", r.stdout.decode())
+                sys.exit(1)
+
             r = result[0]
 
             if 'note' in r and r['note'].strip() == '':
@@ -60,7 +65,7 @@ class LastPass(object):
             if 'username' in r and r['username'].strip() == '':
                 del r['username']
 
-            if 'last_modified_gmt' in r and r['last_modified_gmt'].strip() != '':
+            if 'last_modified_gmt' in r and r['last_modified_gmt'].strip() != '' and r['last_modified_gmt'].strip() != 'skipped':
                 r['last_modified_gmt'] = datetime. \
                     fromtimestamp(int(r['last_modified_gmt'])). \
                     strftime('%d-%m-%Y %T')
