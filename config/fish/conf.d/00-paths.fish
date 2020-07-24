@@ -1,13 +1,19 @@
 # set paths
 
 if status --is-interactive
-  test -d ~/bin/; and if not contains ~/bin/ $PATH; set -x fish_user_paths ~/bin/ $fish_user_paths; end
-  test -d ~/.local/bin/; and if not contains ~/.local/bin/ $PATH; set -x fish_user_paths ~/.local/bin/ $fish_user_paths; end
-  test -d ~/go/bin/; and if not contains ~/go/bin/ $PATH; set -x fish_user_paths ~/go/bin/ $fish_user_paths; end
-  test -d ~/.cargo/bin/; and if not contains ~/.cargo/bin/ $PATH; set -x fish_user_paths ~/.cargo/bin/ $fish_user_paths; end
-  test -d ~/.linuxbrew/bin/; and if not contains ~/.linuxbrew/bin/ $PATH; set -x fish_user_paths ~/.linuxbrew/bin/ $fish_user_paths; end
-  test -d ~/.fzf/bin/; and if not contains ~/.fzf/bin/ $PATH; set -x fish_user_paths ~/.fzf/bin/ $fish_user_paths; end
-  test -d ~/.luarocks/bin/; and if not contains ~/.luarocks/bin/ $PATH; set -x fish_user_paths ~/.luarocks/bin/ $fish_user_paths; end
+  # cleanup PATH
+  set -g -x PATH
 
-  test -d /snap/bin/; and if not contains /snap/bin $PATH; set -U fish_user_paths /snap/bin/ $fish_user_paths; end
+  # setup base path
+  set -g -x PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin
+
+  # specific paths if exists
+  test -d ~/bin/; and set -g -x PATH $PATH ~/bin
+  test -d ~/.local/bin/; and set -g -x PATH $PATH ~/.local/bin
+  test -d ~/go/bin/; and set -g -x PATH $PATH ~/go/bin
+  test -d ~/.cargo/bin/; and set -g -x PATH $PATH ~/.cargo/bin
+  test -d ~/.linuxbrew/bin/; and set -g -x PATH $PATH ~/.linuxbrew/bin
+  test -d ~/.fzf/bin/; and set -g -x PATH $PATH ~/.fzf/bin
+  test -d ~/.luarocks/bin/; and set -g -x PATH $PATH ~/.luarocks/bin
+  test -d /snap/bin/; and set -g -x PATH $PATH /snap/bin
 end

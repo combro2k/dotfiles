@@ -1,7 +1,7 @@
 def autostart():
     from os.path import expanduser
 
-#    yield '/usr/bin/vmware-user-suid-wrapper'
+    yield '/usr/bin/vmware-user-suid-wrapper'
     yield '/usr/bin/ibus-daemon', '--xim'
     yield '/usr/bin/conky', '-c', expanduser('~/.config/conky/conky.conf')
     yield '/usr/bin/xautolock', '-time', '10', '-locker', 'xlock -mode blank'
