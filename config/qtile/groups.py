@@ -123,7 +123,7 @@ groups.extend([
     ScratchPad("dropdown", [
         # define a drop down terminal.
         # it is placed in the upper third of screen by default.
-        DropDown("term", "urxvt-256color -bg '#1e1e1e' -name scratchpad -sh 100",
+        DropDown("term", "urxvt -bg '#1e1e1e' -name scratchpad -sh 100",
             opacity=1,
             warp_pointer=False,
             on_focus_lost_hide=False,

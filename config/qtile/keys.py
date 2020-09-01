@@ -66,11 +66,11 @@ keys = [
 
     Key([mod], "Return",
         lazy.layout.mode_horizontal(),
-        lazy.spawn('urxvtc-256color')
+        lazy.spawn('urxvt')
     ),
     Key([mod, alt], "Return",
         lazy.layout.mode_vertical(),
-        lazy.spawn('urxvtc-256color')
+        lazy.spawn('urxvt')
     ),
 
     Key([mod], "Tab", lazy.next_layout()),
@@ -134,7 +134,7 @@ keys = [
     Key([], 'F12', lazy.group['dropdown'].dropdown_toggle('term')),
 
     Key([mod], "F1", app_or_group('WWW', '~/.local/bin/qutebrowser')),
-    Key([mod], "F2", app_or_group('Editors', 'urxvtc-256color -bg "#1e1e1e" -name emacs -e emacsclient -t')),
+    Key([mod], "F2", app_or_group('Editors', 'urxvt -bg "#1e1e1e" -name emacs -e emacsclient -t')),
     Key([mod], "F3", app_or_group('E-Mail', 'thunderbird')),
     Key([mod], "F4", app_or_group('Discord', 'discord')),
     Key([mod], "F5", app_or_group('Trello', '/opt/Trello/Trello')),

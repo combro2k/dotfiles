@@ -62,7 +62,7 @@ call plug#begin('~/.vim/plugged')
 
   " Syntax types
 	Plug 'pearofducks/ansible-vim'
-  Plug 'govim/govim'
+  " Plug 'govim/govim'
   Plug 'mikewest/vim-markdown'
 	Plug 'dag/vim-fish'
 	

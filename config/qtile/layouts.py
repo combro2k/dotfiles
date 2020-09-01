@@ -1,8 +1,11 @@
 from libqtile import layout
 
+from libqtile.log_utils import logger
+
 try:
     from plasma import Plasma
-except:
+except Exception as e:
+    logger.error(e)
     pass
 
 layouts = []
@@ -20,7 +23,8 @@ try:
             margin=0,
         ),
     ])
-except:
+except Exception as e:
+    logger.error(e)
     pass
 
 

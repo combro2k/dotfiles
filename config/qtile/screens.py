@@ -1,7 +1,7 @@
 from libqtile.config import Screen
 from libqtile import bar, widget
 
-from widgets import MenuWidget, ActionMenuWidget, WindowNameNew, TaskListNew
+from widgets import MenuWidget, ActionMenuWidget, WindowNameNew
 
 from classes import Helpers
 
@@ -54,7 +54,7 @@ for i in range(0, num_screen):
                     urgent_alert_method='block',
                     inactive='8e8e8e',
                     ),
-                TaskListNew(
+                widget.TaskList(
                     spacing=0,
                     padding=0 if type_screen not in ['4K VMware', '4K UHD'] else 4,
                     background='585858',
