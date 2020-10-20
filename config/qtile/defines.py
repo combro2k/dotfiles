@@ -23,3 +23,4 @@ def autostart():
     yield '/usr/bin/xsetroot', '-name', 'Qtile', '-bg', '#323637', '-fg', '#323637', '-solid', '#323637'
     yield '/usr/bin/copyq'
     yield '/usr/bin/nitrogen', '--restore'
+    yield '/usr/lib/notification-daemon/notification-daemon'
