@@ -6,8 +6,9 @@ function fish_greeting
     return
   end
 
-  if type -fq neofetch
-    set -q TMUX; and neofetch --off; or neofetch
+  if type -fq archey
+    archey
+    #set -q TMUX; and neofetch --off; or neofetch
   end
 
   if type -fq fortune
