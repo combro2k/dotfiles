@@ -370,7 +370,7 @@ class Helpers():
 
     def get_screen_size():
         try:
-            r = run(['sh', '-c', '/usr/bin/xrandr | awk \'/*/ {print $1}\''], stdout=PIPE, universal_newlines=True)
+            r = run(['sh', '-c', '/usr/bin/xrandr | awk \'/\*/ {print $1}\''], stdout=PIPE, universal_newlines=True)
 
             s = r.stdout.lstrip().split('x', 2)
             w = s[0]
