@@ -39,7 +39,7 @@ def auto_screens():
     run(['pkill', '-SIGHUP', 'conky'])
 
 @hook.subscribe.screen_change
-def restart_on_randr(qtile, ev):
+def restart_on_randr(qtile):
     if qtile.ready:
         try:
             return qtile.cmd_restart()

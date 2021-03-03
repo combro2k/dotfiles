@@ -1,23 +1,6 @@
---  rc.lua
---  custom initialisation for awesome windowmanager 4.0.x
---
- -- Copyright (C) 2012, 2013 by Togan Muftuoglu <toganm@opensuse.org>
- -- Copyright (C) 2015, 2016 by Sorokin Alexei <sor.alexei@meowr.ru>
- -- This program is free software; you can redistribute it and/or
- -- modify it under the terms of the GNU General Public License as
- -- published by the Free Software Foundation; either version 2, or (at
- -- your option) any later version.
-
- -- This program is distributed in the hope that it will be useful, but
- -- WITHOUT ANY WARRANTY; without even the implied warranty of
- -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- -- General Public License for more details.
-
- -- You should have received a copy of the GNU General Public License
- -- along with GNU Emacs; see the file COPYING.  If not, write to the
- -- Free Software Foundation, Inc.,  51 Franklin Street, Fifth Floor,
- -- Boston, MA 02110-1301 USA
-
+-- If LuaRocks is installed, make sure that packages installed through it are
+-- found (e.g. lgi). If LuaRocks is not installed, do nothing.
+pcall(require, "luarocks.loader")
 
 -- Standard awesome library
 local gears = require("gears")
@@ -30,17 +13,14 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup").widget
+local hotkeys_popup = require("awful.hotkeys_popup")
+-- Enable hotkeys help widget for VIM and other apps
+-- when client with a matching name is opened:
+require("awful.hotkeys_popup.keys")
 
--- Introspection
-local lgi = require("lgi")
-local gtk = lgi.require("Gtk", "3.0")
--- Freedesktop integration
-local freedesktop = require("freedesktop")
--- calendar functions
-local calendar2 = require("calendar2")
--- Extra widgets
-local vicious = require("vicious")
+-- Load Debian menu entries
+local debian = require("debian.menu")
+local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -69,27 +49,12 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
--- Use personal theme if existing else goto default.
-do
-    local user_theme, ut
-    user_theme = awful.util.getdir("config") .. "/themes/theme.lua"
-    ut = io.open(user_theme)
-    if ut then
-        io.close(ut)
-        beautiful.init(user_theme)
-    else
-        print("Personal theme doesn't exist, falling back to openSUSE")
-        beautiful.init(awful.util.get_themes_dir() .. "openSUSE/theme.lua")
-    end
-end
+beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
-editor = os.getenv("EDITOR") or os.getenv("VISUAL") or "vi"
+editor = os.getenv("EDITOR") or "vi"
 editor_cmd = terminal .. " -e " .. editor
-
-menubar.utils.terminal = terminal
-theme.icon_theme = "Adwaita"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -100,72 +65,55 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    -- awful.layout.suit.tile,
-    -- awful.layout.suit.tile.left,
-    -- awful.layout.suit.tile.bottom,
-    -- awful.layout.suit.tile.top,
     awful.layout.suit.fair,
-    -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
+    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.floating,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile.left,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
+    awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    awful.layout.suit.floating,
-    -- awful.layout.suit.max.fullscreen,
-    -- awful.layout.suit.magnifier,
-    -- awful.layout.suit.corner.nw,
+    awful.layout.suit.max.fullscreen,
+    awful.layout.suit.magnifier,
+    awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
 -- }}}
 
--- {{{ Helper functions
-local function client_menu_toggle_fn()
-    local instance = nil
-
-    return function ()
-        if instance and instance.wibox.visible then
-            instance:hide()
-            instance = nil
-        else
-            instance = awful.menu.clients({ theme = { width = 250 } })
-        end
-    end
-end
--- }}}
-
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-local function lookup_icon(icon, size)
-    local icon_theme = gtk.IconTheme.get_default()
-    local icon_info = icon_theme:lookup_icon(icon, size, "USE_BUILTIN")
-    return icon_info and icon_info:get_filename() or nil
+myawesomemenu = {
+   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+   { "manual", terminal .. " -e man awesome" },
+   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "restart", awesome.restart },
+   { "quit", function() awesome.quit() end },
+}
+
+local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
+local menu_terminal = { "open terminal", terminal }
+
+if has_fdo then
+    mymainmenu = freedesktop.menu.build({
+        before = { menu_awesome },
+        after =  { menu_terminal }
+    })
+else
+    mymainmenu = awful.menu({
+        items = {
+                  menu_awesome,
+                  { "Debian", debian.menu.Debian_menu.Debian },
+                  menu_terminal,
+                }
+    })
 end
 
-mysystemmenu = {
-   { "Lock Screen",     "light-locker-command --lock",  lookup_icon("system-lock-screen", 16) },
-   { "Logout",           function() awesome.quit() end, lookup_icon("system-log-out", 16)     },
-   { "Reboot System",   "systemctl reboot",             lookup_icon("system-restart", 16)       },
-   { "Shutdown System", "systemctl poweroff",           lookup_icon("system-shutdown", 16)    }
-}
 
-myawesomemenu = {
-   { "Restart Awesome", awesome.restart, lookup_icon("view-refresh", 16) },
-   { "Edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "rc.lua", lookup_icon("package_settings", 16) },
-   { "manual", terminal .. " -e man awesome", lookup_icon("help-browser", 16) }
-}
-
-mymainmenu = freedesktop.menu.build({
-    before = {
-        { "Awesome",  myawesomemenu,          beautiful.awesome_icon                },
-    },
-    after = {
-        { "System",   mysystemmenu,           lookup_icon("preferences-system", 16) },
-        { "Terminal", menubar.utils.terminal, lookup_icon("utilities-terminal", 16) }
-    }
-})
-
-mylauncher = awful.widget.launcher({ image = beautiful.opensuse_icon,
+mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
@@ -176,107 +124,48 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
--- We need spacer and separator between the widgets
-spacer = wibox.widget.textbox()
-separator = wibox.widget.textbox()
-spacer:set_text(" ")
-separator:set_text("|")
-
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
-calendar2.addCalendarToWidget(mytextclock, "<span color='green'>%s</span>")
-
-mycpuwidget = wibox.widget.textbox()
-vicious.register(mycpuwidget, vicious.widgets.cpu, "$1%")
-
-mybattery = wibox.widget.textbox()
-vicious.register(mybattery, function(format, warg)
-    local args = vicious.widgets.bat(format, warg)
-    if args[2] < 50 then
-        args['{color}'] = 'red'
-    else
-        args['{color}'] = 'green'
-    end
-    return args
-end, '<span foreground="${color}">bat: $2% $3h</span>', 10, 'BAT0')
-
-
--- Weather widget
-myweatherwidget = wibox.widget.textbox()
-weather_t = awful.tooltip({ objects = { myweatherwidget },})
-vicious.register(myweatherwidget, vicious.widgets.weather,
-          function (widget, args)
-              weather_t:set_text("City: " .. args["{city}"] .."\nWind: " .. args["{windkmh}"] .. "km/h " .. args["{wind}"] .. "\nSky: " .. args["{sky}"] .. "\nHumidity: " .. args["{humid}"] .. "%")
-              return args["{tempc}"] .. "C"
-          end, 1800, "EDDN")
-          --'1800': check every 30 minutes.
-          --'EDDN': Nuernberg ICAO code.
-
-
--- Keyboard map indicator and changer
--- default keyboard is us, second is german adapt to your needs
---
-
-kbdcfg = {}
-kbdcfg.cmd = "setxkbmap"
-kbdcfg.layout = { { "us", "" } }
-kbdcfg.current = 1  -- us is our default layout
-kbdcfg.widget = wibox.widget.textbox()
-kbdcfg.widget.set_align = "right"
-kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][1] .. " ")
-kbdcfg.switch = function ()
-    kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
-    local t = kbdcfg.layout[kbdcfg.current]
-    kbdcfg.widget.text = " " .. t[1] .. " "
-    os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
-end
-
--- Mouse bindings
-kbdcfg.widget:buttons(awful.util.table.join(
-    awful.button({ }, 1, function () kbdcfg.switch() end)
-))
 
 -- Create a wibox for each screen and add it
-local taglist_buttons = awful.util.table.join(
-          awful.button({ }, 1, function(t) t:view_only() end),
-          awful.button({ modkey }, 1, function(t)
-                        if client.focus then
-                            client.focus:move_to_tag(t)
-                        end
-                    end),
+local taglist_buttons = gears.table.join(
+                    awful.button({ }, 1, function(t) t:view_only() end),
+                    awful.button({ modkey }, 1, function(t)
+                                              if client.focus then
+                                                  client.focus:move_to_tag(t)
+                                              end
+                                          end),
                     awful.button({ }, 3, awful.tag.viewtoggle),
                     awful.button({ modkey }, 3, function(t)
-                                  if client.focus then
-                                      client.focus:toggle_tag(t)
-                                  end
-                              end),
+                                              if client.focus then
+                                                  client.focus:toggle_tag(t)
+                                              end
+                                          end),
                     awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
                     awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
                 )
 
-local tasklist_buttons = awful.util.table.join(
-          awful.button({ }, 1, function (c)
-                        if c == client.focus then
-                            c.minimized = true
-                        else
-                            -- Without this, the following :isvisible()
-                            -- makes no sense
-                            c.minimized = false
-                            if not c:isvisible() and c.first_tag then
-                                c.first_tag:view_only()
-                            end
-                            -- This will also un-minimise the client, if needed
-                            client.focus = c
-                            c:raise()
-                        end
-                    end),
-                    awful.button({ }, 3, client_menu_toggle_fn()),
-                    awful.button({ }, 4, function ()
-                                  awful.client.focus.byidx(1)
-                              end),
-                    awful.button({ }, 5, function ()
-                                  awful.client.focus.byidx(-1)
-                              end))
+local tasklist_buttons = gears.table.join(
+                     awful.button({ }, 1, function (c)
+                                              if c == client.focus then
+                                                  c.minimized = true
+                                              else
+                                                  c:emit_signal(
+                                                      "request::activate",
+                                                      "tasklist",
+                                                      {raise = true}
+                                                  )
+                                              end
+                                          end),
+                     awful.button({ }, 3, function()
+                                              awful.menu.client_list({ theme = { width = 250 } })
+                                          end),
+                     awful.button({ }, 4, function ()
+                                              awful.client.focus.byidx(1)
+                                          end),
+                     awful.button({ }, 5, function ()
+                                              awful.client.focus.byidx(-1)
+                                          end))
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -302,19 +191,27 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
+    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(awful.util.table.join(
-              awful.button({ }, 1, function () awful.layout.inc( 1) end),
-              awful.button({ }, 3, function () awful.layout.inc(-1) end),
-              awful.button({ }, 4, function () awful.layout.inc( 1) end),
-              awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+    s.mylayoutbox:buttons(gears.table.join(
+                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
+                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
+                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
+                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+    s.mytaglist = awful.widget.taglist {
+        screen  = s,
+        filter  = awful.widget.taglist.filter.all,
+        buttons = taglist_buttons
+    }
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
+    s.mytasklist = awful.widget.tasklist {
+        screen  = s,
+        filter  = awful.widget.tasklist.filter.currenttags,
+        buttons = tasklist_buttons
+    }
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
@@ -334,28 +231,6 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
-            separator,
-            spacer,
-
-            kbdcfg.widget,
-            spacer,
-            separator,
-            spacer,
-
-            mycpuwidget,
-            spacer,
-            separator,
-            spacer,
-
-            mybattery,
-            spacer,
-            separator,
-            spacer,
-
-            myweatherwidget,
-            spacer,
-            separator,
-            spacer,
             s.mylayoutbox,
         },
     }
@@ -363,7 +238,7 @@ end)
 -- }}}
 
 -- {{{ Mouse bindings
-root.buttons(awful.util.table.join(
+root.buttons(gears.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
@@ -371,8 +246,8 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "F1",      hotkeys_popup.show_help,
+globalkeys = gears.table.join(
+    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
@@ -446,8 +321,9 @@ globalkeys = awful.util.table.join(
                   local c = awful.client.restore()
                   -- Focus restored client
                   if c then
-                      client.focus = c
-                      c:raise()
+                    c:emit_signal(
+                        "request::activate", "key.unminimize", {raise = true}
+                    )
                   end
               end,
               {description = "restore minimized", group = "client"}),
@@ -455,47 +331,6 @@ globalkeys = awful.util.table.join(
     -- Prompt
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
-
-    -- This function below will enable ssh login as long as the remote host is
-    -- defined in $HOME/.ssh/config else by giving the remote host a name at
-    -- the prompt which will also work
-    awful.key({ modkey },           "s",     function ()
-                  awful.prompt.run({ prompt = "ssh: " },
-                  mypromptbox[mouse.screen].widget,
-                  function(h) awful.util.spawn(terminal .. " -e slogin " .. h) end,
-                  function(cmd, cur_pos, ncomp)
-                      -- Get hosts and hostnames
-                      local hosts = {}
-                      f = io.popen("sed 's/#.*//;/[ \\t]*Host\\(Name\\)\\?[ \\t]\\+/!d;s///;/[*?]/d' " .. os.getenv("HOME") .. "/.ssh/config | sort")
-                      for host in f:lines() do
-                          table.insert(hosts, host)
-                      end
-                      f:close()
-                      -- Abort completion under certain circumstances
-                      if cur_pos ~= #cmd + 1 and cmd:sub(cur_pos, cur_pos) ~= " " then
-                          return cmd, cur_pos
-                      end
-                      -- A match
-                      local matches = {}
-                      table.foreach(hosts, function(x)
-                          if hosts[x]:find("^" .. cmd:sub(1, cur_pos):gsub('[-]', '[-]')) then
-                              table.insert(matches, hosts[x])
-                          end
-                      end)
-                      -- If there are no matches
-                      if #matches == 0 then
-                          return cmd, cur_pos
-                      end
-                      -- Cycle
-                      while ncomp > #matches do
-                          ncomp = ncomp - #matches
-                      end
-                      -- Return the match and position
-                      return matches[ncomp], #matches[ncomp] + 1
-                  end,
-                  awful.util.getdir("cache") .. "ssh_history")
-              end,
-              {description = "ssh login", group = "awesome"}),
 
     awful.key({ modkey }, "x",
               function ()
@@ -512,7 +347,7 @@ globalkeys = awful.util.table.join(
               {description = "show the menubar", group = "launcher"})
 )
 
-clientkeys = awful.util.table.join(
+clientkeys = gears.table.join(
     awful.key({ modkey,           }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
@@ -541,14 +376,26 @@ clientkeys = awful.util.table.join(
             c.maximized = not c.maximized
             c:raise()
         end ,
-        {description = "maximize", group = "client"})
+        {description = "(un)maximize", group = "client"}),
+    awful.key({ modkey, "Control" }, "m",
+        function (c)
+            c.maximized_vertical = not c.maximized_vertical
+            c:raise()
+        end ,
+        {description = "(un)maximize vertically", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "m",
+        function (c)
+            c.maximized_horizontal = not c.maximized_horizontal
+            c:raise()
+        end ,
+        {description = "(un)maximize horizontally", group = "client"})
 )
 
 -- Bind all key numbers to tags.
--- Be careful: we use keycodes to make it works on any keyboard layout.
+-- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
-    globalkeys = awful.util.table.join(globalkeys,
+    globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
@@ -594,10 +441,19 @@ for i = 1, 9 do
     )
 end
 
-clientbuttons = awful.util.table.join(
-    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
-    awful.button({ modkey }, 1, awful.mouse.client.move),
-    awful.button({ modkey }, 3, awful.mouse.client.resize))
+clientbuttons = gears.table.join(
+    awful.button({ }, 1, function (c)
+        c:emit_signal("request::activate", "mouse_click", {raise = true})
+    end),
+    awful.button({ modkey }, 1, function (c)
+        c:emit_signal("request::activate", "mouse_click", {raise = true})
+        awful.mouse.client.move(c)
+    end),
+    awful.button({ modkey }, 3, function (c)
+        c:emit_signal("request::activate", "mouse_click", {raise = true})
+        awful.mouse.client.resize(c)
+    end)
+)
 
 -- Set keys
 root.keys(globalkeys)
@@ -624,33 +480,35 @@ awful.rules.rules = {
         instance = {
           "DTA",  -- Firefox addon DownThemAll.
           "copyq",  -- Includes session name in class.
-          -- To fix Flash fullscreen issues if still seeing bottom bar
-          -- For chromium change "plugin-container" to "exe"
-          "plugin-container",
+          "pinentry",
         },
         class = {
           "Arandr",
+          "Blueman-manager",
           "Gpick",
           "Kruler",
           "MessageWin",  -- kalarm.
           "Sxiv",
+          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
           "Wpa_gui",
-          "pinentry",
           "veromix",
           "xtightvncviewer"},
 
+        -- Note that the name property shown in xprop might be set slightly after creation of the client
+        -- and the name shown there might not match defined rules here.
         name = {
           "Event Tester",  -- xev.
         },
         role = {
           "AlarmWindow",  -- Thunderbird's calendar.
+          "ConfigManager",  -- Thunderbird's about:config.
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       }, properties = { floating = true }},
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
@@ -666,8 +524,8 @@ client.connect_signal("manage", function (c)
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
 
-    if awesome.startup and
-      not c.size_hints.user_position
+    if awesome.startup
+      and not c.size_hints.user_position
       and not c.size_hints.program_position then
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
@@ -677,15 +535,13 @@ end)
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
     -- buttons for the titlebar
-    local buttons = awful.util.table.join(
+    local buttons = gears.table.join(
         awful.button({ }, 1, function()
-            client.focus = c
-            c:raise()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
             awful.mouse.client.move(c)
         end),
         awful.button({ }, 3, function()
-            client.focus = c
-            c:raise()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
             awful.mouse.client.resize(c)
         end)
     )
@@ -718,12 +574,27 @@ end)
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
-    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-        and awful.client.focus.filter(c) then
-        client.focus = c
-    end
+    c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+do
+  local cmds =
+  {
+    "conky",
+    "package-update-indicator",
+		"/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1",
+		"/usr/lib/notification-daemon/notification-daemon",
+--		"urxvtd -o -q -m",
+		"/usr/lib/x86_64-linux-gnu/gpaste/gpaste-daemon",
+		"/usr/lib64/libexec/kdeconnectd",
+		"kdeconnect-indicator"
+  }
+
+  for _,i in pairs(cmds) do
+    awful.spawn(i)
+  end
+end
