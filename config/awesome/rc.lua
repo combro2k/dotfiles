@@ -65,7 +65,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvt"
+terminal = "urxvtc"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -645,3 +645,20 @@ client.connect_signal(
     "unfocus", function(c) c.border_color = beautiful.border_normal end
 )
 -- }}}
+
+-- Autorun
+autorun = true
+autorunApps = {
+    "/usr/bin/urxvtd -o -q -m",
+    "/usr/bin/conky",
+    "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1",
+    "/usr/lib/notification-daemon/notification-daemon",
+    "/usr/lib/x86_64-linux-gnu/gpaste/gpaste-daemon",
+    "/usr/lib64/libexec/kdeconnectd",
+    "/usr/bin/kdeconnect-indicator",
+}
+if autorun then
+    for app = 1, #autorunApps do
+        awful.spawn.once({autorunApps[app], unique_id = autorunApps[app]})
+    end
+end
