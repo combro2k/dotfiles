@@ -24,6 +24,7 @@ local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 -- dropdown terminal https://gkaczorek.com/2020-09-25-adding-an-alacritty-based-drop-down-terminal-in-awesomewm/
 local quake = require("util/quake")
+local autostart = require("util/autostart")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -645,3 +646,21 @@ client.connect_signal(
     "unfocus", function(c) c.border_color = beautiful.border_normal end
 )
 -- }}}
+-- Autorun programs
+
+autorun = true
+
+autorunApps = {
+    "conky",
+    "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1",
+    "/usr/lib/notification-daemon/notification-daemon",
+    -- "urxvtd -o -q -m",
+    "/usr/lib/x86_64-linux-gnu/gpaste/gpaste-daemon",
+    "/usr/lib64/libexec/kdeconnectd",
+    "kdeconnect-indicator",
+}
+if autorun then
+    for app = 1, #autorunApps do
+      autostart(autorunApps[app])
+    end
+end
