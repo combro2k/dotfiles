@@ -191,11 +191,15 @@ awful.screen.connect_for_each_screen(
         -- Dropdown terminal https://gkaczorek.com/2020-09-25-adding-an-alacritty-based-drop-down-terminal-in-awesomewm/
         s.quake = quake(
             {
-                app = "alacritty",
-                argname = "--title %s",
-                extra = "--class QuakeDD -e tmux",
+                app = "/usr/bin/urxvt",
+                argname = "-title %s",
+                extra = "-name QuakeDD",
                 visible = true,
                 height = 0.9,
+                width = 0.9,
+                horiz = "center",
+                vert = "center",
+                border = 2,
             }
         )
 
@@ -386,7 +390,7 @@ globalkeys = gears.table.join(
         {modkey}, "p", function() menubar.show() end,
             {description = "show the menubar", group = "launcher"}
     ), awful.key(
-        {modkey}, "z", function() awful.screen.focused().quake:toggle() end,
+        {any}, "F12", function() awful.screen.focused().quake:toggle() end,
             {description = "dropdown application", group = "launcher"}
     )
 )
