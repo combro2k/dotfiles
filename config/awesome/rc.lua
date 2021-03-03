@@ -188,7 +188,15 @@ awful.screen.connect_for_each_screen(
         )
 
         -- Dropdown terminal https://gkaczorek.com/2020-09-25-adding-an-alacritty-based-drop-down-terminal-in-awesomewm/
-        s.quake = quake({ app = "alacritty",argname = "--title %s",extra = "--class QuakeDD -e tmux", visible = true, height = 0.9 })
+        s.quake = quake(
+            {
+                app = "alacritty",
+                argname = "--title %s",
+                extra = "--class QuakeDD -e tmux",
+                visible = true,
+                height = 0.9,
+            }
+        )
 
         -- Create a promptbox for each screen
         s.mypromptbox = awful.widget.prompt()
@@ -376,6 +384,9 @@ globalkeys = gears.table.join(
     awful.key(
         {modkey}, "p", function() menubar.show() end,
             {description = "show the menubar", group = "launcher"}
+    ), awful.key(
+        {modkey}, "z", function() awful.screen.focused().quake:toggle() end,
+            {description = "dropdown application", group = "launcher"}
     )
 )
 
