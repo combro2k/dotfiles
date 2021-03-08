@@ -61,7 +61,7 @@ local function run(command)
       return
     end
   end
-  return awful.util.spawn(command)
+  return awful.spawn(command)
 end
 
 return run
