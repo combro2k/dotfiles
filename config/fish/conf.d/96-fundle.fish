@@ -14,7 +14,7 @@ if status --is-interactive
   # list plugin dependencies
   fundle plugin 'smh/base16-shell-fish'
   fundle plugin 'jorgebucaran/fish-getopts'
-  fundle plugin 'fishpkg/fish-await'
+#  fundle plugin 'fishpkg/fish-await'
   fundle plugin 'decors/fish-colored-man'
   fundle plugin 'tuvistavie/fish-completion-helpers'
   fundle plugin 'tuvistavie/oh-my-fish-core'
