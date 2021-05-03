@@ -2,5 +2,5 @@ glances[docker,cpuinfo]
 base16-shell-preview
 tmuxp
 sshuttle
-httpie httpie
+httpie
 archey4
