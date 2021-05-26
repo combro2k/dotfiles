@@ -1,7 +1,10 @@
 pcall(require, "luarocks.loader")
+
+require("awful.autofocus")
+require("awful.hotkeys_popup.keys")
+
 local gears = require("gears")
 local awful = require("awful")
-require("awful.autofocus")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
@@ -13,6 +16,9 @@ local has_fdo, freedesktop = pcall(require, "freedesktop")
 local autostart = require("util/autostart")
 local lain = require("lain")
 local dpi = require("beautiful.xresources").apply_dpi
+local vicious = require("vicious")
+local markup = lain.util.markup
+local separators = lain.util.separators
 
 if awesome.startup_errors then
   naughty.notify(
@@ -44,23 +50,14 @@ do
   )
 end
 
---    "blackburn",       -- 1
---    "copland",         -- 2
---    "dremora",         -- 3
---    "holo",            -- 4
---    "multicolor",      -- 5
---    "powerarrow",      -- 6
---    "powerarrow-dark", -- 7
---    "rainbow",         -- 8
---    "steamburn",       -- 9
---    "vertex",          -- 10
 local chosen_theme = "powerarrow"
 
 local terminal = "urxvtc"
 local editor = os.getenv("EDITOR") or "editor"
 local editor_cmd = terminal .. " -e " .. editor
 
-modkey = "Mod4"
+local modkey = "Mod4"
+local altkey = "Mod1"
 
 awful.util.terminal = terminal
 
@@ -96,7 +93,14 @@ lain.layout.cascade.tile.extra_padding = dpi(5)
 lain.layout.cascade.tile.nmaster       = 5
 lain.layout.cascade.tile.ncol          = 2
 
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+beautiful.init(string.format('%s/.config/awesome/themes/%s/theme.lua', os.getenv('HOME'), chosen_theme))
+beautiful.font = 'SauceCodePro Nerd Font Mono 9'
+-- beautiful.bg_normal = '#808080'
+beautiful.bg_focus = '#666666'
+beautiful.tasklist_bg_normal = beautiful.bg_normal
+beautiful.tasklist_bg_focus = beautiful.bg_normal
+beautiful.tasklist_fg_focus = '#ff0000'
+beautiful.bg_systray = beautiful.bg_focus
 
 if has_fdo then
   mymainmenu = freedesktop.menu.build(
@@ -121,6 +125,31 @@ mylauncher = awful.widget.launcher(
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 mykeyboardlayout = awful.widget.keyboardlayout()
 mytextclock = wibox.widget.textclock()
+
+-- Separators 
+local spr     = wibox.widget.textbox(' ')
+local spr2    = wibox.container.background(wibox.widget.textbox(' '), beautiful.bg_focus)
+local arrl_dl = separators.arrow_left(beautiful.bg_focus, "alpha")
+local arrl_ld = separators.arrow_left("alpha", beautiful.bg_focus)
+
+-- Widgets
+local clockicon = wibox.widget.imagebox(beautiful.widget_clock)
+local clock = awful.widget.watch(
+    "date +'%a %d %b %R'", 60,
+    function(widget, stdout)
+        widget:set_markup(" " .. markup.font(beautiful.font, stdout))
+    end
+)
+-- Calendar
+beautiful.cal = lain.widget.cal({
+    attach_to = { clock },
+    notification_preset = {
+        font = "Terminus 10",
+        fg   = beautiful.fg_normal,
+        bg   = beautiful.bg_normal,
+    }
+})
+
 local taglist_buttons = gears.table.join(
   awful.button({}, 1, function(t) t:view_only() end), awful.button(
     {modkey}, 1,
@@ -164,20 +193,18 @@ local function set_wallpaper(s)
   end
 end
 
-
 screen.connect_signal("property::geometry", set_wallpaper)
-
 
 awful.screen.connect_for_each_screen(
   function(s)
     set_wallpaper(s)
     awful.tag(
-      {"1", "2", "3", "4", "5", "6", "7", "8", "9"}, s,
+      {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}, s,
       awful.layout.layouts[1]
     )
     s.quake = lain.util.quake(
-      {
-        app = "/usr/bin/urxvt",
+    {
+      app = "/usr/bin/urxvt",
         argname = "-title %s",
         extra = "-name QuakeDD",
         visible = true,
@@ -213,23 +240,40 @@ awful.screen.connect_for_each_screen(
       filter = awful.widget.tasklist.filter.currenttags,
       buttons = tasklist_buttons,
     }
-    s.mywibox = awful.wibar({position = "top", screen = s})
+    s.mywibox = awful.wibar({
+      position = "top",
+      screen = s,
+      height = dpi(18),
+      fg = beautiful.fg_normal,
+      bg = beautiful.bg_normal,
+    })
     s.mywibox:setup{
-      layout = wibox.layout.align.horizontal,
       { -- Left widgets
         layout = wibox.layout.fixed.horizontal,
-        mylauncher,
+        wibox.container.background(mylauncher, beautiful.bg_focus),
+				spr,
         s.mytaglist,
-        s.mypromptbox,
+				spr,
+        wibox.container.background(s.mypromptbox, beautiful.bg_focus),
       },
       s.mytasklist, -- Middle widget
       { -- Right widgets
         layout = wibox.layout.fixed.horizontal,
-        mykeyboardlayout,
-        wibox.widget.systray(),
-        mytextclock,
-        s.mylayoutbox,
+        spr,
+				arrl_ld,
+        wibox.container.background(mykeyboardlayout, beautiful.bg_focus),
+				wibox.container.background(spr, beautiful.bg_focus),
+				wibox.widget.systray(),
+				arrl_dl,
+				clock,
+				spr,
+				arrl_ld,
+				wibox.container.background(spr, beautiful.bg_focus),
+        wibox.container.background(s.mylayoutbox, beautiful.bg_focus),
+				wibox.container.background(spr, beautiful.bg_focus),
       },
+      bg = '#ff0000',
+      layout = wibox.layout.align.horizontal,
     }
   end
 )
@@ -301,17 +345,21 @@ globalkeys = gears.table.join(
     end, {description = "go back", group = "client"}
   ), -- Standard program
   awful.key(
-    {"Mod1"}, "Tab", function() awful.spawn('rofi -show windowcd -modi windowcd') end,
+    {altkey}, "Tab", function() awful.spawn('rofi -show windowcd -modi windowcd') end,
     {description = "open programs", group = "client"}
   ),
   awful.key(
-    {"Mod1", "Shift"}, "Tab", function() awful.spawn('rofi -show window -modi window') end,
+    {altkey, "Shift"}, "Tab", function() awful.spawn('rofi -show window -modi window') end,
     {description = "open programs", group = "client"}
   ),
   awful.key(
     {modkey}, "Return", function() awful.spawn(terminal) end,
     {description = "open a terminal", group = "launcher"}
   ),
+--  awful.key(
+--    {modkey}, "r", function() awful.spawn('xfreerpdui') end,
+--    {description = "open xfreerpdui", group = "launcher"}
+--  ),
   awful.key(
     {modkey, "Control"}, "r", awesome.restart,
     {description = "reload awesome", group = "awesome"}
@@ -449,7 +497,7 @@ clientkeys = gears.table.join(
   )
 )
 
-for i = 1, 9 do
+for i = 1, 12 do
   globalkeys = gears.table.join(
     globalkeys, -- View tag only.
     awful.key(
@@ -641,6 +689,10 @@ autorunApps = {
   "/usr/lib/notification-daemon/notification-daemon",
   "/usr/bin/urxvtd -o -q -m",
   "/usr/lib/x86_64-linux-gnu/gpaste/gpaste-daemon",
+  "/usr/bin/gpaste-client start",
+  -- this is garbage!
+  -- "/usr/bin/clipit",
+  -- "/usr/bin/copyq",
   "/usr/lib64/libexec/kdeconnectd",
   "/usr/bin/kdeconnect-indicator",
 }

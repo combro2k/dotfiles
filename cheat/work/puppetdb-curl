@@ -3,3 +3,6 @@ curl -sfG 'http://localhost:8080/v3/nodes' --data-urlencode 'query=["not", ["=",
 
 # Specifiek veld
 curl -sfG 'http://localhost:8080/v3/nodes' --data-urlencode 'query=["=", ["fact", "domain"], "example.org"]'
+
+# Puppet6
+curl -X GET http://localhost:8080/pdb/query/v4/facts/installed_certificates | json_pp

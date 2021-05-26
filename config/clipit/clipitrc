@@ -1,13 +1,15 @@
 [rc]
 use_copy=true
 use_primary=true
-synchronize=true
+synchronize=false
 automatic_paste=false
 show_indexes=true
 save_uris=false
 use_rmb_menu=true
-save_history=true
+save_history=false
 history_limit=50
+history_timeout_seconds=30
+history_timeout=false
 items_menu=20
 statics_show=false
 statics_items=10
@@ -23,3 +25,4 @@ menu_key=
 search_key=
 offline_key=
 offline_mode=false
+exclude_windows=
