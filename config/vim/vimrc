@@ -94,3 +94,10 @@ filetype plugin indent on
 filetype plugin on
 
 syntax enable
+
+map <esc>OH <home>
+cmap <esc>OH <home>
+imap <esc>OH <home>
+map <esc>OF <end>
+cmap <esc>OF <end>
+imap <esc>OF <end>
