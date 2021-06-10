@@ -1,1 +1,1 @@
-#set -q $TMUX; and alias takeover="tmux detach -a"
+test -x /usr/bin/vim; and alias vi="vim"
