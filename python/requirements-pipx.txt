@@ -1,6 +1,6 @@
 git+https://github.com/combro2k/xfreerdp-python3-ui.git 
-git+https://github.com/combro2k/qtile-actionmenu.git
-git+https://github.com/combro2k/qtile-contextmenu.git
+# git+https://github.com/combro2k/qtile-actionmenu.git
+# git+https://github.com/combro2k/qtile-contextmenu.git
 git+https://github.com/combro2k/lastpass-gtk.git
 glances[docker,cpuinfo]
 base16-shell-preview

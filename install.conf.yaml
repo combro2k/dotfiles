@@ -76,7 +76,7 @@
     ~/.config/sxhkd: config/sxhkd
     ~/.config/tilda: config/tilda
     ~/.config/terminator/config: config/terminator/config
-    ~/.config/terminator/themes: config/terminator/themes
+    ~/.config/terminator/themes: config/base16/terminator
     ~/.config/vis: config/vis
     ~/.config/qutebrowser/config.py: config/qutebrowser/config.py
     ~/.newsboat/config: config/newsboat/config
@@ -96,7 +96,7 @@
     stdout: false
     stderr: true
     verbose: true
-    force: true
+    force: false
 
 - pipx:
     file: python/requirements-pipx.txt
@@ -105,7 +105,7 @@
     stdout: true
     stderr: true
     verbose: true
-    force: true
+    force: false
 
 - cargo:
     - exa:
