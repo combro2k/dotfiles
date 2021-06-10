@@ -21,6 +21,7 @@
     ~/.urxvt: config/urxvt
     ~/.vimrc: config/vim/vimrc
     ~/.vim/autoload/plug.vim: config/vim-plug/plug.vim
+    ~/.vim/colors: config/base16-vim/colors
     ~/.Xresources: config/X11/Xresources
     ~/.Xresources.d: config/X11/Xresources.d
     ~/.local/share/applications/firefox.desktop: config/X11/applications/firefox.desktop

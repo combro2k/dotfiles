@@ -49,11 +49,12 @@ let g:airline_symbols.linenr = ''
 
 
 call plug#begin('~/.vim/plugged')
-	Plug 'danielwe/base16-vim'
+  " We're gonna load it via generated locally at dotfiles
+  " Plug 'danielwe/base16-vim'
 
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  
+
   Plug 'scrooloose/nerdtree'
   Plug 'jistr/vim-nerdtree-tabs'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -61,11 +62,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'maralla/completor.vim'
 
   " Syntax types
-	Plug 'pearofducks/ansible-vim'
+  Plug 'pearofducks/ansible-vim'
   " Plug 'govim/govim'
   Plug 'mikewest/vim-markdown'
-	Plug 'dag/vim-fish'
-	
+  Plug 'dag/vim-fish'
+
   Plug 'ryanoasis/vim-devicons'
 
   Plug '~/.fzf'
