@@ -74,6 +74,7 @@
     ~/.config/qtile: config/qtile
     ~/.config/sxhkd: config/sxhkd
     ~/.config/tilda: config/tilda
+    ~/.config/terminator: config/terminator
     ~/.config/vis: config/vis
     ~/.config/qutebrowser/config.py: config/qutebrowser/config.py
     ~/.newsboat/config: config/newsboat/config

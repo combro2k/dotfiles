@@ -52,7 +52,7 @@ end
 
 local chosen_theme = "powerarrow"
 
-local terminal = "urxvtc"
+local terminal = os.getenv("TERMINAL") or "urxvtc" 
 local editor = os.getenv("EDITOR") or "editor"
 local editor_cmd = terminal .. " -e " .. editor
 
@@ -204,7 +204,7 @@ awful.screen.connect_for_each_screen(
     )
     s.quake = lain.util.quake(
     {
-      app = "/usr/bin/urxvt",
+      app = '/usr/bin/urxvt',
         argname = "-title %s",
         extra = "-name QuakeDD",
         visible = true,
@@ -686,14 +686,10 @@ autorun = true
 autorunApps = {
   "/usr/bin/conky",
   "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1",
+  "/usr/libexec/polkit-gnome-authentication-agent-1",
   "/usr/lib/notification-daemon/notification-daemon",
-  "/usr/bin/urxvtd -o -q -m",
-  "/usr/lib/x86_64-linux-gnu/gpaste/gpaste-daemon",
-  "/usr/bin/gpaste-client start",
-  -- this is garbage!
-  -- "/usr/bin/clipit",
-  -- "/usr/bin/copyq",
-  "/usr/lib64/libexec/kdeconnectd",
+  "/usr/libexec/notification-daemon",
+  "/usr/bin/urxvtd -o -q",
   "/usr/bin/kdeconnect-indicator",
 }
 if autorun then
