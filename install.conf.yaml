@@ -76,7 +76,7 @@
     ~/.config/sxhkd: config/sxhkd
     ~/.config/tilda: config/tilda
     ~/.config/terminator/config: config/terminator/config
-    ~/.config/terminator/themes: config/base16/terminator
+    ~/.config/terminator/themes: config/base16/terminator/themes
     ~/.config/vis: config/vis
     ~/.config/qutebrowser/config.py: config/qutebrowser/config.py
     ~/.newsboat/config: config/newsboat/config
