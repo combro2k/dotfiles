@@ -1,0 +1,5 @@
+# Base16 OceanicNext for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By https://github.com/voronianski/oceanic-next-color-scheme
+
+gtk-color-scheme = "bg_color:#1b2b34\nfg_color:#c0c5ce\nbase_color:#1b2b34\ntext_color:#c0c5ce\nselected_bg_color:#4f5b66\nselected_fg_color:#c0c5ce\ntooltip_bg_color:#1b2b34\ntooltip_fg_color:#a7adba\ntitlebar_bg_color:#1b2b34\ntitlebar_fg_color:#6699cc\nmenubar_bg_color:#1b2b34\nmenubar_fg_color:#6699cc\ntoolbar_bg_color:#1b2b34\ntoolbar_fg_color:#fac863\nmenu_bg_color:#1b2b34\nmenu_fg_color:#c0c5ce\npanel_bg_color:#1b2b34\npanel_fg_color:#99c794\nlink_color:#f99157"
+

@@ -1,0 +1,5 @@
+# Base16 Synth Midnight Terminal Dark for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Michaël Ball (http://github.com/michael-ball/)
+
+gtk-color-scheme = "bg_color:#050608\nfg_color:#c1c3c4\nbase_color:#050608\ntext_color:#c1c3c4\nselected_bg_color:#28292a\nselected_fg_color:#c1c3c4\ntooltip_bg_color:#050608\ntooltip_fg_color:#a3a5a6\ntitlebar_bg_color:#050608\ntitlebar_fg_color:#03aeff\nmenubar_bg_color:#050608\nmenubar_fg_color:#03aeff\ntoolbar_bg_color:#050608\ntoolbar_fg_color:#c9d364\nmenu_bg_color:#050608\nmenu_fg_color:#c1c3c4\npanel_bg_color:#050608\npanel_fg_color:#06ea61\nlink_color:#ea770d"
+

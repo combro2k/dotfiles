@@ -1,0 +1,5 @@
+# Base16 Apathy for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Jannik Siebert (https://github.com/janniks)
+
+gtk-color-scheme = "bg_color:#031a16\nfg_color:#81b5ac\nbase_color:#031a16\ntext_color:#81b5ac\nselected_bg_color:#184e45\nselected_fg_color:#81b5ac\ntooltip_bg_color:#031a16\ntooltip_fg_color:#5f9c92\ntitlebar_bg_color:#031a16\ntitlebar_fg_color:#96883e\nmenubar_bg_color:#031a16\nmenubar_fg_color:#96883e\ntoolbar_bg_color:#031a16\ntoolbar_fg_color:#3e4c96\nmenu_bg_color:#031a16\nmenu_fg_color:#81b5ac\npanel_bg_color:#031a16\npanel_fg_color:#883e96\nlink_color:#3e7996"
+

@@ -1,0 +1,5 @@
+# Base16 Flat for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Chris Kempson (http://chriskempson.com)
+
+gtk-color-scheme = "bg_color:#2c3e50\nfg_color:#e0e0e0\nbase_color:#2c3e50\ntext_color:#e0e0e0\nselected_bg_color:#7f8c8d\nselected_fg_color:#e0e0e0\ntooltip_bg_color:#2c3e50\ntooltip_fg_color:#bdc3c7\ntitlebar_bg_color:#2c3e50\ntitlebar_fg_color:#3498db\nmenubar_bg_color:#2c3e50\nmenubar_fg_color:#3498db\ntoolbar_bg_color:#2c3e50\ntoolbar_fg_color:#f1c40f\nmenu_bg_color:#2c3e50\nmenu_fg_color:#e0e0e0\npanel_bg_color:#2c3e50\npanel_fg_color:#2ecc71\nlink_color:#e67e22"
+

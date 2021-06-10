@@ -1,0 +1,5 @@
+# Base16 summercamp for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By zoe firi (zoefiri.github.io)
+
+gtk-color-scheme = "bg_color:#1c1810\nfg_color:#736e55\nbase_color:#1c1810\ntext_color:#736e55\nselected_bg_color:#3a3527\nselected_fg_color:#736e55\ntooltip_bg_color:#1c1810\ntooltip_fg_color:#5f5b45\ntitlebar_bg_color:#1c1810\ntitlebar_fg_color:#489bf0\nmenubar_bg_color:#1c1810\nmenubar_fg_color:#489bf0\ntoolbar_bg_color:#1c1810\ntoolbar_fg_color:#f2ff27\nmenu_bg_color:#1c1810\nmenu_fg_color:#736e55\npanel_bg_color:#1c1810\npanel_fg_color:#5ceb5a\nlink_color:#fba11b"
+

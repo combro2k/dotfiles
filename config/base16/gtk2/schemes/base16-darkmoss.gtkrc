@@ -1,0 +1,5 @@
+# Base16 darkmoss for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Gabriel Avanzi (https://github.com/avanzzzi)
+
+gtk-color-scheme = "bg_color:#171e1f\nfg_color:#c7c7a5\nbase_color:#171e1f\ntext_color:#c7c7a5\nselected_bg_color:#373c3d\nselected_fg_color:#c7c7a5\ntooltip_bg_color:#171e1f\ntooltip_fg_color:#818f80\ntitlebar_bg_color:#171e1f\ntitlebar_fg_color:#498091\nmenubar_bg_color:#171e1f\nmenubar_fg_color:#498091\ntoolbar_bg_color:#171e1f\ntoolbar_fg_color:#fdb11f\nmenu_bg_color:#171e1f\nmenu_fg_color:#c7c7a5\npanel_bg_color:#171e1f\npanel_fg_color:#499180\nlink_color:#e6db74"
+

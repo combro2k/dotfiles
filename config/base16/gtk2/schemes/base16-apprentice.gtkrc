@@ -1,0 +1,5 @@
+# Base16 Apprentice for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By romainl
+
+gtk-color-scheme = "bg_color:#262626\nfg_color:#bcbcbc\nbase_color:#262626\ntext_color:#bcbcbc\nselected_bg_color:#333333\nselected_fg_color:#bcbcbc\ntooltip_bg_color:#262626\ntooltip_fg_color:#787878\ntitlebar_bg_color:#262626\ntitlebar_fg_color:#ffffaf\nmenubar_bg_color:#262626\nmenubar_fg_color:#ffffaf\ntoolbar_bg_color:#262626\ntoolbar_fg_color:#5f8787\nmenu_bg_color:#262626\nmenu_fg_color:#bcbcbc\npanel_bg_color:#262626\npanel_fg_color:#87af87\nlink_color:#ff8700"
+

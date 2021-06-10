@@ -1,0 +1,5 @@
+# Base16 Kimber for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Mishka Nguyen (https://github.com/akhsiM)
+
+gtk-color-scheme = "bg_color:#222222\nfg_color:#dedee7\nbase_color:#222222\ntext_color:#dedee7\nselected_bg_color:#555d55\nselected_fg_color:#dedee7\ntooltip_bg_color:#222222\ntooltip_fg_color:#5a5a5a\ntitlebar_bg_color:#222222\ntitlebar_fg_color:#537c9c\nmenubar_bg_color:#222222\nmenubar_fg_color:#537c9c\ntoolbar_bg_color:#222222\ntoolbar_fg_color:#d8b56d\nmenu_bg_color:#222222\nmenu_fg_color:#dedee7\npanel_bg_color:#222222\npanel_fg_color:#99c899\nlink_color:#476c88"
+

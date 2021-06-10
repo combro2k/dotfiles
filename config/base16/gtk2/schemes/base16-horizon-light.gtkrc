@@ -1,0 +1,5 @@
+# Base16 Horizon Light for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Michaël Ball (http://github.com/michael-ball/)
+
+gtk-color-scheme = "bg_color:#fdf0ed\nfg_color:#403c3d\nbase_color:#fdf0ed\ntext_color:#403c3d\nselected_bg_color:#f9cbbe\nselected_fg_color:#403c3d\ntooltip_bg_color:#fdf0ed\ntooltip_fg_color:#948c8a\ntitlebar_bg_color:#fdf0ed\ntitlebar_fg_color:#da103f\nmenubar_bg_color:#fdf0ed\nmenubar_fg_color:#da103f\ntoolbar_bg_color:#fdf0ed\ntoolbar_fg_color:#fbe0d9\nmenu_bg_color:#fdf0ed\nmenu_fg_color:#403c3d\npanel_bg_color:#fdf0ed\npanel_fg_color:#94e1b0\nlink_color:#f6661e"
+

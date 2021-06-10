@@ -1,0 +1,5 @@
+# Base16 Equilibrium Light for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Carlo Abelli
+
+gtk-color-scheme = "bg_color:#f5f0e7\nfg_color:#43474e\nbase_color:#f5f0e7\ntext_color:#43474e\nselected_bg_color:#d8d4cb\nselected_fg_color:#43474e\ntooltip_bg_color:#f5f0e7\ntooltip_fg_color:#5a5f66\ntitlebar_bg_color:#f5f0e7\ntitlebar_fg_color:#0073b5\nmenubar_bg_color:#f5f0e7\nmenubar_fg_color:#0073b5\ntoolbar_bg_color:#f5f0e7\ntoolbar_fg_color:#9d6f00\nmenu_bg_color:#f5f0e7\nmenu_fg_color:#43474e\npanel_bg_color:#f5f0e7\npanel_fg_color:#637200\nlink_color:#bf3e05"
+

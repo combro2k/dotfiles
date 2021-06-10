@@ -1,0 +1,5 @@
+# Base16 Nebula for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Gabriel Fontes (https://github.com/Misterio77)
+
+gtk-color-scheme = "bg_color:#22273b\nfg_color:#a4a6a9\nbase_color:#22273b\ntext_color:#a4a6a9\nselected_bg_color:#5a8380\nselected_fg_color:#a4a6a9\ntooltip_bg_color:#22273b\ntooltip_fg_color:#87888b\ntitlebar_bg_color:#22273b\ntitlebar_fg_color:#4d6bb6\nmenubar_bg_color:#22273b\nmenubar_fg_color:#4d6bb6\ntoolbar_bg_color:#22273b\ntoolbar_fg_color:#4f9062\nmenu_bg_color:#22273b\nmenu_fg_color:#a4a6a9\npanel_bg_color:#22273b\npanel_fg_color:#6562a8\nlink_color:#94929e"
+

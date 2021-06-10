@@ -1,0 +1,5 @@
+# Base16 Pasque for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Gabriel Fontes (https://github.com/Misterio77)
+
+gtk-color-scheme = "bg_color:#271c3a\nfg_color:#dedcdf\nbase_color:#271c3a\ntext_color:#dedcdf\nselected_bg_color:#3e2d5c\nselected_fg_color:#dedcdf\ntooltip_bg_color:#271c3a\ntooltip_fg_color:#bebcbf\ntitlebar_bg_color:#271c3a\ntitlebar_fg_color:#8e7dc6\nmenubar_bg_color:#271c3a\nmenubar_fg_color:#8e7dc6\ntoolbar_bg_color:#271c3a\ntoolbar_fg_color:#804ead\nmenu_bg_color:#271c3a\nmenu_fg_color:#dedcdf\npanel_bg_color:#271c3a\npanel_fg_color:#c6914b\nlink_color:#918889"
+

@@ -1,0 +1,5 @@
+# Base16 Silk Dark for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Gabriel Fontes (https://github.com/Misterio77)
+
+gtk-color-scheme = "bg_color:#0e3c46\nfg_color:#c7dbdd\nbase_color:#0e3c46\ntext_color:#c7dbdd\nselected_bg_color:#2a5054\nselected_fg_color:#c7dbdd\ntooltip_bg_color:#0e3c46\ntooltip_fg_color:#9dc8cd\ntitlebar_bg_color:#0e3c46\ntitlebar_fg_color:#46bddd\nmenubar_bg_color:#0e3c46\nmenubar_fg_color:#46bddd\ntoolbar_bg_color:#0e3c46\ntoolbar_fg_color:#fce380\nmenu_bg_color:#0e3c46\nmenu_fg_color:#c7dbdd\npanel_bg_color:#0e3c46\npanel_fg_color:#73d8ad\nlink_color:#fcab74"
+

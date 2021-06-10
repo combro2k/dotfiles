@@ -1,0 +1,5 @@
+# Base16 Windows 95 for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Fergus Collins (https://github.com/C-Fergus)
+
+gtk-color-scheme = "bg_color:#000000\nfg_color:#a8a8a8\nbase_color:#000000\ntext_color:#a8a8a8\nselected_bg_color:#383838\nselected_fg_color:#a8a8a8\ntooltip_bg_color:#000000\ntooltip_fg_color:#7e7e7e\ntitlebar_bg_color:#000000\ntitlebar_fg_color:#5454fc\nmenubar_bg_color:#000000\nmenubar_fg_color:#5454fc\ntoolbar_bg_color:#000000\ntoolbar_fg_color:#fcfc54\nmenu_bg_color:#000000\nmenu_fg_color:#a8a8a8\npanel_bg_color:#000000\npanel_fg_color:#54fc54\nlink_color:#a85400"
+

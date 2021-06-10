@@ -1,0 +1,5 @@
+# Base16 tender for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Jacobo Tabernero (https://github/com/jacoborus/tender.vim)
+
+gtk-color-scheme = "bg_color:#282828\nfg_color:#eeeeee\nbase_color:#282828\ntext_color:#eeeeee\nselected_bg_color:#484848\nselected_fg_color:#eeeeee\ntooltip_bg_color:#282828\ntooltip_fg_color:#b8b8b8\ntitlebar_bg_color:#282828\ntitlebar_fg_color:#b3deef\nmenubar_bg_color:#282828\nmenubar_fg_color:#b3deef\ntoolbar_bg_color:#282828\ntoolbar_fg_color:#ffc24b\nmenu_bg_color:#282828\nmenu_fg_color:#eeeeee\npanel_bg_color:#282828\npanel_fg_color:#c9d05c\nlink_color:#dc9656"
+

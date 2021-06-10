@@ -1,0 +1,5 @@
+# Base16 Framer for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Framer (Maintained by Jesse Hoyos)
+
+gtk-color-scheme = "bg_color:#181818\nfg_color:#d0d0d0\nbase_color:#181818\ntext_color:#d0d0d0\nselected_bg_color:#464646\nselected_fg_color:#d0d0d0\ntooltip_bg_color:#181818\ntooltip_fg_color:#b9b9b9\ntitlebar_bg_color:#181818\ntitlebar_fg_color:#20bcfc\nmenubar_bg_color:#181818\nmenubar_fg_color:#20bcfc\ntoolbar_bg_color:#181818\ntoolbar_fg_color:#fecb6e\nmenu_bg_color:#181818\nmenu_fg_color:#d0d0d0\npanel_bg_color:#181818\npanel_fg_color:#32ccdc\nlink_color:#fc4769"
+

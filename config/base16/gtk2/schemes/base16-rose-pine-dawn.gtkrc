@@ -1,0 +1,5 @@
+# Base16 Rosé Pine Dawn for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Emilia Dunfelt &lt;sayhi@dunfelt.se&gt;
+
+gtk-color-scheme = "bg_color:#faf4ed\nfg_color:#575279\nbase_color:#faf4ed\ntext_color:#575279\nselected_bg_color:#f2e9de\nselected_fg_color:#575279\ntooltip_bg_color:#faf4ed\ntooltip_fg_color:#6e6a86\ntitlebar_bg_color:#faf4ed\ntitlebar_fg_color:#56949f\nmenubar_bg_color:#faf4ed\nmenubar_fg_color:#56949f\ntoolbar_bg_color:#faf4ed\ntoolbar_fg_color:#ea9d34\nmenu_bg_color:#faf4ed\nmenu_fg_color:#575279\npanel_bg_color:#faf4ed\npanel_fg_color:#d7827e\nlink_color:#b4637a"
+

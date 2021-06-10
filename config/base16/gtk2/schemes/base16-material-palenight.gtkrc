@@ -1,0 +1,5 @@
+# Base16 Material Palenight for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Nate Peterson
+
+gtk-color-scheme = "bg_color:#292d3e\nfg_color:#959dcb\nbase_color:#292d3e\ntext_color:#959dcb\nselected_bg_color:#32374d\nselected_fg_color:#959dcb\ntooltip_bg_color:#292d3e\ntooltip_fg_color:#8796b0\ntitlebar_bg_color:#292d3e\ntitlebar_fg_color:#82aaff\nmenubar_bg_color:#292d3e\nmenubar_fg_color:#82aaff\ntoolbar_bg_color:#292d3e\ntoolbar_fg_color:#ffcb6b\nmenu_bg_color:#292d3e\nmenu_fg_color:#959dcb\npanel_bg_color:#292d3e\npanel_fg_color:#c3e88d\nlink_color:#f78c6c"
+

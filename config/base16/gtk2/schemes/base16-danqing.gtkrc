@@ -1,0 +1,5 @@
+# Base16 DanQing for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Wenhan Zhu (Cosmos) (zhuwenhan950913@gmail.com)
+
+gtk-color-scheme = "bg_color:#2d302f\nfg_color:#e0f0ef\nbase_color:#2d302f\ntext_color:#e0f0ef\nselected_bg_color:#5a605d\nselected_fg_color:#e0f0ef\ntooltip_bg_color:#2d302f\ntooltip_fg_color:#cad8d2\ntitlebar_bg_color:#2d302f\ntitlebar_fg_color:#b0a4e3\nmenubar_bg_color:#2d302f\nmenubar_fg_color:#b0a4e3\ntoolbar_bg_color:#2d302f\ntoolbar_fg_color:#f0c239\nmenu_bg_color:#2d302f\nmenu_fg_color:#e0f0ef\npanel_bg_color:#2d302f\npanel_fg_color:#8ab361\nlink_color:#b38a61"
+

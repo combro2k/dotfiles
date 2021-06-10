@@ -1,0 +1,5 @@
+# Base16 Classic Light for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Jason Heeris (http://heeris.id.au)
+
+gtk-color-scheme = "bg_color:#f5f5f5\nfg_color:#303030\nbase_color:#f5f5f5\ntext_color:#303030\nselected_bg_color:#d0d0d0\nselected_fg_color:#303030\ntooltip_bg_color:#f5f5f5\ntooltip_fg_color:#505050\ntitlebar_bg_color:#f5f5f5\ntitlebar_fg_color:#6a9fb5\nmenubar_bg_color:#f5f5f5\nmenubar_fg_color:#6a9fb5\ntoolbar_bg_color:#f5f5f5\ntoolbar_fg_color:#f4bf75\nmenu_bg_color:#f5f5f5\nmenu_fg_color:#303030\npanel_bg_color:#f5f5f5\npanel_fg_color:#90a959\nlink_color:#d28445"
+

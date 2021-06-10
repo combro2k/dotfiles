@@ -1,0 +1,5 @@
+# Base16 Solar Flare Light for gtk2 (https://github.com/dawikur/base16-gtk2)
+# By Chuck Harmston (https://chuck.harmston.ch)
+
+gtk-color-scheme = "bg_color:#f5f7fa\nfg_color:#586875\nbase_color:#f5f7fa\ntext_color:#586875\nselected_bg_color:#a6afb8\nselected_fg_color:#586875\ntooltip_bg_color:#f5f7fa\ntooltip_fg_color:#667581\ntitlebar_bg_color:#f5f7fa\ntitlebar_fg_color:#33b5e1\nmenubar_bg_color:#f5f7fa\nmenubar_fg_color:#33b5e1\ntoolbar_bg_color:#f5f7fa\ntoolbar_fg_color:#e4b51c\nmenu_bg_color:#f5f7fa\nmenu_fg_color:#586875\npanel_bg_color:#f5f7fa\npanel_fg_color:#7cc844\nlink_color:#e66b2b"
+
