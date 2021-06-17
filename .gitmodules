@@ -32,7 +32,7 @@
 	branch = master
 [submodule "config/vis/plugins/vis-go"]
 	path = config/vis/plugins/vis-go
-	url = https://gitlab.com/timoha/vis-go
+	url = https://gitlab.com/timoha/vis-go.git
 	branch = master
 [submodule "config/awesome/lain"]
 	path = config/awesome/lain

@@ -18,9 +18,9 @@
     foreground_color = "#839496"
     show_titlebar = False
     scrollbar_position = hidden
-    scroll_on_output = True
     scrollback_lines = 50000
     palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000cd:#cd00cd:#00cdcd:#faebd7:#404040:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#ffffff"
+    login_shell = True
     use_system_font = False
     use_theme_colors = True
     copy_on_selection = True

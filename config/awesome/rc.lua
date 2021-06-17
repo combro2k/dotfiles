@@ -50,7 +50,7 @@ do
   )
 end
 
-local chosen_theme = "powerarrow"
+local chosen_theme = "powerarrow-dark"
 
 local terminal = os.getenv("TERMINAL") or "urxvtc" 
 local editor = os.getenv("EDITOR") or "editor"
