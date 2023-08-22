@@ -91,7 +91,7 @@
 - pip:
     file: python/requirements.txt
     file-nox: python/requirements-nox.txt
-    binary: pip3
+    binary: pip
     user: true
     stdout: false
     stderr: true
@@ -117,9 +117,9 @@
 
 - shell:
       - 
-        command: fc-cache -fv ~/.local/share/fonts
+        command: bash -i -c 'test -x /usr/bin/fc-cache && fc-cache -fv ~/.local/share/fonts || echo "No X11"'
         stdin: true
-        stdout: false
+        stdout: true
         description: Update font cache
       -
         command: bash -i -c 'test -x /usr/bin/update-desktop-database && update-desktop-database -v ~/.local/share/applications || echo "No X11"'

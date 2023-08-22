@@ -9,6 +9,7 @@ if status --is-interactive
 
   # specific paths if exists
   test -d ~/bin/; and set -g -x PATH $PATH ~/bin
+  test -d ~/.asdf/bin/; and set -g -x PATH $PATH ~/.asdf/bin
   test -d ~/.local/bin/; and set -g -x PATH $PATH ~/.local/bin
   test -d ~/.cargo/bin/; and set -g -x PATH $PATH ~/.cargo/bin
   test -d ~/.linuxbrew/bin/; and set -g -x PATH $PATH ~/.linuxbrew/bin

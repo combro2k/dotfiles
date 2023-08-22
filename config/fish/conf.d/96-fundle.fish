@@ -20,7 +20,7 @@ if status --is-interactive
   fundle plugin 'tuvistavie/oh-my-fish-core'
   fundle plugin 'tuvistavie/fish-completion-helpers'
   fundle plugin 'tuvistavie/fish-asdf'
-  fundle plugin 'oh-my-fish/plugin-vcs'
+#  fundle plugin 'oh-my-fish/plugin-vcs'
   fundle plugin 'oh-my-fish/plugin-bang-bang'
   fundle plugin 'oh-my-fish/plugin-license'
   fundle plugin 'oh-my-fish/plugin-sudope'
